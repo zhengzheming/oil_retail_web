@@ -1,0 +1,31 @@
+@import 'variables.scss';
+@function maxWidth($count: 3) {
+  //  计算栅格系统最大宽度 $count: 列数
+  $gap: 10px;
+  @return ($gap * ($count - 1)) / $count;
+}
+
+@function percent($i, $j) {
+  @return $i / $j * 100%
+}
+
+// manage z-index in a place
+$z-indexes: (
+  "sidebar",
+  "navbar",
+  "menu-path",
+);
+@function z($name) {
+  @if index($z-indexes, $name) {
+    @return (length($z-indexes) - index($z-indexes, $name)) + 100;
+  } @else {
+    @warn 'There is no item "#{$name}" in this list; choose one of: #{$z-indexes}';
+    @return null;
+  }
+}
+
+@function line-height($font-size) {
+  @if $font-size = 14px {
+    @return 22px;
+  }
+}

@@ -1,0 +1,101 @@
+@import "variables";
+@import "funcs";
+@import "mixin";
+.btn-w-base {
+  width: 88px;
+}
+.btn-w--list {
+  width: 110px;
+}
+
+.w-fixed {
+  width: 120px;
+}
+.hidden {
+  visibility: hidden;
+}
+
+a.text-link {
+  color: #{$link};
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.text-theme {
+  color: $theme-color;
+}
+.text-gap {
+  margin-right: 5px;
+}
+
+.cell-grid {
+  display: flex;
+  p {
+    font-size: 14px;
+    line-height: calc(22 / 14);
+  }
+  p.form-cell-title,
+  p.cell-title{
+    flex-shrink: 0;
+  }
+
+  &.vertical {
+    flex-direction: column;
+    .form-cell-title {
+      margin-bottom: 5px;
+    }
+  }
+  &.horizontal {
+    .form-cell-title,
+    .cell-title {
+      @extend .w-fixed;
+      &::after {
+        content: ':';
+      }
+    }
+    .cell-title + * {
+      word-break: break-all;
+    }
+  }
+}
+.o-row + .o-row {
+  @include row-gap();
+}
+
+.grid-center .cell-grid.horizontal {
+  align-items: center;
+}
+
+.justify-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+
+.children-gap {
+  & > * + * {
+    margin-left: 10px;
+  }
+}
+
+.table-fixed {
+  width: 100%;
+  table-layout: fixed;
+}
+
+// 表单
+.form-control {
+  width: 100%;
+}
+
+.must-logo::before {
+  content: '* ';
+  color: red;
+}
