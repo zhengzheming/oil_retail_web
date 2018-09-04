@@ -1,0 +1,73 @@
+<template>
+    <section class="menu-path">
+        <el-breadcrumb separator-class="el-icon-arrow-right" can-back @back="goBack">
+            <el-breadcrumb-item>首页</el-breadcrumb-item>
+            <el-breadcrumb-item>活动管理</el-breadcrumb-item>
+            <el-breadcrumb-item>活动列表</el-breadcrumb-item>
+            <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+        </el-breadcrumb>
+    </section>
+</template>
+
+<script>
+export default {
+  methods: {
+    goBack() {
+      history.back();
+    }
+  }
+};
+</script>
+
+<style scoped lang="scss">
+@import "~@/styles/variables";
+.menu-path {
+  background-color: #fff;
+  border-bottom: 1px solid $dc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  font-size: 14px;
+  color: $btn-text;
+}
+.left-part {
+  display: flex;
+}
+.right-part {
+  display: flex;
+  & > * + * {
+    margin-left: 10px;
+  }
+}
+.menu-path_back {
+  position: relative;
+  margin-right: 30px;
+  &::after {
+    content: "|";
+    position: absolute;
+    right: -17px;
+    top: 1px;
+    color: #e6e6e6;
+  }
+}
+.menu-path_breadcrumb {
+  display: flex;
+  & > * + * {
+    margin-left: 30px;
+    position: relative;
+    &::before {
+      content: ">";
+      position: absolute;
+      left: -18px;
+      top: -1px;
+      color: #666666;
+    }
+  }
+  .menu-path_breadcrumb-item {
+    &:last-child {
+      color: $theme-color;
+    }
+  }
+}
+</style>

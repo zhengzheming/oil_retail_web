@@ -1,5 +1,7 @@
+@import "variables";
 body {
   margin: 0;
+  background-color: $bgColor;
 }
 
 *, *::after, *::before {

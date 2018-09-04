@@ -4,6 +4,7 @@ const app = {
   state: {
     sidebar: {
       opened: !+Cookies.get('sidebarStatus'),
+      items: []
     },
     device: 'desktop',
     language: Cookies.get('language') || 'en',

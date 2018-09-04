@@ -1,7 +1,8 @@
 <template>
     <div class="app-wrapper" :class="{ collapse: isCollapse}">
-        <sidebar :side-menu-items="sideMenuItems"/>
+        <sidebar/>
         <div class="main-container">
+            <breadcrumb-and-actions></breadcrumb-and-actions>
             <navbar/>
             <app-main/>
         </div>
@@ -9,14 +10,15 @@
 </template>
 
 <script>
-import { Sidebar, AppMain, Navbar } from "./components";
+import { Sidebar, AppMain, Navbar, BreadcrumbAndActions } from "./components";
 import { mapGetters } from 'vuex'
 export default {
   name: "Layout",
   components: {
     Sidebar,
     AppMain,
-    Navbar
+    Navbar,
+    BreadcrumbAndActions
   },
   computed: {
     ...mapGetters([
@@ -25,11 +27,6 @@ export default {
     isCollapse() {
       return !this.sidebar.opened
     }
-  },
-  data() {
-    return {
-      sideMenuItems: [],
-    };
   }
 };
 </script>
@@ -38,9 +35,7 @@ export default {
 @import "~@/styles/variables";
 @import "~@/styles/mixin.scss";
 @import "~@/styles/funcs";
-body {
-  background-color: $bgColor;
-}
+
 .app-wrapper {
   display: flex;
   min-height: 100vh;
@@ -81,7 +76,7 @@ body {
 
 .navbar,
 .menu-path {
-  z-index: z(feats-menu);
+  z-index: z(navbar);
   position: fixed;
   top: 0;
   right: 0;

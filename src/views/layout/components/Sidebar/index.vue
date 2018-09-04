@@ -12,7 +12,7 @@
             class="logo-img">
       <span class="logo-text">中优油管家</span>
     </router-link>
-    <template v-for="(item,index) in sideMenuItems">
+    <template v-for="(item,index) in sidebarItems">
       <el-subitem
               :data="item"
               :key="index"
@@ -41,6 +41,9 @@ export default {
     ]),
     isCollapse() {
       return !this.sidebar.opened
+    },
+    sidebarItems() {
+      return this.sidebar.items
     }
   },
   props: {
