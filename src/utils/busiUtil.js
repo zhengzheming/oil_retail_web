@@ -1,17 +1,17 @@
-import Vue from 'vue';
+import Vue from "vue";
 
 function formatMenu(menu) {
   let type;
   // let icon = /"(.+)"/.test(menu.icon) ? /"(.+)"/.exec(menu.icon)[1] : '';
   let icon = menu.icon;
-  let parentUnknownIcon = '';
-  let childUnknowIcon = '';
+  let parentUnknownIcon = "";
+  let childUnknowIcon = "";
   let children;
   if (menu.children.length) {
-    type = 'tree';
+    type = "tree";
     children = menu.children.map(childMenu => formatMenu(childMenu));
   } else {
-    type = 'item';
+    type = "item";
     children = [];
   }
   return {
@@ -64,20 +64,14 @@ function findPathFromNode(node) {
   }
 }
 
-function getValueFrom(obj, value = 'value', type = 'object') {
+function getValueFrom(obj, value = "value", type = "object") {
   let result;
-  if (type === 'object') {
-    result = _.isPlainObject(obj) ? obj[value] : '';
+  if (type === "object") {
+    result = _.isPlainObject(obj) ? obj[value] : "";
   }
   return result;
 }
 
 let busEvent = new Vue();
 
-export {
-  formatMenu,
-  findMenuNode,
-  findPathFromNode,
-  getValueFrom,
-  busEvent
-};
+export { formatMenu, findMenuNode, findPathFromNode, getValueFrom, busEvent };

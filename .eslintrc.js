@@ -14,7 +14,7 @@ module.exports = {
     require: true,
     _: true,
     $_util: true,
-    $: true,
+    $: true
   },
   parserOptions: {
     parser: "babel-eslint"

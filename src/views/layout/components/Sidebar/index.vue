@@ -29,21 +29,19 @@
 
 <script>
 import ElSubitem from "./ElSubitem.vue";
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 export default {
-  name: 'Sidebar',
+  name: "Sidebar",
   components: {
     ElSubitem
   },
   computed: {
-    ...mapGetters([
-      'sidebar'
-    ]),
+    ...mapGetters(["sidebar"]),
     isCollapse() {
-      return !this.sidebar.opened
+      return !this.sidebar.opened;
     },
     sidebarItems() {
-      return this.sidebar.items
+      return this.sidebar.items;
     }
   },
   props: {

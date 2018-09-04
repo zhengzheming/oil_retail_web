@@ -12,7 +12,7 @@
 export default {
   methods: {
     toggleSideCollaspe() {
-      this.$store.dispatch('toggleSideBar')
+      this.$store.dispatch("toggleSideBar");
     }
   }
 };

@@ -29,13 +29,13 @@
 </template>
 
 <script>
-import path from 'path'
-import { generateTitle } from '@/utils/i18n'
-import { validateURL } from '@/utils/validate'
-import Item from './Item'
+import path from "path";
+import { generateTitle } from "@/utils/i18n";
+import { validateURL } from "@/utils/validate";
+import Item from "./Item";
 
 export default {
-  name: 'SidebarItem',
+  name: "SidebarItem",
   components: { Item },
   props: {
     // route object
@@ -49,44 +49,44 @@ export default {
     },
     basePath: {
       type: String,
-      default: ''
+      default: ""
     }
   },
   data() {
     return {
       onlyOneChild: null
-    }
+    };
   },
   methods: {
     hasOneShowingChild(children) {
       const showingChildren = children.filter(item => {
         if (item.hidden) {
-          return false
+          return false;
         } else {
           // temp set(will be used if only has one showing child )
-          this.onlyOneChild = item
-          return true
+          this.onlyOneChild = item;
+          return true;
         }
-      })
+      });
       if (showingChildren.length === 1) {
-        return true
+        return true;
       }
-      return false
+      return false;
     },
     resolvePath(routePath) {
-      return path.resolve(this.basePath, routePath)
+      return path.resolve(this.basePath, routePath);
     },
     isExternalLink(routePath) {
-      return validateURL(routePath)
+      return validateURL(routePath);
     },
     clickLink(routePath, e) {
       if (!this.isExternalLink(routePath)) {
-        e.preventDefault()
-        const path = this.resolvePath(routePath)
-        this.$router.push(path)
+        e.preventDefault();
+        const path = this.resolvePath(routePath);
+        this.$router.push(path);
       }
     },
     generateTitle
   }
-}
+};
 </script>

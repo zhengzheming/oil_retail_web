@@ -1,21 +1,19 @@
 import Vue from "vue";
 import Router from "vue-router";
-import mainRoutes from '@/router/modules/route.config'
-import Layout from '@/views/layout/Layout'
+import mainRoutes from "@/router/modules/route.config";
+import Layout from "@/views/layout/Layout";
 
 Vue.use(Router);
 
 export const constantRouterMap = [
   {
-    path: '',
+    path: "",
     component: Layout,
-    children: [
-      ...mainRoutes
-    ]
+    children: [...mainRoutes]
   }
-]
+];
 export default new Router({
-  mode: 'history',
+  mode: "history",
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap
 });

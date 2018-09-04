@@ -11,7 +11,7 @@
 
 <script>
 import { Sidebar, AppMain, Navbar, BreadcrumbAndActions } from "./components";
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 export default {
   name: "Layout",
   components: {
@@ -21,11 +21,9 @@ export default {
     BreadcrumbAndActions
   },
   computed: {
-    ...mapGetters([
-      'sidebar'
-    ]),
+    ...mapGetters(["sidebar"]),
     isCollapse() {
-      return !this.sidebar.opened
+      return !this.sidebar.opened;
     }
   }
 };

@@ -46,15 +46,15 @@
 
 <script>
 export default {
-  name: 'ElSubitem',
+  name: "ElSubitem",
   props: {
     uid: {
       type: String,
-      default: '0'
+      default: "0"
     },
     type: {
       type: String,
-      default: 'item'
+      default: "item"
     },
     isHeader: {
       type: Boolean,
@@ -62,11 +62,11 @@ export default {
     },
     icon: {
       type: String,
-      default: ''
+      default: ""
     },
     name: {
       type: String,
-      default: ''
+      default: ""
     },
     badge: {
       type: Object,
@@ -84,13 +84,13 @@ export default {
       type: Object,
       default() {
         return {
-          name: ''
+          name: ""
         };
       }
     },
     link: {
       type: String,
-      default: ''
+      default: ""
     }
   }
 };

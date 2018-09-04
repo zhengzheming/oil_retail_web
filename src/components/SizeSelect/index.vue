@@ -15,39 +15,37 @@
 export default {
   computed: {
     size() {
-      return this.$store.getters.size
+      return this.$store.getters.size;
     }
   },
   methods: {
     handleSetSize(size) {
-      this.$ELEMENT.size = size
-      this.$store.dispatch('setSize', size)
-      this.refreshView()
+      this.$ELEMENT.size = size;
+      this.$store.dispatch("setSize", size);
+      this.refreshView();
       this.$message({
-        message: 'Switch Size Success',
-        type: 'success'
-      })
+        message: "Switch Size Success",
+        type: "success"
+      });
     },
     refreshView() {
       // In order to make the cached page re-rendered
-      this.$store.dispatch('delAllCachedViews', this.$route)
+      this.$store.dispatch("delAllCachedViews", this.$route);
 
-      const { path } = this.$route
+      const { path } = this.$route;
 
       this.$router.replace({
-        path: '/redirect' + path
-      })
+        path: "/redirect" + path
+      });
     }
   }
-
-}
+};
 </script>
 
 <style scoped>
 .size-icon {
   font-size: 20px;
   cursor: pointer;
-  vertical-align: -4px!important;
+  vertical-align: -4px !important;
 }
 </style>
-
