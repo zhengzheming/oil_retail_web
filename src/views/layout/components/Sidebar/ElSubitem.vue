@@ -1,12 +1,12 @@
 <template>
   <el-menu-item
     :index="uid"
-    :route="router"
-    v-if="router && router.path">
+    :route="route"
+    v-if="route && route.path">
     <i
       class="menu-item-icon"
-      v-if="icon"
-      v-html="icon"/>
+      :class="icon"
+      v-if="icon"/>
     <span slot="title">{{ name }}</span>
   </el-menu-item>
   <el-menu-item
@@ -26,21 +26,13 @@
     <template slot="title">
       <i
         class="menu-item-icon"
-        v-if="icon"
-        v-html="icon"/>
+        :class="icon"
+        v-if="icon"/>
       <span>{{ name }}</span>
     </template>
     <el-subitem
-      v-for="(item,index) in items"
-      :data="item"
-      :uid="item.code"
-      :key="index"
-      :type="item.type"
-      :icon="item.icon"
-      :name="item.name"
-      :items="item.items"
-      :router="item.router"
-      :link="item.link"/>
+      v-for="(item,index) in subItems"
+      :info-obj="item" :key="index"/>
   </el-submenu>
 </template>
 
@@ -48,49 +40,31 @@
 export default {
   name: "ElSubitem",
   props: {
-    uid: {
-      type: String,
-      default: "0"
-    },
-    type: {
-      type: String,
-      default: "item"
-    },
-    isHeader: {
-      type: Boolean,
-      default: false
-    },
-    icon: {
-      type: String,
-      default: ""
-    },
-    name: {
-      type: String,
-      default: ""
-    },
-    badge: {
+    infoObj: {
       type: Object,
-      default() {
-        return {};
-      }
+      default: () => ({})
+    }
+  },
+  computed: {
+    uid() {
+      return this.infoObj.page_url;
     },
-    items: {
-      type: Array,
-      default() {
-        return [];
-      }
+    route() {
+      if (this.subItems.length) return "";
+      return { path: this.infoObj.page_url };
     },
-    router: {
-      type: Object,
-      default() {
-        return {
-          name: ""
-        };
-      }
+    icon() {
+      return this.infoObj.icon;
     },
-    link: {
-      type: String,
-      default: ""
+    link() {
+      if (this.subItems.length) return "";
+      return this.infoObj.page_url;
+    },
+    name() {
+      return this.infoObj.name;
+    },
+    subItems() {
+      return this.infoObj.children || [];
     }
   }
 };

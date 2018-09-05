@@ -6,5 +6,8 @@ module.exports = {
         "element-ui": path.resolve(__dirname, "node_modules", "bui-element")
       }
     }
+  },
+  devServer: {
+    public: "local.oil.retail.com"
   }
 };

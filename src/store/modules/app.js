@@ -10,6 +10,9 @@ const app = {
     language: Cookies.get("language") || "en"
   },
   mutations: {
+    UPDATE_SIDEBAR_ITEMS: (state, items) => {
+      state.sidebar.items = items;
+    },
     TOGGLE_SIDEBAR: state => {
       if (state.sidebar.opened) {
         Cookies.set("sidebarStatus", 1);
@@ -32,6 +35,9 @@ const app = {
     }
   },
   actions: {
+    updateSidebarItems({ commit }, { items }) {
+      commit("UPDATE_SIDEBAR_ITEMS", items);
+    },
     toggleSideBar({ commit }) {
       commit("TOGGLE_SIDEBAR");
     },

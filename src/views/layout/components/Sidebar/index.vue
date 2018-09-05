@@ -2,6 +2,8 @@
   <el-menu
           class="sidebar"
           :collapse="isCollapse"
+          :router="true"
+          :default-openeds="[$route.path]"
           text-color="#666"
           :default-active="$route.path"
           :collapse-transition="true"
@@ -12,17 +14,8 @@
             class="logo-img">
       <span class="logo-text">中优油管家</span>
     </router-link>
-    <template v-for="(item,index) in sidebarItems">
-      <el-subitem
-              :data="item"
-              :key="index"
-              :uid="item.code"
-              :type="item.type"
-              :icon="item.icon"
-              :name="item.name"
-              :items="item.items"
-              :router="item.router"
-              :link="item.link"/>
+    <template v-for="(item, index) in sidebarItems">
+      <el-subitem :info-obj="item" :key="index"/>
     </template>
   </el-menu>
 </template>
@@ -30,6 +23,7 @@
 <script>
 import ElSubitem from "./ElSubitem.vue";
 import { mapGetters } from "vuex";
+import { getMenu } from "@/api/app";
 export default {
   name: "Sidebar",
   components: {
@@ -44,11 +38,13 @@ export default {
       return this.sidebar.items;
     }
   },
-  props: {
-    sideMenuItems: {
-      type: Array,
-      default: () => []
-    }
+  created() {
+    getMenu().then(res => {
+      if (res.state !== 0) {
+        return;
+      }
+      this.$store.dispatch("updateSidebarItems", { items: res.data });
+    });
   }
 };
 </script>

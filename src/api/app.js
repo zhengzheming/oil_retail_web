@@ -1,44 +1,7 @@
 import request from "@/utils/request";
 
-export const getUserInfo = () =>
+export const getMenu = () =>
   request({
-    url: "/api/home/getUserInfo",
+    url: "/api/home/getMenu",
     method: "GET"
-  });
-
-export const getBacklog = () =>
-  request({
-    url: "/api/home/userTasks",
-    method: "GET"
-  });
-
-export const getRoleList = () =>
-  request({
-    url: "/api/home/getUserRoles",
-    method: "GET"
-  });
-
-export const setRole = id =>
-  request({
-    url: "/api/home/setRole",
-    method: "GET",
-    params: {
-      id
-    }
-  });
-
-export const getProjectByCode = code =>
-  request({
-    url: "/project/getIdByCode",
-    methos: "GET",
-    params: {
-      project_code: code
-    }
-  });
-
-export const setUserRole = roleId =>
-  request({
-    url: "/site/setRole",
-    method: "POST",
-    data: `id=${roleId}`
   });
