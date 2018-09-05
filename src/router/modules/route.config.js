@@ -3,13 +3,15 @@ import About from "../../views/About.vue";
 
 export default [
   {
-    path: "/",
+    path: "",
     name: "home",
-    component: Home
+    component: Home,
+    meta: { title: "首页" }
   },
   {
     path: "/about",
     name: "about",
-    component: About
+    component: About,
+    meta: { title: "About" }
   }
 ];
