@@ -34,6 +34,7 @@
 
 <script>
 import { isvalidUsername } from "@/utils/validate";
+import { setToken } from '@/utils/auth'
 
 export default {
   name: "Login",
@@ -86,6 +87,8 @@ export default {
             .dispatch("LoginByUsername", this.loginForm)
             .then(() => {
               this.loading = false;
+              // mock 用
+              setToken('mock')
               this.$router.push({ path: "/" });
             })
             .catch(() => {
