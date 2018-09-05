@@ -7,6 +7,8 @@ import _ from "lodash";
 import Element from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 
+import "./components"
+
 Vue.config.productionTip = false;
 Object.defineProperty(window, "_", { value: _ });
 Object.defineProperty(Vue, "$lodash", { value: _ });
