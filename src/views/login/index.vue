@@ -33,14 +33,12 @@
 </template>
 
 <script>
-import { isvalidUsername } from "@/utils/validate";
-import { setToken } from '@/utils/auth'
 
 export default {
   name: "Login",
   data() {
     const validateUsername = (rule, value, callback) => {
-      if (!isvalidUsername(value)) {
+      if (!value) {
         callback(new Error("请输入用户名"));
       } else {
         callback();
@@ -55,8 +53,8 @@ export default {
     };
     return {
       loginForm: {
-        username: "admin",
-        password: "1111111"
+        username: "liyu",
+        password: "123456"
       },
       loginRules: {
         username: [
