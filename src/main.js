@@ -9,6 +9,7 @@ import "element-ui/lib/theme-chalk/index.css";
 
 import "./components"
 import "./styles/index.scss"
+import "./permission"; // permission control
 
 Vue.config.productionTip = false;
 Object.defineProperty(window, "_", { value: _ });

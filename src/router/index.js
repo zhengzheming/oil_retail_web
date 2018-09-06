@@ -46,10 +46,6 @@ export const constantRouterMap = [
     path: "/401",
     component: () => import("@/views/errorPage/401"),
     hidden: true
-  },
-  {
-    path: "*",
-    redirect: "/404"
   }
 ];
 export default new Router({
@@ -57,3 +53,10 @@ export default new Router({
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap
 });
+
+export const asyncRouterMap = [
+  {
+    path: "*",
+    redirect: "/404"
+  }
+];

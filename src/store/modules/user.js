@@ -10,10 +10,7 @@ const user = {
     name: "",
     avatar: "",
     introduction: "",
-    roles: [],
-    setting: {
-      articlePlatform: []
-    }
+    roles: []
   },
 
   mutations: {
@@ -50,9 +47,8 @@ const user = {
       return new Promise((resolve, reject) => {
         loginByUsername(username, userInfo.password)
           .then(response => {
-            const data = response.data;
-            commit("SET_TOKEN", data.token);
-            setToken(response.data.token);
+            if (response.state !== 0) return reject(response.data)
+            commit("SET_TOKEN", getToken());
             resolve();
           })
           .catch(error => {
@@ -67,7 +63,7 @@ const user = {
         getUserInfo(state.token)
           .then(response => {
             if (response.state !== 0) {
-              reject("error");
+              reject(response.data);
             }
             const data = response.data;
 
