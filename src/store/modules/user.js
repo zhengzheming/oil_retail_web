@@ -47,9 +47,8 @@ const user = {
       return new Promise((resolve, reject) => {
         loginByUsername(username, userInfo.password)
           .then(response => {
-            if (response.state !== 0) return reject(response.data)
             commit("SET_TOKEN", getToken());
-            resolve();
+            resolve(response.data);
           })
           .catch(error => {
             reject(error);

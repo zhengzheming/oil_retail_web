@@ -1,6 +1,6 @@
 import router from "./router";
 import store from "./store/index";
-import { Message } from "element-ui";
+import { Notification } from "element-ui";
 import NProgress from "nprogress"; // progress bar
 import "nprogress/nprogress.css"; // progress bar style
 import { getToken } from "@/utils/auth"; // getToken from cookie
@@ -37,9 +37,9 @@ router.beforeEach((to, from, next) => {
               next({ ...to, replace: true }); // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
             });
           })
-          .catch(err => {
+          .catch(() => {
             store.dispatch("FedLogOut").then(() => {
-              Message.error(err || "Verification failed, please login again");
+              Notification.info("正在退出登录...");
               next({ path: "/" });
             });
           });
