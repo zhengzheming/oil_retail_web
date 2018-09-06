@@ -18,21 +18,22 @@
 export default {
     data(){
         return {
+            value:'',
             itemList:{
                 list: [
-                    {
-                        label:'企业名称',
-                        val:'XXXX有限公司'
-                    },
-                    {
-                        label:'企业名称',
-                        val:'XXXX有限公司'
-                    },
-                    {
-                        label:'企业名称',
-                        val:'XXXX有限公司'
-                    }
-                ]
+                {
+                    label:'企业名称',
+                    val:'XXXX有限公司'
+                },
+                {
+                    label:'企业名称',
+                    val:'XXXX有限公司'
+                },
+                {
+                    label:'企业名称',
+                    val:'XXXX有限公司'
+                }
+            ]
             },
             options:[
                 {

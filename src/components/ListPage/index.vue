@@ -18,8 +18,8 @@
           label="操作"
           width="100">
           <template slot-scope="scope">
-            <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-            <el-button type="text" size="small">编辑</el-button>
+            <el-button v-if="scope.row.is_can_view" @click="handleVIew(scope.row)" type="text" size="small">查看</el-button>
+            <el-button v-if="scope.row.is_can_edit" @click="handleEdit(scope.row)" type="text" size="small">编辑</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -72,8 +72,13 @@ export default {
       }
   },
   methods: {
-    handleClick(row) {
+    handleVIew(row) {
       this.showSideContent = true;
+      this.$emit('show-view');
+    },
+    handleEdit(row) {
+      this.showSideContent = true;
+      this.$emit('show-edit');
     },
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);

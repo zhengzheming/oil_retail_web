@@ -19,9 +19,10 @@ import HelloWorld from '@/components/HelloWorld.vue';
 import { getList } from '@/api/logisticsEnterprise';
 import logisticsEnterpriseDetail from '@/views/basicInfo/logisticsEnterprise/detail'
 import logisticsEnterpriseEdit from '@/views/basicInfo/logisticsEnterprise/edit'
-import queryList from './common/list/data/queryList'
-import tableHeader from './common/list/data/tableHeader'
-import tableContent from './common/list/data/tableContent'
+import queryList from './data/queryList'
+import tableHeader from './data/tableHeader'
+import tableContent from './data/tableContent'
+
 export default {
   name: "home",
   components: {
@@ -30,7 +31,7 @@ export default {
   data(){
     let path = this.$route.path
     return{
-      componentName:'',
+      componentName:logisticsEnterpriseEdit,
       logisticsEnterpriseEdit,
       logisticsEnterpriseDetail,
       currentPage:1,
