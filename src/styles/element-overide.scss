@@ -1,8 +1,12 @@
 // element overide styles
-* {
-    margin: 0;
-    padding: 0;
-}
+$--menu-item-color: #fff;
+$--color-primary: #6666FF;
+/* 改变 icon 字体路径变量，必需 */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+@import "~element-ui/packages/theme-chalk/src/index";
+@import "variables";
+// table
 .el-table th, .el-table tr {
     height: 46px;
 }
@@ -18,4 +22,38 @@ div.el-table--border td, div.el-table--border th {
 }
 .el-table__body tr.hover-row>td {
     background-color: $bgColor;
+}
+
+// sidebar
+.el-menu {
+    background-color: $sidebar-bg-color;
+    .el-submenu__title:hover {
+        background-color: $sidebar-bg-color;
+    }
+}
+.el-submenu__title {
+    height: 50px;
+    line-height: 50px;
+}
+
+.el-menu-item:focus, .el-menu-item:hover {
+    background-color: $sidebar-bg-color;
+    opacity: 1;
+}
+.el-menu-item {
+    opacity: 0.5;
+    &.is-active {
+        opacity: 1;
+        background: rgba(102,102,255,0.20);
+        position: relative;
+        &::before {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: $--color-primary;
+            left: 0;
+            top: 0;
+            bottom: 0;
+        }
+    }
 }

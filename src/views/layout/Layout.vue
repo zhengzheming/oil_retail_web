@@ -40,10 +40,10 @@ export default {
   .main-container {
     flex: 1;
     padding-top: 50px * 2;
-    width: calc(100% - 230px);
+    width: calc(100% - 200px);
     .navbar,
     .menu-path {
-      width: calc(100% - 230px);
+      width: calc(100% - 200px);
     }
   }
   &.collapse {
@@ -62,10 +62,11 @@ export default {
 
 .sidebar {
   z-index: z(sidebar);
-  background-color: #fff;
+  background-color: $sidebar-bg-color;
+    color: #fff;
   flex-shrink: 0;
   &:not(.el-menu--collapse) {
-    width: 230px;
+    width: 200px;
   }
   a {
     text-decoration: none;

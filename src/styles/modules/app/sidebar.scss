@@ -5,17 +5,6 @@
   /deep/ .submenu-item {
     position: relative;
     padding-left: 46px !important;
-    &::after {
-      content: "";
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background-color: #999;
-      top: 24px;
-      left: 28px;
-      z-index: 1;
-    }
   }
 }
 .el-menu--collapse {

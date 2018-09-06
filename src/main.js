@@ -5,10 +5,9 @@ import store from "./store/index.js";
 import _ from "lodash";
 
 import Element from "element-ui";
-import "element-ui/lib/theme-chalk/index.css";
+import "@/styles/element-overide.scss";
 
-import "./components"
-import "./styles/index.scss"
+import "./components";
 import "./permission"; // permission control
 
 Vue.config.productionTip = false;
