@@ -87,8 +87,6 @@ export default {
             .dispatch("LoginByUsername", this.loginForm)
             .then(() => {
               this.loading = false;
-              // mock 用
-              setToken('mock')
               this.$router.push({ path: "/" });
             })
             .catch(() => {
