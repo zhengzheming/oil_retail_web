@@ -9,12 +9,18 @@ import ScrollPane from './ScrollPane';
 import SizeSelect from './SizeSelect';
 import ListPage from './ListPage';
 
-Vue.component(Breadcrumb.name, Breadcrumb);
-Vue.component(ErrorLog.name, ErrorLog);
-Vue.component(FormCom.name, FormCom);
-Vue.component(Hamburger.name, Hamburger);
-Vue.component(ItemList.name, ItemList);
-Vue.component(QueryForm.name, QueryForm);
-Vue.component(ScrollPane.name, ScrollPane);
-Vue.component(SizeSelect.name, SizeSelect);
-Vue.component(ListPage.name, ListPage);
+const components = [
+  Breadcrumb,
+  ErrorLog,
+  FormCom,
+  Hamburger,
+  ItemList,
+  QueryForm,
+  ScrollPane,
+  SizeSelect,
+  ListPage
+];
+
+components.forEach(component => {
+  Vue.component(component.name, component);
+});

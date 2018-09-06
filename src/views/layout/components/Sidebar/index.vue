@@ -3,15 +3,11 @@
           class="sidebar"
           :collapse="isCollapse"
           :router="true"
-          text-color="#666"
           :default-active="$route.path"
           :collapse-transition="true"
-          active-text-color="#ff6200">
+          active-text-color="#fff">
     <router-link class="logo" to="/" tag="span">
-      <img  src="~@/assets/img/logo3.png"
-            alt="中优油管家"
-            class="logo-img">
-      <span class="logo-text">中优油管家</span>
+      <span class="logo-text">油品零售运营P端</span>
     </router-link>
     <sidebar-item v-for="route in permission_routers" :key="route.name" :item="route" :base-path="route.path"/>
   </el-menu>
@@ -55,18 +51,17 @@ export default {
 @import "~@/styles/modules/app/sidebar.scss";
 .logo {
   display: flex;
-  height: 60px;
+  height: 50px;
   cursor: pointer;
-  background-color: #fff;
   justify-content: center;
   align-items: center;
   .logo-img {
     width: 26px;
   }
   .logo-text {
-    margin-left: 10px;
-    font-size: 20px;
-    color: $logo-text;
+    /*margin-left: 10px;*/
+    font-size: 16px;
+    color: #fff;
     font-weight: 500;
     white-space: nowrap;
   }
