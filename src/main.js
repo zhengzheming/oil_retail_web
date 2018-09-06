@@ -8,6 +8,7 @@ import Element from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 
 import "./components"
+import "./styles/index.scss"
 
 Vue.config.productionTip = false;
 Object.defineProperty(window, "_", { value: _ });

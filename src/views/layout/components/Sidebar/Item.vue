@@ -17,7 +17,7 @@ export default {
     const vnodes = [];
 
     if (icon) {
-      vnodes.push(<svg-icon icon-class={icon} />);
+      vnodes.push(<i class={icon + " icon-spec"} />);
     }
 
     if (title) {
@@ -27,3 +27,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.icon-spec {
+  margin-right: 10px;
+}
+</style>

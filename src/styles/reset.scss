@@ -7,17 +7,6 @@ body {
 *, *::after, *::before {
   box-sizing: border-box;
 }
-*{
-  margin: 0;
-  padding: 0;
-}
-.el-table th, .el-table tr {
-  height: 46px;
-}
-.el-table th>.cell {
-  color: #333;
-  font-size: 14px;
-}
-div.el-table--border td, div.el-table--border th {
-  border-right: none !important;
+a {
+  text-decoration: none;
 }

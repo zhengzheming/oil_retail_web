@@ -1,0 +1,41 @@
+.menu-wrapper{
+  /deep/ a {
+    display: block;
+  }
+  /deep/ .submenu-item {
+    position: relative;
+    padding-left: 46px !important;
+    &::after {
+      content: "";
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background-color: #999;
+      top: 24px;
+      left: 28px;
+      z-index: 1;
+    }
+  }
+}
+.el-menu--collapse {
+  /deep/ > .menu-wrapper .el-menu-item,
+  /deep/ > .menu-wrapper .el-submenu > .el-submenu__title {
+    text-align: center;
+    [class^="icon"] {
+      margin: 0;
+      vertical-align: middle;
+      width: 24px;
+    }
+    .el-submenu__icon-arrow {
+      display: none;
+    }
+    span {
+      height: 0;
+      width: 0;
+      overflow: hidden;
+      visibility: hidden;
+      display: inline-block;
+    }
+  }
+}

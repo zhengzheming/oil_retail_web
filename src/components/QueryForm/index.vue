@@ -8,12 +8,10 @@
           v-if="index==2">
           <el-button 
             type="primary" 
-            class="btn-w-base" 
-            style="width:110px;"
+            style="width:65px;"
             @click="query">查询</el-button>
           <el-button 
-            class="btn-w-base" 
-            style="width:110px;"
+            style="width:65px;"
             @click="reset">重置</el-button>
           <p
             @click="isExpand=!isExpand"
@@ -166,13 +164,9 @@
           style="width:100%;"/>
       </template>
     </ul>
-    <div v-if="tabData.length">
-      <span
-        v-for="item of tabData"
-        :class="tabSlt==item.val ? 'slt' : ''"
-        @click="handleSltTab(item)"
-        :key="item.val">{{ item.label }}</span>
-    </div>
+    <el-tabs class="query-tab" v-model="activeName3" type="primary" @tab-click="handleClick">
+      <el-tab-pane v-for="item of tabData" :key="item.val" :label="item.label" :name="item.val"></el-tab-pane>
+    </el-tabs>
   </div>
 </template>
 
@@ -189,6 +183,7 @@ export default {
   },
   data() {
     return {
+      activeName3: 'first',
       val: '',
       isExpand: false,
       tabSlt: '',
@@ -197,25 +192,27 @@ export default {
   },
   watch: {
     comData: {
-      handler: function() {
-        let tmp = [];
-        if (this.comData) {
-          tmp = this.comData.filter(item => {
-            return item.type == 'tab';
-          });
-        }
-        if (tmp.length) {
-          tmp = tmp[0].data;
-          this.tabData = tmp;
-          if (this.tabSlt == '') {
-            this.tabSlt = this.tabData[0].val;
-          }
-        }
-      },
+      handler: 'getTabData',
       deep: true
     }
   },
+  mounted(){
+    this.getTabData();
+  },
   methods: {
+    getTabData(){
+      let tmp = [];
+      if (this.comData) {
+        tmp = this.comData.filter(item => {
+          return item.type == 'tab';
+        });
+      }
+      if (tmp.length) {
+        tmp = tmp[0].data;
+        this.tabData = tmp;
+      }
+      console.log(this.tabData)
+    },
     handleBlur(e, item) {
       if (item.hasOwnProperty('triggerValidate')) {
         let el = e.target;
@@ -235,9 +232,8 @@ export default {
     reset() {
       this.$emit('reset');
     },
-    handleSltTab(item) {
-      this.tabSlt = item.val;
-      this.$emit('slt-tab', item.val);
+    handleClick(tab, event) {
+      console.log(tab, event);
     }
   }
 };
@@ -245,9 +241,11 @@ export default {
 <style scoped lang="scss">
 // @import '../../assets/sass/old_base';
 .my-queyr-form-wrap {
-  & > div {
+  & > div.query-tab {
     display: flex;
-    margin-bottom: 20px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 2px dashed #e9e9e9;
     & > span {
       padding: 0 16px;
       height: 32px;
@@ -291,6 +289,7 @@ export default {
     & > li {
       margin-top: 10px;
       width: 32.33%;
+      height: 32px;
       margin-right: 1%;
       &:not(.check-wrap) {
         display: flex;
