@@ -8,6 +8,7 @@ import QueryForm from './QueryForm';
 import ScrollPane from './ScrollPane';
 import SizeSelect from './SizeSelect';
 import ListPage from './ListPage';
+import Card from './Card'
 
 const components = [
   Breadcrumb,
@@ -18,7 +19,8 @@ const components = [
   QueryForm,
   ScrollPane,
   SizeSelect,
-  ListPage
+  ListPage,
+  Card
 ];
 
 components.forEach(component => {

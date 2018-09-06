@@ -7,7 +7,10 @@ module.exports = {
       }
     }
   },
+
   devServer: {
     public: "local.oil.retail.com"
-  }
+  },
+
+  lintOnSave: undefined
 };
