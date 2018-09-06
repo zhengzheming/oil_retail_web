@@ -164,7 +164,7 @@
           style="width:100%;"/>
       </template>
     </ul>
-    <el-tabs class="query-tab" v-model="activeName3" type="primary" @tab-click="handleClick">
+    <el-tabs class="query-tab" v-show="tabData.length" v-model="activeName3" type="primary" @tab-click="handleClick">
       <el-tab-pane v-for="item of tabData" :key="item.val" :label="item.label" :name="item.val"></el-tab-pane>
     </el-tabs>
   </div>
@@ -211,7 +211,6 @@ export default {
         tmp = tmp[0].data;
         this.tabData = tmp;
       }
-      console.log(this.tabData)
     },
     handleBlur(e, item) {
       if (item.hasOwnProperty('triggerValidate')) {

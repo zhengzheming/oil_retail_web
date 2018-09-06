@@ -3,38 +3,15 @@
     <div>
       <query-form :com-data="queryList"></query-form>
       <el-table
-        :data="tableData"
+        :data="tableContent"
         border
         style="width: 100%">
         <el-table-column
-          fixed
-          prop="date"
-          label="日期"
-          width="150">
-        </el-table-column>
-        <el-table-column
-          prop="name"
-          label="姓名"
-          width="120">
-        </el-table-column>
-        <el-table-column
-          prop="province"
-          label="省份"
-          width="120">
-        </el-table-column>
-        <el-table-column
-          prop="city"
-          label="市区">
-        </el-table-column>
-        <el-table-column
-          prop="address"
-          label="地址"
-          width="300">
-        </el-table-column>
-        <el-table-column
-          prop="zip"
-          label="邮编"
-          width="120">
+          v-for="item of tableHeader"
+          :key="item.prop"
+          :prop="item.prop"
+          :label="item.label"
+          :width="item.width">
         </el-table-column>
         <el-table-column
           fixed="right"
@@ -50,110 +27,52 @@
         style="margin-top:14px;padding:0;"
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
-        :current-page="currentPage4"
-        :page-sizes="[100, 200, 300, 400]"
-        :page-size="100"
+        :current-page="currentPage"
+        :page-sizes="[10, 20, 30, 40]"
+        :page-size="pageSize"
         layout="total, sizes, prev, pager, next, jumper"
         :total="400">
       </el-pagination>
     </div>
     <div class="bg-shadow" v-show="showSideContent" @click="closeSideContent"></div>
-    <div class="side-content" :style="{right:showSideContent?'0':'-800px'}"></div>
+    <div class="side-content" :style="{right:showSideContent?'0':'-60%'}">
+        <slot></slot>
+    </div>
   </div>
 </template>
-
 <script>
 
 export default {
-  name: "ListPage",
+  name: 'ListPage',
   data(){
     return {
       showSideContent:false,
-      currentPage1: 5,
-      currentPage2: 5,
-      currentPage3: 5,
-      currentPage4: 4,
-      queryList: [
-        {
-          label:"123",
-          val:''
-        },
-        {
-          label:"123",
-          val:''
-        },
-        {
-          label:"123",
-          val:''
-        },
-        {
-          label:"123",
-          val:''
-        },
-        {
-          label:"123",
-          val:''
-        },
-        {
-          label:"123",
-          val:''
-        },
-        {
-          label:"123",
-          val:''
-        },
-        {
-          label:"123",
-          val:''
-        },
-        {
-          type:'tab',
-          data:[
-            {
-              label:'123',
-              val:'1'
-            },
-            {
-              label:'123',
-              val:'2'
-            }
-          ]
-        }
-      ],
-      tableData: [{
-        date: '2016-05-03',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
-      }, {
-        date: '2016-05-02',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
-      }]
     }
+  },
+  props: {
+      pageSize: {
+          type: Number,
+          default: () => 10
+      },
+      currentPage: {
+          type: Number,
+          default: () => 1
+      },
+      queryList: {
+          type: Array,
+          default: () => []
+      },
+      tableHeader: {
+          type: Array,
+          default: () => []
+      },
+      tableContent: {
+          type: Array,
+          default: () => []
+      }
   },
   methods: {
     handleClick(row) {
-      console.log(row);
       this.showSideContent = true;
     },
     handleSizeChange(val) {
@@ -186,7 +105,7 @@ export default {
   .side-content{
     position: fixed;
     top: 0;
-    width: 800px;
+    width: 60%;
     height: 100%;
     background-color: #fff;
     z-index: 1000;
