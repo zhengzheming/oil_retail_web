@@ -13,6 +13,7 @@
 
 <script>
 export default {
+  name: "SizeSelect",
   computed: {
     size() {
       return this.$store.getters.size;

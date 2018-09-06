@@ -7,6 +7,8 @@ import _ from "lodash";
 import Element from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 
+import "./components"
+import "./styles/index.scss"
 import "./permission"; // permission control
 
 Vue.config.productionTip = false;

@@ -13,6 +13,7 @@
 import { generateTitle } from "@/utils/i18n";
 
 export default {
+  name: "Breadcrumb",
   data() {
     return {
       levelList: null
