@@ -37,10 +37,9 @@
         :total="400">
       </el-pagination>
     </div>
-    <div class="bg-shadow" v-show="showSideContent" @click="closeSideContent"></div>
-    <div class="side-content" :style="{right:showSideContent?'0':'-60%'}">
-        <slot></slot>
-    </div>
+    <side-content :visible.sync="sideContentVisible">
+      <slot></slot>
+    </side-content>
   </div>
 </template>
 <script>
@@ -49,7 +48,7 @@ export default {
   name: 'ListPage',
   data(){
     return {
-      showSideContent:false,
+      sideContentVisible:false,
     }
   },
   props: {
@@ -82,11 +81,11 @@ export default {
       this.$emit('reset');
     },
     handleVIew(row) {
-      this.showSideContent = true;
+      this.sideContentVisible = true;
       this.$emit('show-view');
     },
     handleEdit(row) {
-      this.showSideContent = true;
+      this.sideContentVisible = true;
       this.$emit('show-edit');
     },
     handleSizeChange(val) {
@@ -94,9 +93,6 @@ export default {
     },
     handleCurrentChange(val) {
       console.log(`当前页: ${val}`);
-    },
-    closeSideContent(){
-      this.showSideContent = false;
     }
   }
 };
@@ -105,24 +101,6 @@ export default {
 <style scoped lang="scss">
 .list-page-com {
   background-color: #fff;
-  .bg-shadow{
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, .5);
-    z-index: 999;
-  }
-  .side-content{
-    position: fixed;
-    top: 0;
-    width: 60%;
-    height: 100%;
-    background-color: #fff;
-    z-index: 1000;
-    transition: right 0.3s;
-  }
 }
 </style>
 
