@@ -6,7 +6,8 @@ import Layout from "@/views/layout/Layout";
 Vue.use(Router);
 /* Router Modules */
 import mainRoutes from "@/router/modules/example";
-import systemRoute from '@/router/modules/system'
+import systemRoute from '@/router/modules/system';
+import basicInfo from '@/router/modules/basicInfo'
 /** note: Submenu only appear when children.length>=1
  *  detail see  https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
  **/
@@ -57,6 +58,7 @@ export default new Router({
 
 export const asyncRouterMap = [
   systemRoute,
+  basicInfo,
   {
     path: "*",
     redirect: "/404"

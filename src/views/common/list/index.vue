@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <card>
     <list-page
       :currentPage="currentPage"
       :pageSize="pageSize"
@@ -8,9 +8,9 @@
       :tableContent="tableContent"
       @show-view="componentName=logisticsEnterpriseDetail"
       @show-edit="componentName=logisticsEnterpriseEdit">
-        <component :is="componentName"></component >
-      </list-page>
-  </div>
+      <component :is="componentName"></component>
+    </list-page>
+  </card>
 </template>
 
 <script>
@@ -29,20 +29,19 @@ export default {
     HelloWorld
   },
   data(){
-    let path = this.$route.path
+    let pathName = this.$route.name
     return{
-      componentName:logisticsEnterpriseEdit,
+      componentName:'',
       logisticsEnterpriseEdit,
       logisticsEnterpriseDetail,
       currentPage:1,
       pageSize:10,
-      queryList: queryList[path],
-      tableHeader:tableHeader[path],
-      tableContent: tableContent[path],
+      queryList: queryList[pathName],
+      tableHeader:tableHeader[pathName],
+      tableContent: tableContent[pathName],
     }
   },
   mounted(){
-    console.log(this.$route.path)
     let params = [this.currentPage,this.pageSize];
     this.queryList.forEach(item => {
       params.push(item.val)

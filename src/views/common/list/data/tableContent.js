@@ -1,5 +1,5 @@
 export default {
-    '/about': [{
+    'logistics': [{
         "logistics_id": "1392",
         "out_status_name": "禁用",
         "name": "朝阳物流有限公司",

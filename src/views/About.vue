@@ -1,16 +1,18 @@
 <template>
-  <div class="home">
+  <card>
     <list-page
       :currentPage="currentPage"
       :pageSize="pageSize"
       :queryList="queryList"
       :tableHeader="tableHeader"
       :tableContent="tableContent"
+      @query="handleQuery"
+      @reset="handleReset"
       @show-view="componentName=logisticsEnterpriseDetail"
       @show-edit="componentName=logisticsEnterpriseEdit">
-        <component :is="componentName"></component >
-      </list-page>
-  </div>
+      <component :is="componentName"></component >
+    </list-page>
+  </card>
 </template>
 
 <script>
@@ -41,17 +43,27 @@ export default {
     }
   },
   mounted(){
-    console.log(this.$route.path)
-    let params = [this.currentPage,this.pageSize];
-    this.queryList.forEach(item => {
-      params.push(item.val)
-    })
-    getList(...params)
-    .then(res => {
-      console.log(res)
-    })
+    this.list();
   },
   methods: {
+    handleQuery(){
+      this.list();
+    },
+    handleReset(){
+      this.queryList.forEach(item => {
+        item.val = '';
+      })
+    },
+    list(){
+      let params = [this.currentPage,this.pageSize];
+      this.queryList.forEach(item => {
+        params.push(item.val)
+      })
+      getList(...params)
+      .then(res => {
+        console.log(res)
+      })
+    }
   }
 };
 </script>

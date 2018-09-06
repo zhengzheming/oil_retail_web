@@ -1,5 +1,5 @@
 export default {
-    '/about': [
+    'logistics': [
         {
             label:'企业名称',
             val:''

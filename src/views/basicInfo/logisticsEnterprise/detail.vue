@@ -1,7 +1,7 @@
 <template>
-<div>
+<card>
     <item-list :com-data="itemList"></item-list>
-</div>
+</card>
 </template>
 <script>
 export default {

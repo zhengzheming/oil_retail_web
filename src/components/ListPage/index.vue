@@ -1,7 +1,10 @@
 <template>
-  <div class="home">
+  <div class="list-page-com">
     <div>
-      <query-form :com-data="queryList"></query-form>
+      <query-form
+        :com-data="queryList"
+        @reset="handleReset"
+        @query="handleQuery"></query-form>
       <el-table
         :data="tableContent"
         border
@@ -72,6 +75,12 @@ export default {
       }
   },
   methods: {
+    handleQuery(){
+      this.$emit('query');
+    },
+    handleReset(){
+      this.$emit('reset');
+    },
     handleVIew(row) {
       this.showSideContent = true;
       this.$emit('show-view');
@@ -94,9 +103,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.home {
-  margin:14px;
-  padding: 14px;
+.list-page-com {
   background-color: #fff;
   .bg-shadow{
     position: fixed;

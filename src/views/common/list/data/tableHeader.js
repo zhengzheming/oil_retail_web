@@ -1,5 +1,5 @@
 export default {
-    '/about': [
+    'logistics': [
         {
           label:'编号',
           prop:'logistics_id',
@@ -8,7 +8,7 @@ export default {
         {
           label:'企业名称',
           prop:'name',
-          width:'120'
+          width:'200'
         },
         {
           label:'银管家状态',

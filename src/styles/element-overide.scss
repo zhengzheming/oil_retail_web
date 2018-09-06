@@ -14,7 +14,7 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
     color: #333;
     font-size: 14px;
 }
-div.el-table--border td, div.el-table--border th {
+div.el-table--border td:not(:last-child), div.el-table--border th:not(:last-child) {
     border-right: none;
 }
 .el-table .cell{

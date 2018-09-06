@@ -287,9 +287,9 @@ export default {
     }
     & > li {
       margin-top: 10px;
-      width: 32.33%;
+      width: 31.33%;
       height: 32px;
-      margin-right: 1%;
+      margin-right: 2%;
       &:not(.check-wrap) {
         display: flex;
         label {

@@ -1,8 +1,8 @@
 <template>
-<div>
+<card>
     <item-list :com-data="itemList"></item-list>
     <div>
-        <label>企业状态：</label>
+        <label style="color:#333;font-size:14px;">企业状态：</label>
         <el-select v-model="value" placeholder="请选择">
             <el-option
             v-for="item in options"
@@ -12,7 +12,7 @@
             </el-option>
         </el-select>
     </div>
-</div>
+</card>
 </template>
 <script>
 export default {
