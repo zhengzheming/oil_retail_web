@@ -1,6 +1,7 @@
 <template>
   <div class="home">
-    <list-page></list-page>
+    <img alt="Vue logo" src="../assets/logo.png">
+    <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
