@@ -31,7 +31,7 @@ export default {
       },
       {
         path: 'logistics',
-        name: 'logistics',
+        name: 'logistics1',
         component: logistics,
         meta: {
           title: '车辆管理'
