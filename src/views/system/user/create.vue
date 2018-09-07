@@ -96,8 +96,8 @@
             <el-form-item
               label="密码"
               prop="password">
-              <el-input 
-                v-model="form.password" 
+              <el-input
+                v-model="form.password"
                 type="password"/>
             </el-form-item>
           </el-col>
@@ -105,8 +105,8 @@
             <el-form-item
               label="确认密码"
               prop="cpassword">
-              <el-input 
-                v-model="form.cpassword" 
+              <el-input
+                v-model="form.cpassword"
                 type="password"/>
             </el-form-item>
           </el-col>
@@ -159,8 +159,14 @@ export default {
         },
         status: { required: true, message: "请选择状态", trigger: "change" },
         email: { required: true, message: "请输入活动名称", trigger: "blur" },
-        password: { required: true, trigger: "blur", validator: validatePass },
-        cpassword: { required: true, trigger: "blur", validator: validatePass2 }
+        password: [
+          { required: true, trigger: "blur", message: "请输入密码" },
+          { trigger: "blur", validator: validatePass }
+        ],
+        cpassword: [
+          { required: true, trigger: "blur", message: "请输入密码" },
+          { trigger: "blur", validator: validatePass2 }
+        ]
       },
       form: {
         realName: "",

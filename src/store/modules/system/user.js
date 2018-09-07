@@ -24,8 +24,12 @@ const user = {
       if (!formRef) return;
       formRef.validate(valid => {
         if (valid) {
-          createSystemUser(form).then(() => {
-            history.back();
+          let data = {
+            ...form,
+            roles: form.roles.map(role => ({ id: role, name: "" }))
+          };
+          createSystemUser(data).then(() => {
+            router.push({ name: "system-user-list" });
           });
         }
       });
