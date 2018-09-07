@@ -96,14 +96,18 @@
             <el-form-item
               label="密码"
               prop="password">
-              <el-input v-model="form.password"/>
+              <el-input 
+                v-model="form.password" 
+                type="password"/>
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item
               label="确认密码"
               prop="cpassword">
-              <el-input v-model="form.cpassword"/>
+              <el-input 
+                v-model="form.cpassword" 
+                type="password"/>
             </el-form-item>
           </el-col>
         </el-row>
@@ -198,9 +202,20 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch("system-user-detail:fetch-form");
+    if (this.$route.query.userId) {
+      this.$store.dispatch("system-user-detail:fetch-form").then(detail => {
+        this.form = detail;
+        if (!this.form.roles) this.form.roles = [];
+        this.$nextTick(function() {
+          this.$refs.form.clearValidate();
+        });
+      });
+    }
     fetchRoles().then(res => {
-      this.ui.roleOptions = res.data;
+      this.ui.roleOptions = res.data.map(role => ({
+        label: role.name,
+        value: role.role_id
+      }));
     });
   },
   mounted() {

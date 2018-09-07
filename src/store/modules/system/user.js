@@ -34,13 +34,14 @@ const user = {
       state.systemUserCreate.form = form;
       state.systemUserCreate.formRef = formRef;
     },
-    "system-user-detail:fetch-form": function({ commit, rootState }) {
-      fetchUserDetail(rootState.route.query.userId).then(res => {
+    "system-user-detail:fetch-form": function({ commit, rootState, state }) {
+      return fetchUserDetail(rootState.route.query.userId).then(res => {
         commit("UPDATE_USER_DETAIL", res.data);
+        return state.systemUserDetail.form;
       });
     },
     "system-user-detail:modify": function({ rootState }) {
-      router.push({ name: "system-user-create", query: rootState.query });
+      router.push({ name: "system-user-create", query: rootState.route.query });
     }
   }
 };
