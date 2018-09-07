@@ -50,19 +50,19 @@ export default {
       this.list();
     },
     handleReset(){
-      this.queryList.forEach(item => {
-        item.val = '';
-      })
+      // this.queryList.forEach(item => {
+      //   item.val = '';
+      // })
     },
     list(){
-      let params = [this.currentPage,this.pageSize];
-      this.queryList.forEach(item => {
-        params.push(item.val)
-      })
-      getList(...params)
-      .then(res => {
-        console.log(res)
-      })
+      // let params = [this.currentPage,this.pageSize];
+      // this.queryList.forEach(item => {
+      //   params.push(item.val)
+      // })
+      // getList(...params)
+      // .then(res => {
+      //   console.log(res)
+      // })
     }
   }
 };
