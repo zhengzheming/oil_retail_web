@@ -8,7 +8,7 @@ export const getMenu = () =>
 
 export function getUserInfo(token) {
   return request({
-    url: "/api/user/info",
+    url: "/admin/site/getUserInfo",
     method: "get",
     params: { token }
   });

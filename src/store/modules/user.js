@@ -65,8 +65,10 @@ const user = {
             if (response.state !== 0) {
               reject(response.data);
             }
-            const data = response.data;
-
+            const data = $utils.renameKeys(
+              { user_right: "roles" },
+              response.data
+            );
             if (data.roles && data.roles.length > 0) {
               // 验证返回的roles是否是一个非空数组
               commit("SET_ROLES", data.roles);
