@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router/index";
 import store from "./store/index.js";
+import { sync } from "vuex-router-sync";
 import _ from "lodash";
 
 import Element from "element-ui";
@@ -19,6 +20,7 @@ Object.defineProperty(Vue.prototype, "$log", { value: console.log });
 Object.defineProperty(Vue.prototype, "$customConfig", { value: customConfig });
 Object.defineProperty(window, "$utils", { value: $utils });
 
+sync(store, router);
 Vue.use(Element);
 new Vue({
   router,

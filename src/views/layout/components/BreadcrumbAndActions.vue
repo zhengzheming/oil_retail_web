@@ -1,18 +1,19 @@
 <template>
   <section class="menu-path">
-    <el-breadcrumb 
-      separator-class="el-icon-arrow-right" 
-      can-back 
+    <el-breadcrumb
+      separator-class="el-icon-arrow-right"
+      can-back
       @back="goBack">
-      <el-breadcrumb-item 
-        v-for="(item, index) in breadcrumbModuel.items" 
+      <el-breadcrumb-item
+        v-for="(item, index) in breadcrumbModuel.items"
         :key="index">{{ item }}</el-breadcrumb-item>
     </el-breadcrumb>
     <div class="menu-path__actions">
-      <el-button 
-        v-for="(item, index) in breadcrumbModuel.actions" 
-        :key="index" 
-        :type="item.type" 
+      <el-button
+        v-for="(item, index) in breadcrumbModuel.actions"
+        :key="index"
+        :type="!item.plain ? item.type : ''"
+        :plain="item.plain"
         @click="execute(item.action)">{{ item.name }}</el-button>
     </div>
   </section>

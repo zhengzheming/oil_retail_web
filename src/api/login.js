@@ -1,9 +1,10 @@
 import request from "@/utils/request";
+import md5 from "js-md5";
 
 export function loginByUsername(username, password) {
   const data = {
     username,
-    password
+    password: md5(password)
   };
   return request({
     url: "/admin/site/login",

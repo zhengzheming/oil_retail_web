@@ -1,6 +1,7 @@
 import Layout from "@/views/layout/Layout";
-import systemModule from '@/views/system/module/index'
+import systemModule from "@/views/system/module/index";
 import systemUserCreate from "@/views/system/user/create";
+import systemUserDetail from "@/views/system/user/detail";
 import commonList from "@/views/common/list";
 const placeholderView = {
   render(h) {
@@ -40,6 +41,22 @@ export default {
           meta: {
             title: "添加用户"
           }
+        },
+        {
+          path: "modify",
+          name: "system-user-modify",
+          component: systemUserCreate,
+          meta: {
+            title: "修改用户"
+          }
+        },
+        {
+          path: "detail",
+          name: "system-user-detail",
+          component: systemUserDetail,
+          meta: {
+            title: "用户详情"
+          }
         }
       ]
     },
@@ -52,11 +69,11 @@ export default {
       }
     },
     {
-      path: 'module',
-      name: 'system-module',
+      path: "module",
+      name: "system-module",
       component: systemModule,
       meta: {
-        title: '模块管理'
+        title: "模块管理"
       }
     }
   ]

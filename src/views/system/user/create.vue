@@ -120,16 +120,7 @@
 </template>
 
 <script>
-import { fetchUserDetail, fetchRoles } from "@/api/system/user";
-const fieldMap = {
-  user_id: "userId",
-  user_name: "username",
-  password: "password",
-  name: "realName",
-  main_role_id: "mainRole",
-  role_array: "roles",
-  is_right_role: "authFollowRole"
-};
+import { fetchRoles } from "@/api/system/user";
 export default {
   name: "SystemUserCreate",
   data() {
@@ -197,7 +188,7 @@ export default {
   watch: {
     form: {
       handler: function(val) {
-        this.$store.dispatch("systemUserCreate:update-form", {
+        this.$store.dispatch("system-user-create:update-form", {
           form: val,
           formRef: this.$refs["form"]
         });
@@ -207,16 +198,13 @@ export default {
     }
   },
   created() {
-    fetchUserDetail(this.$route.query.userId).then(res => {
-      let data = res.data;
-      this.form = $utils.renameKeys(fieldMap, data);
-    });
+    this.$store.dispatch("system-user-detail:fetch-form");
     fetchRoles().then(res => {
       this.ui.roleOptions = res.data;
     });
   },
   mounted() {
-    this.$store.dispatch("systemUserCreate:update-form", {
+    this.$store.dispatch("system-user-create:update-form", {
       form: this.form,
       formRef: this.$refs["form"]
     });
