@@ -43,7 +43,7 @@ export default {
   },
   mounted(){
     let params = [this.currentPage,this.pageSize];
-    this.queryList.forEach(item => {
+    this.queryList && this.queryList.forEach(item => {
       params.push(item.val)
     })
     getList(...params)

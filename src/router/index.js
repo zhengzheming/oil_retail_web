@@ -60,7 +60,7 @@ export default new Router({
 export const asyncRouterMap = [
   systemRoute,
   basicInfo,
-  // physicalManage,
+  physicalManage,
   {
     path: "*",
     redirect: "/404"
