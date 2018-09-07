@@ -16,18 +16,18 @@ export default {
         name: 'logistics',
         component: logistics,
         meta: {title: '物流企业'},
-        children:[
-            {
-                path: 'detail',
-                component: logisticsDetail,
-                hidden: true
-            },
-            {
-                path: 'detail',
-                component: logisticsEdit,
-                hidden: true
-            }
-        ]
+        // children:[
+        //     {
+        //         path: 'detail',
+        //         component: logisticsDetail,
+        //         hidden: true
+        //     },
+        //     {
+        //         path: 'detail',
+        //         component: logisticsEdit,
+        //         hidden: true
+        //     }
+        // ]
       },
       {
         path: 'logistics',

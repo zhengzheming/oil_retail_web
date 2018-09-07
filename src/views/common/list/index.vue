@@ -16,7 +16,7 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue';
-import { getList } from '@/api/logisticsEnterprise';
+import { getList } from '@/api/commonList';
 import logisticsEnterpriseDetail from '@/views/basicInfo/logisticsEnterprise/detail'
 import logisticsEnterpriseEdit from '@/views/basicInfo/logisticsEnterprise/edit'
 import queryList from './data/queryList'
@@ -48,7 +48,9 @@ export default {
     })
     getList(...params)
     .then(res => {
-      console.log(res)
+      if(res.state == 0){
+        this.tableContent = res.data.data.rows;
+      }
     })
   },
   methods: {
