@@ -9,11 +9,13 @@ import "@/styles/element-overide.scss";
 
 import "./components";
 import "./permission"; // permission control
+import customConfig from "@/services/customConfig";
 
 Vue.config.productionTip = false;
 Object.defineProperty(window, "_", { value: _ });
 Object.defineProperty(Vue, "$lodash", { value: _ });
 Object.defineProperty(Vue.prototype, "$log", { value: console.log });
+Object.defineProperty(Vue.prototype, "$customConfig", { value: customConfig });
 
 Vue.use(Element);
 new Vue({
