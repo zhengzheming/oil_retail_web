@@ -3,6 +3,7 @@
     <div>
       <query-form
         :com-data="queryList"
+        v-if="queryList.length"
         @reset="handleReset"
         @query="handleQuery"></query-form>
       <el-table

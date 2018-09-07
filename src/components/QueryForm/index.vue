@@ -61,18 +61,7 @@
                 :label="item1.label"
                 :value="item1.val"/>
             </el-select>
-            <!-- <input type="text" style="flex:1;" :class="((item.triggerValidate && item.validateFunc(item.val)) || (item.triggerValidate && (item.val === '' || item.val === null || item.val === undefined))) ?'err':''" @blur="e => handleBlur(e,item)" v-model="item.val" class="ipt" :placeholder="item.placeholder"> -->
-            <!-- <my-input-with-logo :com-data="item"/> -->
           </div>
-          <!-- <my-textarea
-            :com-data="item.data"
-            v-else-if="item.type=='textarea'"/> -->
-          <!-- <my-upload
-            :com-data="item.data"
-            v-else-if="item.type=='upload'"/> -->
-          <!-- <my-input-with-logo
-            v-else-if="item.type=='inputWithLogo'"
-            :com-data="item"/> -->
           <el-input
             type="text"
             v-model="item.val"
@@ -88,54 +77,6 @@
             v-else
             class="ipt"
             :placeholder="item.placeholder||'请输入内容'"/>
-        </li>
-        <!-- item.type=='box -->
-        <li
-          v-else-if="item.type=='box'"
-          :key="index"
-          :style="item.styleObj || ''">
-          <ul>
-            <li
-              v-for="(item1,index1) of item.data"
-              :key="index1">
-              <p>
-                <label>{{ item1.label }}</label><small
-                  v-if="item1.smallLabel"
-                  style="font-size: 14px;color: #999;">{{ item1.smallLabel }}</small>
-              </p>
-              <el-select
-                v-model="item.val"
-                v-if="item1.type=='slt'"
-                class="el-slt"
-                :placeholder="item.placeholder">
-                <el-option
-                  v-for="(item2,index) of item1.data"
-                  :disabled="item.disabled"
-                  :key="index"
-                  :label="item2.label"
-                  :value="item2.val"/>
-              </el-select>
-              <!-- <my-textarea
-                :com-data="item.data"
-                v-else-if="item1.type=='textarea'"/> -->
-              <!-- <my-upload
-                v-else-if="item1.type=='upload'"
-                :com-data="item1.data"><em/></my-upload> -->
-              <input
-                type="text"
-                :value="val"
-                v-else-if="item1.readonly"
-                readonly="readonly"
-                class="ipt"
-                :placeholder="item.placeholder">
-              <input
-                type="text"
-                :value="val"
-                v-else
-                class="ipt"
-                :placeholder="item.placeholder">
-            </li>
-          </ul>
         </li>
         <!-- item.type == "radio" -->
         <li 
