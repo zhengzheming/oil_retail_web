@@ -1,6 +1,6 @@
 import Layout from "@/views/layout/Layout";
-import systemUser from "@/views/system/user/list";
 import systemUserCreate from "@/views/system/user/create";
+import commonList from "@/views/common/list";
 const placeholderView = {
   render(h) {
     return h("router-view");
@@ -25,6 +25,14 @@ export default {
       },
       children: [
         {
+          path: "index",
+          name: "system-user-list",
+          component: commonList,
+          meta: {
+            title: "列表"
+          }
+        },
+        {
           path: "create",
           name: "system-user-create",
           component: systemUserCreate,
@@ -37,7 +45,7 @@ export default {
     {
       path: "role",
       name: "system-role",
-      component: systemUser,
+      component: commonList,
       meta: {
         title: "角色管理"
       }

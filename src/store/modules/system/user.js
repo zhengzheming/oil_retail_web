@@ -10,10 +10,13 @@ const user = {
   actions: {
     "system-user-create:save": function({ state }) {
       const formRef = state.systemUserCreate.formRef;
+      const form = state.systemUserCreate.form;
       if (!formRef) return;
       formRef.validate(valid => {
         if (valid) {
-          createSystemUser();
+          createSystemUser(form).then(() => {
+            history.back();
+          });
         }
       });
     },

@@ -1,105 +1,127 @@
 export default {
-    // 基础数据-物流企业
-    'logistics': [
+  // 基础数据-物流企业
+  logistics: [
+    {
+      label: "企业名称",
+      val: ""
+    },
+    {
+      type: "slt",
+      label: "企业状态",
+      val: "",
+      data: [
         {
-            label:'企业名称',
-            val:''
+          label: "aaa",
+          val: "1"
         },
         {
-            type:'slt',
-            label:"企业状态",
-            val:'',
-            data: [
-            {
-                label:'aaa',
-                val:'1'
-            },
-            {
-                label:'bbb',
-                val:'2'
-            },
-            {
-                label:'ccc',
-                val:'3'
-            }
-            ]
+          label: "bbb",
+          val: "2"
         },
         {
-            type:'slt',
-            label:"银管家状态",
-            val:'',
-            data: [
-            {
-                label:'aaa',
-                val:'1'
-            },
-            {
-                label:'bbb',
-                val:'2'
-            },
-            {
-                label:'ccc',
-                val:'3'
-            }
-            ]
+          label: "ccc",
+          val: "3"
         }
-    ],
-    // 物流企业管理-企业额度
-    'enterprise-quota' : [
+      ]
+    },
+    {
+      type: "slt",
+      label: "银管家状态",
+      val: "",
+      data: [
         {
-            label:'物流公司',
-            val:''
+          label: "aaa",
+          val: "1"
         },
         {
-            type:'slt',
-            label:"额度状态",
-            val:'',
-            data: [
-            {
-                label:'aaa',
-                val:'1'
-            },
-            {
-                label:'bbb',
-                val:'2'
-            },
-            {
-                label:'ccc',
-                val:'3'
-            }
-            ]
-        },
-    ],
-    // 物流企业管理-企业可用额度收支管理
-    'available-credit' : [
-        {
-            type:'slt',
-            label:"收支类型",
-            val:'',
-            data: [
-            {
-                label:'aaa',
-                val:'1'
-            },
-            {
-                label:'bbb',
-                val:'2'
-            },
-            {
-                label:'ccc',
-                val:'3'
-            }
-            ]
+          label: "bbb",
+          val: "2"
         },
         {
-            type:'date',
-            label:"开始时间",
-            val:'',
+          label: "ccc",
+          val: "3"
+        }
+      ]
+    }
+  ],
+  // 物流企业管理-企业额度
+  "enterprise-quota": [
+    {
+      label: "物流公司",
+      val: ""
+    },
+    {
+      type: "slt",
+      label: "额度状态",
+      val: "",
+      data: [
+        {
+          label: "aaa",
+          val: "1"
         },
         {
-            type:'date',
-            label:"结束时间",
-            val:'',
+          label: "bbb",
+          val: "2"
         },
-    ]
-}
+        {
+          label: "ccc",
+          val: "3"
+        }
+      ]
+    }
+  ],
+  // 物流企业管理-企业可用额度收支管理
+  "available-credit": [
+    {
+      type: "slt",
+      label: "收支类型",
+      val: "",
+      data: [
+        {
+          label: "aaa",
+          val: "1"
+        },
+        {
+          label: "bbb",
+          val: "2"
+        },
+        {
+          label: "ccc",
+          val: "3"
+        }
+      ]
+    },
+    {
+      type: "date",
+      label: "开始时间",
+      val: ""
+    },
+    {
+      type: "date",
+      label: "结束时间",
+      val: ""
+    }
+  ],
+  "system-user-list": [
+    {
+      label: "用户名",
+      val: ""
+    },
+    {
+      label: "姓名",
+      val: ""
+    },
+    {
+      label: "主角色",
+      type: "slt",
+      val: "",
+      data: []
+    },
+    {
+      label: "角色",
+      type: "slt",
+      val: "",
+      data: []
+    }
+  ]
+};

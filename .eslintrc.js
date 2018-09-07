@@ -17,7 +17,7 @@ module.exports = {
     process: true,
     require: true,
     _: true,
-    $_util: true,
+    $utils: true,
     $: true
   },
 
