@@ -60,3 +60,7 @@ div.el-table--border td:not(:last-child), div.el-table--border th:not(:last-chil
 
 // form
 
+//layout
+.el-row + .el-row {
+    margin-top: 10px;
+}

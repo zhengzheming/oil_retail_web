@@ -29,6 +29,9 @@ export default {
     text-align: right;
     width: 120px;
     margin-right: 14px;
+    &::after {
+      content: ":";
+    }
   }
 }
 </style>
