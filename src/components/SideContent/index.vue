@@ -1,10 +1,9 @@
 <template>
   <transition name="side-content">
-    <div 
-      v-show="visible" 
-      class="side-content__wrapper" 
-      @click.self="hide" 
-      @ontransitionend="$log($event)">
+    <div
+      v-show="visible"
+      class="side-content__wrapper"
+      @click.self="hide">
       <div class="side-content">
         <slot/>
       </div>
@@ -33,9 +32,9 @@ export default {
 
 <style scoped lang="scss">
 @import "~@/styles/funcs";
-.side-content-enter .side-content,
-.side-content-leave-to .side-content {
-  right: -60%;
+.side-content-enter,
+.side-content-leave-to {
+  transform: translate3d(100%, 0, 0);
 }
 .side-content__wrapper {
   position: fixed;
@@ -43,14 +42,13 @@ export default {
   right: 0;
   bottom: 0;
   left: 0;
-  transition: right 0.3s;
+  display: flex;
+  flex-direction: row-reverse;
+  transition: all 0.3s;
 }
 .side-content {
   width: 60%;
   height: 100vh;
   background-color: #fff;
-  position: absolute;
-  right: 0;
-  transition: right 0.3s;
 }
 </style>
