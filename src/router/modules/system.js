@@ -1,5 +1,6 @@
 import Layout from "@/views/layout/Layout";
 import systemUser from '@/views/system/user/index'
+import systemModule from '@/views/system/module/index'
 export default {
   path: '/system',
   name: 'system',
@@ -15,6 +16,14 @@ export default {
       component: systemUser,
       meta: {
         title: '用户管理'
+      }
+    },
+    {
+      path: 'module',
+      name: 'system-module',
+      component: systemModule,
+      meta: {
+        title: '模块管理'
       }
     }
   ]
