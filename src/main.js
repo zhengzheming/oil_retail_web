@@ -13,6 +13,7 @@ import "./permission"; // permission control
 Vue.config.productionTip = false;
 Object.defineProperty(window, "_", { value: _ });
 Object.defineProperty(Vue, "$lodash", { value: _ });
+Object.defineProperty(Vue.prototype, "$log", { value: console.log });
 
 Vue.use(Element);
 new Vue({
