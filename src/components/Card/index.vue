@@ -2,6 +2,7 @@
   <div
     :style="inlineStyle"
     class="o-card">
+    <div class="card__title h"><slot name="title"/></div>
     <slot/>
   </div>
 </template>
@@ -17,13 +18,13 @@ export default {
     },
     innerGutter: {
       type: String,
-      default: '24px'
+      default: "24px"
     }
   },
   computed: {
     inlineStyle() {
       return `margin: ${this.gutter}; padding: ${this.innerGutter}`;
-    },
+    }
   }
 };
 </script>
@@ -31,5 +32,8 @@ export default {
 <style scoped>
 .o-card {
   background-color: #fff;
+}
+.card__title {
+  margin-bottom: 24px;
 }
 </style>
