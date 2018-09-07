@@ -18,7 +18,7 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue';
-import { getList } from '@/api/logisticsEnterprise';
+import { getList } from '@/api/commonList';
 import logisticsEnterpriseDetail from '@/views/basicInfo/logisticsEnterprise/detail'
 import logisticsEnterpriseEdit from '@/views/basicInfo/logisticsEnterprise/edit'
 import queryList from './common/list/data/queryList'
