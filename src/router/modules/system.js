@@ -1,5 +1,8 @@
 import Layout from "@/views/layout/Layout";
 import systemModule from '@/views/system/module/index'
+import moduleEdit from '@/views/system/module/edit'
+import moduleDetail from '@/views/system/module/detail'
+
 import systemUser from "@/views/system/user/list";
 import systemUserCreate from "@/views/system/user/create";
 const placeholderView = {
@@ -50,6 +53,21 @@ export default {
       meta: {
         title: '模块管理'
       }
+    },
+    {
+      path: 'module/detail',
+      name:'moduleDetail',
+      component: moduleDetail
+    },
+    {
+      path: 'module/edit',
+      name: 'moduleEdit',
+      component: moduleEdit
+    },
+    {
+      path: 'module/add',
+      name:'addModule',
+      component: moduleEdit
     }
   ]
 };

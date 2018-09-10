@@ -25,10 +25,6 @@ import queryList from './data/queryList'
 import tableHeader from './data/tableHeader'
 
 export default {
-  name: "home",
-  components: {
-    HelloWorld
-  },
   data(){
     let pathName = this.$route.name
     return{
