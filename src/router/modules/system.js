@@ -4,6 +4,7 @@ import systemUserCreate from "@/views/system/user/create";
 import systemUserDetail from "@/views/system/user/detail";
 
 import systemRoleCreate from "@/views/system/role/create";
+import systemRoleDetail from "@/views/system/role/detail";
 import commonList from "@/views/common/list";
 const placeholderView = {
   render(h) {
@@ -89,7 +90,7 @@ export default {
         {
           path: "modify",
           name: "system-role-modify",
-          component: systemUserCreate,
+          component: systemRoleCreate,
           meta: {
             title: "修改角色"
           }
@@ -97,7 +98,7 @@ export default {
         {
           path: "detail",
           name: "system-role-detail",
-          component: systemUserDetail,
+          component: systemRoleDetail,
           meta: {
             title: "角色详情"
           }
