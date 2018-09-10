@@ -1,9 +1,8 @@
 import Layout from "@/views/layout/Layout";
-import systemModule from '@/views/system/module/index'
-import moduleEdit from '@/views/system/module/edit'
-import moduleDetail from '@/views/system/module/detail'
+import systemModule from "@/views/system/module/index";
+import moduleEdit from "@/views/system/module/edit";
+import moduleDetail from "@/views/system/module/detail";
 
-import systemUser from "@/views/system/user/list";
 import systemUserCreate from "@/views/system/user/create";
 import systemUserDetail from "@/views/system/user/detail";
 
@@ -118,18 +117,18 @@ export default {
       }
     },
     {
-      path: 'module/detail',
-      name:'moduleDetail',
+      path: "module/detail",
+      name: "moduleDetail",
       component: moduleDetail
     },
     {
-      path: 'module/edit',
-      name: 'moduleEdit',
+      path: "module/edit",
+      name: "moduleEdit",
       component: moduleEdit
     },
     {
-      path: 'module/add',
-      name:'addModule',
+      path: "module/add",
+      name: "addModule",
       component: moduleEdit
     }
   ]
