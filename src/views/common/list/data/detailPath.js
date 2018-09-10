@@ -1,9 +1,14 @@
 export default {
-    'logistics':{
-        pathName:'logisticsDetail',
-        query:[{
-            name:'logistics_id',             //参数key
-            field:'logistics_id'     //参数value所对应的后台字段
-        }]
-    }
-}
+  logistics: {
+    pathName: "logisticsDetail"
+  },
+  "system-user-list": {
+    pathName: "system-user-detail",
+    query: [
+      {
+        name: "userId",
+        field: "user_id"
+      }
+    ]
+  }
+};
