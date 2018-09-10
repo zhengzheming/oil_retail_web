@@ -1,6 +1,7 @@
 import { createSystemUser } from "@/api/system/user";
 import { systemUserFieldMap } from "@/services/fieldMap";
 import { fetchUserDetail } from "@/api/system/user";
+import { Message } from "element-ui";
 import router from "@/router/index";
 const user = {
   state: {
@@ -21,7 +22,7 @@ const user = {
     }
   },
   actions: {
-    "system-user-create:save": function({ state }) {
+    "system-user-create:save": function({ state, rootState }) {
       const formRef = state.systemUserCreate.formRef;
       const form = state.systemUserCreate.form;
       if (!formRef) return;
@@ -31,6 +32,11 @@ const user = {
             ...form
           };
           createSystemUser(data).then(() => {
+            const infoMap = {
+              "system-user-create": "添加角色成功",
+              "system-user-modify": "修改角色成功"
+            };
+            Message.success(infoMap[rootState.route.name]);
             router.push({ name: "system-user-list" });
           });
         }
