@@ -9,10 +9,10 @@ export default {
         label:'企业名称',
         url:'11111',
         pathName:'enterprise-quota',
-        query:[{
-          name:'id',
-          field:'out_status'
-        }]
+        // query:[{
+        //   name:'id',             //参数key
+        //   field:'out_status'     //参数value所对应的后台字段
+        // }]
       },
       'out_status_name':{
         label:'银管家状态',
