@@ -1,4 +1,5 @@
 import request from "@/utils/request";
+import md5 from "js-md5";
 
 export function createSystemUser({
   username,
@@ -18,7 +19,7 @@ export function createSystemUser({
     data: {
       user_id: userId,
       user_name: username,
-      password: password,
+      password: md5(password),
       name: realName,
       phone,
       email,

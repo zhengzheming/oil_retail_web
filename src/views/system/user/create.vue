@@ -125,6 +125,8 @@
 
 <script>
 import { fetchRoles } from "@/api/system/user";
+import { validateEmail, validatePhone } from "@/utils/validate";
+
 export default {
   name: "SystemUserCreate",
   data() {
@@ -151,14 +153,20 @@ export default {
       rules: {
         realName: [{ required: true, message: "请输入姓名", trigger: "blur" }],
         username: { required: true, message: "请输入用户名", trigger: "blur" },
-        phone: { required: true, message: "请输入手机号", trigger: "blur" },
+        phone: [
+          { required: true, message: "请输入手机号", trigger: "blur" },
+          { validator: validatePhone, trigger: "blur" }
+        ],
         mainRole: {
           required: true,
           message: "请选择主角色",
           trigger: "change"
         },
         status: { required: true, message: "请选择状态", trigger: "change" },
-        email: { required: true, message: "请输入活动名称", trigger: "blur" },
+        email: [
+          { required: true, message: "请输入活动名称", trigger: "blur" },
+          { validator: validateEmail, trigger: "blur" }
+        ],
         password: [
           { required: true, trigger: "blur", message: "请输入密码" },
           { trigger: "blur", validator: validatePass }
