@@ -1,7 +1,9 @@
 import user from "./user";
+import role from "./role";
 const system = {
   modules: {
-    user
+    user,
+    role
   }
 };
 

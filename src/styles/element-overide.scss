@@ -64,3 +64,6 @@ div.el-table--border td:not(:last-child), div.el-table--border th:not(:last-chil
 .el-row + .el-row {
     margin-top: 10px;
 }
+.el-form .el-row + .el-row {
+    margin-top: auto;
+}
