@@ -1,4 +1,4 @@
-const fieldMap = {
+export const systemUserFieldMap = {
   user_id: "userId",
   user_name: "username",
   password: "password",
@@ -8,4 +8,7 @@ const fieldMap = {
   is_right_role: "authFollowRole"
 };
 
-export default fieldMap;
+export const systemRoleFieldMap = {
+  name: "roleName",
+  status: "roleStatus"
+};

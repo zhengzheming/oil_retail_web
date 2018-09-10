@@ -1,5 +1,5 @@
 import { createSystemRole } from "@/api/system/role";
-import fieldMap from "@/services/fieldMap";
+import { systemRoleFieldMap } from "@/services/fieldMap";
 import { fetchUserRoleDetail } from "@/api/system/role";
 import router from "@/router/index";
 const role = {
@@ -14,7 +14,10 @@ const role = {
   },
   mutations: {
     UPDATE_ROLE_DETAIL(state, detail) {
-      state.systemRoleDetail.form = $utils.renameKeys(fieldMap, detail);
+      state.systemRoleDetail.form = $utils.renameKeys(
+        systemRoleFieldMap,
+        detail
+      );
     }
   },
   actions: {
@@ -25,8 +28,7 @@ const role = {
       formRef.validate(valid => {
         if (valid) {
           let data = {
-            ...form,
-            roles: form.roles.map(role => ({ id: role, name: "" }))
+            ...form
           };
           createSystemRole(data).then(() => {
             router.push({ name: "system-role-list" });
@@ -34,12 +36,15 @@ const role = {
         }
       });
     },
+    "system-role-modify:save": function({ dispatch }) {
+      dispatch("system-role-create:save");
+    },
     "system-role-create:update-form": function({ state }, { form, formRef }) {
       state.systemRoleCreate.form = form;
       state.systemRoleCreate.formRef = formRef;
     },
     "system-role-detail:fetch-form": function({ commit, rootState, state }) {
-      return fetchUserRoleDetail(rootState.route.query.userId).then(res => {
+      return fetchUserRoleDetail(rootState.route.query.roleId).then(res => {
         commit("UPDATE_ROLE_DETAIL", res.data);
         return state.systemRoleDetail.form;
       });

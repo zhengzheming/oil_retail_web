@@ -1,5 +1,5 @@
 import { createSystemUser } from "@/api/system/user";
-import fieldMap from "@/services/fieldMap";
+import { systemUserFieldMap } from "@/services/fieldMap";
 import { fetchUserDetail } from "@/api/system/user";
 import router from "@/router/index";
 const user = {
@@ -14,7 +14,10 @@ const user = {
   },
   mutations: {
     UPDATE_USER_DETAIL(state, detail) {
-      state.systemUserDetail.form = $utils.renameKeys(fieldMap, detail);
+      state.systemUserDetail.form = $utils.renameKeys(
+        systemUserFieldMap,
+        detail
+      );
     }
   },
   actions: {
@@ -25,8 +28,7 @@ const user = {
       formRef.validate(valid => {
         if (valid) {
           let data = {
-            ...form,
-            roles: form.roles.map(role => ({ id: role, name: "" }))
+            ...form
           };
           createSystemUser(data).then(() => {
             router.push({ name: "system-user-list" });
