@@ -18,7 +18,7 @@ export default {
         name: 'driver',
         component: commonList,
         meta: {title: '企业额度'}
-    }
+    },
     // 企业额度
      {
         path: 'quote',
