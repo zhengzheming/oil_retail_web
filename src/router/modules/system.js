@@ -5,6 +5,10 @@ import moduleDetail from '@/views/system/module/detail'
 
 import systemUser from "@/views/system/user/list";
 import systemUserCreate from "@/views/system/user/create";
+import systemUserDetail from "@/views/system/user/detail";
+
+import systemRoleCreate from "@/views/system/role/create";
+import commonList from "@/views/common/list";
 const placeholderView = {
   render(h) {
     return h("router-view");
@@ -29,11 +33,35 @@ export default {
       },
       children: [
         {
+          path: "index",
+          name: "system-user-list",
+          component: commonList,
+          meta: {
+            title: "列表"
+          }
+        },
+        {
           path: "create",
           name: "system-user-create",
           component: systemUserCreate,
           meta: {
             title: "添加用户"
+          }
+        },
+        {
+          path: "modify",
+          name: "system-user-modify",
+          component: systemUserCreate,
+          meta: {
+            title: "修改用户"
+          }
+        },
+        {
+          path: "detail",
+          name: "system-user-detail",
+          component: systemUserDetail,
+          meta: {
+            title: "用户详情"
           }
         }
       ]
@@ -41,17 +69,51 @@ export default {
     {
       path: "role",
       name: "system-role",
-      component: systemUser,
+      component: placeholderView,
       meta: {
         title: "角色管理"
-      }
+      },
+      children: [
+        {
+          path: "index",
+          name: "system-user-role",
+          component: commonList,
+          meta: {
+            title: "列表"
+          }
+        },
+        {
+          path: "create",
+          name: "system-role-create",
+          component: systemRoleCreate,
+          meta: {
+            title: "添加角色"
+          }
+        },
+        {
+          path: "modify",
+          name: "system-role-modify",
+          component: systemUserCreate,
+          meta: {
+            title: "修改角色"
+          }
+        },
+        {
+          path: "detail",
+          name: "system-role-detail",
+          component: systemUserDetail,
+          meta: {
+            title: "角色详情"
+          }
+        }
+      ]
     },
     {
-      path: 'module',
-      name: 'system-module',
+      path: "module",
+      name: "system-module",
       component: systemModule,
       meta: {
-        title: '模块管理'
+        title: "模块管理"
       }
     },
     {

@@ -9,15 +9,15 @@
         :label-width="$customConfig.labelWidth">
         <el-row :gutter="$customConfig.colGutter">
           <el-col :span="12">
-            <el-form-item 
-              label="姓名" 
+            <el-form-item
+              label="姓名"
               prop="realName">
               <el-input v-model="form.realName"/>
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item 
-              label="用户名" 
+            <el-form-item
+              label="用户名"
               prop="username">
               <el-input v-model="form.username"/>
             </el-form-item>
@@ -25,8 +25,8 @@
         </el-row>
         <el-row :gutter="$customConfig.colGutter">
           <el-col :span="12">
-            <el-form-item 
-              label="主角色" 
+            <el-form-item
+              label="主角色"
               prop="mainRole">
               <el-select
                 v-model="form.mainRole"
@@ -59,15 +59,15 @@
         </el-row>
         <el-row :gutter="$customConfig.colGutter">
           <el-col :span="12">
-            <el-form-item 
-              label="手机号" 
+            <el-form-item
+              label="手机号"
               prop="phone">
               <el-input v-model="form.phone"/>
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item 
-              label="状态" 
+            <el-form-item
+              label="状态"
               prop="status">
               <el-select
                 v-model="form.status"
@@ -84,8 +84,8 @@
         </el-row>
         <el-row :gutter="$customConfig.colGutter">
           <el-col :span="12">
-            <el-form-item 
-              label="E-mail" 
+            <el-form-item
+              label="E-mail"
               prop="email">
               <el-input v-model="form.email"/>
             </el-form-item>
@@ -93,17 +93,21 @@
         </el-row>
         <el-row :gutter="$customConfig.colGutter">
           <el-col :span="12">
-            <el-form-item 
-              label="密码" 
+            <el-form-item
+              label="密码"
               prop="password">
-              <el-input v-model="form.password"/>
+              <el-input
+                v-model="form.password"
+                type="password"/>
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item 
-              label="确认密码" 
+            <el-form-item
+              label="确认密码"
               prop="cpassword">
-              <el-input v-model="form.cpassword"/>
+              <el-input
+                v-model="form.cpassword"
+                type="password"/>
             </el-form-item>
           </el-col>
         </el-row>
@@ -120,6 +124,7 @@
 </template>
 
 <script>
+import { fetchRoles } from "@/api/system/user";
 export default {
   name: "SystemUserCreate",
   data() {
@@ -154,8 +159,14 @@ export default {
         },
         status: { required: true, message: "请选择状态", trigger: "change" },
         email: { required: true, message: "请输入活动名称", trigger: "blur" },
-        password: { required: true, trigger: "blur", validator: validatePass },
-        cpassword: { required: true, trigger: "blur", validator: validatePass2 }
+        password: [
+          { required: true, trigger: "blur", message: "请输入密码" },
+          { trigger: "blur", validator: validatePass }
+        ],
+        cpassword: [
+          { required: true, trigger: "blur", message: "请输入密码" },
+          { trigger: "blur", validator: validatePass2 }
+        ]
       },
       form: {
         realName: "",
@@ -187,7 +198,7 @@ export default {
   watch: {
     form: {
       handler: function(val) {
-        this.$store.dispatch("systemUserCreate:update-form", {
+        this.$store.dispatch("system-user-create:update-form", {
           form: val,
           formRef: this.$refs["form"]
         });
@@ -196,8 +207,25 @@ export default {
       deep: true
     }
   },
+  created() {
+    if (this.$route.query.userId) {
+      this.$store.dispatch("system-user-detail:fetch-form").then(detail => {
+        this.form = detail;
+        if (!this.form.roles) this.form.roles = [];
+        this.$nextTick(function() {
+          this.$refs.form.clearValidate();
+        });
+      });
+    }
+    fetchRoles().then(res => {
+      this.ui.roleOptions = res.data.map(role => ({
+        label: role.name,
+        value: role.role_id
+      }));
+    });
+  },
   mounted() {
-    this.$store.dispatch("systemUserCreate:update-form", {
+    this.$store.dispatch("system-user-create:update-form", {
       form: this.form,
       formRef: this.$refs["form"]
     });

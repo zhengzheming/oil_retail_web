@@ -27,7 +27,12 @@ $error: '#FA4D4E';
 $info-bg: #E5F7FE;
 
 // font
-$common-size: 14px;
+$--font-size-base: 14px !default;
+$--font-size-small: 12px !default;
+$--font-size-medium: 16px !default;
+$--font-size-large: 18px !default;
+$--font-size-larger: 20px !default;
+$--font-size-largest: 26px !default;
 
 // box-sizing
 $base-width: 88px;
