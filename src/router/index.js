@@ -6,9 +6,9 @@ import Layout from "@/views/layout/Layout";
 Vue.use(Router);
 /* Router Modules */
 import mainRoutes from "@/router/modules/example";
-import systemRoute from '@/router/modules/system';
-import basicInfo from '@/router/modules/basicInfo';
-import physicalManage from '@/router/modules/physicalManage';
+import systemRoute from "@/router/modules/system";
+import basicInfo from "@/router/modules/basicInfo";
+import physicalManage from "@/router/modules/physicalManage";
 /** note: Submenu only appear when children.length>=1
  *  detail see  https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
  **/
@@ -51,11 +51,6 @@ export const constantRouterMap = [
     hidden: true
   }
 ];
-export default new Router({
-  mode: "history",
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRouterMap
-});
 
 export const asyncRouterMap = [
   systemRoute,
@@ -66,3 +61,9 @@ export const asyncRouterMap = [
     redirect: "/404"
   }
 ];
+
+export default new Router({
+  mode: "history",
+  scrollBehavior: () => ({ y: 0 }),
+  routes: [...constantRouterMap, ...asyncRouterMap]
+});

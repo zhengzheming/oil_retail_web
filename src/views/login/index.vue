@@ -1,7 +1,13 @@
 <template>
   <div class="login-container">
 
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
+    <el-form 
+      ref="loginForm" 
+      :model="loginForm" 
+      :rules="loginRules" 
+      class="login-form" 
+      auto-complete="on" 
+      label-position="left">
 
       <div class="title-container">
         <h3 class="title">油品零售运营P端</h3>
@@ -27,13 +33,16 @@
           @keyup.enter.native="handleLogin" />
       </el-form-item>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">登录</el-button>
+      <el-button 
+        :loading="loading" 
+        type="primary" 
+        style="width:100%;margin-bottom:30px;" 
+        @click.native.prevent="handleLogin">登录</el-button>
     </el-form>
   </div>
 </template>
 
 <script>
-
 export default {
   name: "Login",
   data() {
@@ -45,16 +54,16 @@ export default {
       }
     };
     const validatePassword = (rule, value, callback) => {
-      if (value.length < 6) {
-        callback(new Error("密码不能小于6位"));
+      if (!value) {
+        callback(new Error("密码不能为空"));
       } else {
         callback();
       }
     };
     return {
       loginForm: {
-        username: "liyu",
-        password: "123456"
+        username: "",
+        password: ""
       },
       loginRules: {
         username: [
