@@ -5,9 +5,11 @@ import moduleDetail from "@/views/system/module/detail";
 
 import systemUserCreate from "@/views/system/user/create";
 import systemUserDetail from "@/views/system/user/detail";
+import systemUserAuth from "@/views/system/user/auth";
 
 import systemRoleCreate from "@/views/system/role/create";
 import systemRoleDetail from "@/views/system/role/detail";
+import systemRoleAuth from "@/views/system/role/auth";
 import commonList from "@/views/common/list";
 const placeholderView = {
   render(h) {
@@ -63,6 +65,14 @@ export default {
           meta: {
             title: "用户详情"
           }
+        },
+        {
+          path: "auth",
+          name: "system-user-auth",
+          component: systemUserAuth,
+          meta: {
+            title: "用户权限"
+          }
         }
       ]
     },
@@ -104,6 +114,14 @@ export default {
           component: systemRoleDetail,
           meta: {
             title: "角色详情"
+          }
+        },
+        {
+          path: "auth",
+          name: "system-role-auth",
+          component: systemRoleAuth,
+          meta: {
+            title: "角色权限"
           }
         }
       ]

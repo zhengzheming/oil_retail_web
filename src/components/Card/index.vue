@@ -2,7 +2,9 @@
   <div
     :style="inlineStyle"
     class="o-card">
-    <div class="card__title h"><slot name="title"/></div>
+    <div 
+      v-if="$slots.title" 
+      class="card__title h"><slot name="title"/></div>
     <slot/>
   </div>
 </template>
