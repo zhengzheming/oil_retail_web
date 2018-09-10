@@ -11,6 +11,7 @@ import ListPage from "./ListPage";
 import Card from "./Card";
 import SideContent from "./SideContent";
 import FormControlStatic from "./FormControlStatic";
+import AuthTree from "./AuthTree";
 
 const components = [
   Breadcrumb,
@@ -24,7 +25,8 @@ const components = [
   ListPage,
   Card,
   SideContent,
-  FormControlStatic
+  FormControlStatic,
+  AuthTree
 ];
 
 components.forEach(component => {
