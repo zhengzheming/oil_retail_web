@@ -60,7 +60,30 @@ export default {
       .then(res => {
         if(res.state == 0){
           this.tableContent = $utils.getDeepKey(res,'data.data.rows');
-           this.pageTotal = $utils.getDeepKey(res, 'data.data.pageCount') * 10;
+          this.pageTotal = $utils.getDeepKey(res, 'data.data.pageCount') * 10;
+          if(this.tableContent.length){
+            this.tableContent.forEach(item => {
+              // 链接加参数
+              for(let key in this.tableHeader){
+                if(this.tableHeader[key].query){
+                  this.tableHeader[key].params = {}
+                  this.tableHeader[key].query.forEach(val => {
+                    this.tableHeader[key].params[val.name] = item[val.field]
+                  })
+                }
+              }
+              // 操作加参数
+              let arr = [this.editPath,this.detailPath];
+              arr.forEach(val => {
+                if(val.query){
+                  val.params = {}
+                  val.query.forEach(val1 => {
+                    val.params[val1.name] = item[val1.field]
+                  })
+                }
+              })
+            })
+          }
         }
       })
     },
@@ -71,9 +94,9 @@ export default {
     },
     showChildCom(tag,row){
       if(tag == 'detail'){
-        this.$router.push({name:this.detailPath})
+        this.$router.push({name:this.detailPath.pathName,query:this.detailPath.params})
       }else if(tag == 'edit'){
-        this.$router.push({name:this.editPath})
+        this.$router.push({name:this.editPath.pathName,query:this.editPath.params})
       }
     }
   }

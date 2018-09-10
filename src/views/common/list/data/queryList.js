@@ -44,6 +44,36 @@ export default {
       ]
     }
   ],
+  // 物流企业管理-司机信息
+  "driver": [
+    {
+      label: "姓名",
+      val: ""
+    },
+    {
+      type: "slt",
+      label: "状态",
+      val: "",
+      data: [
+        {
+          label: "aaa",
+          val: "1"
+        },
+        {
+          label: "bbb",
+          val: "2"
+        },
+        {
+          label: "ccc",
+          val: "3"
+        }
+      ]
+    },
+    {
+      label: "所属企业",
+      val: ""
+    }
+  ],
   // 物流企业管理-企业额度
   "enterprise-quota": [
     {

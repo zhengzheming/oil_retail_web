@@ -16,14 +16,18 @@
             :label="val.label"
             :width="val.width">
             <template slot-scope="scope">
-              <a
+              <router-link
+                v-if="val.pathName"
                 class="oparation"
                 target="_blank"
+                tag="a"
                 style="text-overflow:ellipsis;white-space:nowrap;"
-                :style="{color:val.url?'#6666FF':'#333'}"
-                :href="val.url ? val.url+'&id='+scope.row[val.param] : 'javascript:void(0)'"
-                :title="scope.row[key]"
-                v-html="(scope.row[key]===null || scope.row[key]===undefined || scope.row[key]==='') ? '--' : scope.row[key]"/>
+                :style="{color:val.pathName?'#6666FF':'#333'}"
+                :to="{ name: val.pathName, query: val.params}"
+                :title="scope.row[key]">
+                {{(scope.row[key]===null || scope.row[key]===undefined || scope.row[key]==='') ? '--' : scope.row[key]}}
+              </router-link>
+              <p v-else style="text-overflow:ellipsis;white-space:nowrap;">{{(scope.row[key]===null || scope.row[key]===undefined || scope.row[key]==='') ? '--' : scope.row[key]}}</p>
             </template>
           </el-table-column>
         <el-table-column
@@ -53,7 +57,6 @@
   </div>
 </template>
 <script>
-
 export default {
   name: 'ListPage',
   data(){

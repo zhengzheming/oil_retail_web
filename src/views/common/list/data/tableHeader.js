@@ -3,10 +3,16 @@ export default {
     'logistics': {
       'logistics_id':{
         label:'编号',
-        width:'120'
+        width:'120',
       },
       'name':{
-        label:'企业名称'
+        label:'企业名称',
+        url:'11111',
+        pathName:'enterprise-quota',
+        query:[{
+          name:'id',
+          field:'out_status'
+        }]
       },
       'out_status_name':{
         label:'银管家状态',
