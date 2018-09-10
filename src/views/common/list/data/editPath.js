@@ -7,7 +7,7 @@ export default {
     // }]
   },
   "system-user-list": {
-    pathName: "system-user-detail",
+    pathName: "system-user-create",
     query: [
       {
         name: "userId",

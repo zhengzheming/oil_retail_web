@@ -15,13 +15,18 @@ const user = {
   },
   mutations: {
     UPDATE_USER_DETAIL(state, detail) {
-      state.systemUserDetail.form = $utils.renameKeys(
-        systemUserFieldMap,
-        detail
-      );
+      const form = $utils.renameKeys(systemUserFieldMap, detail);
+      state.systemUserDetail.form = {
+        ...form,
+        roles: form.roles.map(role => role.id),
+        roleObjs: form.roles
+      };
     }
   },
   actions: {
+    "system-user-list:create": function() {
+      router.push({ name: "system-user-create" });
+    },
     "system-user-create:save": function({ state, rootState }) {
       const formRef = state.systemUserCreate.formRef;
       const form = state.systemUserCreate.form;
@@ -29,7 +34,8 @@ const user = {
       formRef.validate(valid => {
         if (valid) {
           let data = {
-            ...form
+            ...form,
+            roles: form.roles.map(role => ({ id: role, name: "" }))
           };
           createSystemUser(data).then(() => {
             const infoMap = {

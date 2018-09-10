@@ -88,13 +88,13 @@ export default {
       label: "姓名"
     },
     role_name: {
-      label: "编号"
+      label: "主角色"
     },
     status: {
-      label: "编号"
+      label: "状态"
     },
     login_time: {
-      label: "编号"
+      label: "最后登录时间"
     }
   }
 };

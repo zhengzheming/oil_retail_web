@@ -1,4 +1,8 @@
 export default {
+  "system-user-list": {
+    items: ["系统管理", "系统用户", "列表"],
+    actions: [{ name: "添加", action: "create", type: "primary" }]
+  },
   "system-user-create": {
     items: ["系统管理", "系统用户", "添加用户"],
     actions: [{ name: "保存", action: "save", type: "primary" }]
@@ -24,13 +28,13 @@ export default {
     actions: [{ name: "修改", action: "modify", plain: true }]
   },
 
-  "logistics": {
+  logistics: {
     items: ["基础数据", "物流企业"]
   },
-  "logisticsDetail": {
+  logisticsDetail: {
     items: ["基础数据", "物流企业", "物流企业详情"]
   },
-  "logisticsEdit": {
+  logisticsEdit: {
     items: ["基础数据", "物流企业", "修改企业信息"],
     actions: [{ name: "保存", action: "save", type: "primary" }]
   }

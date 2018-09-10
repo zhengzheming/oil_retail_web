@@ -21,7 +21,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .form-control--static {
   display: flex;
   .form-control--static__title {
