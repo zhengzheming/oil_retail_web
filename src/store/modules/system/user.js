@@ -1,6 +1,7 @@
 import { createSystemUser } from "@/api/system/user";
-import fieldMap from "@/services/fieldMap";
+import { systemUserFieldMap } from "@/services/fieldMap";
 import { fetchUserDetail } from "@/api/system/user";
+import { Message } from "element-ui";
 import router from "@/router/index";
 const user = {
   state: {
@@ -14,21 +15,28 @@ const user = {
   },
   mutations: {
     UPDATE_USER_DETAIL(state, detail) {
-      state.systemUserDetail.form = $utils.renameKeys(fieldMap, detail);
+      state.systemUserDetail.form = $utils.renameKeys(
+        systemUserFieldMap,
+        detail
+      );
     }
   },
   actions: {
-    "system-user-create:save": function({ state }) {
+    "system-user-create:save": function({ state, rootState }) {
       const formRef = state.systemUserCreate.formRef;
       const form = state.systemUserCreate.form;
       if (!formRef) return;
       formRef.validate(valid => {
         if (valid) {
           let data = {
-            ...form,
-            roles: form.roles.map(role => ({ id: role, name: "" }))
+            ...form
           };
           createSystemUser(data).then(() => {
+            const infoMap = {
+              "system-user-create": "添加角色成功",
+              "system-user-modify": "修改角色成功"
+            };
+            Message.success(infoMap[rootState.route.name]);
             router.push({ name: "system-user-list" });
           });
         }

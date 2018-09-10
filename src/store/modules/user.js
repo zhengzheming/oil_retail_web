@@ -1,10 +1,10 @@
 import { loginByUsername, logout } from "@/api/login";
 import { getUserInfo } from "@/api/app";
 import { getToken, setToken, removeToken } from "@/utils/auth";
+// import { Message } from 'element-ui'
 import router from "@/router/index";
-
-const user = {
-  state: {
+function initState() {
+  return {
     userId: "",
     email: "",
     mainRole: "",
@@ -15,8 +15,10 @@ const user = {
     token: getToken(),
     name: "",
     authCodes: []
-  },
-
+  };
+}
+const user = {
+  state: initState(),
   mutations: {
     SET_USERID: (state, userId) => {
       state.userId = userId;
@@ -36,6 +38,11 @@ const user = {
     },
     SET_AUTH_CODES: (state, authCodes) => {
       state.authCodes = authCodes;
+    },
+    CLEAR_USER: state => {
+      Object.keys(state).forEach(key => {
+        state[key] = initState()[key];
+      });
     }
   },
 
@@ -67,14 +74,17 @@ const user = {
               { user_right: "authCodes" },
               response.data
             );
-            if (data.authCodes && data.authCodes.length > 0) {
-              // 验证返回的roles是否是一个非空数组
-              commit("SET_AUTH_CODES", data.authCodes);
-            } else {
-              reject("getInfo: authCodes must be a non-null array !");
-            }
+            // if (data.authCodes && data.authCodes.length > 0) {
+            //   // 验证返回的roles是否是一个非空数组
+            //   commit("SET_AUTH_CODES", data.authCodes);
+            // } else {
+            //   Message.error("getInfo: authCodes must be a non-null array !")
+            //   reject("getInfo: authCodes must be a non-null array !");
+            // }
 
             commit("SET_NAME", data.name);
+            commit("SET_USERID", data.user_id);
+            commit("SET_STATUS", data.status);
             commit("SET_MAIN_ROLE", {
               mainRoleId: data.main_role_id,
               mainRole: data.main_role_name
@@ -92,8 +102,7 @@ const user = {
       return new Promise((resolve, reject) => {
         logout(state.token)
           .then(() => {
-            commit("SET_TOKEN", "");
-            commit("SET_AUTH_CODES", []);
+            commit("CLEAR_USER");
             removeToken();
             router.push("/login");
             resolve();

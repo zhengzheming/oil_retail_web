@@ -33,7 +33,7 @@ function filterAsyncRouter(asyncRouterMap, roles) {
 
 const permission = {
   state: {
-    routers: constantRouterMap,
+    routers: [...constantRouterMap, ...asyncRouterMap],
     addRouters: []
   },
   mutations: {
@@ -48,6 +48,8 @@ const permission = {
         const { authCodes } = data;
         let accessedRouters;
         accessedRouters = filterAsyncRouter(asyncRouterMap, authCodes);
+        // 暂时取消这种验证方式
+        accessedRouters = asyncRouterMap;
         commit("SET_ROUTERS", accessedRouters);
         resolve();
       });
