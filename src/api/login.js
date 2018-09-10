@@ -6,6 +6,7 @@ export function loginByUsername(username, password) {
     username,
     password: md5(password)
   };
+  logout;
   return request({
     url: "/admin/site/login",
     method: "post",
@@ -15,7 +16,7 @@ export function loginByUsername(username, password) {
 
 export function logout() {
   return request({
-    url: "/api/logout",
+    url: "/admin/site/logout",
     method: "post"
   });
 }

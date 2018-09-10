@@ -2,7 +2,7 @@ import request from "@/utils/request";
 
 export const getMenu = () =>
   request({
-    url: "/api/home/getMenu",
+    url: "/admin/site/getMenu",
     method: "GET"
   });
 

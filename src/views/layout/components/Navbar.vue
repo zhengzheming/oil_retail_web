@@ -1,26 +1,28 @@
 <template>
   <section class="navbar">
-    <i 
+    <i
       class="icon icon-menu-unfold"
       style="cursor: pointer; font-size: 20px;"
       @click="toggleSideCollaspe"/>
     <div class="right">
       <div class="user">
-        <el-dropdown trigger="click">
+        <el-dropdown
+          trigger="click"
+          @command="handleUserCommand">
           <span class="el-dropdown-link">
             <img
-              class="avatar"
+              class="avatar el-icon--left"
               src="~@/assets/img/default_header.png"
               alt="avatar">
-            <span>{{ userInfo.name }}</span>
+            <span>{{ username }}</span>
             <i class="el-icon-arrow-down el-icon--right"/>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>
-              <a href="/site/updatePwd">修改密码</a>
+            <el-dropdown-item command="reset-pwd">
+              <span>修改密码</span>
             </el-dropdown-item>
-            <el-dropdown-item>
-              <a href="/site/logout">退出</a>
+            <el-dropdown-item command="logout">
+              <span>退出</span>
             </el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
@@ -31,9 +33,26 @@
 
 <script>
 export default {
+  computed: {
+    username() {
+      return this.$store.getters.name;
+    }
+  },
   methods: {
     toggleSideCollaspe() {
       this.$store.dispatch("toggleSideBar");
+    },
+    handleUserCommand(command) {
+      const commandCallbacks = {
+        "reset-pwd": () => {
+          console.log(`reset---pwd...`);
+        },
+        logout: () => {
+          this.$store.dispatch("LogOut");
+        }
+      };
+      const cb = commandCallbacks[command] || function() {};
+      cb();
     }
   }
 };
@@ -41,13 +60,6 @@ export default {
 
 <style scoped lang="scss">
 @import "~@/styles/mixin.scss";
-.el-dropdown-menu__item {
-  cursor: default;
-  & > a {
-    display: block;
-    cursor: pointer;
-  }
-}
 .navbar {
   display: flex;
   justify-content: space-between;

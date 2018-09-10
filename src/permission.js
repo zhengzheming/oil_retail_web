@@ -1,6 +1,6 @@
 import router from "./router";
 import store from "./store/index";
-import { Notification } from "element-ui";
+// import { Notification } from "element-ui";
 import NProgress from "nprogress"; // progress bar
 import "nprogress/nprogress.css"; // progress bar style
 import { getToken } from "@/utils/auth"; // getToken from cookie
@@ -24,7 +24,7 @@ router.beforeEach((to, from, next) => {
       next({ path: "/" });
       NProgress.done();
     } else {
-      if (store.getters.roles.length === 0) {
+      if (store.getters.authCodes.length === 0) {
         // 判断当前用户是否已拉取完user_info信息
         store
           .dispatch("GetUserInfo")
@@ -39,8 +39,7 @@ router.beforeEach((to, from, next) => {
           })
           .catch(() => {
             store.dispatch("FedLogOut").then(() => {
-              Notification.info("正在退出登录...");
-              next({ path: "/" });
+              next({ path: "/login" });
             });
           });
       } else {
