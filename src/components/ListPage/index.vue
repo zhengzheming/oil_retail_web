@@ -83,11 +83,11 @@ export default {
     },
     handleVIew(row) {
       this.sideContentVisible = true;
-      this.$emit('show-view');
+      this.$emit('show-view',row);
     },
     handleEdit(row) {
       this.sideContentVisible = true;
-      this.$emit('show-edit');
+      this.$emit('show-edit',row);
     },
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);

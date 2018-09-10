@@ -19,26 +19,27 @@ export default {
     data(){
         return {
             value:'',
-            itemList:{
+            itemList: {
+                data:{},
                 list: [
-                {
-                    label:'企业名称',
-                    val:'XXXX有限公司'
-                },
-                {
-                    label:'企业名称',
-                    val:'XXXX有限公司'
-                },
-                {
-                    label:'企业名称',
-                    val:'XXXX有限公司'
-                }
-            ]
+                    {
+                        label:'企业名称',
+                        prop:'name'
+                    },
+                    {
+                        label:'银管家状态',
+                        prop:'out_status_name	'
+                    }
+                ]
             },
             options:[
                 {
-                    label:'aaa',
-                    value:''
+                    label:'启用',
+                    value:'1'
+                },
+                {
+                    label:禁用,
+                    value:'0'
                 }
             ]
         }

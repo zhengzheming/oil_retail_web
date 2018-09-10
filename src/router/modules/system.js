@@ -3,7 +3,6 @@ import systemModule from '@/views/system/module/index'
 import moduleEdit from '@/views/system/module/edit'
 import moduleDetail from '@/views/system/module/detail'
 
-import systemUser from "@/views/system/user/list";
 import systemUserCreate from "@/views/system/user/create";
 import systemUserDetail from "@/views/system/user/detail";
 

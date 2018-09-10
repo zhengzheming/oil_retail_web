@@ -12,30 +12,30 @@ export default {
   },
   children: [
     {
-        path: 'logistics',
+        path: 'logistics/list',
         name: 'logistics',
         component: logistics,
-        meta: {title: '物流企业'},
-        // children:[
-        //     {
-        //         path: 'detail',
-        //         component: logisticsDetail,
-        //         hidden: true
-        //     },
-        //     {
-        //         path: 'detail',
-        //         component: logisticsEdit,
-        //         hidden: true
-        //     }
-        // ]
-      },
-      {
-        path: 'logistics',
-        name: 'logistics1',
-        component: logistics,
-        meta: {
-          title: '车辆管理'
-        }
+        meta: {title: '物流企业'}
+    },
+    {
+        path: 'logistics/detail',
+        name:'logisticsDetail',
+        component: logisticsDetail,
+        hidden: true
+    },
+    {
+      path: 'logistics/edit',
+      name:'logisticsEdit',
+      component: logisticsEdit,
+      hidden: true
+    },
+    {
+      path: 'logistics11',
+      name: 'logistics1',
+      component: logistics,
+      meta: {
+        title: '车辆管理'
       }
+    }
   ]
 }

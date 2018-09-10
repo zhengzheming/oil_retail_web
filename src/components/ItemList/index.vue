@@ -5,41 +5,16 @@
         :key="index"
         :style="item.styleObj || comData.styleObj">
         <label><my-xing v-if="item.hasOwnProperty('triggerValidate')"/>{{ item.label }}:</label>
-        <input
-          v-if="item.type==='input'"
-          :class="((item.triggerValidate && item.validate && item.validateFunc(item.val)) || (item.triggerValidate && item.val === '')) ?'err':''"
-          type="text"
-          v-model="item.val"
-          class="ipt content"
-          :placeholder="item.placeholder">
-        <ul 
-          v-else-if="item.type === 'fileList'" 
-          class="attachments">
-          <!-- <li 
-            v-for="(item1,index1) of item.val" 
-            :key="index1">
-            <a 
-              href="item1.url" 
-              target="_blank" 
-              style="color:#3E8CF7;">{{ item1.name }}</a>
-          </li> -->
-          <li
-            class="attachments-item"
-            v-for="(item1,index1) of item.val" 
-            :key="index1">
-            <download-link :attachment="item1"/>
-          </li>
-        </ul>
         <a
-          v-else-if="item.type === 'link'"
+          v-if="item.type === 'link'"
           :href="item.url"
           class="content"
-          :style="{color:item.color||'#666'}">{{ item.val }}</a>
+          :style="{color:item.color||'#666'}">{{ item.prop }}</a>
         <span
           v-else
           class="content"
           :style="{color:item.color||'#666'}">
-          {{ (item.val === "" || item.val === null || item.val === undefined) ? "--" : item.val }}
+          {{ (comData.data[item.prop] === "" || comData.data[item.prop] === null || comData.data[item.prop] === undefined) ? "--" : comData.data[item.prop] }}
         </span>
         <span
           v-if="item.else"
@@ -66,6 +41,9 @@ export default {
         return {};
       }
     }
+  },
+  mounted(){
+    console.log(this.comData)
   }
 };
 </script>
