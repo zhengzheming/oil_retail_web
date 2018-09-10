@@ -67,3 +67,8 @@ div.el-table--border td:not(:last-child), div.el-table--border th:not(:last-chil
 .el-form .el-row + .el-row {
     margin-top: auto;
 }
+
+// dropdown
+.el-dropdown-link:not(button) {
+    cursor: pointer;
+}

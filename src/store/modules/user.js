@@ -1,6 +1,7 @@
 import { loginByUsername, logout } from "@/api/login";
 import { getUserInfo } from "@/api/app";
 import { getToken, setToken, removeToken } from "@/utils/auth";
+import router from "@/router/index";
 
 const user = {
   state: {
@@ -17,14 +18,11 @@ const user = {
   },
 
   mutations: {
-    SET_CODE: (state, code) => {
-      state.code = code;
+    SET_USERID: (state, userId) => {
+      state.userId = userId;
     },
     SET_TOKEN: (state, token) => {
       state.token = token;
-    },
-    SET_SETTING: (state, setting) => {
-      state.setting = setting;
     },
     SET_STATUS: (state, status) => {
       state.status = status;
@@ -32,8 +30,9 @@ const user = {
     SET_NAME: (state, name) => {
       state.name = name;
     },
-    SET_AVATAR: (state, avatar) => {
-      state.avatar = avatar;
+    SET_MAIN_ROLE: (state, { mainRole, mainRoleId }) => {
+      state.mainRole = mainRole;
+      state.mainRoleId = mainRoleId;
     },
     SET_AUTH_CODES: (state, authCodes) => {
       state.authCodes = authCodes;
@@ -76,7 +75,10 @@ const user = {
             }
 
             commit("SET_NAME", data.name);
-            commit("SET_AVATAR", data.avatar);
+            commit("SET_MAIN_ROLE", {
+              mainRoleId: data.main_role_id,
+              mainRole: data.main_role_name
+            });
             resolve(response);
           })
           .catch(error => {
@@ -91,8 +93,9 @@ const user = {
         logout(state.token)
           .then(() => {
             commit("SET_TOKEN", "");
-            commit("SET_ROLES", []);
+            commit("SET_AUTH_CODES", []);
             removeToken();
+            router.push("/login");
             resolve();
           })
           .catch(error => {
