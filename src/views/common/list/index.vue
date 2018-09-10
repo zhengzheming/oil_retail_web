@@ -24,6 +24,7 @@ import queryList from './data/queryList'
 import tableHeader from './data/tableHeader'
 import editPath from './data/editPath'
 import detailPath from './data/detailPath'
+import tableFieldsMap from './data/tableFieldsMap'
 
 export default {
   data(){
@@ -63,6 +64,14 @@ export default {
           this.pageTotal = $utils.getDeepKey(res, 'data.data.pageCount') * 10;
           if(this.tableContent.length){
             this.tableContent.forEach(item => {
+              // 字段转换
+              let mapData = tableFieldsMap[this.$route.name];
+              Object.keys(mapData).forEach(item => {
+                this.tableContent.forEach(item1 => {
+                  let tmp = this.util.getMap()[mapData[item]];
+                  item1[item] = tmp[item1[item]];
+                });
+              });
               // 链接加参数
               for(let key in this.tableHeader){
                 if(this.tableHeader[key].query){

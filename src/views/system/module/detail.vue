@@ -10,54 +10,55 @@ export default {
     data(){
         return {
             detailData: {
+                data:{},
                 list: [
                     {
                         label: '名称',
-                        val: ''
+                        prop: ''
                     },
                     {
                         label: '权限码',
-                        val: ''
+                        prop: ''
                     },
                     {
                         label: '所属系统',
-                        val: ''
+                        prop: ''
                     },
                     {
                         label: '排序码',
-                        val: ''
+                        prop: ''
                     },
                     {
                         label: '操作',
-                        val: ''
+                        prop: ''
                     },
                     {
                         label: '页面链接',
-                        val: ''
+                        prop: ''
                     },
                     {
                         label: '是否公开',
-                        val: ''
+                        prop: ''
                     },
                     {
                         label: '是否外部链接',
-                        val: ''
+                        prop: ''
                     },
                     {
                         label: '状态',
-                        val: ''
+                        prop: ''
                     },
                     {
                         label: '更新时间',
-                        val: ''
+                        prop: ''
                     },
                     {
                         label: '是否菜单',
-                        val: ''
+                        prop: ''
                     },
                     {
                         label: '备注',
-                        val: ''
+                        prop: ''
                     }
                 ]
             }
