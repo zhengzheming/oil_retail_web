@@ -34,6 +34,9 @@ const user = {
         }
       });
     },
+    "system-user-modify:save": function({ dispatch }) {
+      dispatch("system-user-create:save");
+    },
     "system-user-create:update-form": function({ state }, { form, formRef }) {
       state.systemUserCreate.form = form;
       state.systemUserCreate.formRef = formRef;
