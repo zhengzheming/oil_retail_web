@@ -1,3 +1,5 @@
 export default {
-    'logistics':'logisticsDetail'
+    'logistics':{
+        pathName:'logisticsDetail'
+    }
 }
