@@ -3,11 +3,14 @@
     <list-page
       :currentPage="currentPage"
       :pageSize="pageSize"
+      :pageTotal="pageTotal"
       :queryList="queryList"
       :tableHeader="tableHeader"
       :tableContent="tableContent"
       @reset="handleReset"
       @query="getList"
+      @size-change="val => pageSize=val"
+      @page-change="val => currentPage=val"
       @show-view="row => showChildCom('detail',row)"
       @show-edit="row => showChildCom('edit',row)">
     </list-page>
@@ -28,6 +31,7 @@ export default {
     return{
       currentPage:1,
       pageSize:10,
+      pageTotal:0,
       queryList: queryList[pathName],
       tableHeader:tableHeader[pathName],
       editPath:editPath[pathName],
@@ -42,6 +46,10 @@ export default {
   mounted(){
     this.getList();
   },
+  watch:{
+    'currentPage': 'getList',
+    'pageSize': 'getList'
+  },
   methods: {
     getList(){
       let params = [this.currentPage,this.pageSize];
@@ -51,7 +59,8 @@ export default {
       this.listApi(...params)
       .then(res => {
         if(res.state == 0){
-          this.tableContent = res.data.data.rows;
+          this.tableContent = $utils.getDeepKey(res,'data.data.rows');
+           this.pageTotal = $utils.getDeepKey(res, 'data.data.pageCount') * 10;
         }
       })
     },
@@ -62,7 +71,7 @@ export default {
     },
     showChildCom(tag,row){
       if(tag == 'detail'){
-        this.$router.push({name:this.detailPath,query:{id:1}})
+        this.$router.push({name:this.detailPath})
       }else if(tag == 'edit'){
         this.$router.push({name:this.editPath})
       }

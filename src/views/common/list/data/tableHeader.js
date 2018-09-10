@@ -1,113 +1,92 @@
 export default {
     // 基础数据-物流企业
-    'logistics': [
-      {
+    'logistics': {
+      'logistics_id':{
         label:'编号',
-        prop:'logistics_id',
         width:'120'
       },
-      {
-        label:'企业名称',
-        prop:'name',
-        width:'200'
+      'name':{
+        label:'企业名称'
       },
-      {
+      'out_status_name':{
         label:'银管家状态',
-        prop:'out_status_name',
         width:'120'
       },
-      {
+      'status_name':{
         label:'企业状态',
-        prop:'status_name'
-      }
-    ],
+        width:'120'
+      },
+    },
     // 物流企业管理-企业额度
-    'enterprise-quota': [
-      {
+    'enterprise-quota': {
+      logistics_id: {
         label:'物流公司',
-        prop:'logistics_id',
         width:'120'
       },
-      {
+      name:{
         label:'额度状态',
-        prop:'name',
         width:'200'
       },
-      {
+      out_status_name:{
         label:'企业额度',
-        prop:'out_status_name',
         width:'120'
       },
-      {
+      status_name:{
         label:'企业可用额度',
-        prop:'status_name'
       },
-      {
+      logistics_id:{
         label:'每日额度占比',
-        prop:'logistics_id',
         width:'120'
       },
-      {
+      name:{
         label:'每日企业额度',
-        prop:'name',
         width:'200'
       },
-      {
+      out_status_name:{
         label:'今日可用额度',
-        prop:'out_status_name',
         width:'120'
       },
-      {
+      status_name:{
         label:'开始时间',
-        prop:'status_name'
       },
-      {
-        label:'结束时间',
-        prop:'status_name'
+      status_name:{
+        label:'结束时间'
       }
-    ],
+    },
     // 物流企业管理-企业可用额度收支管理
-    'available-credit': [
-      {
+    'available-credit': {
+      logistics_id:{
         label:'时间',
-        prop:'logistics_id',
         width:'120'
       },
-      {
+      name:{
         label:'额度明细/元',
-        prop:'name',
         width:'200'
       },
-      {
+      out_status_name:{
         label:'编号',
-        prop:'out_status_name',
         width:'120'
       },
-      {
-        label:'收支类型',
-        prop:'status_name'
+      status_name:{
+        label:'收支类型'
       }
-    ],
+    },
     // 物流企业管理-企业当日可用额度收支管理
-    'day-credit': [
-      {
+    'day-credit': {
+      logistics_id:{
         label:'时间',
-        prop:'logistics_id',
         width:'120'
       },
-      {
+      name:{
         label:'额度明细/元',
-        prop:'name',
         width:'200'
       },
-      {
+      out_status_name:{
         label:'编号',
-        prop:'out_status_name',
         width:'120'
       },
-      {
-        label:'收支类型',
-        prop:'status_name'
+      status_name:{
+        label:'收支类型'
       }
-    ],
+    },
 }

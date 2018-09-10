@@ -11,12 +11,21 @@
         border
         style="width: 100%">
         <el-table-column
-          v-for="item of tableHeader"
-          :key="item.prop"
-          :prop="item.prop"
-          :label="item.label"
-          :width="item.width">
-        </el-table-column>
+            v-for="(val,key) in tableHeader"
+            :key="key"
+            :label="val.label"
+            :width="val.width">
+            <template slot-scope="scope">
+              <a
+                class="oparation"
+                target="_blank"
+                style="text-overflow:ellipsis;white-space:nowrap;"
+                :style="{color:val.url?'#6666FF':'#333'}"
+                :href="val.url ? val.url+'&id='+scope.row[val.param] : 'javascript:void(0)'"
+                :title="scope.row[key]"
+                v-html="(scope.row[key]===null || scope.row[key]===undefined || scope.row[key]==='') ? '--' : scope.row[key]"/>
+            </template>
+          </el-table-column>
         <el-table-column
           fixed="right"
           label="操作"
@@ -35,7 +44,7 @@
         :page-sizes="[10, 20, 30, 40]"
         :page-size="pageSize"
         layout="total, sizes, prev, pager, next, jumper"
-        :total="400">
+        :total="pageTotal">
       </el-pagination>
     </div>
     <side-content :visible.sync="sideContentVisible">
@@ -61,13 +70,17 @@ export default {
           type: Number,
           default: () => 1
       },
+      pageTotal: {
+          type: Number,
+          default: () => 0
+      },
       queryList: {
           type: Array,
           default: () => []
       },
       tableHeader: {
-          type: Array,
-          default: () => []
+          type: Object,
+          default: () => {}
       },
       tableContent: {
           type: Array,
@@ -90,10 +103,10 @@ export default {
       this.$emit('show-edit',row);
     },
     handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
+      this.$emit('size-change',val);
     },
     handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
+      this.$emit('page-change',val);
     }
   }
 };
