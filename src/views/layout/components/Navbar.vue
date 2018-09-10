@@ -1,9 +1,30 @@
 <template>
   <section class="navbar">
-    <i class="icon icon-menu-unfold"
-       @click="toggleSideCollaspe"
-       style="cursor: pointer; font-size: 20px;"/>
+    <i 
+      class="icon icon-menu-unfold"
+      style="cursor: pointer; font-size: 20px;"
+      @click="toggleSideCollaspe"/>
     <div class="right">
+      <div class="user">
+        <el-dropdown trigger="click">
+          <span class="el-dropdown-link">
+            <img
+              class="avatar"
+              src="~@/assets/img/default_header.png"
+              alt="avatar">
+            <span>{{ userInfo.name }}</span>
+            <i class="el-icon-arrow-down el-icon--right"/>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item>
+              <a href="/site/updatePwd">修改密码</a>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <a href="/site/logout">退出</a>
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </div>
     </div>
   </section>
 </template>

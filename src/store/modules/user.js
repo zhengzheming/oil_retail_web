@@ -4,14 +4,16 @@ import { getToken, setToken, removeToken } from "@/utils/auth";
 
 const user = {
   state: {
-    user: "",
+    userId: "",
+    email: "",
+    mainRole: "",
+    mainRoleId: "",
+    phone: "",
+    roles: [],
     status: "",
-    code: "",
     token: getToken(),
     name: "",
-    avatar: "",
-    introduction: "",
-    roles: []
+    authCodes: []
   },
 
   mutations: {
@@ -20,9 +22,6 @@ const user = {
     },
     SET_TOKEN: (state, token) => {
       state.token = token;
-    },
-    SET_INTRODUCTION: (state, introduction) => {
-      state.introduction = introduction;
     },
     SET_SETTING: (state, setting) => {
       state.setting = setting;
@@ -36,8 +35,8 @@ const user = {
     SET_AVATAR: (state, avatar) => {
       state.avatar = avatar;
     },
-    SET_ROLES: (state, roles) => {
-      state.roles = roles;
+    SET_AUTH_CODES: (state, authCodes) => {
+      state.authCodes = authCodes;
     }
   },
 
@@ -66,19 +65,18 @@ const user = {
               reject(response.data);
             }
             const data = $utils.renameKeys(
-              { user_right: "roles" },
+              { user_right: "authCodes" },
               response.data
             );
-            if (data.roles && data.roles.length > 0) {
+            if (data.authCodes && data.authCodes.length > 0) {
               // 验证返回的roles是否是一个非空数组
-              commit("SET_ROLES", data.roles);
+              commit("SET_AUTH_CODES", data.authCodes);
             } else {
-              reject("getInfo: roles must be a non-null array !");
+              reject("getInfo: authCodes must be a non-null array !");
             }
 
             commit("SET_NAME", data.name);
             commit("SET_AVATAR", data.avatar);
-            commit("SET_INTRODUCTION", data.introduction);
             resolve(response);
           })
           .catch(error => {
@@ -119,10 +117,8 @@ const user = {
         setToken(role);
         getUserInfo(role).then(response => {
           const data = response.data;
-          commit("SET_ROLES", data.roles);
+          commit("SET_AUTH_CODES", data.authCodes);
           commit("SET_NAME", data.name);
-          commit("SET_AVATAR", data.avatar);
-          commit("SET_INTRODUCTION", data.introduction);
           resolve();
         });
       });

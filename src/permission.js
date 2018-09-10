@@ -30,8 +30,8 @@ router.beforeEach((to, from, next) => {
           .dispatch("GetUserInfo")
           .then(res => {
             // 拉取user_info
-            const roles = res.data.roles; // note: roles must be a array! such as: ['editor','develop']
-            store.dispatch("GenerateRoutes", { roles }).then(() => {
+            const authCodes = res.data.authCodes; // note: auths must be a array! such as: ['editor','develop']
+            store.dispatch("GenerateRoutes", { authCodes }).then(() => {
               // 根据roles权限生成可访问的路由表
               router.addRoutes(store.getters.addRouters); // 动态添加可访问路由表
               next({ ...to, replace: true }); // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
@@ -45,7 +45,7 @@ router.beforeEach((to, from, next) => {
           });
       } else {
         // 没有动态改变权限的需求可直接next() 删除下方权限判断 ↓
-        if (hasPermission(store.getters.roles, to.meta.roles)) {
+        if (hasPermission(store.getters.authCodes, to.meta.authCodes)) {
           next();
         } else {
           next({ path: "/401", replace: true, query: { noGoBack: true } });
