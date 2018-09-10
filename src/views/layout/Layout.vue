@@ -1,12 +1,14 @@
 <template>
-    <div class="app-wrapper" :class="{ collapse: isCollapse}">
-        <sidebar/>
-        <div class="main-container">
-            <breadcrumb-and-actions></breadcrumb-and-actions>
-            <navbar/>
-            <app-main/>
-        </div>
+  <div 
+    :class="{ collapse: isCollapse}" 
+    class="app-wrapper">
+    <sidebar/>
+    <div class="main-container">
+      <breadcrumb-and-actions/>
+      <navbar/>
+      <app-main/>
     </div>
+  </div>
 </template>
 
 <script>
@@ -63,7 +65,6 @@ export default {
 .sidebar {
   z-index: z(sidebar);
   background-color: $sidebar-bg-color;
-    color: #fff;
   flex-shrink: 0;
   &:not(.el-menu--collapse) {
     width: 200px;
