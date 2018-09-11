@@ -84,7 +84,7 @@
         </li>
         <li 
           :key="index+0.2" 
-          v-if="index==1">
+          v-if="index==1 || (comData.length==1 && index==0)">
           <el-button 
             type="primary" 
             style="width:65px;"
