@@ -15,6 +15,10 @@ export default {
     items: ["系统管理", "系统用户", "用户详情"],
     actions: [{ name: "修改", action: "modify", plain: true }]
   },
+  "system-role-list": {
+    items: ["系统管理", "角色管理", "列表"],
+    actions: [{ name: "添加", action: "create", type: "primary" }]
+  },
   "system-role-create": {
     items: ["系统管理", "角色管理", "添加角色"],
     actions: [{ name: "保存", action: "save", type: "primary" }]
@@ -27,7 +31,7 @@ export default {
     items: ["系统管理", "角色管理", "角色详情"],
     actions: [{ name: "修改", action: "modify", plain: true }]
   },
-  'moduleEdit': {
+  moduleEdit: {
     items: ["系统管理", "模块管理", "修改"],
     actions: [{ name: "保存", action: "save", type: "primary" }]
   },

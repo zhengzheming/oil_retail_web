@@ -11,5 +11,7 @@ export const systemUserFieldMap = {
 
 export const systemRoleFieldMap = {
   name: "roleName",
-  status: "roleStatus"
+  status: "roleStatus",
+  update_time: "updateTime",
+  role_id: "roleId"
 };

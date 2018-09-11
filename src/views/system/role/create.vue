@@ -34,8 +34,8 @@
         </el-row>
         <el-row>
           <el-col :span="24">
-            <el-form-item 
-              label="备注" 
+            <el-form-item
+              label="备注"
               prop="remark">
               <el-input
                 :rows="2"
@@ -90,7 +90,7 @@ export default {
     }
   },
   created() {
-    if (this.$route.query.userId) {
+    if (this.$route.query.roleId) {
       this.$store.dispatch("system-role-detail:fetch-form").then(detail => {
         this.form = detail;
         if (!this.form.roles) this.form.roles = [];

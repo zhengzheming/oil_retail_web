@@ -1,3 +1,4 @@
+import { detailPath as system } from "./modules/system";
 export default {
   // 基础数据-物流企业
   logistics: {
@@ -40,5 +41,6 @@ export default {
         field: "role_id"
       }
     ]
-  }
+  },
+  ...system
 };

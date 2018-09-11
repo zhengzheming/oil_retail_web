@@ -27,7 +27,9 @@
               <el-input v-model="form.system_id"/>
             </el-form-item>
           </el-col>
-          <el-col :span="12" id="super-module">
+          <el-col 
+            id="super-module" 
+            :span="12">
             <el-form-item label="上级模块">
               <div @click="showTree = !showTree">
                 <p
@@ -156,12 +158,12 @@
 </template>
 
 <script>
-import {list} from '@/api/system/module-manage'
+import { list } from "@/api/system/module-manage";
 export default {
   name: "SystemUserCreate",
   data() {
     return {
-      showTree:false,
+      showTree: false,
       treeData: [],
       form: {
         name: "",
@@ -213,16 +215,15 @@ export default {
       form: this.form,
       formRef: this.$refs["form"]
     });
-     this.getList();
+    this.getList();
   },
-  methods:{
-    getList(){
-      list()
-      .then(res => {
-        if(res.state == 0) {
-          this.treeData = res.data
+  methods: {
+    getList() {
+      list().then(res => {
+        if (res.state == 0) {
+          this.treeData = res.data;
         }
-      })
+      });
     },
     handleNodeClick(data) {
       this.form.parent_id = data.label;

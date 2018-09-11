@@ -5,7 +5,7 @@ export function fetchUserRoleDetail(roleId) {
     url: "/admin/role/detail",
     method: "get",
     params: {
-      user_id: roleId
+      role_id: roleId
     }
   });
 }
@@ -23,6 +23,16 @@ export function createSystemRole({
       name,
       status,
       remark,
+      role_id
+    }
+  });
+}
+
+export function deleteRole(role_id) {
+  return request({
+    url: "/admin/role/del",
+    method: "post",
+    data: {
       role_id
     }
   });

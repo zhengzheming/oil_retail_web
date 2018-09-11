@@ -35,12 +35,13 @@ const user = {
         if (valid) {
           let data = {
             ...form,
+            password: form.password ? form.password.trim() : "",
             roles: form.roles.map(role => ({ id: role, name: "" }))
           };
           createSystemUser(data).then(() => {
             const infoMap = {
-              "system-user-create": "添加角色成功",
-              "system-user-modify": "修改角色成功"
+              "system-user-create": "添加用户成功",
+              "system-user-modify": "修改用户成功"
             };
             Message.success(infoMap[rootState.route.name]);
             router.push({ name: "system-user-list" });
@@ -62,7 +63,7 @@ const user = {
       });
     },
     "system-user-detail:modify": function({ rootState }) {
-      router.push({ name: "system-user-create", query: rootState.route.query });
+      router.push({ name: "system-user-modify", query: rootState.route.query });
     }
   }
 };

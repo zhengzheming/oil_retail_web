@@ -22,6 +22,9 @@ const role = {
     }
   },
   actions: {
+    "system-role-list:create": function() {
+      router.push({ name: "system-role-create" });
+    },
     "system-role-create:save": function({ state, rootState }) {
       const formRef = state.systemRoleCreate.formRef;
       const form = state.systemRoleCreate.form;
@@ -56,7 +59,7 @@ const role = {
       });
     },
     "system-role-detail:modify": function({ rootState }) {
-      router.push({ name: "system-role-create", query: rootState.route.query });
+      router.push({ name: "system-role-modify", query: rootState.route.query });
     }
   }
 };
