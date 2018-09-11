@@ -1,4 +1,5 @@
 import { fetchModuleTree } from "@/api/system/module-auth";
+import Vue from "vue";
 function traverseTree(root, leafName, callback) {
   if (!root) return;
   if (Array.isArray(root[leafName])) {
@@ -10,7 +11,7 @@ function traverseTree(root, leafName, callback) {
   }
 }
 function generateTree(curNode, nodeArray, nodeRef = {}) {
-  const parent = nodeArray.find(node => curNode.parent_id == node.id);
+  let parent = nodeArray.find(node => curNode.parent_id == node.id);
   if (parent && curNode.id != 0) {
     parent.children = Array.isArray(parent.children)
       ? [...parent.children.filter(node => node.id !== curNode.id), curNode]
@@ -48,6 +49,17 @@ const moduleAuth = {
           child.checkedActions = child.actions.filter(action =>
             actionCodes.includes(action.code)
           );
+          const checkedCount = child.checkedActions;
+          Vue.set(
+            child,
+            "allChecked",
+            checkedCount.length === child.actions.length
+          );
+          Vue.set(
+            child,
+            "isIndeterminate",
+            checkedCount > 0 && checkedCount < child.actions.length
+          );
           // 拍平树形
           const childCopy = { ...child };
           delete childCopy.children;
@@ -55,12 +67,23 @@ const moduleAuth = {
         });
         state.checkedKeys = rootGetters.authCodes.map(code => code.id);
         state.tree = tree;
+        state.generatedTree = _.cloneDeep(tree);
+        setTimeout(function() {
+          traverseTree(state.generatedTree, "children", function(child) {
+            child.actions = child.checkedActions;
+          });
+        });
       });
     },
     "module-auth:generate-tree": function({ state, commit }, checkedModules) {
+      console.log(checkedModules);
+      state.generatedTree = {};
       checkedModules.forEach(function(module) {
         const flattenTree = state.flattenTree;
-        commit("GENERATE_TREE", generateTree(module, flattenTree));
+        commit(
+          "GENERATE_TREE",
+          generateTree(_.clone(module), _.clone(flattenTree))
+        );
       });
     }
   }
