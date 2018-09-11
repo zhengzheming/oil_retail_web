@@ -10,13 +10,13 @@
           <el-col :span="12">
             <el-form-item 
               label="模块名称">
-              <el-input v-model="form.moduleName"/>
+              <el-input v-model="form.name"/>
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item 
               label="图标">
-              <el-input v-model="form.moduleIcon"/>
+              <el-input v-model="form.icon"/>
             </el-form-item>
           </el-col>
         </el-row>
@@ -24,7 +24,7 @@
           <el-col :span="12">
             <el-form-item 
               label="所属系统">
-              <el-input v-model="form.belongs"/>
+              <el-input v-model="form.system_id"/>
             </el-form-item>
           </el-col>
           <el-col 
@@ -34,23 +34,19 @@
               <div @click="showTree = !showTree">
                 <p
                   style="cursor: default;height: 32px; line-height: 32px;border: 1px solid #e6e6e6;
-                  border-radius: 3px;width: 100%;background-color:#f7f7f7;color:#666;padding-left:15px;">{{ form.superModule }}</p>
-                <div 
-                  v-show="showTree" 
-                  style="position: absolute;width: 100%;left: 0;top: 32px;z-index: 1;background: #f7f7f7;">
-                  <el-tree
-                    :data="treeData"
-                    :expand-on-click-node="false"
-                    style="background: #f7f7f7;border: 1px solid #e6e6e6;border-radius: 3px;"
-                    node-key="id"
-                    @node-click="handleNodeClick">
-                    <span 
-                      slot-scope="{ node, data }" 
-                      class="custom-tree-node">
-                      <span style="display:inline-block;width:350px;">{{ node.label }}</span>
-                    </span>
-                  </el-tree>
-                </div>
+                  border-radius: 3px;width: 100%;background-color:#f7f7f7;color:#666;padding-left:15px;">{{form.parent_id}}</p>
+                  <div v-show="showTree" style="position: absolute;width: 100%;left: 0;top: 32px;z-index: 1;background: #f7f7f7;">
+                    <el-tree
+                      style="background: #f7f7f7;border: 1px solid #e6e6e6;border-radius: 3px;"
+                      :data="treeData"
+                      node-key="id"
+                      @node-click="handleNodeClick"
+                      :expand-on-click-node="false">
+                      <span class="custom-tree-node" slot-scope="{ node, data }">
+                          <span style="display:inline-block;width:350px;">{{ node.label }}</span>
+                      </span>
+                    </el-tree>
+                  </div>
               </div>
               
             </el-form-item>
@@ -60,13 +56,13 @@
           <el-col :span="12">
             <el-form-item 
               label="权限码">
-              <el-input v-model="form.permossionCode"/>
+              <el-input v-model="form.code"/>
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item 
               label="模块操作">
-              <el-input v-model="form.operation"/>
+              <el-input v-model="form.actions"/>
             </el-form-item>
           </el-col>
         </el-row>
@@ -74,13 +70,13 @@
           <el-col :span="12">
             <el-form-item 
               label="页面地址">
-              <el-input v-model="form.address"/>
+              <el-input v-model="form.page_url"/>
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item 
               label="排序码">
-              <el-input v-model="form.sortCode"/>
+              <el-input v-model="form.order_index"/>
             </el-form-item>
           </el-col>
         </el-row>
@@ -89,7 +85,7 @@
             <el-form-item 
               label="是否外部链接">
               <el-select
-                v-model="form.isOutLink"
+                v-model="form.is_external"
                 class="form-control"
                 placeholder="请选择">
                 <el-option
@@ -104,7 +100,7 @@
             <el-form-item 
               label="是否启用">
               <el-select
-                v-model="form.isOpen"
+                v-model="form.status"
                 class="form-control"
                 placeholder="请选择">
                 <el-option
@@ -121,7 +117,7 @@
             <el-form-item 
               label="是否公开">
               <el-select
-                v-model="form.isPublic"
+                v-model="form.is_public"
                 class="form-control"
                 placeholder="请选择">
                 <el-option
@@ -136,7 +132,7 @@
             <el-form-item 
               label="是否菜单">
               <el-select
-                v-model="form.isMenu"
+                v-model="form.is_menu"
                 class="form-control"
                 placeholder="请选择">
                 <el-option
@@ -170,19 +166,19 @@ export default {
       showTree: false,
       treeData: [],
       form: {
-        moduleName: "",
-        moduleIcon: "",
-        belongs: "",
-        superModule: "",
-        permossionCode: "",
-        operation: "",
-        address: "",
-        sortCode: "",
-        isOutLink: "",
-        isOpen: "",
-        isPublic: "",
-        isMenu: "",
-        remark: ""
+        name: "",
+        icon: "",
+        system_id: "",
+        parent_id: "",
+        code: "",
+        actions: "",
+        page_url: "",
+        order_index: "",
+        is_external: "",
+        status: "",
+        is_public: "",
+        is_menu: "",
+        remark: "",
       },
       ui: {
         roleOptions: [
@@ -230,7 +226,7 @@ export default {
       });
     },
     handleNodeClick(data) {
-      this.form.superModule = data.label;
+      this.form.parent_id = data.label;
     }
   }
 };

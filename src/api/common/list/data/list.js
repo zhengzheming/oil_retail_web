@@ -1,6 +1,7 @@
 import request from "@/utils/request";
 
 export default {
+  // 基础信息-物流企业
   logistics: (page, pageSize, name, out_status, status) => {
     const data = {
       page: page,
@@ -17,7 +18,7 @@ export default {
       data
     });
   },
-  //车辆数据
+  //基础信息-车辆数据
   "vehicle-data": (page, pageSize, logistics_name, number) => {
     const data = {
       page: page,
@@ -29,6 +30,23 @@ export default {
     };
     return request({
       url: "/webAPI/Vehicle/list",
+      method: "post",
+      data
+    });
+  },
+  //物流企业管理-司机信息
+  "driver": (page, pageSize, driver_name, status, logistics_name) => {
+    const data = {
+      page: page,
+      pageSiz: pageSize,
+      search: {
+        driver_name,
+        status,
+        logistics_name
+      }
+    };
+    return request({
+      url: "/webAPI/driver/list",
       method: "post",
       data
     });

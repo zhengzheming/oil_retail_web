@@ -1,7 +1,8 @@
 import Layout from "@/views/layout/Layout";
-import commonList from "@/views/common/list/index";
-import logisticsDetail from "@/views/basicInfo/logisticsEnterprise/detail";
-import logisticsEdit from "@/views/basicInfo/logisticsEnterprise/edit";
+import commonList from '@/views/common/list/index'
+import logisticsDetail from '@/views/basicInfo/logisticsEnterprise/detail'
+import logisticsEdit from '@/views/basicInfo/logisticsEnterprise/edit'
+import vehicleDataDetail from '@/views/basicInfo/vehicleData/detail'
 export default {
   path: "/basic-info",
   name: "basic-info",
@@ -38,6 +39,12 @@ export default {
       meta: {
         title: "车辆数据"
       }
+    },
+    {
+      path: 'vehicleData/detail',
+      name: 'vehicle-data-detail',
+      component: vehicleDataDetail,
+      hidden: true
     }
   ]
 };
