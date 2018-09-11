@@ -81,7 +81,7 @@ const user = {
             //   Message.error("getInfo: authCodes must be a non-null array !")
             //   reject("getInfo: authCodes must be a non-null array !");
             // }
-
+            commit("SET_AUTH_CODES", data.authCodes);
             commit("SET_NAME", data.name);
             commit("SET_USERID", data.user_id);
             commit("SET_STATUS", data.status);

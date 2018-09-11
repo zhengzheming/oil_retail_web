@@ -5,9 +5,11 @@
       <el-tree
         :data="tree"
         :expand-on-click-node="false"
+        :default-checked-keys="checkedKeys"
         show-checkbox
         node-key="id"
-        default-expand-all>
+        default-expand-all
+        @check="changeTree">
         <span
           slot-scope="{ node, data }"
           class="custom-tree-node">
@@ -20,8 +22,8 @@
               @change="selectAll(data, $event)">
               全选
             </el-checkbox>
-            <el-checkbox-group 
-              v-model="data.checkedActions" 
+            <el-checkbox-group
+              v-model="data.checkedActions"
               @change="handleItemCheckedChange(data, $event)">
               <el-checkbox
                 v-for="action in data.actions"
@@ -38,14 +40,15 @@
 </template>
 
 <script>
-let id = 1000;
-
 export default {
   name: "AuthTree",
   data() {
     return {};
   },
   computed: {
+    checkedKeys() {
+      return this.$store.state.system.moduleAuth.checkedKeys;
+    },
     tree() {
       return this.$store.getters.moduleTree.children;
     }
@@ -67,19 +70,8 @@ export default {
       this.$set(data, "checkedActions", val ? data.actions : []);
       this.$set(data, "isIndeterminate", false);
     },
-    append(data) {
-      const newChild = { id: id++, label: "testtest", children: [] };
-      if (!data.children) {
-        this.$set(data, "children", []);
-      }
-      data.children.push(newChild);
-    },
-
-    remove(node, data) {
-      const parent = node.parent;
-      const children = parent.data.children || parent.data;
-      const index = children.findIndex(d => d.id === data.id);
-      children.splice(index, 1);
+    changeTree(curNodeData, nodes) {
+      this.$store.dispatch("module-auth:generate-tree", nodes.checkedNodes);
     }
   }
 };
