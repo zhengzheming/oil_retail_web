@@ -131,23 +131,22 @@ export default {
   name: "SystemUserCreate",
   data() {
     const validatePass = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("请输入密码"));
-      } else {
-        if (this.form.cpassword !== "") {
-          this.$refs.form.validateField("cpassword");
-        }
-        callback();
+      if (value === "" && this.form.cpassword !== "") {
+        return callback(new Error("请输入密码"));
       }
+      if (this.form.cpassword !== "") {
+        this.$refs.form.validateField("cpassword");
+      }
+      callback();
     };
     const validatePass2 = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("请再次输入密码"));
-      } else if (value !== this.form.password) {
-        callback(new Error("两次输入密码不一致!"));
-      } else {
-        callback();
+      if (value === "" && this.form.password !== "") {
+        return callback(new Error("请再次输入密码"));
       }
+      if (value !== this.form.password) {
+        return callback(new Error("两次输入密码不一致!"));
+      }
+      callback();
     };
     return {
       rules: {

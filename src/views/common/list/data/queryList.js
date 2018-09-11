@@ -1,3 +1,4 @@
+import { queryList as system } from "./modules/system";
 export default {
   // 基础数据-物流企业
   logistics: [
@@ -132,32 +133,5 @@ export default {
       val: ""
     }
   ],
-  "system-user-list": [
-    {
-      label: "用户名",
-      val: ""
-    },
-    {
-      label: "姓名",
-      val: ""
-    },
-    {
-      label: "主角色",
-      type: "slt",
-      val: "",
-      data: []
-    },
-    {
-      label: "角色",
-      type: "slt",
-      val: "",
-      data: []
-    }
-  ],
-  "system-role-list": [
-    {
-      label: "角色名",
-      val: ""
-    }
-  ]
+  ...system
 };

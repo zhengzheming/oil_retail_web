@@ -1,43 +1,45 @@
 <template>
   <div class="my-queyr-form-wrap" >
-    <ul 
+    <ul
       :style="{height:isExpand?'unset':'42px'}">
       <template v-for="(item,index) of comData">
-        <li 
-          :key="index+0.2" 
-          v-if="index==2">
-          <el-button 
-            type="primary" 
+        <li
+          v-if="index==2"
+          :key="index+0.2">
+          <el-button
+            type="primary"
             style="width:65px;"
             @click="query">查询</el-button>
-          <el-button 
+          <el-button
             style="width:65px;"
+            plain
             @click="reset">重置</el-button>
           <p
-            @click="isExpand=!isExpand"
-            class="expand-control">{{ isExpand?'收起':'展开' }}搜索<i 
-              class="icon" 
-              :class="isExpand?'icon-shangla':'icon-xiala'"/></p>
+            class="expand-control"
+            @click="isExpand=!isExpand">{{ isExpand?'收起':'展开' }}搜索<i
+              :class="isExpand?'icon-shangla':'icon-xiala'"
+              class="icon"
+              style="margin-left: 5px;"/></p>
         </li>
         <!-- item.type !== "radio" && item.type !== "box" -->
         <li
-          :key="index"
           v-if="item.type !== &quot;radio&quot; && item.type !== &quot;box&quot; && item.type !== &quot;tab&quot;"
+          :key="index"
           :style="item.styleObj || ''">
           <p>
             <label class="ellipsis">
               <!-- <my-xing v-if="item.hasOwnProperty('triggerValidate')"/> -->
               {{ item.label }}:</label><small
-              v-if="item.smallLabel"
-              style="font-size: 14px;color: #999;">{{ item.smallLabel }}</small>
+                v-if="item.smallLabel"
+                style="font-size: 14px;color: #999;">{{ item.smallLabel }}</small>
           </p>
           <el-select
-            :class="((item.triggerValidate && item.validateFunc(item.val)) || (item.triggerValidate && (item.val === '' || item.val === null || item.val === undefined))) ?'err':''"
-            @blur="e => handleBlur(e,item)"
-            v-model="item.val"
             v-if="item.type=='slt'"
+            :class="((item.triggerValidate && item.validateFunc(item.val)) || (item.triggerValidate && (item.val === '' || item.val === null || item.val === undefined))) ?'err':''"
+            v-model="item.val"
+            :placeholder="item.placeholder"
             class="el-slt"
-            :placeholder="item.placeholder">
+            @blur="e => handleBlur(e,item)">
             <el-option
               v-for="(item1,index) of item.data"
               :disabled="item.disabled"
@@ -50,10 +52,10 @@
             style="display:flex;justify-content:space-between;">
             <el-select
               :class="((item.triggerValidate && item.validateFunc(item.val)) || (item.triggerValidate && (item.val === '' || item.val === null || item.val === undefined))) ?'err':''"
-              @blur="e => handleBlur(e,item)"
               v-model="item.adjustVal"
+              :placeholder="item.adjustPlaceholder"
               style="width:40%;margin-right:2%;"
-              :placeholder="item.adjustPlaceholder">
+              @blur="e => handleBlur(e,item)">
               <el-option
                 v-for="(item1,index) of item.adjustData"
                 :key="index"
@@ -63,31 +65,31 @@
             </el-select>
           </div>
           <el-input
-            type="text"
-            v-model="item.val"
             v-else-if="item.readonly"
+            v-model="item.val"
+            type="text"
             readonly="readonly"
             class="ipt"
             placeholder=""/>
           <el-input
-            type="text"
-            :class="((item.triggerValidate && item.validateFunc(item.val)) || (item.triggerValidate && (item.val === '' || item.val === null || item.val === undefined))) ?'err':''"
-            @blur="e => handleBlur(e,item)"
-            v-model="item.val"
             v-else
+            :class="((item.triggerValidate && item.validateFunc(item.val)) || (item.triggerValidate && (item.val === '' || item.val === null || item.val === undefined))) ?'err':''"
+            v-model="item.val"
+            :placeholder="item.placeholder||'请输入内容'"
+            type="text"
             class="ipt"
-            :placeholder="item.placeholder||'请输入内容'"/>
+            @blur="e => handleBlur(e,item)"/>
         </li>
         <!-- item.type == "radio" -->
-        <li 
-          style="display:none;" 
-          v-else-if="item.type=='tab'" 
-          :key="index"/>
+        <li
+          v-else-if="item.type=='tab'"
+          :key="index"
+          style="display:none;"/>
         <li
           v-else
-          class="check-wrap"
           :key="index"
-          :style="item.styleObj || ''">
+          :style="item.styleObj || ''"
+          class="check-wrap">
           <label>{{ item.label }}</label>
           <div>
             <el-radio
@@ -105,15 +107,24 @@
           style="width:100%;"/>
       </template>
     </ul>
-    <el-tabs class="query-tab" v-show="tabData.length" v-model="activeName3" type="primary" @tab-click="handleClick">
-      <el-tab-pane v-for="item of tabData" :key="item.val" :label="item.label" :name="item.val"></el-tab-pane>
+    <el-tabs 
+      v-show="tabData.length" 
+      v-model="activeName3" 
+      class="query-tab" 
+      type="primary" 
+      @tab-click="handleClick">
+      <el-tab-pane 
+        v-for="item of tabData" 
+        :key="item.val" 
+        :label="item.label" 
+        :name="item.val"/>
     </el-tabs>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'QueryForm',
+  name: "QueryForm",
   props: {
     comData: {
       type: Array,
@@ -124,28 +135,28 @@ export default {
   },
   data() {
     return {
-      activeName3: 'first',
-      val: '',
+      activeName3: "first",
+      val: "",
       isExpand: false,
-      tabSlt: '',
+      tabSlt: "",
       tabData: []
     };
   },
   watch: {
     comData: {
-      handler: 'getTabData',
+      handler: "getTabData",
       deep: true
     }
   },
-  mounted(){
+  mounted() {
     this.getTabData();
   },
   methods: {
-    getTabData(){
+    getTabData() {
       let tmp = [];
       if (this.comData) {
         tmp = this.comData.filter(item => {
-          return item.type == 'tab';
+          return item.type == "tab";
         });
       }
       if (tmp.length) {
@@ -154,12 +165,12 @@ export default {
       }
     },
     handleBlur(e, item) {
-      if (item.hasOwnProperty('triggerValidate')) {
+      if (item.hasOwnProperty("triggerValidate")) {
         let el = e.target;
         if ((item.validateFunc && item.validateFunc(el.value)) || !el.value) {
-          e.target.classList.add('err');
+          e.target.classList.add("err");
         } else {
-          e.target.classList.remove('err');
+          e.target.classList.remove("err");
         }
       }
       if (item.handleBlur) {
@@ -167,10 +178,10 @@ export default {
       }
     },
     query() {
-      this.$emit('query');
+      this.$emit("query");
     },
     reset() {
-      this.$emit('reset');
+      this.$emit("reset");
     },
     handleClick(tab, event) {
       console.log(tab, event);

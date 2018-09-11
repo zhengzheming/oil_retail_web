@@ -23,8 +23,8 @@
         <div class="form-control--static">
           <span class="form-control--static__title">从角色</span>
           <span class="form-control--static__text" >
-            <span 
-              v-for="(role, index) in form.roleObjs" 
+            <span
+              v-for="(role, index) in form.roleObjs"
               :key="index">{{ role.name }} </span>
           </span>
         </div>
@@ -38,7 +38,7 @@
       </el-col>
       <el-col :span="12">
         <form-control-static
-          :text="$lookupInDict('system-user-detail', 'status', form.status)"
+          :text="$lookupInDict($route, 'status', form.status)"
           title="状态"/>
       </el-col>
     </el-row>

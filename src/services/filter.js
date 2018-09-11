@@ -1,12 +1,18 @@
-export function lookupInDict(moduleName, field, value) {
-  if (!moduleName || !field || !value) return console.log("请输入必要参数");
+// 先从当前模块搜索， 再从通用模块搜索
+export function lookupInDict(route, field, value) {
+  if (!field || !value) return;
   const dict = {
-    "system-user-detail": {
+    "system-user": {
       status: {
         1: "启用",
         0: "未启用"
       }
     }
   };
-  return dict[moduleName][field][value];
+  const curMatchedRoute = route.matched.map(route => route.name);
+  const matchedModule = Object.keys(dict).find(moduleName => {
+    return curMatchedRoute.includes(moduleName);
+  });
+  if (!matchedModule) throw new Error("当前模块未匹配到相应字典");
+  return dict[matchedModule][field][value];
 }

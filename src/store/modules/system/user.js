@@ -35,6 +35,7 @@ const user = {
         if (valid) {
           let data = {
             ...form,
+            password: form.password ? form.password.trim() : "",
             roles: form.roles.map(role => ({ id: role, name: "" }))
           };
           createSystemUser(data).then(() => {
