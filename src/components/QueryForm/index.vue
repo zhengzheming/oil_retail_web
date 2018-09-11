@@ -83,8 +83,8 @@
           </div>
         </li>
         <li
-          :key="index+0.2"
-          v-if="index==1 || (comData.length==1 && index==0)">
+          v-if="index==1 || (comData.length==1 && index==0)"
+          :key="index+0.2">
           <el-button
             type="primary"
             style="width:65px;"
@@ -95,11 +95,11 @@
             @click="reset">重置</el-button>
           <p
             v-if="comData.length>=3"
-            @click="isExpand=!isExpand"
-            class="expand-control">{{ isExpand?'收起':'展开' }}搜索<i
+            class="expand-control"
+            @click="isExpand=!isExpand">{{ isExpand?'收起':'展开' }}搜索<i
+              :class="isExpand?'icon-shangla':'icon-xiala'"
               class="icon"
-              style="margin-left: 5px;"
-              :class="isExpand?'icon-shangla':'icon-xiala'"/></p>
+              style="margin-left: 5px;"/></p>
         </li>
         <!-- 用作换行 -->
         <p

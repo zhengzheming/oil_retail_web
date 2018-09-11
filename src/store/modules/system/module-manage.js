@@ -32,10 +32,12 @@ const role = {
           let data = {
             ...form
           };
-          save(data).then(() => {
-            Message.success('保存成功');
-            router.push({ name: "systemModule" });
-          }).catch(err => {});
+          save(data)
+            .then(() => {
+              Message.success("保存成功");
+              router.push({ name: "systemModule" });
+            })
+            .catch(err => {});
         }
       });
     },

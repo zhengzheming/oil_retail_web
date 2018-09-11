@@ -18,11 +18,11 @@
 
 <script>
 // @ is an alias to /src
-import apiList from '@/api/common/list';
-import queryList from './data/queryList'
-import tableHeader from './data/tableHeader'
-import editPath from './data/editPath'
-import detailPath from './data/detailPath'
+import apiList from "@/api/common/list";
+import queryList from "./data/queryList";
+import tableHeader from "./data/tableHeader";
+import editPath from "./data/editPath";
+import detailPath from "./data/detailPath";
 
 export default {
   data() {
