@@ -3,24 +3,6 @@
     <ul
       :style="{height:isExpand?'unset':'42px'}">
       <template v-for="(item,index) of comData">
-        <li
-          v-if="index==2"
-          :key="index+0.2">
-          <el-button
-            type="primary"
-            style="width:65px;"
-            @click="query">查询</el-button>
-          <el-button
-            style="width:65px;"
-            plain
-            @click="reset">重置</el-button>
-          <p
-            class="expand-control"
-            @click="isExpand=!isExpand">{{ isExpand?'收起':'展开' }}搜索<i
-              :class="isExpand?'icon-shangla':'icon-xiala'"
-              class="icon"
-              style="margin-left: 5px;"/></p>
-        </li>
         <!-- item.type !== "radio" && item.type !== "box" -->
         <li
           v-if="item.type !== &quot;radio&quot; && item.type !== &quot;box&quot; && item.type !== &quot;tab&quot;"
@@ -100,6 +82,25 @@
               label="2">否</el-radio>
           </div>
         </li>
+        <li
+          :key="index+0.2"
+          v-if="index==1 || (comData.length==1 && index==0)">
+          <el-button
+            type="primary"
+            style="width:65px;"
+            @click="query">查询</el-button>
+          <el-button
+            style="width:65px;"
+            plain
+            @click="reset">重置</el-button>
+          <p
+            v-if="comData.length>=3"
+            @click="isExpand=!isExpand"
+            class="expand-control">{{ isExpand?'收起':'展开' }}搜索<i
+              class="icon"
+              style="margin-left: 5px;"
+              :class="isExpand?'icon-shangla':'icon-xiala'"/></p>
+        </li>
         <!-- 用作换行 -->
         <p
           v-if="item.nextLine"
@@ -107,16 +108,16 @@
           style="width:100%;"/>
       </template>
     </ul>
-    <el-tabs 
-      v-show="tabData.length" 
-      v-model="activeName3" 
-      class="query-tab" 
-      type="primary" 
+    <el-tabs
+      v-show="tabData.length"
+      v-model="activeName3"
+      class="query-tab"
+      type="primary"
       @tab-click="handleClick">
-      <el-tab-pane 
-        v-for="item of tabData" 
-        :key="item.val" 
-        :label="item.label" 
+      <el-tab-pane
+        v-for="item of tabData"
+        :key="item.val"
+        :label="item.label"
         :name="item.val"/>
     </el-tabs>
   </div>

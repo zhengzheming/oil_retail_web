@@ -27,6 +27,10 @@ export default {
     items: ["系统管理", "角色管理", "角色详情"],
     actions: [{ name: "修改", action: "modify", plain: true }]
   },
+  'moduleEdit': {
+    items: ["系统管理", "模块管理", "修改"],
+    actions: [{ name: "保存", action: "save", type: "primary" }]
+  },
 
   logistics: {
     items: ["基础数据", "物流企业"]

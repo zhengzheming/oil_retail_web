@@ -1,5 +1,5 @@
 <template>
-  <div class="system-user__create">
+  <div class="system-user__create" >
     <card>
       <span slot="title">修改系统模块</span>
       <el-form
@@ -27,9 +27,26 @@
               <el-input v-model="form.belongs"/>
             </el-form-item>
           </el-col>
-          <el-col :span="12">
+          <el-col :span="12" id="super-module">
             <el-form-item label="上级模块">
-              <el-input v-model="form.superModule"/>  
+              <div @click="showTree = !showTree">
+                <p
+                  style="cursor: default;height: 32px; line-height: 32px;border: 1px solid #e6e6e6;
+                  border-radius: 3px;width: 100%;background-color:#f7f7f7;color:#666;padding-left:15px;">{{form.superModule}}</p>
+                  <div v-show="showTree" style="position: absolute;width: 100%;left: 0;top: 32px;z-index: 1;background: #f7f7f7;">
+                    <el-tree
+                      style="background: #f7f7f7;border: 1px solid #e6e6e6;border-radius: 3px;"
+                      :data="treeData"
+                      node-key="id"
+                      @node-click="handleNodeClick"
+                      :expand-on-click-node="false">
+                      <span class="custom-tree-node" slot-scope="{ node, data }">
+                          <span style="display:inline-block;width:350px;">{{ node.label }}</span>
+                      </span>
+                    </el-tree>
+                  </div>
+              </div>
+              
             </el-form-item>
           </el-col>
         </el-row>
@@ -139,10 +156,13 @@
 </template>
 
 <script>
+import {list} from '@/api/system/module-manage'
 export default {
   name: "SystemUserCreate",
   data() {
     return {
+      showTree:false,
+      treeData: [],
       form: {
         moduleName: "",
         moduleIcon: "",
@@ -175,7 +195,7 @@ export default {
   watch: {
     form: {
       handler: function(val) {
-        this.$store.dispatch("systemUserCreate:update-form", {
+        this.$store.dispatch("moduleEdit:update-form", {
           form: val,
           formRef: this.$refs["form"]
         });
@@ -185,10 +205,28 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch("systemUserCreate:update-form", {
+    // document.addEventListener('click',function(e){
+    //   console.log(123)
+    //   this.showTree = false;
+    // }.bind(this),true)
+    this.$store.dispatch("moduleEdit:update-form", {
       form: this.form,
       formRef: this.$refs["form"]
     });
+     this.getList();
+  },
+  methods:{
+    getList(){
+      list()
+      .then(res => {
+        if(res.state == 0) {
+          this.treeData = res.data
+        }
+      })
+    },
+    handleNodeClick(data) {
+      this.form.superModule = data.label;
+    }
   }
 };
 </script>

@@ -5,7 +5,7 @@
     </card>
 </template>
 <script>
-import {detail} from '@/api/system/module'
+import {detail} from '@/api/system/module-manage'
 export default {
     data(){
         return {
@@ -14,11 +14,11 @@ export default {
                 list: [
                     {
                         label: '名称',
-                        prop: ''
+                        prop: 'name'
                     },
                     {
                         label: '权限码',
-                        prop: ''
+                        prop: 'code'
                     },
                     {
                         label: '所属系统',
@@ -26,7 +26,7 @@ export default {
                     },
                     {
                         label: '排序码',
-                        prop: ''
+                        prop: 'order_index'
                     },
                     {
                         label: '操作',
@@ -34,40 +34,42 @@ export default {
                     },
                     {
                         label: '页面链接',
-                        prop: ''
+                        prop: 'page_url'
                     },
                     {
                         label: '是否公开',
-                        prop: ''
+                        prop: 'is_public'
                     },
                     {
                         label: '是否外部链接',
-                        prop: ''
+                        prop: 'is_external'
                     },
                     {
                         label: '状态',
-                        prop: ''
+                        prop: 'status'
                     },
                     {
                         label: '更新时间',
-                        prop: ''
+                        prop: 'update_time'
                     },
                     {
                         label: '是否菜单',
-                        prop: ''
+                        prop: 'is_menu'
                     },
                     {
                         label: '备注',
-                        prop: ''
+                        prop: 'remark'
                     }
                 ]
             }
         }
     },
     mounted(){
-        detail()
+        detail(this.$route.query.id)
         .then(res => {
-            console.log(res)
+            if(res.state == 0){
+                this.detailData.data = $utils.getDeepKey(res,'data')
+            }
         })
     }
 }

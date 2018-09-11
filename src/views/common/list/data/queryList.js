@@ -133,5 +133,16 @@ export default {
       val: ""
     }
   ],
+  //车辆数据
+  "vehicle-data": [
+    {
+      label: "物流企业",
+      val: ""
+    },
+    {
+      label: "车牌号",
+      val: ""
+    }
+  ],
   ...system
 };

@@ -18,12 +18,11 @@
 
 <script>
 // @ is an alias to /src
-import apiList from "@/api/common/list";
-import queryList from "./data/queryList";
-import tableHeader from "./data/tableHeader";
-import editPath from "./data/editPath";
-import detailPath from "./data/detailPath";
-// import tableFieldsMap from "./data/tableFieldsMap";
+import apiList from '@/api/common/list';
+import queryList from './data/queryList'
+import tableHeader from './data/tableHeader'
+import editPath from './data/editPath'
+import detailPath from './data/detailPath'
 
 export default {
   data() {
@@ -32,10 +31,10 @@ export default {
       currentPage: 1,
       pageSize: 10,
       pageTotal: 0,
-      queryList: queryList[pathName],
-      tableHeader: tableHeader[pathName],
-      editPath: editPath[pathName],
-      detailPath: detailPath[pathName],
+      queryList: queryList[pathName] || [],
+      tableHeader: tableHeader[pathName] || {},
+      editPath: editPath[pathName] || {},
+      detailPath: detailPath[pathName] || {},
       listApi: apiList.list[pathName],
       editApi: apiList.edit[pathName],
       detailApi: apiList.detail[pathName],
@@ -60,7 +59,7 @@ export default {
       this.listApi(...params).then(res => {
         if (res.state == 0) {
           this.tableContent = $utils.getDeepKey(res, "data.data.rows");
-          this.pageTotal = $utils.getDeepKey(res, "data.data.pageCount") * 10;
+          this.pageTotal = parseInt($utils.getDeepKey(res, "data.data.total"));
           if (this.tableContent.length) {
             this.tableContent.forEach(item => {
               // 链接加参数

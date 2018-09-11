@@ -6,13 +6,29 @@ export default {
       page: page,
       pageSiz: pageSize,
       search: {
-        name: name,
-        out_status: out_status,
-        status: status
+        name,
+        out_status,
+        status
       }
     };
     return request({
       url: "/webAPI/LogisticsCompany/list",
+      method: "post",
+      data
+    });
+  },
+  //车辆数据
+  "vehicle-data": (page, pageSize, logistics_name, number) => {
+    const data = {
+      page: page,
+      pageSiz: pageSize,
+      search: {
+        logistics_name,
+        number
+      }
+    };
+    return request({
+      url: "/webAPI/Vehicle/list",
       method: "post",
       data
     });
