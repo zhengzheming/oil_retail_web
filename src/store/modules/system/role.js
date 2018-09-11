@@ -56,7 +56,7 @@ const role = {
       });
     },
     "system-role-detail:modify": function({ rootState }) {
-      router.push({ name: "system-role-create", query: rootState.route.query });
+      router.push({ name: "system-role-modify", query: rootState.route.query });
     }
   }
 };

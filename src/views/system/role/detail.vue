@@ -4,7 +4,7 @@
     <el-row :gutter="$customConfig.colGutter">
       <el-col :span="12">
         <form-control-static
-          :text="form.roleNme"
+          :text="form.roleName"
           title="角色名"/>
       </el-col>
       <el-col :span="12">

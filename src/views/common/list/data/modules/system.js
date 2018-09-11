@@ -58,8 +58,9 @@ export const tableHeader = {
     name: {
       label: "角色名"
     },
-    status: {
-      label: "状态"
+    statusName: {
+      label: "状态",
+      mapKey: "status"
     },
     update_time: {
       label: "更新时间"

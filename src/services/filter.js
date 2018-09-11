@@ -7,6 +7,12 @@ export function lookupInDict(route, field, value) {
         1: "启用",
         0: "未启用"
       }
+    },
+    "system-role": {
+      status: {
+        1: "启用",
+        0: "未启用"
+      }
     }
   };
   const curMatchedRoute = route.matched.map(route => route.name);

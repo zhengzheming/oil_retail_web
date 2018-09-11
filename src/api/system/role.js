@@ -5,7 +5,7 @@ export function fetchUserRoleDetail(roleId) {
     url: "/admin/role/detail",
     method: "get",
     params: {
-      user_id: roleId
+      role_id: roleId
     }
   });
 }
