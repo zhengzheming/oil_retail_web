@@ -22,7 +22,7 @@ export default {
         meta: {title: '司机信息'}
     },
     {
-        path: 'driver/list',
+        path: 'driver/detail',
         name: 'driverDetail',
         component: driverDetail,
         meta: {title: '司机信息'}

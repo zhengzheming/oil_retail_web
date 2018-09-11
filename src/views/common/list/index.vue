@@ -94,6 +94,7 @@ export default {
     },
     showChildCom(tag, row) {
       if (tag == "detail") {
+        console.log(this.detailPath.pathName)
         this.$router.push({ name: this.detailPath.pathName, query: row.query });
       } else if (tag == "edit") {
         this.$router.push({ name: this.editPath.pathName, query: row.query });

@@ -77,6 +77,31 @@ export default {
       label: "收支类型"
     }
   },
+  //物流企业管理-司机信息
+  "driver": {
+    driver_id: {
+      label: "编号",
+      width: "120"
+    },
+    name: {
+      label: "姓名",
+      width: "200"
+    },
+    logistics_name: {
+      label: "所属企业"
+    },
+    // numb4er: {         //不要了,删了
+    //   label: "所属系统"
+    // },
+    phone: {
+      label: "电话",
+      width: "120"
+    },
+    status_name: {
+      label: "状态",
+      width: "200"
+    }
+  },
   // 物流企业管理-车辆数据
   "vehicle-data": {
     vehicle_id: {
