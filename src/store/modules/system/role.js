@@ -22,6 +22,9 @@ const role = {
     }
   },
   actions: {
+    "system-role-list:create": function() {
+      router.push({ name: "system-role-create" });
+    },
     "system-role-create:save": function({ state, rootState }) {
       const formRef = state.systemRoleCreate.formRef;
       const form = state.systemRoleCreate.form;
