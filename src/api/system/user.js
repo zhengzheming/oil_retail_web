@@ -47,3 +47,13 @@ export function fetchRoles() {
     method: "get"
   });
 }
+
+export function deleteUser(userId) {
+  return request({
+    url: "/admin/user/del",
+    method: "post",
+    data: {
+      user_id: userId
+    }
+  });
+}

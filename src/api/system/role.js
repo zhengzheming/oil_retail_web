@@ -27,3 +27,13 @@ export function createSystemRole({
     }
   });
 }
+
+export function deleteRole(role_id) {
+  return request({
+    url: "/admin/role/del",
+    method: "post",
+    data: {
+      role_id
+    }
+  });
+}

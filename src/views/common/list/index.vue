@@ -11,6 +11,7 @@
       @query="getList"
       @size-change="val => pageSize=val"
       @page-change="val => currentPage=val"
+      @delete-item="row => showChildCom('delete',row)"
       @show-view="row => showChildCom('detail',row)"
       @show-edit="row => showChildCom('edit',row)"/>
   </card>
@@ -23,6 +24,7 @@ import queryList from "./data/queryList";
 import tableHeader from "./data/tableHeader";
 import editPath from "./data/editPath";
 import detailPath from "./data/detailPath";
+import configForDelete from "./data/delete";
 
 export default {
   data() {
@@ -35,6 +37,7 @@ export default {
       tableHeader: tableHeader[pathName] || {},
       editPath: editPath[pathName] || {},
       detailPath: detailPath[pathName] || {},
+      configForDelete: configForDelete[pathName] || {},
       listApi: apiList.list[pathName],
       editApi: apiList.edit[pathName],
       detailApi: apiList.detail[pathName],
@@ -94,6 +97,11 @@ export default {
                   });
                 }
               });
+              // 删除
+              Object.keys(this.configForDelete).forEach(key => {
+                item.configForDelete = item.configForDelete || {};
+                item.configForDelete[key] = this.configForDelete[key];
+              });
             });
           }
         }
@@ -105,12 +113,39 @@ export default {
           item.val = "";
         });
     },
-    showChildCom(tag, row) {
-      if (tag == "detail") {
-        this.$router.push({ name: this.detailPath.pathName, query: row.query });
-      } else if (tag == "edit") {
-        this.$router.push({ name: this.editPath.pathName, query: row.query });
-      }
+    showChildCom(type, row) {
+      const actionMap = {
+        detail: () => {
+          this.$router.push({
+            name: this.detailPath.pathName,
+            query: row.query
+          });
+        },
+        edit: () => {
+          this.$router.push({ name: this.editPath.pathName, query: row.query });
+        },
+        delete: () => {
+          if (!row.configForDelete) return;
+          const message =
+            row.configForDelete.message ||
+            "您确定要删除当前信息，该操作不可逆？";
+          this.$confirm(message, "提示", {
+            type: "warning",
+            confirmButtonText: "确定",
+            cancelButtonText: "取消"
+          }).then(() => {
+            const cb = row.configForDelete.callback || function() {};
+            const args = row.configForDelete.args.map(argKey => row[argKey]);
+            cb(...args);
+            this.$message({
+              type: "success",
+              message: "删除成功"
+            });
+          });
+        }
+      };
+      const cb = actionMap[type] || function() {};
+      cb();
     }
   }
 };

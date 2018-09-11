@@ -27,26 +27,30 @@
               style="text-overflow:ellipsis;white-space:nowrap;">
               {{ (scope.row[key]===null || scope.row[key]===undefined || scope.row[key]==='') ? '--' : scope.row[key] }}
             </router-link>
-            <p 
-              v-else 
+            <p
+              v-else
               style="text-overflow:ellipsis;white-space:nowrap;">{{ (scope.row[key]===null || scope.row[key]===undefined || scope.row[key]==='') ? '--' : scope.row[key] }}</p>
           </template>
         </el-table-column>
         <el-table-column
           fixed="right"
-          label="操作"
-          width="100">
+          label="操作">
           <template slot-scope="scope">
-            <el-button 
-              v-if="scope.row.is_can_view !== false" 
-              type="text" 
-              size="small" 
+            <el-button
+              v-if="scope.row.is_can_view !== false"
+              type="text"
+              size="small"
               @click="handleVIew(scope.row)">查看</el-button>
-            <el-button 
-              v-if="scope.row.is_can_edit !== false" 
-              type="text" 
-              size="small" 
+            <el-button
+              v-if="scope.row.is_can_edit !== false"
+              type="text"
+              size="small"
               @click="handleEdit(scope.row)">编辑</el-button>
+            <el-button
+              v-if="scope.row.is_can_delete !== false"
+              type="text"
+              size="small"
+              @click="handleDelete(scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -113,6 +117,9 @@ export default {
     handleEdit(row) {
       this.sideContentVisible = true;
       this.$emit("show-edit", row);
+    },
+    handleDelete(row) {
+      this.$emit("delete-item", row);
     },
     handleSizeChange(val) {
       this.$emit("size-change", val);

@@ -1,3 +1,5 @@
+import { deleteUser } from "@/api/system/user";
+import { deleteRole } from "@/api/system/role";
 export const queryList = {
   "system-user-list": [
     {
@@ -32,7 +34,8 @@ export const queryList = {
 export const tableHeader = {
   "system-user-list": {
     user_id: {
-      label: "编号"
+      label: "编号",
+      width: "70px"
     },
     user_name: {
       label: "用户名"
@@ -53,7 +56,8 @@ export const tableHeader = {
   },
   "system-role-list": {
     role_id: {
-      label: "编号"
+      label: "编号",
+      width: "70px"
     },
     name: {
       label: "角色名"
@@ -107,5 +111,16 @@ export const detailPath = {
         field: "role_id"
       }
     ]
+  }
+};
+
+export const deleteItem = {
+  "system-user-list": {
+    callback: userId => deleteUser(userId),
+    args: ["user_id"]
+  },
+  "system-role-list": {
+    callback: roleId => deleteRole(roleId),
+    args: ["role_id"]
   }
 };
