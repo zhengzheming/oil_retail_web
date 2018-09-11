@@ -23,7 +23,7 @@ export default {
       width: "120"
     }
   },
-  // 物流企业管理-企业额度
+  // 基础数据-物流企业管理-企业额度
   "enterprise-quota": {
     logistics_id: {
       label: "物流公司",
@@ -41,7 +41,7 @@ export default {
       label: "企业可用额度"
     }
   },
-  // 物流企业管理-企业可用额度收支管理
+  // 基础数据-物流企业管理-企业可用额度收支管理
   "available-credit": {
     logistics_id: {
       label: "时间",
@@ -59,7 +59,7 @@ export default {
       label: "收支类型"
     }
   },
-  // 物流企业管理-企业当日可用额度收支管理
+  // 基础数据-物流企业管理-企业当日可用额度收支管理
   "day-credit": {
     logistics_id: {
       label: "时间",
@@ -75,6 +75,27 @@ export default {
     },
     status_name: {
       label: "收支类型"
+    }
+  },
+  // 物流企业管理-车辆数据
+  "vehicle-data": {
+    vehicle_id: {
+      label: "编号",
+      width: "120"
+    },
+    number: {
+      label: "车牌号",
+      width: "200"
+    },
+    logistics_name: {
+      label: "物流企业",
+      width: "120"
+    },
+    model: {
+      label: "车辆类型"
+    },
+    capacity: {
+      label: "油箱容量/L"
     }
   },
   "system-user-list": {

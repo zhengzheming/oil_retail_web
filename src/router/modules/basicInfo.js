@@ -1,5 +1,5 @@
 import Layout from "@/views/layout/Layout";
-import logistics from '@/views/common/list/index'
+import commonList from '@/views/common/list/index'
 import logisticsDetail from '@/views/basicInfo/logisticsEnterprise/detail'
 import logisticsEdit from '@/views/basicInfo/logisticsEnterprise/edit'
 export default {
@@ -11,10 +11,11 @@ export default {
     icon: 'icon icon-shezhi'
   },
   children: [
+    //物流企业
     {
         path: 'logistics/list',
         name: 'logistics',
-        component: logistics,
+        component: commonList,
         meta: {title: '物流企业'}
     },
     {
@@ -29,12 +30,13 @@ export default {
       component: logisticsEdit,
       hidden: true
     },
+    //车辆数据
     {
-      path: 'logistics11',
-      name: 'logistics1',
-      component: logistics,
+      path: 'vehicleData/list',
+      name: 'vehicle-data',
+      component: commonList,
       meta: {
-        title: '车辆管理'
+        title: '车辆数据'
       }
     }
   ]

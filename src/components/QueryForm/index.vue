@@ -3,22 +3,6 @@
     <ul 
       :style="{height:isExpand?'unset':'42px'}">
       <template v-for="(item,index) of comData">
-        <li 
-          :key="index+0.2" 
-          v-if="index==2">
-          <el-button 
-            type="primary" 
-            style="width:65px;"
-            @click="query">查询</el-button>
-          <el-button 
-            style="width:65px;"
-            @click="reset">重置</el-button>
-          <p
-            @click="isExpand=!isExpand"
-            class="expand-control">{{ isExpand?'收起':'展开' }}搜索<i 
-              class="icon" 
-              :class="isExpand?'icon-shangla':'icon-xiala'"/></p>
-        </li>
         <!-- item.type !== "radio" && item.type !== "box" -->
         <li
           :key="index"
@@ -97,6 +81,23 @@
               v-model="item.val"
               label="2">否</el-radio>
           </div>
+        </li>
+        <li 
+          :key="index+0.2" 
+          v-if="index==1">
+          <el-button 
+            type="primary" 
+            style="width:65px;"
+            @click="query">查询</el-button>
+          <el-button 
+            style="width:65px;"
+            @click="reset">重置</el-button>
+          <p
+            v-if="comData.length>=3"
+            @click="isExpand=!isExpand"
+            class="expand-control">{{ isExpand?'收起':'展开' }}搜索<i 
+              class="icon" 
+              :class="isExpand?'icon-shangla':'icon-xiala'"/></p>
         </li>
         <!-- 用作换行 -->
         <p
