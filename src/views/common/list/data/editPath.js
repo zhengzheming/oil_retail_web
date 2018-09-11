@@ -1,9 +1,27 @@
 export default {
-    'logistics':{
-        pathName:'logisticsEdit',
-        query:[{
-          name:'logistics_id',             //参数key
-          field:'logistics_id'     //参数value所对应的后台字段
-        }]
-    }
-}
+  logistics: {
+    pathName: "logisticsEdit"
+    // query:[{
+    //   name:'id',             //参数key
+    //   field:'out_status'     //参数value所对应的后台字段
+    // }]
+  },
+  "system-user-list": {
+    pathName: "system-user-create",
+    query: [
+      {
+        name: "userId",
+        field: "user_id"
+      }
+    ]
+  },
+  "system-role-list": {
+    pathName: "system-role-create",
+    query: [
+      {
+        name: "roleId",
+        field: "role_id"
+      }
+    ]
+  }
+};

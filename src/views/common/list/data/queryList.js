@@ -45,7 +45,7 @@ export default {
     }
   ],
   // 物流企业管理-司机信息
-  "driver": [
+  driver: [
     {
       label: "姓名",
       val: ""
@@ -152,6 +152,12 @@ export default {
       type: "slt",
       val: "",
       data: []
+    }
+  ],
+  "system-role-list": [
+    {
+      label: "角色名",
+      val: ""
     }
   ]
 };

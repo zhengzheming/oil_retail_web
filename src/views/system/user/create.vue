@@ -164,17 +164,11 @@ export default {
         },
         status: { required: true, message: "请选择状态", trigger: "change" },
         email: [
-          { required: true, message: "请输入活动名称", trigger: "blur" },
+          { required: true, message: "请输入正确的E-mail", trigger: "blur" },
           { validator: validateEmail, trigger: "blur" }
         ],
-        password: [
-          { required: true, trigger: "blur", message: "请输入密码" },
-          { trigger: "blur", validator: validatePass }
-        ],
-        cpassword: [
-          { required: true, trigger: "blur", message: "请输入密码" },
-          { trigger: "blur", validator: validatePass2 }
-        ]
+        password: [{ trigger: "blur", validator: validatePass }],
+        cpassword: [{ trigger: "blur", validator: validatePass2 }]
       },
       form: {
         realName: "",
