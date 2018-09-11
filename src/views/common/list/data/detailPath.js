@@ -10,5 +10,14 @@ export default {
         field: "user_id"
       }
     ]
+  },
+  "system-role-list": {
+    pathName: "system-role-detail",
+    query: [
+      {
+        name: "roleId",
+        field: "role_id"
+      }
+    ]
   }
 };

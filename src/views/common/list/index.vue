@@ -63,15 +63,17 @@ export default {
           this.pageTotal = $utils.getDeepKey(res, "data.data.pageCount") * 10;
           if (this.tableContent.length) {
             this.tableContent.forEach(item => {
+              // 文案转换 status: 0 -  未启用
+
               // 链接加参数
-              for (let key in this.tableHeader) {
+              Object.keys(tableHeader).forEach(key => {
                 if (this.tableHeader[key].query) {
                   this.tableHeader[key].params = {};
                   this.tableHeader[key].query.forEach(val => {
                     this.tableHeader[key].params[val.name] = item[val.field];
                   });
                 }
-              }
+              });
               // 操作加参数
               let arr = [this.editPath, this.detailPath];
               arr.forEach(val => {

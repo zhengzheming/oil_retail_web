@@ -91,10 +91,25 @@ export default {
       label: "主角色"
     },
     status: {
-      label: "状态"
+      label: "状态",
+      mapKey: "statusName"
     },
     login_time: {
       label: "最后登录时间"
+    }
+  },
+  "system-role-list": {
+    role_id: {
+      label: "编号"
+    },
+    role_name: {
+      label: "角色名"
+    },
+    status: {
+      label: "状态"
+    },
+    update_time: {
+      label: "更新时间"
     }
   }
 };

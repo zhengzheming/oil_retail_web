@@ -40,5 +40,19 @@ export default {
       method: "post",
       data
     });
+  },
+  "system-role-list": (page, pageSize, name) => {
+    const data = {
+      page: page,
+      pageSiz: pageSize,
+      search: {
+        name
+      }
+    };
+    return request({
+      url: "/admin/role/list",
+      method: "post",
+      data
+    });
   }
 };

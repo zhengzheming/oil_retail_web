@@ -86,7 +86,7 @@ export default {
       children: [
         {
           path: "index",
-          name: "system-user-role",
+          name: "system-role-list",
           component: commonList,
           meta: {
             title: "列表"
