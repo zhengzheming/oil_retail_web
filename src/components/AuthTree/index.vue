@@ -3,7 +3,7 @@
     <div class="block">
       <p>使用 scoped slot</p>
       <el-tree
-        :data="data5"
+        :data="tree"
         :expand-on-click-node="false"
         show-checkbox
         node-key="id"
@@ -12,19 +12,24 @@
           slot-scope="{ node, data }"
           class="custom-tree-node">
           <span>{{ node.label }}</span>
-          <span>
-            <el-button
-              type="text"
-              size="mini"
-              @click="append(data)">
-              Append
-            </el-button>
-            <el-button
-              type="text"
-              size="mini"
-              @click="remove(node, data)">
-              Delete
-            </el-button>
+          <span class="custom-tree__actions">
+            <el-checkbox
+              v-if="!data.children || data.children.length === 0"
+              :indeterminate="data.isIndeterminate"
+              v-model="data.allChecked"
+              @change="selectAll(data, $event)">
+              全选
+            </el-checkbox>
+            <el-checkbox-group 
+              v-model="data.checkedActions" 
+              @change="handleItemCheckedChange(data, $event)">
+              <el-checkbox
+                v-for="action in data.actions"
+                :label="action"
+                :key="action.code">
+                {{ action.name }}
+              </el-checkbox>
+            </el-checkbox-group>
           </span>
         </span>
       </el-tree>
@@ -38,62 +43,30 @@ let id = 1000;
 export default {
   name: "AuthTree",
   data() {
-    const data = [
-      {
-        id: 1,
-        label: "一级 1",
-        children: [
-          {
-            id: 4,
-            label: "二级 1-1",
-            children: [
-              {
-                id: 9,
-                label: "三级 1-1-1"
-              },
-              {
-                id: 10,
-                label: "三级 1-1-2"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        id: 2,
-        label: "一级 2",
-        children: [
-          {
-            id: 5,
-            label: "二级 2-1"
-          },
-          {
-            id: 6,
-            label: "二级 2-2"
-          }
-        ]
-      },
-      {
-        id: 3,
-        label: "一级 3",
-        children: [
-          {
-            id: 7,
-            label: "二级 3-1"
-          },
-          {
-            id: 8,
-            label: "二级 3-2"
-          }
-        ]
-      }
-    ];
-    return {
-      data5: JSON.parse(JSON.stringify(data))
-    };
+    return {};
   },
-
+  computed: {
+    tree() {
+      return this.$store.getters.moduleTree.children;
+    }
+  },
+  created() {
+    this.$store.dispatch("module-auth:fetch-tree");
+  },
   methods: {
+    handleItemCheckedChange(data, value) {
+      let checkedCount = value.length;
+      this.$set(data, "allChecked", checkedCount === data.actions.length);
+      this.$set(
+        data,
+        "isIndeterminate",
+        checkedCount > 0 && checkedCount < data.actions.length
+      );
+    },
+    selectAll(data, val) {
+      this.$set(data, "checkedActions", val ? data.actions : []);
+      this.$set(data, "isIndeterminate", false);
+    },
     append(data) {
       const newChild = { id: id++, label: "testtest", children: [] };
       if (!data.children) {
@@ -117,8 +90,14 @@ export default {
   flex: 1;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   font-size: 14px;
   padding-right: 8px;
+}
+.custom-tree__actions {
+  margin-left: 15px;
+  display: flex;
+  & > .el-checkbox:first-child {
+    margin-right: 30px;
+  }
 }
 </style>

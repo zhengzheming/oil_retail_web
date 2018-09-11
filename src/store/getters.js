@@ -8,6 +8,7 @@ const getters = {
   permission_routers: state => state.permission.routers,
   addRouters: state => state.permission.addRouters,
   systemUserDetail: state => state.system.user.systemUserDetail,
-  systemRoleDetail: state => state.system.role.systemRoleDetail
+  systemRoleDetail: state => state.system.role.systemRoleDetail,
+  moduleTree: state => state.system.moduleAuth.tree
 };
 export default getters;
