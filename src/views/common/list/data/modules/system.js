@@ -1,4 +1,4 @@
-import { deleteUser } from "@/api/system/user";
+import { deleteUser, fetchRoles } from "@/api/system/user";
 import { deleteRole } from "@/api/system/role";
 export const queryList = {
   "system-user-list": [
@@ -14,12 +14,14 @@ export const queryList = {
       label: "主角色",
       type: "slt",
       val: "",
+      getOptions: fetchRoles,
       data: []
     },
     {
       label: "角色",
       type: "slt",
       val: "",
+      getOptions: fetchRoles,
       data: []
     }
   ],
