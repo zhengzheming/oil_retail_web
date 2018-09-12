@@ -1,15 +1,6 @@
 import { fetchModuleTree } from "@/api/system/module-auth";
 import Vue from "vue";
-function traverseTree(root, leafName, callback) {
-  if (!root) return;
-  if (Array.isArray(root[leafName])) {
-    callback(root);
-    const children = root[leafName];
-    children.forEach(function(child) {
-      traverseTree(child, leafName, callback);
-    });
-  }
-}
+import { traverseTree } from "@/utils/helper";
 function generateTree(curNode, nodeArray) {
   let root = curNode;
   const children = nodeArray.filter(node => node.parent_id == root.id);

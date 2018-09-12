@@ -1,15 +1,22 @@
 <template>
   <el-menu
-          class="sidebar"
-          :collapse="isCollapse"
-          :router="true"
-          :default-active="$route.path"
-          :collapse-transition="true"
-          active-text-color="#fff">
-    <router-link class="logo" to="/" tag="span">
+    :collapse="isCollapse"
+    :router="true"
+    :default-active="$route.path"
+    :collapse-transition="true"
+    class="sidebar"
+    active-text-color="#fff">
+    <router-link 
+      class="logo" 
+      to="/" 
+      tag="span">
       <span class="logo-text">油品零售运营P端</span>
     </router-link>
-    <sidebar-item v-for="route in permission_routers" :key="route.name" :item="route" :base-path="route.path"/>
+    <sidebar-item 
+      v-for="route in menuItems" 
+      :key="route.name" 
+      :item="route" 
+      :base-path="route.path"/>
   </el-menu>
 </template>
 
@@ -17,7 +24,6 @@
 import ElSubitem from "./ElSubitem.vue";
 import SidebarItem from "./SidebarItem";
 import { mapGetters } from "vuex";
-import { getMenu } from "@/api/app";
 export default {
   name: "Sidebar",
   components: {
@@ -29,17 +35,15 @@ export default {
     isCollapse() {
       return !this.sidebar.opened;
     },
+    menuItems() {
+      return this.sidebar.items;
+    },
     sidebarItems() {
       return this.sidebar.items;
     }
   },
   created() {
-    getMenu().then(res => {
-      if (res.state !== 0) {
-        return;
-      }
-      this.$store.dispatch("updateSidebarItems", { items: res.data });
-    });
+    this.$store.dispatch("updateSidebarItems");
   }
 };
 </script>
