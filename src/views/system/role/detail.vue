@@ -20,7 +20,7 @@
           title="备注"/>
       </el-col>
     </el-row>
-    <auth-tree/>
+    <auth-tree type="role"/>
   </card>
 </template>
 
