@@ -136,7 +136,7 @@ const moduleAuth = {
       );
       // commit("GENERATE_TREE", _.cloneDeep([...checkedNodes, ...halfCheckedNodes]));
     },
-    "module-auth:save": function({ state }) {
+    "module-auth:save": function({ state, dispatch }) {
       const [type, id] = state.location;
       const fnMap = {
         user: saveModuleTreeByUserId,
@@ -148,6 +148,7 @@ const moduleAuth = {
         [`${type}_right`]: state.flattenGeneratedTree
       }).then(() => {
         Message.success("保存成功");
+        dispatch("updateSidebarItems");
         router.push({ name: `system-${type}-list` });
       });
     }
