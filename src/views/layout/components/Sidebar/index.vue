@@ -6,16 +6,19 @@
     :collapse-transition="true"
     class="sidebar"
     active-text-color="#fff">
-    <router-link 
-      class="logo" 
-      to="/" 
+    <router-link
+      class="logo"
+      to="/"
       tag="span">
-      <span class="logo-text">油品零售运营P端</span>
+      <span 
+        v-if="isCollapse" 
+        class="logo-text">油</span>
+      <span class="logo-text logo-text--common">油品零售运营P端</span>
     </router-link>
-    <sidebar-item 
-      v-for="route in menuItems" 
-      :key="route.name" 
-      :item="route" 
+    <sidebar-item
+      v-for="route in menuItems"
+      :key="route.name"
+      :item="route"
       :base-path="route.path"/>
   </el-menu>
 </template>
@@ -72,7 +75,7 @@ export default {
 }
 .v-leave-active,
 .el-menu--collapse {
-  .logo-text {
+  .logo-text--common {
     display: none;
   }
 }

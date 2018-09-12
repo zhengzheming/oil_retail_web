@@ -1,8 +1,10 @@
 <template>
-  <section class="menu-path">
+  <section 
+    v-if="breadcrumbModuel" 
+    class="menu-path">
     <el-breadcrumb
+      :can-back="breadcrumbModuel.canback"
       separator-class="el-icon-arrow-right"
-      can-back
       @back="goBack">
       <el-breadcrumb-item
         v-for="(item, index) in breadcrumbModuel.items"
@@ -24,7 +26,7 @@ import breadCrumbConfig from "@/services/breadcrumb";
 export default {
   computed: {
     breadcrumbModuel() {
-      return breadCrumbConfig[this.$route.name] || {};
+      return breadCrumbConfig[this.$route.name] || null;
     }
   },
   methods: {
