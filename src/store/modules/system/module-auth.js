@@ -43,9 +43,7 @@ const moduleAuth = {
     },
     GENERATE_FLATTEN_TREE: function(state, flattenGeneratedTree) {
       flattenGeneratedTree.forEach(node => {
-        if (node.actions) {
-          node.actions = node.checkedActions;
-        }
+        node.actions = node.checkedActions;
       });
       state.flattenGeneratedTree = flattenGeneratedTree;
     }
@@ -73,11 +71,11 @@ const moduleAuth = {
       });
     },
     initGeneratedTree({ commit }, authCodes) {
-      // let flattenTree = authCodes.map(code =>
-      //   $utils.renameKeys({ name: "label", actions: "checkedActions" }, code)
-      // );
+      let flattenTree = authCodes.map(code =>
+        $utils.renameKeys({ name: "label", actions: "checkedActions" }, code)
+      );
       // commit("GENERATE_TREE", flattenTree);
-      commit("GENERATE_FLATTEN_TREE", authCodes);
+      commit("GENERATE_FLATTEN_TREE", flattenTree);
     },
     processUIstate({ state }, child) {
       const matchedCode = state.authCodes.find(code => code.id == child.id);
@@ -118,9 +116,12 @@ const moduleAuth = {
     },
     "module-auth:generate-tree": function(
       { commit },
-      [checkedNodes /* halfCheckedNodes */]
+      [checkedNodes, halfCheckedNodes]
     ) {
-      commit("GENERATE_FLATTEN_TREE", _.cloneDeep(checkedNodes));
+      commit(
+        "GENERATE_FLATTEN_TREE",
+        _.cloneDeep([...checkedNodes, ...halfCheckedNodes])
+      );
       // commit("GENERATE_TREE", _.cloneDeep([...checkedNodes, ...halfCheckedNodes]));
     },
     "module-auth:save": function({ state }) {

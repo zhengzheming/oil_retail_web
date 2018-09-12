@@ -1,7 +1,7 @@
 <template>
   <div class="custom-tree-container">
-    <div 
-      class="block" 
+    <div
+      class="block"
       style="margin-top: 15px;">
       <el-tree
         ref="nodeTree"
