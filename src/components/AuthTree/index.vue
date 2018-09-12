@@ -71,7 +71,10 @@ export default {
       this.$set(data, "isIndeterminate", false);
     },
     changeTree(curNodeData, nodes) {
-      this.$store.dispatch("module-auth:generate-tree", nodes.checkedNodes);
+      this.$store.dispatch("module-auth:generate-tree", [
+        ...nodes.checkedNodes,
+        ...nodes.halfCheckedNodes
+      ]);
     }
   }
 };
