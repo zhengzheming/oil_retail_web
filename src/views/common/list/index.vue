@@ -7,6 +7,7 @@
       :query-list="queryList"
       :table-header="tableHeader"
       :table-content="tableContent"
+      :has-action="hasAction"
       @reset="handleReset"
       @query="getList"
       @size-change="val => pageSize=val"
@@ -25,6 +26,7 @@ import tableHeader from "./data/tableHeader";
 import editPath from "./data/editPath";
 import detailPath from "./data/detailPath";
 import configForDelete from "./data/delete";
+import hasAction from "./data/hasAction";
 
 export default {
   data() {
@@ -38,6 +40,7 @@ export default {
       editPath: editPath[pathName] || {},
       detailPath: detailPath[pathName] || {},
       configForDelete: configForDelete[pathName] || {},
+      hasAction: hasAction[pathName],
       listApi: apiList.list[pathName],
       editApi: apiList.edit[pathName],
       detailApi: apiList.detail[pathName],
@@ -57,12 +60,16 @@ export default {
       let params = [this.currentPage, this.pageSize];
       this.queryList &&
         this.queryList.forEach(item => {
+          // 给隐藏的queryList赋值
+          if( item.hide === true ){
+            item.val =this.$route.query[item.label]
+          }
           params.push(item.val);
         });
-      this.listApi(...params).then(res => {
+      this.listApi && this.listApi(...params).then(res => {
         if (res.state == 0) {
-          this.tableContent = $utils.getDeepKey(res, "data.data.rows");
-          this.pageTotal = parseInt($utils.getDeepKey(res, "data.data.total"));
+          this.tableContent = $utils.getDeepKey(res, "data.data");
+          this.pageTotal = parseInt($utils.getDeepKey(res, "data.totalPages"));
           if (this.tableContent.length) {
             this.tableContent.forEach(item => {
               // 链接加参数

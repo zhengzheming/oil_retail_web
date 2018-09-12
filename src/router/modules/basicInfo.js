@@ -34,7 +34,7 @@ export default {
     //车辆数据
     {
       path: "vehicleData/list",
-      name: "vehicle-data",
+      name: "vehicleData",
       component: commonList,
       meta: {
         title: "车辆数据"
@@ -42,7 +42,7 @@ export default {
     },
     {
       path: 'vehicleData/detail',
-      name: 'vehicle-data-detail',
+      name: 'vehicleDataDetail',
       component: vehicleDataDetail,
       hidden: true
     }

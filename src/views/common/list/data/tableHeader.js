@@ -8,8 +8,7 @@ export default {
     },
     name: {
       label: "企业名称",
-      url: "11111",
-      pathName: "enterprise-quota"
+      pathName: "enterpriseQuota"
       // query:[{
       //   name:'id',             //参数key
       //   field:'out_status'     //参数value所对应的后台字段
@@ -24,58 +23,25 @@ export default {
       width: "120"
     }
   },
-  // 基础数据-物流企业管理-企业额度
-  "enterprise-quota": {
-    logistics_id: {
-      label: "物流公司",
-      width: "120"
-    },
-    name: {
-      label: "额度状态",
-      width: "200"
-    },
-    out_status_name: {
-      label: "企业额度",
-      width: "120"
-    },
-    status_name: {
-      label: "企业可用额度"
-    }
-  },
-  // 基础数据-物流企业管理-企业可用额度收支管理
-  "available-credit": {
-    logistics_id: {
-      label: "时间",
-      width: "120"
-    },
-    name: {
-      label: "额度明细/元",
-      width: "200"
-    },
-    out_status_name: {
+  // 基础数据-车辆数据
+  "vehicleData": {
+    vehicle_id: {
       label: "编号",
       width: "120"
     },
-    status_name: {
-      label: "收支类型"
-    }
-  },
-  // 基础数据-物流企业管理-企业当日可用额度收支管理
-  "day-credit": {
-    logistics_id: {
-      label: "时间",
-      width: "120"
-    },
-    name: {
-      label: "额度明细/元",
+    number: {
+      label: "车牌号",
       width: "200"
     },
-    out_status_name: {
-      label: "编号",
+    logistics_name: {
+      label: "物流企业",
       width: "120"
     },
-    status_name: {
-      label: "收支类型"
+    model: {
+      label: "车辆类型"
+    },
+    capacity: {
+      label: "油箱容量/L"
     }
   },
   //物流企业管理-司机信息
@@ -103,25 +69,114 @@ export default {
       width: "200"
     }
   },
-  // 物流企业管理-车辆数据
-  "vehicle-data": {
-    vehicle_id: {
+  // 物流企业管理-企业额度
+  "enterpriseQuota": {
+    logistics_name: {
+      label: "物流公司",
+      width: "120"
+    },
+    status_name: {
+      label: "额度状态",
+      width: "200"
+    },
+    credit_quota: {
+      label: "企业额度",
+      width: "120"
+    },
+    available_quota: {
+      label: "企业可用额度",
+      pathName: "availableCredit",
+      query:[{
+        name:'logistics_id',
+        field:'logistics_id'
+      }]
+    },
+    rate: {
+      label: "每日额度占比",
+      width: "120"
+    },
+    daily_credit_quota: {
+      label: "今日可用额度",
+      width: "120"
+    },
+    daily_available_quota: {
+      label: "今日可用额度",
+      width: "200",
+      pathName: "dayCredit",
+      query:[{
+        name:'logistics_id',
+        field:'logistics_id'
+      }]
+    },
+    start_date: {
+      label: "开始时间",
+      width: "120"
+    },
+    end_date: {
+      label: "结束时间"
+    }
+  },
+  // 物流企业管理-企业额度-企业可用额度收支管理
+  "availableCredit": {
+    logistics_id: {
+      label: "时间",
+      width: "120"
+    },
+    name: {
+      label: "额度明细/元",
+      width: "200"
+    },
+    out_status_name: {
       label: "编号",
       width: "120"
     },
-    number: {
+    status_name: {
+      label: "收支类型"
+    }
+  },
+  // 物流企业管理-企业额度-企业当日可用额度收支管理
+  "dayCredit": {
+    logistics_id: {
+      label: "时间",
+      width: "120"
+    },
+    name: {
+      label: "额度明细/元",
+      width: "200"
+    },
+    out_status_name: {
+      label: "编号",
+      width: "120"
+    },
+    status_name: {
+      label: "收支类型"
+    }
+  },
+  // 物流企业管理-企业当日可用额度收支管理
+  "vehicleCapacity": {
+    logistics_id: {
+      label: "编号",
+      width: "120"
+    },
+    name: {
       label: "车牌号",
       width: "200"
     },
-    logistics_name: {
-      label: "物流企业",
+    out_status_name: {
+      label: "油箱容量/L",
       width: "120"
     },
-    model: {
-      label: "车辆类型"
+    status_name: {
+      label: "每日额度占比"
     },
-    capacity: {
-      label: "油箱容量/L"
+    status_name: {
+      label: "每日车辆可用容量/L"
+    },
+    status_name: {
+      label: "当日车辆可用容量/L"
+    },
+    status_name: {
+      label: "物流企业"
     }
   },
   ...system

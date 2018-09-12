@@ -4,8 +4,8 @@ export default {
   // 基础信息-物流企业
   logistics: (page, pageSize, name, out_status, status) => {
     const data = {
-      page: page,
-      pageSiz: pageSize,
+      page,
+      pageSize,
       search: {
         name,
         out_status,
@@ -19,10 +19,10 @@ export default {
     });
   },
   //基础信息-车辆数据
-  "vehicle-data": (page, pageSize, logistics_name, number) => {
+  "vehicleData": (page, pageSize, logistics_name, number) => {
     const data = {
-      page: page,
-      pageSiz: pageSize,
+      page,
+      pageSize,
       search: {
         logistics_name,
         number
@@ -37,8 +37,8 @@ export default {
   //物流企业管理-司机信息
   "driver": (page, pageSize, driver_name, status, logistics_name) => {
     const data = {
-      page: page,
-      pageSiz: pageSize,
+      page,
+      pageSize,
       search: {
         driver_name,
         status,
@@ -51,6 +51,73 @@ export default {
       data
     });
   },
+  // 物流企业管理-企业额度
+  "enterpriseQuota": (page, pageSize, logistics_name, status) => {
+    const data = {
+      page,
+      pageSize,
+      search: {
+        status,
+        logistics_name
+      }
+    };
+    return request({
+      url: "/webAPI/LogisticsQuota/list",
+      method: "post",
+      data
+    });
+  },
+  // 物流企业管理-企业额度-企业可用额度
+  "availableCredit": (page, pageSize, category, create_time_start, create_time_end, logistics_id ) => {
+    const data = {
+      page,
+      pageSize,
+      search: {
+        category,
+        create_time_start,
+        create_time_end,
+        logistics_id
+      }
+    };
+    return request({
+      url: "/webAPI/LogisticsQuotaLog/getByLogisticsId",
+      method: "post",
+      data
+    });
+  },
+  // 物流企业管理-企业额度-今日可用额度
+  "dayCredit": (page, pageSize, logistics_id ) => {
+    const data = {
+      page: page,
+      pageSize,
+      search: {
+        logistics_id
+      }
+    };
+    console.log(data)
+    return request({
+      url: "/webAPI/LogisticsDailyQuotaLog/getByLogisticsId",
+      method: "post",
+      data
+    });
+  },
+  // 物流企业管理-车辆容量
+  "vehicleCapacity": (page, pageSize, logistics_name, number ) => {
+    const data = {
+      page: page,
+      pageSize,
+      search: {
+        logistics_name,
+        number
+      }
+    };
+    console.log(data)
+    return request({
+      url: "/webAPI/LogisticsDailyQuotaLog/getByLogisticsId",
+      method: "post",
+      data
+    });
+  }, 
   "system-user-list": (
     page,
     pageSize,

@@ -5,12 +5,11 @@
       <template v-for="(item,index) of comData">
         <!-- item.type !== "radio" && item.type !== "box" -->
         <li
-          v-if="item.type !== &quot;radio&quot; && item.type !== &quot;box&quot; && item.type !== &quot;tab&quot;"
+          v-if="item.type !== &quot;radio&quot; && item.type !== &quot;box&quot; && item.type !== &quot;tab&quot; && !item.hide"
           :key="index"
           :style="item.styleObj || ''">
           <p>
             <label class="ellipsis">
-              <!-- <my-xing v-if="item.hasOwnProperty('triggerValidate')"/> -->
               {{ item.label }}:</label><small
                 v-if="item.smallLabel"
                 style="font-size: 14px;color: #999;">{{ item.smallLabel }}</small>
@@ -29,6 +28,14 @@
               :label="item1.label"
               :value="item1.val"/>
           </el-select>
+          <el-date-picker
+            v-else-if="item.type=='date'"
+            v-model="item.val"
+            value-format="yyyy-MM-dd"
+            type="date"
+            style="width:100%;"
+            placeholder="选择日期">
+          </el-date-picker>
           <div
             v-else-if="item.type=='adjustInput'"
             style="display:flex;justify-content:space-between;">
@@ -64,11 +71,12 @@
         </li>
         <!-- item.type == "radio" -->
         <li
-          v-else-if="item.type=='tab'"
+          v-else-if="item.type=='tab' && !item.hide"
           :key="index"
           style="display:none;"/>
         <li
           v-else
+          v-show="!item.hide"
           :key="index"
           :style="item.styleObj || ''"
           class="check-wrap">
@@ -83,7 +91,7 @@
           </div>
         </li>
         <li
-          v-if="index==1 || (comData.length==1 && index==0)"
+          v-if="(index==1 || (comData.length==1 && index==0) && !item.hide)"
           :key="index+0.2">
           <el-button
             type="primary"

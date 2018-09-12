@@ -45,6 +45,17 @@ export default {
       ]
     }
   ],
+  //车辆数据
+  "vehicleData": [
+    {
+      label: "物流企业",
+      val: ""
+    },
+    {
+      label: "车牌号",
+      val: ""
+    }
+  ],
   // 物流企业管理-司机信息
   driver: [
     {
@@ -76,7 +87,7 @@ export default {
     }
   ],
   // 物流企业管理-企业额度
-  "enterprise-quota": [
+  "enterpriseQuota": [
     {
       label: "物流公司",
       val: ""
@@ -102,7 +113,7 @@ export default {
     }
   ],
   // 物流企业管理-企业可用额度收支管理
-  "available-credit": [
+  "availableCredit": [
     {
       type: "slt",
       label: "收支类型",
@@ -131,10 +142,22 @@ export default {
       type: "date",
       label: "结束时间",
       val: ""
+    },
+    {
+      label: "logistics_id",
+      val:'',
+      hide:true
     }
   ],
-  //车辆数据
-  "vehicle-data": [
+  "dayCredit":[
+    {
+      label: "logistics_id",
+      val:'',
+      hide:true
+    }
+  ],
+  // 物流企业管理-车辆容量
+  "vehicleCapacity": [
     {
       label: "物流企业",
       val: ""

@@ -2,7 +2,7 @@
   <div class="list-page-com">
     <div>
       <query-form
-        v-if="queryList.length"
+        v-if="showQueryList"
         :com-data="queryList"
         @reset="handleReset"
         @query="handleQuery"/>
@@ -22,7 +22,6 @@
               :to="{ name: val.pathName, query: val.params}"
               :title="scope.row[key]"
               class="oparation"
-              target="_blank"
               tag="a"
               style="text-overflow:ellipsis;white-space:nowrap;">
               {{ (scope.row[key]===null || scope.row[key]===undefined || scope.row[key]==='') ? '--' : scope.row[key] }}
@@ -33,6 +32,7 @@
           </template>
         </el-table-column>
         <el-table-column
+          v-if="hasAction !== false"
           fixed="right"
           label="操作">
           <template slot-scope="scope">
@@ -96,12 +96,25 @@ export default {
     tableContent: {
       type: Array,
       default: () => []
+    },
+    hasAction: {
+      type: Boolean,
+      default: () => true
     }
   },
   data() {
     return {
+      showQueryList:true,
       sideContentVisible: false
     };
+  },
+  mounted(){
+    let length = this.queryList.filter(item => {
+      return !item.hide
+    }).length;
+    if(!length){
+      this.showQueryList = false;
+    }
   },
   methods: {
     handleQuery() {

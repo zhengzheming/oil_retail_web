@@ -5,8 +5,8 @@ export default {
     pathName: "logisticsDetail"
   },
   // 基础数据-车辆数据
-  "vehicle-data": {
-    pathName: "vehicle-data-detail",
+  "vehicleData": {
+    pathName: "vehicleDataDetail",
     query: [
       {
         name: "vehicle_id",
