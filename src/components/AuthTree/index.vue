@@ -83,6 +83,11 @@ export default {
     ]);
     this.$store.dispatch("module-auth:fetch-tree").then(() => {
       this.$nextTick(function() {
+        const nodeTree = this.$refs.nodeTree;
+        this.curNodes = {
+          checkedNodes: nodeTree.getCheckedNodes(),
+          halfCheckedNodes: nodeTree.getHalfCheckedNodes()
+        };
         this.$store.dispatch("modue-auth:read-only", this.readOnly);
       });
     });
