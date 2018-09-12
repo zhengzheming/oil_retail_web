@@ -4,11 +4,13 @@
       <span slot="title">修改系统模块</span>
       <el-form
         ref="form"
+        :rules="rules"
         :model="form"
         :label-width="$customConfig.labelWidth">
         <el-row :gutter="$customConfig.colGutter">
           <el-col :span="12">
-            <el-form-item 
+            <el-form-item
+              prop="name"
               label="模块名称">
               <el-input v-model="form.name"/>
             </el-form-item>
@@ -54,6 +56,7 @@
         <el-row :gutter="$customConfig.colGutter">
           <el-col :span="12">
             <el-form-item 
+              prop="code"
               label="权限码">
               <el-input v-model="form.code"/>
             </el-form-item>
@@ -171,6 +174,10 @@ export default {
       },
       actions_bind:'',
       parent_id_bind: '',
+      rules: {
+        name: [{ required: true, message: "请输入模块名称", trigger: "blur" }],
+        code: { required: true, message: "请输入权限码", trigger: "blur" },
+      },
       form: {
         name: "",
         icon: "",
@@ -178,7 +185,6 @@ export default {
         parent_id: 0,
         code: "",
         actions: [],
-        // actions: [{"name":"\u5217\u8868","code":"index"},{"name":"\u8be6\u60c5","code":"detail"}],
         page_url: "",
         order_index: "",
         is_external: '',

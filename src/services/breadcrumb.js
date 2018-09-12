@@ -34,7 +34,7 @@ export default {
     actions: [{ name: "修改", action: "modify", plain: true }]
   },
   systemModule: {
-    items: ["系统管理", "模块管理"],
+    items: ["系统管理", "模块管理"]
   },
   moduleDetail: {
     items: ["系统管理", "模块管理", "详情"],

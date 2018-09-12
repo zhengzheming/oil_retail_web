@@ -7,6 +7,9 @@ const role = {
     formRef: null
   },
   actions: {
+    'systemModule:create':function(){
+      router.push({ name: "addModule" });
+    },
     "moduleEdit:save": function({ state, rootState }) {
       const formRef = state.formRef;
       const form = state.form;

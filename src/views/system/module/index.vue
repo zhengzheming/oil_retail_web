@@ -3,16 +3,14 @@
       <span slot="title">系统模块管理</span>
       <div style="display:flex;width:50%;min-width:800px;">
         <el-input 
+          v-model="searchTxt"
           type="text" 
           placeholder="输入关键字查询" 
-          style="margin-right:10px;"/>
+          style="margin-right:10px;width:348px;"/>
         <el-button 
           type="primary" 
           style="width:65px;"
           @click="query">查询</el-button>
-        <el-button 
-          style="width:65px;"
-          @click="add">添加</el-button>
       </div>
       <div>
         <div 
@@ -25,6 +23,7 @@
           </p>
         </div>
         <el-tree
+          ref="tree1"
           :data="treeData"
           :expand-on-click-node="false"
           style="width: 32%;min-width: 620px;"
@@ -55,7 +54,42 @@ export default {
   name: "SystemModule",
   data() {
     return {
-      treeData: []
+      searchTxt:'',
+      treeData: [{
+        id: 1,
+        label: '一级 1',
+        children: [{
+          id: 4,
+          label: '二级 1-1',
+          children: [{
+            id: 9,
+            label: '三级 1-1-1'
+          }, {
+            id: 10,
+            label: '三级 1-1-2'
+          }]
+        }]
+      }, {
+        id: 2,
+        label: '一级 2',
+        children: [{
+          id: 5,
+          label: '二级 2-1'
+        }, {
+          id: 6,
+          label: '二级 2-2'
+        }]
+      }, {
+        id: 3,
+        label: '一级 3',
+        children: [{
+          id: 7,
+          label: '二级 3-1'
+        }, {
+          id: 8,
+          label: '二级 3-2'
+        }]
+      }]
     };
   },
   mounted() {
@@ -65,11 +99,13 @@ export default {
     getList() {
       list().then(res => {
         if (res.state == 0) {
-          this.treeData = $utils.getDeepKey(res,'data.children');
+          this.treeData = $utils.getDeepKey(res,'data');
         }
       });
     },
-    query() {},
+    query() {
+      this.$refs.tree1.filter(this.searchTxt);
+    },
     add() {
       this.$router.push({ name: "addModule" });
     },
