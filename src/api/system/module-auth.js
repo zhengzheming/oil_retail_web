@@ -1,19 +1,16 @@
 import request from "@/utils/request";
 
-export function fetchModuleTree(userId) {
+export function saveModuleTree(data) {
   return request({
-    url: "/admin/role/detail",
-    method: "get",
-    params: {
-      user_id: userId
-    }
+    url: "/admin/module/save",
+    method: "post",
+    data
   });
 }
 
-export function saveModuleTree(data) {
+export function fetchModuleTree() {
   return request({
-    url: "/admin/role/save",
-    method: "post",
-    data
+    url: "/admin/module/index",
+    method: "post"
   });
 }
