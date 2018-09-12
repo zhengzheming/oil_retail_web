@@ -69,7 +69,7 @@ export default {
       this.listApi && this.listApi(...params).then(res => {
         if (res.state == 0) {
           this.tableContent = $utils.getDeepKey(res, "data.data");
-          this.pageTotal = parseInt($utils.getDeepKey(res, "data.totalPages"));
+          this.pageTotal = parseInt($utils.getDeepKey(res, "data.totalRows"));
           if (this.tableContent.length) {
             this.tableContent.forEach(item => {
               // 链接加参数

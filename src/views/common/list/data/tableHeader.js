@@ -116,6 +116,40 @@ export default {
       label: "结束时间"
     }
   },
+  // 企业每日限额
+  'enterpriseDayQuota': {
+    code: {
+      label: "企业限额编号",
+      width: "120"
+    },
+    create_user_name: {
+      label: "创建人",
+      width: "200"
+    },
+    create_time: {
+      label: "变更时间"
+    },
+    rate: {
+      label: "当日额度占比%"
+    }
+  },
+  //车辆每日限额
+  'vehicleDayQuota': {
+    code: {
+      label: "车辆限额编号",
+      width: "120"
+    },
+    create_user_name: {
+      label: "创建人",
+      width: "200"
+    },
+    create_time: {
+      label: "变更时间"
+    },
+    rate: {
+      label: "当日油箱占比%"
+    }
+  },
   // 物流企业管理-企业额度-企业可用额度收支管理
   "availableCredit": {
     logistics_id: {

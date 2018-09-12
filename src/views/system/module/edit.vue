@@ -1,5 +1,5 @@
 <template>
-  <div class="system-user__create" >
+  <div class="system-user__create" @click="showTree = false">
     <card>
       <span slot="title">修改系统模块</span>
       <el-form
@@ -31,22 +31,21 @@
             id="super-module" 
             :span="12">
             <el-form-item label="上级模块">
-              <div @click="showTree = !showTree">
-                <p
-                  style="cursor: default;height: 32px; line-height: 32px;border: 1px solid #e6e6e6;
-                  border-radius: 3px;width: 100%;background-color:#f7f7f7;color:#666;padding-left:15px;">{{form.parent_id}}</p>
-                  <div v-show="showTree" style="position: absolute;width: 100%;left: 0;top: 32px;z-index: 1;background: #f7f7f7;">
-                    <el-tree
-                      style="background: #f7f7f7;border: 1px solid #e6e6e6;border-radius: 3px;"
-                      :data="treeData"
-                      node-key="id"
-                      @node-click="handleNodeClick"
-                      :expand-on-click-node="false">
-                      <span class="custom-tree-node" slot-scope="{ node, data }">
-                          <span style="display:inline-block;width:350px;">{{ node.label }}</span>
-                      </span>
-                    </el-tree>
-                  </div>
+              <div @click.stop="showTree = true">
+                <p style="cursor: default;height: 32px; line-height: 32px;border: 1px solid #e6e6e6;
+                  border-radius: 3px;width: 100%;background-color:#f7f7f7;color:#666;padding-left:15px;">{{parent_id_bind}}</p>
+                <div v-show="showTree" style="position: absolute;width: 100%;left: 0;top: 32px;z-index: 1;background: #f7f7f7;">
+                  <el-tree
+                    style="background: #f7f7f7;border: 1px solid #e6e6e6;border-radius: 3px;"
+                    :data="treeData"
+                    node-key="id"
+                    @node-click="handleNodeClick"
+                    :expand-on-click-node="false">
+                    <span class="custom-tree-node" slot-scope="{ node, data }">
+                        <span style="display:inline-block;width:350px;">{{ node.label }}</span>
+                    </span>
+                  </el-tree>
+                </div>
               </div>
               
             </el-form-item>
@@ -62,7 +61,7 @@
           <el-col :span="12">
             <el-form-item 
               label="模块操作">
-              <el-input v-model="form.actions"/>
+              <el-input v-model="actions_bind"/>
             </el-form-item>
           </el-col>
         </el-row>
@@ -158,20 +157,27 @@
 </template>
 
 <script>
-import { list } from "@/api/system/module-manage";
+import { list, detail } from "@/api/system/module-manage";
 export default {
   name: "SystemUserCreate",
   data() {
     return {
       showTree: false,
       treeData: [],
+      updateEventName: {
+        moduleEdit: 'moduleEdit:update-form',
+        addModule: 'addModule:update-form'
+      },
+      actions_bind:'',
+      parent_id_bind: '',
       form: {
         name: "",
         icon: "",
         system_id: "",
-        parent_id: "",
+        parent_id: 0,
         code: "",
-        actions: "",
+        actions: [],
+        // actions: [{"name":"\u5217\u8868","code":"index"},{"name":"\u8be6\u60c5","code":"detail"}],
         page_url: "",
         order_index: "",
         is_external: "",
@@ -197,36 +203,50 @@ export default {
   watch: {
     form: {
       handler: function(val) {
-        this.$store.dispatch("moduleEdit:update-form", {
+        this.$store.dispatch(this.updateEventName[this.$route.name], {
           form: val,
           formRef: this.$refs["form"]
         });
       },
       immediate: true,
       deep: true
+    },
+    actions_bind: function(val){
+      let arr = val.split(',');
+      arr.forEach(item => {
+        this.form.actions.push({
+          name:item.split('|')[0],
+          code:item.split('|')[1]
+        })
+      });
     }
   },
   mounted() {
-    // document.addEventListener('click',function(e){
-    //   console.log(123)
-    //   this.showTree = false;
-    // }.bind(this),true)
-    this.$store.dispatch("moduleEdit:update-form", {
+    this.$store.dispatch(this.updateEventName[this.$route.name], {
       form: this.form,
       formRef: this.$refs["form"]
     });
     this.getList();
+    if(this.$route.name == 'moduleEdit') {
+      detail(this.$route.query.id)
+      .then(res => {
+        if(res.state == 0){
+          this.form = res.data
+        }
+      })
+    }
   },
   methods: {
     getList() {
       list().then(res => {
         if (res.state == 0) {
-          this.treeData = res.data;
+          this.treeData = $utils.getDeepKey(res,'data.children');
         }
       });
     },
     handleNodeClick(data) {
-      this.form.parent_id = data.label;
+      this.parent_id_bind = data.label;
+      this.form.parent_id = data.id;
     }
   }
 };

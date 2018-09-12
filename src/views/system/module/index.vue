@@ -73,7 +73,7 @@ export default {
     getList() {
       list().then(res => {
         if (res.state == 0) {
-          this.treeData = res.data;
+          this.treeData = $utils.getDeepKey(res,'data.children');
         }
       });
     },

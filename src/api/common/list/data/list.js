@@ -51,6 +51,40 @@ export default {
       data
     });
   },
+  // 物流企业管理-企业每日限额
+  "enterpriseDayQuota": (page, pageSize, create_time_start, create_time_end, code ) => {
+    const data = {
+      page,
+      pageSize,
+      search: {
+        create_time_start,
+        create_time_end,
+        code
+      }
+    };
+    return request({
+      url: "/webAPI/LogisticsQuotaLimit/list",
+      method: "post",
+      data
+    });
+  },
+  // 物流企业管理-车辆每日限额
+  "vehicleDayQuota":  (page, pageSize, create_time_start, create_time_end, code ) => {
+    const data = {
+      page,
+      pageSize,
+      search: {
+        create_time_start,
+        create_time_end,
+        code
+      }
+    };
+    return request({
+      url: "/webAPI/VehicleQuotaLimit/list",
+      method: "post",
+      data
+    });
+  },
   // 物流企业管理-企业额度
   "enterpriseQuota": (page, pageSize, logistics_name, status) => {
     const data = {

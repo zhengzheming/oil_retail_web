@@ -25,19 +25,19 @@ export default {
         hidden: true
     },
     // 企业每日限额
-    // {
-    //   path: 'quote',
-    //   name: 'enterpriseQuota',
-    //   component: commonList,
-    //   meta: {title: '企业额度'}
-    // },
+    {
+      path: 'enterprise-day-quota',
+      name: 'enterpriseDayQuota',
+      component: commonList,
+      meta: {title: '企业每日限额'}
+    },
     // 车辆每日限额
-    // {
-    //   path: 'quote',
-    //   name: 'enterpriseQuota',
-    //   component: commonList,
-    //   meta: {title: '企业额度'}
-    // },
+    {
+      path: 'vehicle-day-quota',
+      name: 'vehicleDayQuota',
+      component: commonList,
+      meta: {title: '车辆每日限额'}
+    },
     // 企业额度
      {
         path: 'quote',

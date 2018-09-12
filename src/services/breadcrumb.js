@@ -37,7 +37,10 @@ export default {
     items: ["系统管理", "模块管理", "修改"],
     actions: [{ name: "保存", action: "save", type: "primary" }]
   },
-
+  addModule: {
+    items: ["系统管理", "模块管理", "添加"],
+    actions: [{ name: "保存", action: "save", type: "primary" }]
+  },
   logistics: {
     items: ["基础数据", "物流企业"]
   },
