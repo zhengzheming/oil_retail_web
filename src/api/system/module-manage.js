@@ -23,3 +23,13 @@ export function save(data) {
     data
   });
 }
+export function del(id) {
+  const params = {
+    id
+  };
+  return request({
+    url: "/admin/module/del",
+    method: "get",
+    params
+  });
+}

@@ -1,8 +1,7 @@
 <template>
-  <div class="system-user">
     <card>
       <span slot="title">系统模块管理</span>
-      <div style="display:flex;width:50%;">
+      <div style="display:flex;width:50%;min-width:800px;">
         <el-input 
           type="text" 
           placeholder="输入关键字查询" 
@@ -28,7 +27,7 @@
         <el-tree
           :data="treeData"
           :expand-on-click-node="false"
-          style="width: 32%;min-width: 600px;"
+          style="width: 32%;min-width: 620px;"
           node-key="id"
           default-expand-all>
           <span 
@@ -37,27 +36,20 @@
             <span style="display:inline-block;width:350px;">{{ node.label }}</span>
             <div class="btn-wrap">
               <span>已启用</span>
-              <span class="icon-list">
-                <i 
-                  class="icon icon-shezhi icon-spec" 
-                  @click="() => detail(data)"/>
-                <i 
-                  class="icon icon-shezhi icon-spec" 
-                  @click="() => update(data)"/>
-                <i 
-                  class="icon icon-shezhi icon-spec" 
-                  @click="() => remove(data)"/>
-              </span>
+              <p class="action-wrap">
+                <button class="el-button el-button--text el-button--small" @click="() => detail(data)">查看</button>
+                <button class="el-button el-button--text el-button--small" @click="() => update(data)">编辑</button>
+                <button class="el-button el-button--text el-button--small" @click="() => remove(data)">删除</button>
+              </p>
             </div>
           </span>
         </el-tree>
       </div>
     </card>
-  </div>
 </template>
 
 <script>
-import { list } from "@/api/system/module-manage";
+import { list,del } from "@/api/system/module-manage";
 let id = 1000;
 export default {
   name: "SystemModule",
@@ -87,11 +79,20 @@ export default {
     update(data) {
       this.$router.push({ name: "moduleEdit", query: { id: data.id } });
     },
-    remove(node, data) {
-      const parent = node.parent;
-      const children = parent.data.children || parent.data;
-      const index = children.findIndex(d => d.id === data.id);
-      children.splice(index, 1);
+    remove(data) {
+      const message = "您确定要删除该模块，该操作不可逆？";
+      this.$confirm(message, "提示", {
+        type: "warning",
+        confirmButtonText: "确定",
+        cancelButtonText: "取消"
+      }).then(() => {
+        del(data.id);
+        this.$message({
+          type: "success",
+          message: "删除成功"
+        });
+        this.getList();
+      }).catch(err => {});
     }
   }
 };
@@ -108,12 +109,12 @@ export default {
 }
 .table-header {
   width: 32%;
-  min-width: 600px;
+  min-width: 620px;
   height: 32px;
   line-height: 32px;
 }
 .btn-wrap {
-  width: 150px;
+  width: 220px;
   display: flex;
   justify-content: space-around;
   span {
@@ -122,5 +123,9 @@ export default {
     justify-content: space-between;
     align-items: center;
   }
+}
+.action-wrap{
+    flex: 1;
+    display: flex;
 }
 </style>

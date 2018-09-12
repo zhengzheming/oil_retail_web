@@ -88,10 +88,10 @@
                 class="form-control"
                 placeholder="请选择">
                 <el-option
-                  v-for="item in ui.roleOptions"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"/>
+                  v-for="(item,key) in module_is_external"
+                  :key="item"
+                  :label="item"
+                  :value="key+''"/>
               </el-select>
             </el-form-item>
           </el-col>
@@ -103,10 +103,10 @@
                 class="form-control"
                 placeholder="请选择">
                 <el-option
-                  v-for="item in ui.roleOptions"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"/>
+                  v-for="(item,key) in module_status"
+                  :key="item"
+                  :label="item"
+                  :value="key+''"/>
               </el-select>
             </el-form-item>
           </el-col>
@@ -120,10 +120,10 @@
                 class="form-control"
                 placeholder="请选择">
                 <el-option
-                  v-for="item in ui.roleOptions"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"/>
+                  v-for="(item,key) in module_is_public"
+                  :key="item"
+                  :label="item"
+                  :value="key+''"/>
               </el-select>
             </el-form-item>
           </el-col>
@@ -135,10 +135,10 @@
                 class="form-control"
                 placeholder="请选择">
                 <el-option
-                  v-for="item in ui.roleOptions"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"/>
+                  v-for="(item,key) in module_is_menu"
+                  :key="item"
+                  :label="item"
+                  :value="key+''"/>
               </el-select>
             </el-form-item>
           </el-col>
@@ -158,6 +158,7 @@
 
 <script>
 import { list, detail } from "@/api/system/module-manage";
+import { getMap } from "@/api/common/map";
 export default {
   name: "SystemUserCreate",
   data() {
@@ -180,24 +181,16 @@ export default {
         // actions: [{"name":"\u5217\u8868","code":"index"},{"name":"\u8be6\u60c5","code":"detail"}],
         page_url: "",
         order_index: "",
-        is_external: "",
-        status: "",
-        is_public: "",
-        is_menu: "",
+        is_external: '',
+        status: '',
+        is_public: '',
+        is_menu: '',
         remark: "",
       },
-      ui: {
-        roleOptions: [
-          {
-            value: "1",
-            label: "启用"
-          },
-          {
-            value: "0",
-            label: "未启用"
-          }
-        ]
-      }
+      module_status: [],
+      module_is_public: [],
+      module_is_external: [],
+      module_is_menu: []
     };
   },
   watch: {
@@ -234,7 +227,16 @@ export default {
           this.form = res.data
         }
       })
-    }
+    };
+    getMap()
+    .then(res => {
+      if(res.state == 0 ){
+        let arr = ['module_status','module_is_public','module_is_external','module_is_menu']
+        arr.forEach(item => {
+          this[item] = res.data[item]
+        });
+      }
+    })
   },
   methods: {
     getList() {
