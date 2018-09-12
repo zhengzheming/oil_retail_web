@@ -224,7 +224,8 @@ export default {
       detail(this.$route.query.id)
       .then(res => {
         if(res.state == 0){
-          this.form = res.data
+          this.form = res.data;
+          this.parent_id_bind = $utils.getDeepKey(res,'data.parent_name');
         }
       })
     };

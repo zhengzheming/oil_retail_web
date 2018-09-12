@@ -49,6 +49,7 @@
           title="E-mail"/>
       </el-col>
     </el-row>
+    <auth-tree type="user"/>
   </card>
 </template>
 
@@ -60,7 +61,7 @@ export default {
       return this.$store.getters.systemUserDetail.form;
     }
   },
-  mounted() {
+  created() {
     this.$store.dispatch("system-user-detail:fetch-form");
   }
 };

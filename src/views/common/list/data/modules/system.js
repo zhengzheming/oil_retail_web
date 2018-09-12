@@ -1,4 +1,4 @@
-import { deleteUser } from "@/api/system/user";
+import { deleteUser, fetchRoles } from "@/api/system/user";
 import { deleteRole } from "@/api/system/role";
 export const queryList = {
   "system-user-list": [
@@ -14,12 +14,14 @@ export const queryList = {
       label: "主角色",
       type: "slt",
       val: "",
+      getOptions: fetchRoles,
       data: []
     },
     {
       label: "角色",
       type: "slt",
       val: "",
+      getOptions: fetchRoles,
       data: []
     }
   ],
@@ -48,7 +50,8 @@ export const tableHeader = {
     },
     statusName: {
       label: "状态",
-      mapKey: "status"
+      mapKey: "status",
+      width: "70px"
     },
     login_time: {
       label: "最后登录时间"
@@ -64,7 +67,8 @@ export const tableHeader = {
     },
     statusName: {
       label: "状态",
-      mapKey: "status"
+      mapKey: "status",
+      width: "70px"
     },
     update_time: {
       label: "更新时间"
@@ -74,7 +78,7 @@ export const tableHeader = {
 
 export const editPath = {
   "system-user-list": {
-    pathName: "system-user-create",
+    pathName: "system-user-modify",
     query: [
       {
         name: "userId",
@@ -83,7 +87,7 @@ export const editPath = {
     ]
   },
   "system-role-list": {
-    pathName: "system-role-create",
+    pathName: "system-role-modify",
     query: [
       {
         name: "roleId",
@@ -105,6 +109,27 @@ export const detailPath = {
   },
   "system-role-list": {
     pathName: "system-role-detail",
+    query: [
+      {
+        name: "roleId",
+        field: "role_id"
+      }
+    ]
+  }
+};
+
+export const configForAuth = {
+  "system-user-list": {
+    pathName: "system-user-auth",
+    query: [
+      {
+        name: "userId",
+        field: "user_id"
+      }
+    ]
+  },
+  "system-role-list": {
+    pathName: "system-role-auth",
     query: [
       {
         name: "roleId",

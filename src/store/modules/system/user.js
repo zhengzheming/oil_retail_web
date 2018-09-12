@@ -64,6 +64,9 @@ const user = {
     },
     "system-user-detail:modify": function({ rootState }) {
       router.push({ name: "system-user-modify", query: rootState.route.query });
+    },
+    "system-user-auth:save": function({ dispatch }) {
+      dispatch("module-auth:save", "user");
     }
   }
 };

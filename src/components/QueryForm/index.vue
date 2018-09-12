@@ -34,8 +34,7 @@
             value-format="yyyy-MM-dd"
             type="date"
             style="width:100%;"
-            placeholder="选择日期">
-          </el-date-picker>
+            placeholder="选择日期"/>
           <div
             v-else-if="item.type=='adjustInput'"
             style="display:flex;justify-content:space-between;">
@@ -156,6 +155,24 @@ export default {
       handler: "getTabData",
       deep: true
     }
+  },
+  created() {
+    const hooks = {
+      slt: data => {
+        if (typeof data.getOptions === "function") {
+          data.getOptions().then(res => {
+            data.data = res.data.map(role => ({
+              label: role.name,
+              val: role.role_id
+            }));
+          });
+        }
+      }
+    };
+    this.comData.forEach(data => {
+      const cb = hooks[data.type] || function() {};
+      cb(data);
+    });
   },
   mounted() {
     this.getTabData();

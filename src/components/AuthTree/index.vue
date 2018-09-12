@@ -1,8 +1,10 @@
 <template>
   <div class="custom-tree-container">
-    <div class="block">
-      <p>使用 scoped slot</p>
+    <div 
+      class="block" 
+      style="margin-top: 15px;">
       <el-tree
+        ref="nodeTree"
         :data="tree"
         :expand-on-click-node="false"
         :default-checked-keys="checkedKeys"
@@ -21,6 +23,7 @@
               v-if="!data.children || data.children.length === 0"
               :indeterminate="data.isIndeterminate"
               v-model="data.allChecked"
+              :disabled="readOnly"
               @change="selectAll(data, $event)">
               全选
             </el-checkbox>
@@ -30,6 +33,7 @@
               <el-checkbox
                 v-for="action in data.actions"
                 :label="action"
+                :disabled="action.disabled"
                 :key="action.code">
                 {{ action.name }}
               </el-checkbox>
@@ -44,6 +48,16 @@
 <script>
 export default {
   name: "AuthTree",
+  props: {
+    readOnly: {
+      type: Boolean,
+      default: true
+    },
+    type: {
+      type: String,
+      default: "user"
+    }
+  },
   data() {
     return {
       curNodes: []
@@ -57,8 +71,21 @@ export default {
       return this.$store.getters.moduleTree.children;
     }
   },
-  created() {
-    this.$store.dispatch("module-auth:fetch-tree");
+  async created() {
+    const query = this.$route.query;
+    const params = {
+      user: query.userId,
+      role: query.roleId
+    };
+    await this.$store.dispatch("module-auth:fetch-auth", [
+      this.type,
+      params[this.type]
+    ]);
+    this.$store.dispatch("module-auth:fetch-tree").then(() => {
+      this.$nextTick(function() {
+        this.$store.dispatch("modue-auth:read-only", this.readOnly);
+      });
+    });
   },
   methods: {
     handleItemCheckedChange(data, value) {
