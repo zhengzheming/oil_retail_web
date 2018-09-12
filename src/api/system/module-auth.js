@@ -1,8 +1,16 @@
 import request from "@/utils/request";
 
-export function saveModuleTree(data) {
+export function saveModuleTreeByUserId(data) {
   return request({
-    url: "/admin/module/save",
+    url: "/admin/user/saveRight",
+    method: "post",
+    data
+  });
+}
+
+export function saveModuleTreeByRoleId(data) {
+  return request({
+    url: "/admin/role/saveRight",
     method: "post",
     data
   });

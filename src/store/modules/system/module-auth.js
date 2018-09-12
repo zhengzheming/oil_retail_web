@@ -4,7 +4,8 @@ import { traverseTree } from "@/utils/helper";
 import {
   fetchAuthByRoleId,
   fetchAuthByUserId,
-  saveModuleTree
+  saveModuleTreeByUserId,
+  saveModuleTreeByRoleId
 } from "@/api/system/module-auth";
 import { Message } from "element-ui";
 import router from "@/router";
@@ -137,7 +138,12 @@ const moduleAuth = {
     },
     "module-auth:save": function({ state }) {
       const [type, id] = state.location;
-      return saveModuleTree({
+      const fnMap = {
+        user: saveModuleTreeByUserId,
+        role: saveModuleTreeByRoleId
+      };
+      const saveFn = fnMap[type] || function() {};
+      return saveFn({
         [`${type}_id`]: id,
         [`${type}_right`]: state.flattenGeneratedTree
       }).then(() => {
