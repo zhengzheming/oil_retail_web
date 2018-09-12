@@ -108,8 +108,19 @@ const moduleAuth = {
           const childCopy = { ...child };
           delete childCopy.children;
           state.flattenTree.push(childCopy);
+          // 处理checked中间状态
+          const authChild = state.authCodes.find(code => code.id == child.id);
+          if (
+            authChild &&
+            Array.isArray(child.children) &&
+            child.children.length > 0
+          ) {
+            authChild.isMiddleNode = true;
+          }
         });
-        state.checkedKeys = state.authCodes.map(code => code.id);
+        state.checkedKeys = state.authCodes
+          .filter(code => !code.isMiddleNode)
+          .map(code => code.id);
         state.tree = tree;
         dispatch("initGeneratedTree", _.cloneDeep(state.authCodes));
       });
