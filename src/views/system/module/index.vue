@@ -26,6 +26,7 @@
           ref="tree1"
           :data="treeData"
           :expand-on-click-node="false"
+          :filter-node-method="filterNode"
           style="width: 32%;min-width: 620px;"
           node-key="id"
           default-expand-all>
@@ -55,41 +56,7 @@ export default {
   data() {
     return {
       searchTxt:'',
-      treeData: [{
-        id: 1,
-        label: '一级 1',
-        children: [{
-          id: 4,
-          label: '二级 1-1',
-          children: [{
-            id: 9,
-            label: '三级 1-1-1'
-          }, {
-            id: 10,
-            label: '三级 1-1-2'
-          }]
-        }]
-      }, {
-        id: 2,
-        label: '一级 2',
-        children: [{
-          id: 5,
-          label: '二级 2-1'
-        }, {
-          id: 6,
-          label: '二级 2-2'
-        }]
-      }, {
-        id: 3,
-        label: '一级 3',
-        children: [{
-          id: 7,
-          label: '二级 3-1'
-        }, {
-          id: 8,
-          label: '二级 3-2'
-        }]
-      }]
+      treeData: []
     };
   },
   mounted() {
@@ -99,12 +66,16 @@ export default {
     getList() {
       list().then(res => {
         if (res.state == 0) {
-          this.treeData = $utils.getDeepKey(res,'data');
+          this.treeData = $utils.getDeepKey(res,'data.children');
         }
       });
     },
     query() {
       this.$refs.tree1.filter(this.searchTxt);
+    },
+    filterNode(value, data) {
+      if (!value) return true;
+      return data.label.indexOf(value) !== -1;
     },
     add() {
       this.$router.push({ name: "addModule" });
@@ -148,6 +119,7 @@ export default {
   min-width: 620px;
   height: 32px;
   line-height: 32px;
+  font-weight: 600;
 }
 .btn-wrap {
   width: 220px;

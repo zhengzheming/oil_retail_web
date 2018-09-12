@@ -23,12 +23,6 @@
           </el-col>
         </el-row>
         <el-row :gutter="$customConfig.colGutter">
-          <el-col :span="12">
-            <el-form-item 
-              label="所属系统">
-              <el-input v-model="form.system_id"/>
-            </el-form-item>
-          </el-col>
           <el-col 
             id="super-module" 
             :span="12">
@@ -52,8 +46,6 @@
               
             </el-form-item>
           </el-col>
-        </el-row>
-        <el-row :gutter="$customConfig.colGutter">
           <el-col :span="12">
             <el-form-item 
               prop="code"
@@ -61,28 +53,28 @@
               <el-input v-model="form.code"/>
             </el-form-item>
           </el-col>
+        </el-row>
+        <el-row :gutter="$customConfig.colGutter">
           <el-col :span="12">
             <el-form-item 
               label="模块操作">
               <el-input v-model="actions_bind"/>
             </el-form-item>
           </el-col>
-        </el-row>
-        <el-row :gutter="$customConfig.colGutter">
           <el-col :span="12">
             <el-form-item 
               label="页面地址">
               <el-input v-model="form.page_url"/>
             </el-form-item>
           </el-col>
+        </el-row>
+        <el-row :gutter="$customConfig.colGutter">
           <el-col :span="12">
             <el-form-item 
               label="排序码">
               <el-input v-model="form.order_index"/>
             </el-form-item>
           </el-col>
-        </el-row>
-        <el-row :gutter="$customConfig.colGutter">
           <el-col :span="12">
             <el-form-item 
               label="是否外部链接">
@@ -98,6 +90,8 @@
               </el-select>
             </el-form-item>
           </el-col>
+        </el-row>
+        <el-row :gutter="$customConfig.colGutter">
           <el-col :span="12">
             <el-form-item 
               label="是否启用">
@@ -113,8 +107,6 @@
               </el-select>
             </el-form-item>
           </el-col>
-        </el-row>
-        <el-row :gutter="$customConfig.colGutter">
           <el-col :span="12">
             <el-form-item 
               label="是否公开">
@@ -130,6 +122,8 @@
               </el-select>
             </el-form-item>
           </el-col>
+        </el-row>
+        <el-row :gutter="$customConfig.colGutter">
           <el-col :span="12">
             <el-form-item 
               label="是否菜单">
@@ -145,8 +139,6 @@
               </el-select>
             </el-form-item>
           </el-col>
-        </el-row>
-        <el-row :gutter="$customConfig.colGutter">
           <el-col :span="12">
             <el-form-item 
               label="备注">
