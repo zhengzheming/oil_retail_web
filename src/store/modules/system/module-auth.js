@@ -12,10 +12,8 @@ function generateTree(curNode, nodeArray) {
 }
 
 function processGeneratedTree(tree) {
-  setTimeout(function() {
-    traverseTree(tree, "children", function(child) {
-      child.actions = child.checkedActions;
-    });
+  traverseTree(tree, "children", function(child) {
+    child.actions = child.checkedActions;
   });
 }
 const moduleAuth = {
@@ -34,7 +32,13 @@ const moduleAuth = {
     }
   },
   actions: {
-    "module-auth:fetch-tree": function({ state, commit, rootGetters }) {
+    initGeneratedTree({ commit }, authCodes) {
+      let flattenTree = authCodes.map(code =>
+        $utils.renameKeys({ name: "label", actions: "checkedActions" }, code)
+      );
+      commit("GENERATE_TREE", flattenTree);
+    },
+    "module-auth:fetch-tree": function({ state, dispatch, rootGetters }) {
       fetchModuleTree().then(res => {
         const tree = res.data;
         traverseTree(tree, "children", function(child) {
@@ -67,7 +71,7 @@ const moduleAuth = {
         });
         state.checkedKeys = rootGetters.authCodes.map(code => code.id);
         state.tree = tree;
-        commit("GENERATE_TREE", _.cloneDeep(rootGetters.authCodes));
+        dispatch("initGeneratedTree", _.cloneDeep(rootGetters.authCodes));
       });
     },
     "module-auth:generate-tree": function({ commit }, checkedModules) {
