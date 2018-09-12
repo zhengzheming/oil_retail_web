@@ -3,7 +3,7 @@
     v-if="breadcrumbModuel"
     class="menu-path">
     <el-breadcrumb
-      :can-back="breadcrumbModuel.canback"
+      :can-back="canBack"
       separator-class="el-icon-arrow-right"
       @back="goBack">
       <el-breadcrumb-item
@@ -27,6 +27,13 @@ export default {
   computed: {
     breadcrumbModuel() {
       return breadCrumbConfig[this.$route.name] || null;
+    },
+    canBack() {
+      const breadcrumbModuel = this.breadcrumbModuel;
+      if (breadcrumbModuel.hasOwnProperty("canback")) {
+        return breadcrumbModuel.canback;
+      }
+      return true;
     }
   },
   methods: {

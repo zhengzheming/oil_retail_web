@@ -76,7 +76,7 @@ export const tableHeader = {
 
 export const editPath = {
   "system-user-list": {
-    pathName: "system-user-create",
+    pathName: "system-user-modify",
     query: [
       {
         name: "userId",
@@ -85,7 +85,7 @@ export const editPath = {
     ]
   },
   "system-role-list": {
-    pathName: "system-role-create",
+    pathName: "system-role-modify",
     query: [
       {
         name: "roleId",
