@@ -1,7 +1,8 @@
 <template>
   <div class="custom-tree-container">
-    <div class="block">
-      <p>使用 scoped slot</p>
+    <div 
+      class="block" 
+      style="margin-top: 15px;">
       <el-tree
         ref="nodeTree"
         :data="tree"
@@ -51,6 +52,10 @@ export default {
     readOnly: {
       type: Boolean,
       default: true
+    },
+    type: {
+      type: String,
+      default: "user"
     }
   },
   data() {
@@ -66,7 +71,16 @@ export default {
       return this.$store.getters.moduleTree.children;
     }
   },
-  created() {
+  async created() {
+    const query = this.$route.query;
+    const params = {
+      user: query.userId,
+      role: query.roleId
+    };
+    await this.$store.dispatch("module-auth:fetch-auth", [
+      this.type,
+      params[this.type]
+    ]);
     this.$store.dispatch("module-auth:fetch-tree").then(() => {
       this.$nextTick(function() {
         this.$store.dispatch("modue-auth:read-only", this.readOnly);

@@ -4,10 +4,13 @@
       <el-row :gutter="$customConfig.colGutter">
         <el-col :span="24">
           <form-control-static
-            :text="username"
+            :text="form.username"
             title="用户名"/>
         </el-col>
       </el-row>
+      <auth-tree 
+        :read-only="false" 
+        type="user"/>
     </card>
   </div>
 </template>
@@ -17,8 +20,15 @@ export default {
   name: "UserAuth",
   data() {
     return {
-      username: ""
+      form: {
+        username: ""
+      }
     };
+  },
+  created() {
+    this.$store.dispatch("system-user-detail:fetch-form").then(detail => {
+      this.form = detail;
+    });
   }
 };
 </script>

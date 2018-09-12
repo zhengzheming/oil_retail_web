@@ -1,6 +1,8 @@
 import { fetchModuleTree } from "@/api/system/module-auth";
 import Vue from "vue";
 import { traverseTree } from "@/utils/helper";
+import { fetchAuthByRoleId, fetchAuthByUserId } from "@/api/system/module-auth";
+
 function generateTree(curNode, nodeArray) {
   let root = curNode;
   const children = nodeArray.filter(node => node.parent_id == root.id);
@@ -18,6 +20,7 @@ function processGeneratedTree(tree) {
 }
 const moduleAuth = {
   state: {
+    authCodes: [],
     checkedKeys: [],
     tree: {},
     flattenTree: [],
@@ -36,6 +39,16 @@ const moduleAuth = {
     }
   },
   actions: {
+    "module-auth:fetch-auth": function({ state }, [type, id]) {
+      const cbs = {
+        user: fetchAuthByUserId,
+        role: fetchAuthByRoleId
+      };
+      const cb = cbs[type] || function() {};
+      return cb(id).then(res => {
+        state.authCodes = res.data[`${type}_right`];
+      });
+    },
     "modue-auth:read-only": function({ state }, readOnly) {
       traverseTree(state.tree, "children", child => {
         Vue.set(child, "disabled", readOnly);
@@ -53,10 +66,8 @@ const moduleAuth = {
       // commit("GENERATE_TREE", flattenTree);
       commit("GENERATE_FLATTEN_TREE", authCodes);
     },
-    processUIstate({ rootGetters }, child) {
-      const matchedCode = rootGetters.authCodes.find(
-        code => code.id == child.id
-      );
+    processUIstate({ state }, child) {
+      const matchedCode = state.authCodes.find(code => code.id == child.id);
       const actionCodes =
         matchedCode && matchedCode.actions
           ? matchedCode.actions.map(action => action.code)
@@ -76,7 +87,7 @@ const moduleAuth = {
         checkedCount > 0 && checkedCount < child.actions.length
       );
     },
-    "module-auth:fetch-tree": function({ state, dispatch, rootGetters }) {
+    "module-auth:fetch-tree": function({ state, dispatch }) {
       return fetchModuleTree().then(res => {
         const tree = res.data;
         traverseTree(tree, "children", function(child) {
@@ -87,9 +98,9 @@ const moduleAuth = {
           delete childCopy.children;
           state.flattenTree.push(childCopy);
         });
-        state.checkedKeys = rootGetters.authCodes.map(code => code.id);
+        state.checkedKeys = state.authCodes.map(code => code.id);
         state.tree = tree;
-        dispatch("initGeneratedTree", _.cloneDeep(rootGetters.authCodes));
+        dispatch("initGeneratedTree", _.cloneDeep(state.authCodes));
       });
     },
     "module-auth:generate-tree": function(

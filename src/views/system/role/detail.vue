@@ -32,7 +32,7 @@ export default {
       return this.$store.getters.systemRoleDetail.form;
     }
   },
-  mounted() {
+  created() {
     this.$store.dispatch("system-role-detail:fetch-form");
   }
 };

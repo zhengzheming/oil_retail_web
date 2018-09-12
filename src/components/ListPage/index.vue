@@ -51,6 +51,11 @@
               type="text"
               size="small"
               @click="handleDelete(scope.row)">删除</el-button>
+            <el-button
+              v-if="scope.row.is_can_auth !== false"
+              type="text"
+              size="small"
+              @click="handleAuth(scope.row)">授权</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -104,15 +109,15 @@ export default {
   },
   data() {
     return {
-      showQueryList:true,
+      showQueryList: true,
       sideContentVisible: false
     };
   },
-  mounted(){
+  mounted() {
     let length = this.queryList.filter(item => {
-      return !item.hide
+      return !item.hide;
     }).length;
-    if(!length){
+    if (!length) {
       this.showQueryList = false;
     }
   },
@@ -133,6 +138,9 @@ export default {
     },
     handleDelete(row) {
       this.$emit("delete-item", row);
+    },
+    handleAuth(row) {
+      this.$emit("auth", row);
     },
     handleSizeChange(val) {
       this.$emit("size-change", val);

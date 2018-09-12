@@ -14,6 +14,7 @@
       @page-change="val => currentPage=val"
       @delete-item="row => showChildCom('delete',row)"
       @show-view="row => showChildCom('detail',row)"
+      @auth="row => showChildCom('auth',row)"
       @show-edit="row => showChildCom('edit',row)"/>
   </card>
 </template>
@@ -25,6 +26,7 @@ import queryList from "./data/queryList";
 import tableHeader from "./data/tableHeader";
 import editPath from "./data/editPath";
 import detailPath from "./data/detailPath";
+import configForAuth from "./data/configForAuth";
 import configForDelete from "./data/delete";
 import hasAction from "./data/hasAction";
 
@@ -40,6 +42,7 @@ export default {
       editPath: editPath[pathName] || {},
       detailPath: detailPath[pathName] || {},
       configForDelete: configForDelete[pathName] || {},
+      configForAuth: configForAuth[pathName] || {},
       hasAction: hasAction[pathName],
       listApi: apiList.list[pathName],
       editApi: apiList.edit[pathName],
@@ -61,58 +64,59 @@ export default {
       this.queryList &&
         this.queryList.forEach(item => {
           // 给隐藏的queryList赋值
-          if( item.hide === true ){
-            item.val =this.$route.query[item.label]
+          if (item.hide === true) {
+            item.val = this.$route.query[item.label];
           }
           params.push(item.val);
         });
-      this.listApi && this.listApi(...params).then(res => {
-        if (res.state == 0) {
-          this.tableContent = $utils.getDeepKey(res, "data.data");
-          this.pageTotal = parseInt($utils.getDeepKey(res, "data.totalRows"));
-          if (this.tableContent.length) {
-            this.tableContent.forEach(item => {
-              // 链接加参数
-              Object.keys(this.tableHeader).forEach(key => {
-                const tableHeaderKey = this.tableHeader[key];
-                if (Array.isArray(tableHeaderKey.query)) {
-                  tableHeaderKey.params = tableHeaderKey.query.reduce(
-                    (acc, cur) => ({
-                      ...acc,
-                      [cur.name]: item[cur.field]
-                    }),
-                    {}
-                  );
-                }
-                // 文案转换 status: 0 -  未启用
-                const mapKey = tableHeaderKey.mapKey;
-                if (mapKey) {
-                  item[key] = this.$lookupInDict(
-                    this.$route,
-                    mapKey,
-                    item[mapKey]
-                  );
-                }
+      this.listApi &&
+        this.listApi(...params).then(res => {
+          if (res.state == 0) {
+            this.tableContent = $utils.getDeepKey(res, "data.data");
+            this.pageTotal = parseInt($utils.getDeepKey(res, "data.totalRows"));
+            if (this.tableContent.length) {
+              this.tableContent.forEach(item => {
+                // 链接加参数
+                Object.keys(this.tableHeader).forEach(key => {
+                  const tableHeaderKey = this.tableHeader[key];
+                  if (Array.isArray(tableHeaderKey.query)) {
+                    tableHeaderKey.params = tableHeaderKey.query.reduce(
+                      (acc, cur) => ({
+                        ...acc,
+                        [cur.name]: item[cur.field]
+                      }),
+                      {}
+                    );
+                  }
+                  // 文案转换 status: 0 -  未启用
+                  const mapKey = tableHeaderKey.mapKey;
+                  if (mapKey) {
+                    item[key] = this.$lookupInDict(
+                      this.$route,
+                      mapKey,
+                      item[mapKey]
+                    );
+                  }
+                });
+                // 操作加参数
+                let arr = [this.editPath, this.detailPath];
+                arr.forEach(val => {
+                  if (val.query) {
+                    item.query = item.query || {};
+                    val.query.forEach(val1 => {
+                      item.query[val1.name] = item[val1.field];
+                    });
+                  }
+                });
+                // 删除
+                Object.keys(this.configForDelete).forEach(key => {
+                  item.configForDelete = item.configForDelete || {};
+                  item.configForDelete[key] = this.configForDelete[key];
+                });
               });
-              // 操作加参数
-              let arr = [this.editPath, this.detailPath];
-              arr.forEach(val => {
-                if (val.query) {
-                  item.query = item.query || {};
-                  val.query.forEach(val1 => {
-                    item.query[val1.name] = item[val1.field];
-                  });
-                }
-              });
-              // 删除
-              Object.keys(this.configForDelete).forEach(key => {
-                item.configForDelete = item.configForDelete || {};
-                item.configForDelete[key] = this.configForDelete[key];
-              });
-            });
+            }
           }
-        }
-      });
+        });
     },
     handleReset() {
       this.queryList &&
@@ -130,6 +134,12 @@ export default {
         },
         edit: () => {
           this.$router.push({ name: this.editPath.pathName, query: row.query });
+        },
+        auth: () => {
+          this.$router.push({
+            name: this.configForAuth.pathName,
+            query: row.query
+          });
         },
         delete: () => {
           if (!row.configForDelete) return;

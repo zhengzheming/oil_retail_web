@@ -48,7 +48,8 @@ export const tableHeader = {
     },
     statusName: {
       label: "状态",
-      mapKey: "status"
+      mapKey: "status",
+      width: "70px"
     },
     login_time: {
       label: "最后登录时间"
@@ -64,7 +65,8 @@ export const tableHeader = {
     },
     statusName: {
       label: "状态",
-      mapKey: "status"
+      mapKey: "status",
+      width: "70px"
     },
     update_time: {
       label: "更新时间"
@@ -105,6 +107,27 @@ export const detailPath = {
   },
   "system-role-list": {
     pathName: "system-role-detail",
+    query: [
+      {
+        name: "roleId",
+        field: "role_id"
+      }
+    ]
+  }
+};
+
+export const configForAuth = {
+  "system-user-list": {
+    pathName: "system-user-auth",
+    query: [
+      {
+        name: "userId",
+        field: "user_id"
+      }
+    ]
+  },
+  "system-role-list": {
+    pathName: "system-role-auth",
     query: [
       {
         name: "roleId",
