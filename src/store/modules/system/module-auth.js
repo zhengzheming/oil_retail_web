@@ -36,6 +36,16 @@ const moduleAuth = {
     }
   },
   actions: {
+    "modue-auth:read-only": function({ state }, readOnly) {
+      traverseTree(state.tree, "children", child => {
+        Vue.set(child, "disabled", readOnly);
+        if (Array.isArray(child.actions)) {
+          child.actions.forEach(action =>
+            Vue.set(action, "disabled", readOnly)
+          );
+        }
+      });
+    },
     initGeneratedTree({ commit }, authCodes) {
       // let flattenTree = authCodes.map(code =>
       //   $utils.renameKeys({ name: "label", actions: "checkedActions" }, code)
@@ -67,7 +77,7 @@ const moduleAuth = {
       );
     },
     "module-auth:fetch-tree": function({ state, dispatch, rootGetters }) {
-      fetchModuleTree().then(res => {
+      return fetchModuleTree().then(res => {
         const tree = res.data;
         traverseTree(tree, "children", function(child) {
           // 处理全选等ui状态
