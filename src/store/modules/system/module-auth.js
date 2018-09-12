@@ -36,7 +36,6 @@ const moduleAuth = {
   },
   mutations: {
     GENERATE_TREE: function(state, flattenTree) {
-      console.log(flattenTree);
       state.generatedTree = {};
       const tree = generateTree({ id: 0, parent_id: 0 }, flattenTree);
       processGeneratedTree(tree);

@@ -14,7 +14,9 @@
           slot-scope="{ node, data }"
           class="custom-tree-node">
           <span>{{ node.label }}</span>
-          <span class="custom-tree__actions">
+          <span 
+            class="custom-tree__actions" 
+            @change="changeTree(null, curNodes)">
             <el-checkbox
               v-if="!data.children || data.children.length === 0"
               :indeterminate="data.isIndeterminate"
@@ -43,7 +45,9 @@
 export default {
   name: "AuthTree",
   data() {
-    return {};
+    return {
+      curNodes: []
+    };
   },
   computed: {
     checkedKeys() {
@@ -71,6 +75,7 @@ export default {
       this.$set(data, "isIndeterminate", false);
     },
     changeTree(curNodeData, nodes) {
+      this.curNodes = nodes;
       this.$store.dispatch("module-auth:generate-tree", [
         ...nodes.checkedNodes,
         ...nodes.halfCheckedNodes
