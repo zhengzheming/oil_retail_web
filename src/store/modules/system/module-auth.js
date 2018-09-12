@@ -1,25 +1,20 @@
 import { fetchModuleTree } from "@/api/system/module-auth";
 import Vue from "vue";
-function traverseTree(root, leafName, callback) {
-  if (!root) return;
-  if (Array.isArray(root[leafName])) {
-    callback(root);
-    const children = root[leafName];
-    children.forEach(function(child) {
-      traverseTree(child, leafName, callback);
-    });
-  }
+import { traverseTree } from "@/utils/helper";
+function generateTree(curNode, nodeArray) {
+  let root = curNode;
+  const children = nodeArray.filter(node => node.parent_id == root.id);
+  root.children = children;
+  children.forEach(child => {
+    generateTree(child, nodeArray);
+  });
+  return root;
 }
-function generateTree(curNode, nodeArray, nodeRef = {}) {
-  let parent = nodeArray.find(node => curNode.parent_id == node.id);
-  if (parent && curNode.id != 0) {
-    parent.children = Array.isArray(parent.children)
-      ? [...parent.children.filter(node => node.id !== curNode.id), curNode]
-      : [curNode];
-    nodeRef[curNode.parent_id] = parent;
-    generateTree(parent, nodeArray, nodeRef);
-  }
-  return nodeRef;
+
+function processGeneratedTree(tree) {
+  traverseTree(tree, "children", function(child) {
+    child.actions = child.checkedActions;
+  });
 }
 const moduleAuth = {
   state: {
@@ -29,12 +24,21 @@ const moduleAuth = {
     generatedTree: {}
   },
   mutations: {
-    GENERATE_TREE: function(state, tree) {
-      state.generatedTree = tree[0];
+    GENERATE_TREE: function(state, flattenTree) {
+      state.generatedTree = {};
+      const tree = generateTree({ id: 0, parent_id: 0 }, flattenTree);
+      processGeneratedTree(tree);
+      state.generatedTree = tree;
     }
   },
   actions: {
-    "module-auth:fetch-tree": function({ state, rootGetters }) {
+    initGeneratedTree({ commit }, authCodes) {
+      let flattenTree = authCodes.map(code =>
+        $utils.renameKeys({ name: "label", actions: "checkedActions" }, code)
+      );
+      commit("GENERATE_TREE", flattenTree);
+    },
+    "module-auth:fetch-tree": function({ state, dispatch, rootGetters }) {
       fetchModuleTree().then(res => {
         const tree = res.data;
         traverseTree(tree, "children", function(child) {
@@ -67,24 +71,11 @@ const moduleAuth = {
         });
         state.checkedKeys = rootGetters.authCodes.map(code => code.id);
         state.tree = tree;
-        state.generatedTree = _.cloneDeep(tree);
-        setTimeout(function() {
-          traverseTree(state.generatedTree, "children", function(child) {
-            child.actions = child.checkedActions;
-          });
-        });
+        dispatch("initGeneratedTree", _.cloneDeep(rootGetters.authCodes));
       });
     },
-    "module-auth:generate-tree": function({ state, commit }, checkedModules) {
-      console.log(checkedModules);
-      state.generatedTree = {};
-      checkedModules.forEach(function(module) {
-        const flattenTree = state.flattenTree;
-        commit(
-          "GENERATE_TREE",
-          generateTree(_.clone(module), _.clone(flattenTree))
-        );
-      });
+    "module-auth:generate-tree": function({ commit }, checkedModules) {
+      commit("GENERATE_TREE", _.cloneDeep(checkedModules));
     }
   }
 };

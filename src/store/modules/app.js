@@ -1,5 +1,18 @@
 import Cookies from "js-cookie";
+import { getMenu } from "@/api/app";
+import { traverseTree } from "@/utils/helper";
 
+function generateMenu(data) {
+  traverseTree({ children: data }, "children", function(child) {
+    child.meta = {
+      icon: child.icon,
+      title: child.name
+    };
+    child.name = child.code;
+    child.path = child.page_url;
+  });
+  return data;
+}
 const app = {
   state: {
     sidebar: {
@@ -35,8 +48,10 @@ const app = {
     }
   },
   actions: {
-    updateSidebarItems({ commit }, { items }) {
-      commit("UPDATE_SIDEBAR_ITEMS", items);
+    updateSidebarItems({ commit }) {
+      getMenu().then(res => {
+        commit("UPDATE_SIDEBAR_ITEMS", generateMenu(res.data));
+      });
     },
     toggleSideBar({ commit }) {
       commit("TOGGLE_SIDEBAR");

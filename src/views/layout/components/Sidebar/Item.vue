@@ -17,7 +17,7 @@ export default {
     const vnodes = [];
 
     if (icon) {
-      vnodes.push(<i class={icon + " icon-spec"} />);
+      vnodes.push(<i class={icon + " icon icon-spec"} />);
     }
 
     if (title) {
