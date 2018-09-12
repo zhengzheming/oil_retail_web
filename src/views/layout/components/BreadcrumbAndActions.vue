@@ -1,6 +1,6 @@
 <template>
-  <section 
-    v-if="breadcrumbModuel" 
+  <section
+    v-if="breadcrumbModuel"
     class="menu-path">
     <el-breadcrumb
       :can-back="breadcrumbModuel.canback"
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import breadCrumbConfig from "@/services/breadcrumb";
+import breadCrumbConfig from "@/services/breadcrumb/index";
 export default {
   computed: {
     breadcrumbModuel() {

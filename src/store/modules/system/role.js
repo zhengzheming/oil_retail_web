@@ -60,6 +60,9 @@ const role = {
     },
     "system-role-detail:modify": function({ rootState }) {
       router.push({ name: "system-role-modify", query: rootState.route.query });
+    },
+    "system-role-auth:save": function({ dispatch }) {
+      dispatch("module-auth:save");
     }
   }
 };

@@ -1,7 +1,13 @@
 import { fetchModuleTree } from "@/api/system/module-auth";
 import Vue from "vue";
 import { traverseTree } from "@/utils/helper";
-import { fetchAuthByRoleId, fetchAuthByUserId } from "@/api/system/module-auth";
+import {
+  fetchAuthByRoleId,
+  fetchAuthByUserId,
+  saveModuleTree
+} from "@/api/system/module-auth";
+import { Message } from "element-ui";
+import router from "@/router";
 
 function generateTree(curNode, nodeArray) {
   let root = curNode;
@@ -20,6 +26,7 @@ function processGeneratedTree(tree) {
 }
 const moduleAuth = {
   state: {
+    location: [],
     authCodes: [],
     checkedKeys: [],
     tree: {},
@@ -35,11 +42,17 @@ const moduleAuth = {
       state.generatedTree = tree;
     },
     GENERATE_FLATTEN_TREE: function(state, flattenGeneratedTree) {
+      flattenGeneratedTree.forEach(node => {
+        if (node.actions) {
+          node.actions = node.checkedActions;
+        }
+      });
       state.flattenGeneratedTree = flattenGeneratedTree;
     }
   },
   actions: {
     "module-auth:fetch-auth": function({ state }, [type, id]) {
+      state.location = [type, id];
       const cbs = {
         user: fetchAuthByUserId,
         role: fetchAuthByRoleId
@@ -107,8 +120,18 @@ const moduleAuth = {
       { commit },
       [checkedNodes /* halfCheckedNodes */]
     ) {
-      commit("GENERATE_FLATTEN_TREE", checkedNodes);
+      commit("GENERATE_FLATTEN_TREE", _.cloneDeep(checkedNodes));
       // commit("GENERATE_TREE", _.cloneDeep([...checkedNodes, ...halfCheckedNodes]));
+    },
+    "module-auth:save": function({ state }) {
+      const [type, id] = state.location;
+      return saveModuleTree({
+        [`${type}_id`]: id,
+        [`${type}_right`]: state.flattenGeneratedTree
+      }).then(() => {
+        Message.success("保存成功");
+        router.push({ name: `system-${type}-list` });
+      });
     }
   }
 };
