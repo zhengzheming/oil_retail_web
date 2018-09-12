@@ -14,8 +14,8 @@
           slot-scope="{ node, data }"
           class="custom-tree-node">
           <span>{{ node.label }}</span>
-          <span 
-            class="custom-tree__actions" 
+          <span
+            class="custom-tree__actions"
             @change="changeTree(null, curNodes)">
             <el-checkbox
               v-if="!data.children || data.children.length === 0"
@@ -77,8 +77,8 @@ export default {
     changeTree(curNodeData, nodes) {
       this.curNodes = nodes;
       this.$store.dispatch("module-auth:generate-tree", [
-        ...nodes.checkedNodes,
-        ...nodes.halfCheckedNodes
+        nodes.checkedNodes,
+        nodes.halfCheckedNodes
       ]);
     }
   }

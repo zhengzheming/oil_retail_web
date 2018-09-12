@@ -21,7 +21,8 @@ const moduleAuth = {
     checkedKeys: [],
     tree: {},
     flattenTree: [],
-    generatedTree: {}
+    generatedTree: {},
+    flattenGeneratedTree: []
   },
   mutations: {
     GENERATE_TREE: function(state, flattenTree) {
@@ -29,41 +30,48 @@ const moduleAuth = {
       const tree = generateTree({ id: 0, parent_id: 0 }, flattenTree);
       processGeneratedTree(tree);
       state.generatedTree = tree;
+    },
+    GENERATE_FLATTEN_TREE: function(state, flattenGeneratedTree) {
+      state.flattenGeneratedTree = flattenGeneratedTree;
     }
   },
   actions: {
     initGeneratedTree({ commit }, authCodes) {
-      let flattenTree = authCodes.map(code =>
-        $utils.renameKeys({ name: "label", actions: "checkedActions" }, code)
+      // let flattenTree = authCodes.map(code =>
+      //   $utils.renameKeys({ name: "label", actions: "checkedActions" }, code)
+      // );
+      // commit("GENERATE_TREE", flattenTree);
+      commit("GENERATE_FLATTEN_TREE", authCodes);
+    },
+    processUIstate({ rootGetters }, child) {
+      const matchedCode = rootGetters.authCodes.find(
+        code => code.id == child.id
       );
-      commit("GENERATE_TREE", flattenTree);
+      const actionCodes =
+        matchedCode && matchedCode.actions
+          ? matchedCode.actions.map(action => action.code)
+          : [];
+      child.checkedActions = child.actions.filter(action =>
+        actionCodes.includes(action.code)
+      );
+      const checkedCount = child.checkedActions;
+      Vue.set(
+        child,
+        "allChecked",
+        checkedCount.length === child.actions.length
+      );
+      Vue.set(
+        child,
+        "isIndeterminate",
+        checkedCount > 0 && checkedCount < child.actions.length
+      );
     },
     "module-auth:fetch-tree": function({ state, dispatch, rootGetters }) {
       fetchModuleTree().then(res => {
         const tree = res.data;
         traverseTree(tree, "children", function(child) {
           // 处理全选等ui状态
-          const matchedCode = rootGetters.authCodes.find(
-            code => code.id == child.id
-          );
-          const actionCodes =
-            matchedCode && matchedCode.actions
-              ? matchedCode.actions.map(action => action.code)
-              : [];
-          child.checkedActions = child.actions.filter(action =>
-            actionCodes.includes(action.code)
-          );
-          const checkedCount = child.checkedActions;
-          Vue.set(
-            child,
-            "allChecked",
-            checkedCount.length === child.actions.length
-          );
-          Vue.set(
-            child,
-            "isIndeterminate",
-            checkedCount > 0 && checkedCount < child.actions.length
-          );
+          dispatch("processUIstate", child);
           // 拍平树形
           const childCopy = { ...child };
           delete childCopy.children;
@@ -74,8 +82,12 @@ const moduleAuth = {
         dispatch("initGeneratedTree", _.cloneDeep(rootGetters.authCodes));
       });
     },
-    "module-auth:generate-tree": function({ commit }, checkedModules) {
-      commit("GENERATE_TREE", _.cloneDeep(checkedModules));
+    "module-auth:generate-tree": function(
+      { commit },
+      [checkedNodes /* halfCheckedNodes */]
+    ) {
+      commit("GENERATE_FLATTEN_TREE", checkedNodes);
+      // commit("GENERATE_TREE", _.cloneDeep([...checkedNodes, ...halfCheckedNodes]));
     }
   }
 };
