@@ -128,7 +128,7 @@ export default {
     },
     {
       path: "module",
-      name: "system-module",
+      name: "systemModule",
       component: systemModule,
       meta: {
         title: "模块管理"
@@ -137,17 +137,20 @@ export default {
     {
       path: "module/detail",
       name: "moduleDetail",
-      component: moduleDetail
+      component: moduleDetail,
+      hidden: true
     },
     {
       path: "module/edit",
       name: "moduleEdit",
-      component: moduleEdit
+      component: moduleEdit,
+      hidden: true
     },
     {
       path: "module/add",
       name: "addModule",
-      component: moduleEdit
+      component: moduleEdit,
+      hidden: true
     }
   ]
 };

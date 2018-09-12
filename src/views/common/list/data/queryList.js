@@ -86,6 +86,42 @@ export default {
       val: ""
     }
   ],
+  // 企业每日限额
+  'enterpriseDayQuota': [
+    {
+      type: 'date',
+      label: "开始时间",
+      val: ""
+    },
+    {
+      type: 'date',
+      label: "结束时间",
+      val: ""
+    },
+    {
+      type: 'date',
+      label: "企业限额编号",
+      val: ""
+    }
+  ],
+  // 车辆每日限额
+  'vehicleDayQuota': [
+    {
+      type: 'date',
+      label: "开始时间",
+      val: ""
+    },
+    {
+      type: 'date',
+      label: "结束时间",
+      val: ""
+    },
+    {
+      type: 'date',
+      label: "车辆限额编号",
+      val: ""
+    }
+  ],
   // 物流企业管理-企业额度
   "enterpriseQuota": [
     {
