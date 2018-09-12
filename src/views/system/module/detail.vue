@@ -22,10 +22,6 @@ export default {
             prop: "code"
           },
           {
-            label: "所属系统",
-            prop: ""
-          },
-          {
             label: "排序码",
             prop: "order_index"
           },

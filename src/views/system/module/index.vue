@@ -3,16 +3,14 @@
       <span slot="title">系统模块管理</span>
       <div style="display:flex;width:50%;min-width:800px;">
         <el-input 
+          v-model="searchTxt"
           type="text" 
           placeholder="输入关键字查询" 
-          style="margin-right:10px;"/>
+          style="margin-right:10px;width:348px;"/>
         <el-button 
           type="primary" 
           style="width:65px;"
           @click="query">查询</el-button>
-        <el-button 
-          style="width:65px;"
-          @click="add">添加</el-button>
       </div>
       <div>
         <div 
@@ -25,8 +23,10 @@
           </p>
         </div>
         <el-tree
+          ref="tree1"
           :data="treeData"
           :expand-on-click-node="false"
+          :filter-node-method="filterNode"
           style="width: 32%;min-width: 620px;"
           node-key="id"
           default-expand-all>
@@ -55,6 +55,7 @@ export default {
   name: "SystemModule",
   data() {
     return {
+      searchTxt:'',
       treeData: []
     };
   },
@@ -69,7 +70,13 @@ export default {
         }
       });
     },
-    query() {},
+    query() {
+      this.$refs.tree1.filter(this.searchTxt);
+    },
+    filterNode(value, data) {
+      if (!value) return true;
+      return data.label.indexOf(value) !== -1;
+    },
     add() {
       this.$router.push({ name: "addModule" });
     },
@@ -112,6 +119,7 @@ export default {
   min-width: 620px;
   height: 32px;
   line-height: 32px;
+  font-weight: 600;
 }
 .btn-wrap {
   width: 220px;
