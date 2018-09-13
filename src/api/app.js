@@ -13,3 +13,5 @@ export function getUserInfo(token) {
     params: { token }
   });
 }
+
+// 字段map

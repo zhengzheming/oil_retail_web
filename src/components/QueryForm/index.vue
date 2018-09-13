@@ -161,10 +161,8 @@ export default {
       slt: data => {
         if (typeof data.getOptions === "function") {
           data.getOptions().then(res => {
-            data.data = res.data.map(role => ({
-              label: role.name,
-              val: role.role_id
-            }));
+            const transformer = data.transformer || function() {};
+            data.data = transformer(res.data);
           });
         }
       }
