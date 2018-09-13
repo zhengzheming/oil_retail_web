@@ -37,22 +37,22 @@
           label="操作">
           <template slot-scope="scope">
             <el-button
-              v-if="scope.row.is_can_view !== false"
+              v-if="config.detailPath && scope.row.is_can_view !== false"
               type="text"
               size="small"
               @click="handleVIew(scope.row)">查看</el-button>
             <el-button
-              v-if="scope.row.is_can_edit !== false"
+              v-if="config.editPath && scope.row.is_can_edit !== false"
               type="text"
               size="small"
               @click="handleEdit(scope.row)">编辑</el-button>
             <el-button
-              v-if="scope.row.is_can_delete !== false"
+              v-if="config.configForDelete && scope.row.is_can_delete !== false"
               type="text"
               size="small"
               @click="handleDelete(scope.row)">删除</el-button>
             <el-button
-              v-if="scope.row.is_can_auth !== false"
+              v-if="config.configForAuth && scope.row.is_can_auth !== false"
               type="text"
               size="small"
               @click="handleAuth(scope.row)">授权</el-button>
@@ -105,6 +105,10 @@ export default {
     hasAction: {
       type: Boolean,
       default: () => true
+    },
+    config: {
+      type: Object,
+      default: () => ({})
     }
   },
   data() {

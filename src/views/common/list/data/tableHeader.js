@@ -1,4 +1,5 @@
 import { tableHeader as system } from "./modules/system";
+import { tableHeader as basicInfo } from "./modules/basicInfo";
 export default {
   // 基础数据-物流企业
   logistics: {
@@ -24,7 +25,7 @@ export default {
     }
   },
   // 基础数据-车辆数据
-  "vehicleData": {
+  vehicleData: {
     vehicle_id: {
       label: "编号",
       width: "120"
@@ -45,7 +46,7 @@ export default {
     }
   },
   //物流企业管理-司机信息
-  "driver": {
+  driver: {
     driver_id: {
       label: "编号",
       width: "120"
@@ -70,7 +71,7 @@ export default {
     }
   },
   // 物流企业管理-企业额度
-  "enterpriseQuota": {
+  enterpriseQuota: {
     logistics_name: {
       label: "物流公司",
       width: "120"
@@ -86,10 +87,12 @@ export default {
     available_quota: {
       label: "企业可用额度",
       pathName: "availableCredit",
-      query:[{
-        name:'logistics_id',
-        field:'logistics_id'
-      }]
+      query: [
+        {
+          name: "logistics_id",
+          field: "logistics_id"
+        }
+      ]
     },
     rate: {
       label: "每日额度占比",
@@ -103,10 +106,12 @@ export default {
       label: "今日可用额度",
       width: "200",
       pathName: "dayCredit",
-      query:[{
-        name:'logistics_id',
-        field:'logistics_id'
-      }]
+      query: [
+        {
+          name: "logistics_id",
+          field: "logistics_id"
+        }
+      ]
     },
     start_date: {
       label: "开始时间",
@@ -117,7 +122,7 @@ export default {
     }
   },
   // 企业每日限额
-  'enterpriseDayQuota': {
+  enterpriseDayQuota: {
     code: {
       label: "企业限额编号",
       width: "120"
@@ -134,7 +139,7 @@ export default {
     }
   },
   //车辆每日限额
-  'vehicleDayQuota': {
+  vehicleDayQuota: {
     code: {
       label: "车辆限额编号",
       width: "120"
@@ -151,7 +156,7 @@ export default {
     }
   },
   // 物流企业管理-企业额度-企业可用额度收支管理
-  "availableCredit": {
+  availableCredit: {
     logistics_id: {
       label: "时间",
       width: "120"
@@ -169,7 +174,7 @@ export default {
     }
   },
   // 物流企业管理-企业额度-企业当日可用额度收支管理
-  "dayCredit": {
+  dayCredit: {
     logistics_id: {
       label: "时间",
       width: "120"
@@ -187,7 +192,7 @@ export default {
     }
   },
   // 物流企业管理-企业当日可用额度收支管理
-  "vehicleCapacity": {
+  vehicleCapacity: {
     logistics_id: {
       label: "编号",
       width: "120"
@@ -202,16 +207,8 @@ export default {
     },
     status_name: {
       label: "每日额度占比"
-    },
-    status_name: {
-      label: "每日车辆可用容量/L"
-    },
-    status_name: {
-      label: "当日车辆可用容量/L"
-    },
-    status_name: {
-      label: "物流企业"
     }
   },
-  ...system
+  ...system,
+  ...basicInfo
 };

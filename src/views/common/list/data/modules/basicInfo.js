@@ -51,20 +51,19 @@ export const tableHeader = {
     },
     status_name: {
       label: "企业状态",
-      width: "70px"
+      width: "140px"
     }
   },
   "oil-goods-list": {
-    role_id: {
+    goods_id: {
       label: "编号",
       width: "70px"
     },
     name: {
       label: "油品名称"
     },
-    statusName: {
+    status_name: {
       label: "状态",
-      mapKey: "status",
       width: "70px"
     }
   }
@@ -75,8 +74,8 @@ export const editPath = {
     pathName: "oil-company-modify",
     query: [
       {
-        name: "userId",
-        field: "user_id"
+        name: "companyId",
+        field: "company_id"
       }
     ]
   },
@@ -84,8 +83,8 @@ export const editPath = {
     pathName: "oil-goods-modify",
     query: [
       {
-        name: "roleId",
-        field: "role_id"
+        name: "goodsId",
+        field: "goods_id"
       }
     ]
   }

@@ -1,8 +1,9 @@
 import Layout from "@/views/layout/Layout";
-import commonList from '@/views/common/list/index'
-import logisticsDetail from '@/views/basicInfo/logisticsEnterprise/detail'
-import logisticsEdit from '@/views/basicInfo/logisticsEnterprise/edit'
-import vehicleDataDetail from '@/views/basicInfo/vehicleData/detail'
+import commonList from "@/views/common/list/index";
+import logisticsDetail from "@/views/basicInfo/logisticsEnterprise/detail";
+import logisticsEdit from "@/views/basicInfo/logisticsEnterprise/edit";
+import vehicleDataDetail from "@/views/basicInfo/vehicleData/detail";
+import placeholderView from "../placeholderView";
 export default {
   path: "/basic-info",
   name: "basic-info",
@@ -41,10 +42,86 @@ export default {
       }
     },
     {
-      path: 'vehicleData/detail',
-      name: 'vehicleDataDetail',
+      path: "vehicleData/detail",
+      name: "vehicleDataDetail",
       component: vehicleDataDetail,
       hidden: true
+    },
+    {
+      path: "oil-company",
+      component: placeholderView,
+      children: [
+        {
+          path: "index",
+          name: "oil-company-list",
+          component: commonList,
+          meta: {
+            title: "油企数据"
+          }
+        },
+        {
+          path: "create",
+          name: "oil-company-create",
+          component: commonList,
+          meta: {
+            title: "新增油企"
+          }
+        },
+        {
+          path: "modify",
+          name: "oil-company-modify",
+          component: commonList,
+          meta: {
+            title: "编辑油企"
+          }
+        },
+        {
+          path: "detail",
+          name: "oil-company-detail",
+          component: commonList,
+          meta: {
+            title: "油企数据"
+          }
+        }
+      ]
+    },
+    {
+      path: "oil-goods",
+      component: placeholderView,
+      children: [
+        {
+          path: "index",
+          name: "oil-goods-list",
+          component: commonList,
+          meta: {
+            title: "油品数据"
+          }
+        },
+        {
+          path: "create",
+          name: "oil-goods-create",
+          component: commonList,
+          meta: {
+            title: "新增油品"
+          }
+        },
+        {
+          path: "modify",
+          name: "oil-goods-modify",
+          component: commonList,
+          meta: {
+            title: "编辑油品"
+          }
+        },
+        {
+          path: "detail",
+          name: "oil-goods-detail",
+          component: commonList,
+          meta: {
+            title: "油品数据"
+          }
+        }
+      ]
     }
   ]
 };

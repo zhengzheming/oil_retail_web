@@ -1,5 +1,5 @@
 import { queryList as system } from "./modules/system";
-import { queryList as baseData } from "./modules/baseData";
+import { queryList as basicInfo } from "./modules/basicInfo";
 export default {
   // 基础数据-物流企业
   logistics: [
@@ -205,5 +205,5 @@ export default {
     }
   ],
   ...system,
-  ...baseData
+  ...basicInfo
 };

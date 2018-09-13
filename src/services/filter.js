@@ -28,7 +28,7 @@ export function lookupInDict(route, field, value) {
   const matchedModule = Object.keys(dict).find(moduleName => {
     return curMatchedRoute.includes(moduleName);
   });
-  if (!matchedModule) throw new Error("当前模块未匹配到相应字典");
+  // if (!matchedModule) throw new Error("当前模块未匹配到相应字典");
   try {
     return dict[matchedModule][field][value];
   } catch (error) {
