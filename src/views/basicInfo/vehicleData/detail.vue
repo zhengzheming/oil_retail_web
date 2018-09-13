@@ -1,6 +1,14 @@
 <template>
     <card>
         <item-list :com-data="detailData"></item-list>
+        <div style="display:flex;">
+            <label style="display:inline-block;width:120px;">行驶证照片:</label>
+            <div style="display:flex;">
+                <div class="img-wrap" v-for="item of imgList" :key="item.id">
+                    <img src="item.file_url" alt="">
+                </div>
+            </div>
+        </div>
     </card>
 </template>
 <script>
@@ -13,7 +21,7 @@ export default {
                 list:[
                     {
                         label:'物流企业',
-                        prop:'name'
+                        prop:'logistics_name'
                     },
                     {
                         label:'车牌号',
@@ -41,22 +49,21 @@ export default {
                     },
                     {
                         label:'行驶证有效期',
-                        prop:''
-                    },
-                    {
-                        label:'行驶证照片',
-                        prop:'files'
+                        prop:'validDate'
                     }
                 ]
-            }
+            },
+            imgList:[]
         }
     },
     mounted(){
         if(this.$route.query.vehicle_id){
             detail(this.$route.query.vehicle_id)
             .then(res => {
-                if(res.data === 0) {
-                     this.detailData.data = $utils.getDeepKey(res,'data.data')
+                if(res.state === 0) {
+                    res.data.validDate = res.data.start_date + '~' + res.data.end_date;
+                    this.detailData.data = $utils.getDeepKey(res,'data')
+                    this.imgList = $utils.getDeepKey(res,'files') || []
                 }  
             })
             .catch(err => {
@@ -66,3 +73,19 @@ export default {
 }
 </script>
 
+<style>
+.img-wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100px;
+    height:100px;
+    border:1px solid #e6e6e6;
+    border-radius:4px;
+    margin-right:24px;
+}
+.img-wrap>img{
+     width:80px;
+     height:80px;
+}
+</style>

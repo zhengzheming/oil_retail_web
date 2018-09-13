@@ -4,7 +4,7 @@ import commonList from '@/views/common/list/index';
 import driverDetail from '@/views/logisticsManage/driverDetail';
 export default {
   path: '/logistics-manage',
-  name: 'logistics-manage',
+  name: 'logisticsManage',
   component: Layout,
   meta: {
     title: '物流企业管理',

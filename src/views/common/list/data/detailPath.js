@@ -2,7 +2,11 @@ import { detailPath as system } from "./modules/system";
 export default {
   // 基础数据-物流企业
   logistics: {
-    pathName: "logisticsDetail"
+    pathName: "logisticsDetail",
+    query:[{
+      name:'logistics_id',             //参数key
+      field:'logistics_id'     //参数value所对应的后台字段
+    }]
   },
   // 基础数据-车辆数据
   "vehicleData": {

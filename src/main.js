@@ -4,6 +4,7 @@ import router from "./router/index";
 import store from "./store/index.js";
 import { sync } from "vuex-router-sync";
 import _ from "lodash";
+import request from "@/utils/request";
 
 import Element from "element-ui";
 import "@/styles/element-overide.scss";
@@ -23,6 +24,14 @@ Object.defineProperty(window, "$utils", { value: $utils });
 Object.defineProperty(Vue.prototype, "$lookupInDict", { value: lookupInDict });
 
 sync(store, router);
+
+request({
+  url: "/admin/common/dropDownListMap",
+  method: "get"
+}).then(res => {
+  res.state == 0 && localStorage.setItem('map', JSON.stringify(res.data));
+})
+
 Vue.use(Element);
 new Vue({
   router,

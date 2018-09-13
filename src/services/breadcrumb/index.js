@@ -1,10 +1,12 @@
 import systemUser from "./modules/system/user";
 import systemRole from "./modules/system/role";
 import systemModule from "./modules/system/module";
+import basicInfoVehicle from "./modules/basicInfo/vehicle";
 export default {
   ...systemUser,
   ...systemRole,
   ...systemModule,
+  ...basicInfoVehicle,
   moduleEdit: {
     items: ["系统管理", "模块管理", "修改"],
     actions: [{ name: "保存", action: "save", type: "primary" }]
