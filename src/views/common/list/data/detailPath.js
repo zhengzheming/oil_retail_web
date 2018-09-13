@@ -1,4 +1,5 @@
 import { detailPath as system } from "./modules/system";
+import { detailPath as basicInfo } from "./modules/basicInfo";
 export default {
   // 基础数据-物流企业
   logistics: {
@@ -9,7 +10,7 @@ export default {
     }]
   },
   // 基础数据-车辆数据
-  "vehicleData": {
+  vehicleData: {
     pathName: "vehicleDataDetail",
     query: [
       {
@@ -19,7 +20,7 @@ export default {
     ]
   },
   // 物流企业管理-司机信息
-  "driver": {
+  driver: {
     pathName: "driverDetail",
     query: [
       {
@@ -46,5 +47,6 @@ export default {
       }
     ]
   },
-  ...system
+  ...system,
+  ...basicInfo
 };

@@ -18,7 +18,8 @@ module.exports = {
     require: true,
     _: true,
     $utils: true,
-    $: true
+    $: true,
+    $verify: true
   },
 
   parserOptions: {

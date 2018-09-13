@@ -15,3 +15,11 @@ export const systemRoleFieldMap = {
   update_time: "updateTime",
   role_id: "roleId"
 };
+
+export const oilCompanyFieldMap = {
+  company_id: "companyId",
+  short_name: "shortName",
+  tax_code: "taxCode",
+  contact_phone: "contactPhone",
+  build_date: "buildDate"
+};

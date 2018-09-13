@@ -9,6 +9,7 @@
       :table-header="tableHeader"
       :table-content="tableContent"
       :has-action="hasAction"
+      :config="config"
       @reset="handleReset"
       @query="getList"
       @size-change="val => pageSize=val"
@@ -43,10 +44,10 @@ export default {
       queryList: queryList[pathName] || [],
       itemList: itemList[pathName] || {},
       tableHeader: tableHeader[pathName] || {},
-      editPath: editPath[pathName] || {},
-      detailPath: detailPath[pathName] || {},
-      configForDelete: configForDelete[pathName] || {},
-      configForAuth: configForAuth[pathName] || {},
+      editPath: editPath[pathName],
+      detailPath: detailPath[pathName],
+      configForDelete: configForDelete[pathName],
+      configForAuth: configForAuth[pathName],
       hasAction: hasAction[pathName],
       hasExport: hasExport[pathName],
       listApi: apiList.list[pathName],
@@ -55,6 +56,12 @@ export default {
       tableContent: [],
       comContent: ""
     };
+  },
+  computed: {
+    config() {
+      const { editPath, detailPath, configForAuth, configForDelete } = this;
+      return { editPath, detailPath, configForAuth, configForDelete };
+    }
   },
   watch: {
     currentPage: "getList",
@@ -81,10 +88,9 @@ export default {
       this.listApi &&
         this.listApi(...params).then(res => {
           if (res.state == 0) {
-            this.tableContent = $utils.getDeepKey(res, "data.data");
-            this.pageTotal = parseInt($utils.getDeepKey(res, "data.totalRows"));
+            this.tableContent = _.get(res, "data.data");
+            this.pageTotal = +_.get(res, "data.totalRows");
             if(this.itemList.data){
-              console.log(123)
               this.itemList.data = res.extra;
             }
             if (this.tableContent.length) {
@@ -122,10 +128,12 @@ export default {
                   }
                 });
                 // 删除
-                Object.keys(this.configForDelete).forEach(key => {
-                  item.configForDelete = item.configForDelete || {};
-                  item.configForDelete[key] = this.configForDelete[key];
-                });
+                if (this.configForDelete) {
+                  Object.keys(this.configForDelete).forEach(key => {
+                    item.configForDelete = item.configForDelete || {};
+                    item.configForDelete[key] = this.configForDelete[key];
+                  });
+                }
               });
             }
           }
