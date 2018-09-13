@@ -25,8 +25,9 @@ function processGeneratedTree(tree) {
     child.actions = child.checkedActions;
   });
 }
-const moduleAuth = {
-  state: {
+
+function initState() {
+  return {
     location: [],
     authCodes: [],
     checkedKeys: [],
@@ -34,7 +35,10 @@ const moduleAuth = {
     flattenTree: [],
     generatedTree: {},
     flattenGeneratedTree: []
-  },
+  };
+}
+const moduleAuth = {
+  state: initState(),
   mutations: {
     GENERATE_TREE: function(state, flattenTree) {
       state.generatedTree = {};
@@ -47,9 +51,15 @@ const moduleAuth = {
         node.actions = node.checkedActions;
       });
       state.flattenGeneratedTree = flattenGeneratedTree;
+    },
+    REST_AUTH_STATE: function(state) {
+      Object.assign(state, initState());
     }
   },
   actions: {
+    "module-auth:reset": function({ commit }) {
+      commit("REST_AUTH_STATE");
+    },
     "module-auth:fetch-auth": function({ state }, [type, id]) {
       state.location = [type, id];
       const cbs = {

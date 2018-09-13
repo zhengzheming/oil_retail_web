@@ -88,9 +88,13 @@ export default {
           checkedNodes: nodeTree.getCheckedNodes(),
           halfCheckedNodes: nodeTree.getHalfCheckedNodes()
         };
-        this.$store.dispatch("modue-auth:read-only", this.readOnly);
+        if (this.readOnly)
+          this.$store.dispatch("modue-auth:read-only", this.readOnly);
       });
     });
+  },
+  beforeDestroy() {
+    this.$store.dispatch("module-auth:reset");
   },
   methods: {
     handleItemCheckedChange(data, value) {
