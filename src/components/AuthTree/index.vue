@@ -6,6 +6,7 @@
       <el-tree
         ref="nodeTree"
         :data="tree"
+        :read-only="readOnly"
         :expand-on-click-node="false"
         :default-checked-keys="checkedKeys"
         show-checkbox
@@ -33,7 +34,7 @@
               <el-checkbox
                 v-for="action in data.actions"
                 :label="action"
-                :disabled="action.disabled"
+                :disabled="readOnly || action.disabled"
                 :key="action.code">
                 {{ action.name }}
               </el-checkbox>
@@ -88,8 +89,6 @@ export default {
           checkedNodes: nodeTree.getCheckedNodes(),
           halfCheckedNodes: nodeTree.getHalfCheckedNodes()
         };
-        if (this.readOnly)
-          this.$store.dispatch("modue-auth:read-only", this.readOnly);
       });
     });
   },
