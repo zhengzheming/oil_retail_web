@@ -1,4 +1,5 @@
 import { queryList as system } from "./modules/system";
+import { queryList as baseData } from "./modules/baseData";
 export default {
   // 基础数据-物流企业
   logistics: [
@@ -46,7 +47,7 @@ export default {
     }
   ],
   //车辆数据
-  "vehicleData": [
+  vehicleData: [
     {
       label: "物流企业",
       val: ""
@@ -87,43 +88,43 @@ export default {
     }
   ],
   // 企业每日限额
-  'enterpriseDayQuota': [
+  enterpriseDayQuota: [
     {
-      type: 'date',
+      type: "date",
       label: "开始时间",
       val: ""
     },
     {
-      type: 'date',
+      type: "date",
       label: "结束时间",
       val: ""
     },
     {
-      type: 'date',
+      type: "date",
       label: "企业限额编号",
       val: ""
     }
   ],
   // 车辆每日限额
-  'vehicleDayQuota': [
+  vehicleDayQuota: [
     {
-      type: 'date',
+      type: "date",
       label: "开始时间",
       val: ""
     },
     {
-      type: 'date',
+      type: "date",
       label: "结束时间",
       val: ""
     },
     {
-      type: 'date',
+      type: "date",
       label: "车辆限额编号",
       val: ""
     }
   ],
   // 物流企业管理-企业额度
-  "enterpriseQuota": [
+  enterpriseQuota: [
     {
       label: "物流公司",
       val: ""
@@ -149,7 +150,7 @@ export default {
     }
   ],
   // 物流企业管理-企业可用额度收支管理
-  "availableCredit": [
+  availableCredit: [
     {
       type: "slt",
       label: "收支类型",
@@ -181,19 +182,19 @@ export default {
     },
     {
       label: "logistics_id",
-      val:'',
-      hide:true
+      val: "",
+      hide: true
     }
   ],
-  "dayCredit":[
+  dayCredit: [
     {
       label: "logistics_id",
-      val:'',
-      hide:true
+      val: "",
+      hide: true
     }
   ],
   // 物流企业管理-车辆容量
-  "vehicleCapacity": [
+  vehicleCapacity: [
     {
       label: "物流企业",
       val: ""
@@ -203,5 +204,6 @@ export default {
       val: ""
     }
   ],
-  ...system
+  ...system,
+  ...baseData
 };

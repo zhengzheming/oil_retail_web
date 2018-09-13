@@ -15,6 +15,11 @@ export const queryList = {
       type: "slt",
       val: "",
       getOptions: fetchRoles,
+      transformer: data =>
+        data.map(role => ({
+          label: role.name,
+          val: role.role_id
+        })),
       data: []
     },
     {
@@ -22,6 +27,11 @@ export const queryList = {
       type: "slt",
       val: "",
       getOptions: fetchRoles,
+      transformer: data =>
+        data.map(role => ({
+          label: role.name,
+          val: role.role_id
+        })),
       data: []
     }
   ],
