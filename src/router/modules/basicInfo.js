@@ -4,6 +4,7 @@ import logisticsDetail from "@/views/basicInfo/logisticsEnterprise/detail";
 import logisticsEdit from "@/views/basicInfo/logisticsEnterprise/edit";
 import vehicleDataDetail from "@/views/basicInfo/vehicleData/detail";
 import placeholderView from "../placeholderView";
+import oilCompanyCreate from "@/views/basicInfo/oilCompany/create";
 export default {
   path: "/basic-info",
   name: "basic-info",
@@ -62,7 +63,7 @@ export default {
         {
           path: "create",
           name: "oil-company-create",
-          component: commonList,
+          component: oilCompanyCreate,
           meta: {
             title: "新增油企"
           }

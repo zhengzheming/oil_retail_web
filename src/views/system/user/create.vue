@@ -114,9 +114,9 @@
         <el-row :gutter="$customConfig.colGutter">
           <el-col :span="24">
             <el-form-item label="权限变更">
-              <el-checkbox 
-                v-model="form.authFollowRole" 
-                true-label="1" 
+              <el-checkbox
+                v-model="form.authFollowRole"
+                true-label="1"
                 false-label="0">根据所选角色变更用户权限，否则保持用户权限不变</el-checkbox>
             </el-form-item>
           </el-col>
@@ -182,7 +182,7 @@ export default {
         email: "",
         password: "",
         cpassword: "",
-        authFollowRole: false
+        authFollowRole: "0"
       },
       ui: {
         roleOptions: [],

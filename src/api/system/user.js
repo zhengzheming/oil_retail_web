@@ -19,7 +19,7 @@ export function createSystemUser({
     data: {
       user_id: userId,
       user_name: username,
-      password: md5(password),
+      password: password && md5(password),
       name: realName,
       phone,
       email,

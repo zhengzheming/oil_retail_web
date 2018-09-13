@@ -11,6 +11,7 @@
           <el-col :span="12">
             <el-form-item
               label="企业名称"
+              prop="name"
             >
               <el-input v-model="form.name"/>
             </el-form-item>
@@ -86,7 +87,6 @@
                   :label="item.label"
                   :value="item.value"/>
               </el-select>
-              <el-input v-model="form.ownership"/>
             </el-form-item>
           </el-col>
         </el-row>
@@ -95,7 +95,11 @@
             <el-form-item
               label="成立日期"
             >
-              <el-input v-model="form.buildDate"/>
+              <el-date-picker
+                v-model="form.buildDate"
+                class="form-control"
+                type="date"
+                placeholder="选择日期"/>
             </el-form-item>
           </el-col>
         </el-row>
