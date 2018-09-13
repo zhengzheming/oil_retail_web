@@ -1,6 +1,8 @@
 // 先从当前模块搜索， 再从通用模块搜索
+import camelcase from "camelcase";
 export function lookupInDict(route, field, value) {
   if (!field || !value) return;
+  field = camelcase(field);
   const dict = {
     "system-user": {
       status: {
