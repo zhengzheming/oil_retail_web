@@ -1,68 +1,65 @@
-import { createSystemRole } from "@/api/system/role";
-import { systemRoleFieldMap } from "@/services/fieldMap";
-import { fetchUserRoleDetail } from "@/api/system/role";
+import { createOilCompany } from "@/api/basicInfo/oilCompany";
+import { oilCompanyFieldMap } from "@/services/fieldMap";
+import { fetchOilCompanyDetail } from "@/api/basicInfo/oilCompany";
 import { Message } from "element-ui";
 import router from "@/router/index";
 const oilCompany = {
   state: {
-    systemRoleCreate: {
+    create: {
       form: {},
       formRef: null
     },
-    systemRoleDetail: {
+    detail: {
       form: {}
     }
   },
   mutations: {
-    UPDATE_ROLE_DETAIL(state, detail) {
-      state.systemRoleDetail.form = $utils.renameKeys(
-        systemRoleFieldMap,
-        detail
-      );
+    UPDATE_OIL_COMPANY_DETAIL(state, detail) {
+      state.detail.form = $utils.renameKeys(oilCompanyFieldMap, detail);
     }
   },
   actions: {
-    "system-role-list:create": function() {
-      router.push({ name: "system-role-create" });
+    "oil-company-list:create": function() {
+      router.push({ name: "oil-company-create" });
     },
-    "system-role-create:save": function({ state, rootState }) {
-      const formRef = state.systemRoleCreate.formRef;
-      const form = state.systemRoleCreate.form;
+    "oil-company-create:save": function({ state, rootState }) {
+      const formRef = state.create.formRef;
+      const form = state.create.form;
       if (!formRef) return;
       formRef.validate(valid => {
         if (valid) {
           let data = {
             ...form
           };
-          createSystemRole(data).then(() => {
+          console.log(createOilCompany);
+          createOilCompany(data).then(() => {
             const infoMap = {
-              "system-role-create": "添加角色成功",
-              "system-role-modify": "修改角色成功"
+              "oil-company-create": "添加油站成功",
+              "oil-company-modify": "修改油站成功"
             };
             Message.success(infoMap[rootState.route.name]);
-            router.push({ name: "system-role-list" });
+            router.push({ name: "oil-company-list" });
           });
         }
       });
     },
-    "system-role-modify:save": function({ dispatch }) {
-      dispatch("system-role-create:save");
+    "oil-company-modify:save": function({ dispatch }) {
+      dispatch("oil-company-create:save");
     },
-    "system-role-create:update-form": function({ state }, { form, formRef }) {
-      state.systemRoleCreate.form = form;
-      state.systemRoleCreate.formRef = formRef;
+    "oil-company-create:update-form": function({ state }, { form, formRef }) {
+      state.create.form = form;
+      state.create.formRef = formRef;
     },
-    "system-role-detail:fetch-form": function({ commit, rootState, state }) {
-      return fetchUserRoleDetail(rootState.route.query.roleId).then(res => {
-        commit("UPDATE_ROLE_DETAIL", res.data);
-        return state.systemRoleDetail.form;
-      });
+    "oil-company-detail:fetch-form": function({ commit, rootState, state }) {
+      return fetchOilCompanyDetail(rootState.route.query.companyId).then(
+        res => {
+          commit("UPDATE_OIL_COMPANY_DETAIL", res.data);
+          return state.detail.form;
+        }
+      );
     },
-    "system-role-detail:modify": function({ rootState }) {
-      router.push({ name: "system-role-modify", query: rootState.route.query });
-    },
-    "system-role-auth:save": function({ dispatch }) {
-      dispatch("module-auth:save");
+    "oil-company-detail:modify": function({ rootState }) {
+      router.push({ name: "oil-company-modify", query: rootState.route.query });
     }
   }
 };

@@ -13,6 +13,7 @@ import "./permission"; // permission control
 import customConfig from "@/services/customConfig";
 import * as $utils from "@/utils/helper";
 import { lookupInDict } from "@/services/filter";
+import verify from "@/services/verify";
 
 Vue.config.productionTip = false;
 Object.defineProperty(window, "_", { value: _ });
@@ -21,6 +22,7 @@ Object.defineProperty(Vue.prototype, "$log", { value: console.log });
 Object.defineProperty(Vue.prototype, "$customConfig", { value: customConfig });
 Object.defineProperty(window, "$utils", { value: $utils });
 Object.defineProperty(Vue.prototype, "$lookupInDict", { value: lookupInDict });
+Object.defineProperty(window, "$verify", { value: verify });
 
 sync(store, router);
 Vue.use(Element);

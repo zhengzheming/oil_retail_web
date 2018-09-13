@@ -10,7 +10,7 @@
         <el-row :gutter="$customConfig.colGutter">
           <el-col :span="12">
             <el-form-item
-              label="企业名称"
+              :label="labels['name']"
               prop="name"
             >
               <el-input v-model="form.name"/>
@@ -18,7 +18,8 @@
           </el-col>
           <el-col :span="12">
             <el-form-item
-              label="企业简称"
+              :label="labels['shortName']"
+              prop="shortName"
             >
               <el-input v-model="form.shortName"/>
             </el-form-item>
@@ -27,14 +28,15 @@
         <el-row :gutter="$customConfig.colGutter">
           <el-col :span="12">
             <el-form-item
-              label="纳税人识别号"
+              :label="labels['taxCode']"
+              prop="taxCode"
             >
               <el-input v-model="form.taxCode"/>
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item
-              label="法人代表"
+              :label="labels['corporate']"
             >
               <el-input v-model="form.corporate"/>
             </el-form-item>
@@ -43,23 +45,25 @@
         <el-row :gutter="$customConfig.colGutter">
           <el-col :span="12">
             <el-form-item
-              label="地址"
+              :label="labels['address']"
             >
               <el-input v-model="form.address"/>
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item
-              label="联系电话"
+              :label="labels['contactPhone']"
+              prop="contactPhone"
             >
-              <el-input v-model="form.contractPhone"/>
+              <el-input v-model="form.contactPhone"/>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="$customConfig.colGutter">
           <el-col :span="12">
             <el-form-item
-              label="企业状态"
+              :label="labels['status']"
+              prop="status"
             >
               <el-select
                 v-model="form.status"
@@ -75,7 +79,7 @@
           </el-col>
           <el-col :span="12">
             <el-form-item
-              label="企业所有制"
+              :label="labels['ownership']"
             >
               <el-select
                 v-model="form.ownership"
@@ -93,7 +97,7 @@
         <el-row :gutter="$customConfig.colGutter">
           <el-col :span="12">
             <el-form-item
-              label="成立日期"
+              :label="labels['buildDate']"
             >
               <el-date-picker
                 v-model="form.buildDate"
@@ -106,7 +110,7 @@
         <el-row>
           <el-col :span="24">
             <el-form-item
-              label="备注"
+              :label="labels['remark']"
             >
               <el-input
                 :rows="2"
@@ -125,13 +129,50 @@
 export default {
   name: "OilCompanyCreate",
   data() {
+    const labels = {
+      name: "企业名称",
+      shortName: "企业简称",
+      taxCode: "纳税人识别号",
+      corporate: "法人代表",
+      address: "地址",
+      contactPhone: "联系电话",
+      status: "企业状态",
+      ownership: "企业所有制",
+      buildDate: "成立日期",
+      remark: "备注"
+    };
     return {
+      labels,
       rules: {
-        name: [{ required: true, message: "请输入企业名称", trigger: "blur" }]
+        name: [
+          {
+            required: true,
+            message: $verify.getErrorMessage("required", labels.name)
+          }
+        ],
+        shortName: [
+          {
+            required: true,
+            message: $verify.getErrorMessage("required", labels.shortName)
+          }
+        ],
+        taxCode: [
+          {
+            required: true,
+            message: $verify.getErrorMessage("required", labels.taxCode)
+          }
+        ],
+        status: [
+          {
+            required: true,
+            message: $verify.getErrorMessage("requiredSelect", labels.status)
+          }
+        ],
+        contactPhone: [{ validator: $verify.getValidator("phone") }]
       },
       form: {},
       ui: {
-        status: [
+        statusOptions: [
           {
             value: "1",
             label: "启用"
