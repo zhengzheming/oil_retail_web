@@ -97,11 +97,11 @@ const moduleAuth = {
       child.checkedActions = child.actions.filter(action =>
         actionCodes.includes(action.code)
       );
-      const checkedCount = child.checkedActions;
+      const checkedCount = child.checkedActions.length;
       Vue.set(
         child,
         "allChecked",
-        checkedCount.length === child.actions.length
+        child.actions.length > 0 ? checkedCount === child.actions.length : false
       );
       Vue.set(
         child,
