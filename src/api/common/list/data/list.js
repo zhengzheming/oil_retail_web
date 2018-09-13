@@ -128,9 +128,8 @@ export default {
         logistics_id
       }
     };
-    console.log(data)
     return request({
-      url: "/webAPI/LogisticsDailyQuotaLog/getByLogisticsId",
+      url: "/webAPI/logisticsDailyQuotaLog/getByLogisticsId",
       method: "post",
       data
     });

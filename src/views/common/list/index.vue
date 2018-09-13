@@ -5,6 +5,7 @@
       :page-size="pageSize"
       :page-total="pageTotal"
       :query-list="queryList"
+      :item-list="itemList"
       :table-header="tableHeader"
       :table-content="tableContent"
       :has-action="hasAction"
@@ -23,12 +24,14 @@
 // @ is an alias to /src
 import apiList from "@/api/common/list";
 import queryList from "./data/queryList";
+import itemList from "./data/itemList";
 import tableHeader from "./data/tableHeader";
 import editPath from "./data/editPath";
 import detailPath from "./data/detailPath";
 import configForAuth from "./data/configForAuth";
 import configForDelete from "./data/delete";
-import hasAction from "./data/hasAction";
+import hasAction from "./data/hasAction";   //列表是否有操作栏:默认有,没有则需配置
+import hasExport from "./data/hasExport";   //是否有导出功能
 
 export default {
   data() {
@@ -38,12 +41,14 @@ export default {
       pageSize: 10,
       pageTotal: 0,
       queryList: queryList[pathName] || [],
+      itemList: itemList[pathName] || {},
       tableHeader: tableHeader[pathName] || {},
       editPath: editPath[pathName] || {},
       detailPath: detailPath[pathName] || {},
       configForDelete: configForDelete[pathName] || {},
       configForAuth: configForAuth[pathName] || {},
       hasAction: hasAction[pathName],
+      hasExport: hasExport[pathName],
       listApi: apiList.list[pathName],
       editApi: apiList.edit[pathName],
       detailApi: apiList.detail[pathName],
@@ -69,11 +74,19 @@ export default {
           }
           params.push(item.val);
         });
+      // 如果有导出功能则执行以下
+      if(this.hasExport){
+        this.$store.dispatch(`${this.$route.name}:exportInit`,params)
+      }
       this.listApi &&
         this.listApi(...params).then(res => {
           if (res.state == 0) {
             this.tableContent = $utils.getDeepKey(res, "data.data");
             this.pageTotal = parseInt($utils.getDeepKey(res, "data.totalRows"));
+            if(this.itemList.data){
+              console.log(123)
+              this.itemList.data = res.extra;
+            }
             if (this.tableContent.length) {
               this.tableContent.forEach(item => {
                 // 链接加参数

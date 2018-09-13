@@ -5,7 +5,7 @@
             <label style="display:inline-block;width:120px;">行驶证照片:</label>
             <div style="display:flex;">
                 <div class="img-wrap" v-for="item of imgList" :key="item.id">
-                    <img src="item.file_url" alt="">
+                    <img :src="item.url" alt="">
                 </div>
             </div>
         </div>
@@ -63,7 +63,7 @@ export default {
                 if(res.state === 0) {
                     res.data.validDate = res.data.start_date + '~' + res.data.end_date;
                     this.detailData.data = $utils.getDeepKey(res,'data')
-                    this.imgList = $utils.getDeepKey(res,'files') || []
+                    this.imgList = $utils.getDeepKey(res,'data.files') || []
                 }  
             })
             .catch(err => {

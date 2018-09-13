@@ -5,6 +5,7 @@ import permission from "./modules/permission";
 import user from "./modules/user";
 import system from "./modules/system/index";
 import logisticsEnterprise from "./modules/basicInfo/logisticsEnterprise/index";
+import logisticsManage from "./modules/logisticsManage/index";
 import getters from "./getters";
 
 Vue.use(Vuex);
@@ -15,7 +16,8 @@ const store = new Vuex.Store({
     permission,
     user,
     system,
-    logisticsEnterprise
+    logisticsEnterprise,
+    logisticsManage
   },
   getters
 });

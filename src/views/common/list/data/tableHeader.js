@@ -152,37 +152,37 @@ export default {
   },
   // 物流企业管理-企业额度-企业可用额度收支管理
   "availableCredit": {
-    logistics_id: {
+    create_time: {
       label: "时间",
-      width: "120"
+      width: "200"
     },
-    name: {
+    quota: {
       label: "额度明细/元",
       width: "200"
     },
-    out_status_name: {
+    log_id: {
       label: "编号",
       width: "120"
     },
-    status_name: {
+    category_name: {
       label: "收支类型"
     }
   },
   // 物流企业管理-企业额度-企业当日可用额度收支管理
   "dayCredit": {
-    logistics_id: {
+    create_time: {
       label: "时间",
-      width: "120"
+      width: "200"
     },
-    name: {
+    quota: {
       label: "额度明细/元",
       width: "200"
     },
-    out_status_name: {
+    log_id: {
       label: "编号",
       width: "120"
     },
-    status_name: {
+    category_name: {
       label: "收支类型"
     }
   },
