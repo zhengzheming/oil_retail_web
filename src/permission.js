@@ -21,17 +21,7 @@ router.beforeEach((to, from, next) => {
       store
         .dispatch("GetUserInfo")
         .then(() => {
-          const module = store.getters.authCodes.find(
-            obj => obj.code == to.name
-          );
-          const hasListAuth =
-            !!module && module.actions.some(action => action.code == "index");
-          console.log(module, to.name);
-          if (to.name === "home" || (module && hasListAuth)) {
-            next();
-          } else {
-            next("/401");
-          }
+          next();
         })
         .catch(err => {
           console.log(err);
