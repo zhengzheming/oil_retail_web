@@ -10,7 +10,7 @@ const role = {
     'systemModule:create':function(){
       router.push({ name: "addModule" });
     },
-    "moduleEdit:save": function({ state, rootState }) {
+    "moduleEdit:save": function({ state,dispatch }) {
       const formRef = state.formRef;
       const form = state.form;
       if (!formRef) return;
@@ -22,6 +22,7 @@ const role = {
           save(data)
             .then(() => {
               Message.success("保存成功");
+              dispatch("updateSidebarItems");
               router.push({ name: "systemModule" });
             })
             .catch(err => {});

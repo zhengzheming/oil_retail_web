@@ -166,7 +166,7 @@ export default {
       label: "额度明细/元",
       width: "200"
     },
-    log_id: {
+    relation_id: {
       label: "编号",
       width: "120"
     },
@@ -184,7 +184,7 @@ export default {
       label: "额度明细/元",
       width: "200"
     },
-    log_id: {
+    relation_id: {
       label: "编号",
       width: "120"
     },
