@@ -23,3 +23,8 @@ export const oilCompanyFieldMap = {
   contact_phone: "contactPhone",
   build_date: "buildDate"
 };
+
+export const oilGoodsFieldMap = {
+  goods_id: "goodsId",
+  order_index: "orderIndex"
+};

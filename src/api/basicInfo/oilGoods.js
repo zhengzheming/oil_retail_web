@@ -1,6 +1,6 @@
 import request from "@/utils/request";
 
-export const createOilCompany = ({
+export const createOilGoods = ({
   companyId,
   name,
   shortName,
@@ -33,7 +33,7 @@ export const createOilCompany = ({
     }
   });
 
-export const fetchOilCompanyDetail = companyId =>
+export const fetchOilGoodsDetail = companyId =>
   request({
     url: "/webAPI/oilCompany/detail",
     method: "GET",

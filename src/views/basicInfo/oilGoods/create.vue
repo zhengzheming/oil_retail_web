@@ -125,10 +125,9 @@ export default {
   },
   created() {
     this.initFiles();
-    if (this.$route.query.companyId) {
+    if (this.$route.query.goodsId) {
       this.$store.dispatch("oil-goods-detail:fetch-form").then(detail => {
         this.form = detail;
-        if (!this.form.roles) this.form.roles = [];
         this.$nextTick(function() {
           this.$refs.form.clearValidate();
         });
@@ -140,63 +139,6 @@ export default {
       form: this.form,
       formRef: this.$refs["form"]
     });
-  },
-  methods: {
-    initFiles() {
-      function filterFiles(files, name) {
-        const type = {
-          paperwork: 2,
-          others: 1
-        };
-        return files.filter(file => file.type == type[name]).map(file => ({
-          name: file.name,
-          url: file.url,
-          type: type[name]
-        }));
-      }
-
-      if (!Array.isArray(this.form.files)) return [];
-      const attachPaperwork = filterFiles(this.form.files, "paperwork");
-      const attachOthers = filterFiles(this.form.files, "others");
-      this.ui.attachPaperwork = attachPaperwork;
-      this.ui.attachOthers = attachOthers;
-    },
-    cacheFiles(type, fileList) {
-      const map = {
-        paperwork: "attachPaperwork",
-        others: "attachOthers"
-      };
-      this.ui[map[type]] = fileList.map(
-        file => (file.response ? file.response.data : file)
-      );
-    },
-    handleRemove(type, file, fileList) {
-      this.cacheFiles(type, fileList);
-      this.addToForm(type, fileList);
-    },
-    handleSuccess(type, res, file, fileList) {
-      if (res.state != 0) {
-        fileList.pop();
-        return this.handleError(res.data);
-      }
-      this.cacheFiles(type, fileList);
-      this.addToForm(type, fileList);
-    },
-    handleError(err) {
-      const message = err ? `上传失败: ${err}` : "上传失败";
-      this.$message.error(message);
-    },
-    addToForm(type, fileList) {
-      const curFiles = fileList.map(
-        file => (file.response ? file.response.data : file)
-      );
-      if (type === "paperwork") {
-        this.form.files = [...curFiles, ...this.ui.attachOthers];
-      }
-      if (type === "others") {
-        this.form.files = [...curFiles, ...this.ui.attachPaperwork];
-      }
-    }
   }
 };
 </script>
