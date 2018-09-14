@@ -134,12 +134,11 @@ export default {
   name: "SystemUserCreate",
   data() {
     const validatePass = (rule, value, callback) => {
+      console.log(value, this.form.cpassword);
       if (value === "" && this.form.cpassword !== "") {
         return callback(new Error("请输入密码"));
       }
-      if (this.form.cpassword !== "") {
-        this.$refs.form.validateField("cpassword");
-      }
+      this.$refs.form.validateField("cpassword");
       callback();
     };
     const validatePass2 = (rule, value, callback) => {

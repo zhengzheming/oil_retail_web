@@ -71,7 +71,7 @@ export default {
         {
           path: "modify",
           name: "oil-company-modify",
-          component: commonList,
+          component: oilCompanyCreate,
           meta: {
             title: "编辑油企"
           }
