@@ -267,11 +267,10 @@ export default {
     }
   },
   created() {
-    this.initFiles();
     if (this.$route.query.companyId) {
       this.$store.dispatch("oil-company-detail:fetch-form").then(detail => {
         this.form = detail;
-        if (!this.form.roles) this.form.roles = [];
+        this.initFiles();
         this.$nextTick(function() {
           this.$refs.form.clearValidate();
         });
