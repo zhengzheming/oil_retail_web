@@ -9,32 +9,39 @@
       </el-col>
       <el-col :span="12">
         <form-control-static
-          :text="form.companyId"
+          :text="form.companyName"
           :title="labels.companyId"/>
       </el-col>
     </el-row>
     <el-row :gutter="$customConfig.colGutter">
       <el-col :span="12">
         <form-control-static
-          :text="form.taxCode"
-          :title="labels.taxCode"/>
+          :text="city"
+          :title="labels.city"/>
       </el-col>
-      <el-col :span="12">
-        <form-control-static
-          :text="form.corporate"
-          :title="labels.corporate"/>
-      </el-col>
-    </el-row>
-    <el-row :gutter="$customConfig.colGutter">
       <el-col :span="12">
         <form-control-static
           :text="form.address"
           :title="labels.address"/>
       </el-col>
+    </el-row>
+    <el-row :gutter="$customConfig.colGutter">
+      <el-col :span="12">
+        <form-control-static
+          :text="form.contactPerson"
+          :title="labels.contactPerson"/>
+      </el-col>
       <el-col :span="12">
         <form-control-static
           :text="form.contactPhone"
           :title="labels.contactPhone"/>
+      </el-col>
+    </el-row>
+    <el-row :gutter="$customConfig.colGutter">
+      <el-col :span="12">
+        <form-control-static
+          :text="longitudeAndLatitude"
+          :title="labels.longitudeAndLatitude"/>
       </el-col>
     </el-row>
     <el-row :gutter="$customConfig.colGutter">
@@ -89,6 +96,12 @@ export default {
     attachOthers() {
       if (!Array.isArray(this.form.files)) return [];
       return this.filterFiles(this.form.files, "others");
+    },
+    longitudeAndLatitude() {
+      return String(this.form.longitude + " / " + this.form.latitude);
+    },
+    city() {
+      return this.form.provinceName + " " + this.form.cityName;
     }
   },
   created() {
@@ -96,7 +109,7 @@ export default {
     if (query.applyId) {
       this.$store.dispatch("oil-station-detail:fetch-form");
     }
-    if (query.stationid) {
+    if (query.stationId) {
       this.$store.dispatch("oil-station-checked-detail:fetch-form");
     }
   },

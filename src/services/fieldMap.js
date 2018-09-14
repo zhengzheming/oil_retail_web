@@ -32,6 +32,9 @@ export const oilGoodsFieldMap = {
 export const oilStationFieldMap = {
   station_id: "stationId",
   company_id: "companyId",
+  company_name: "companyName",
+  province_name: "provinceName",
+  city_name: "cityName",
   contact_person: "contactPerson",
   contact_phone: "contactPhone"
 };

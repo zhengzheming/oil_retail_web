@@ -8,6 +8,7 @@ import oilCompanyCreate from "@/views/basicInfo/oilCompany/create";
 import oilCompanyDetail from "@/views/basicInfo/oilCompany/detail";
 import oilGoodsCreate from "@/views/basicInfo/oilGoods/create";
 import oilGoodsDetail from "@/views/basicInfo/oilGoods/detail";
+import oilStationDetail from "@/views/oilStationManage/oilStation/detail";
 export default {
   path: "/basic-info",
   name: "basic-info",
@@ -131,6 +132,7 @@ export default {
     {
       path: "oil-station",
       component: placeholderView,
+      name: "oil-station-checked",
       children: [
         {
           path: "index",
@@ -138,6 +140,14 @@ export default {
           component: commonList,
           meta: {
             title: "油站数据"
+          }
+        },
+        {
+          path: "detail",
+          name: "oil-station-checked-detail",
+          component: oilStationDetail,
+          meta: {
+            title: "油站详情"
           }
         }
       ]

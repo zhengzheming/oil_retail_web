@@ -11,20 +11,8 @@ export const queryList = {
       label: "企业状态",
       type: "slt",
       val: "",
-      data: [
-        {
-          label: "全部",
-          val: ""
-        },
-        {
-          label: "启用",
-          val: "1"
-        },
-        {
-          label: "未启用",
-          val: "0"
-        }
-      ]
+      field: "oil_company_status",
+      data: []
     }
   ],
   "oil-goods-list": [
@@ -42,13 +30,15 @@ export const queryList = {
       label: "所属企业",
       type: "slt",
       val: "",
-      data: "oil_company_id_name_map"
+      field: "oil_company_id_name_map",
+      data: []
     },
     {
       label: "油站状态",
       type: "slt",
       val: "",
-      data: "oil_station_status"
+      field: "oil_station_status",
+      data: []
     },
     {
       label: "油站编号",
@@ -152,7 +142,7 @@ export const detailPath = {
     ]
   },
   "oil-station-checked-list": {
-    pathName: "oil-station-detail",
+    pathName: "oil-station-checked-detail",
     query: [
       {
         name: "stationId",
