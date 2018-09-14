@@ -33,3 +33,10 @@ export function del(id) {
     params
   });
 }
+
+export function getMap(){
+  return request({
+    url: "/admin/common/dropDownListMap",
+    method: "get"
+  })
+}

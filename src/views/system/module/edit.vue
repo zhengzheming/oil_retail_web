@@ -92,9 +92,9 @@
                 placeholder="请选择">
                 <el-option
                   v-for="(item,key) in module_is_external"
-                  :key="item"
-                  :label="item"
-                  :value="key+''"/>
+                  :key="key"
+                  :label="item.value"
+                  :value="item.id+''"/>
               </el-select>
             </el-form-item>
           </el-col>
@@ -109,9 +109,9 @@
                 placeholder="请选择">
                 <el-option
                   v-for="(item,key) in module_status"
-                  :key="item"
-                  :label="item"
-                  :value="key+''"/>
+                  :key="key"
+                  :label="item.value"
+                  :value="item.id+''"/>
               </el-select>
             </el-form-item>
           </el-col>
@@ -124,9 +124,9 @@
                 placeholder="请选择">
                 <el-option
                   v-for="(item,key) in module_is_public"
-                  :key="item"
-                  :label="item"
-                  :value="key+''"/>
+                  :key="key"
+                  :label="item.value"
+                  :value="item.id+''"/>
               </el-select>
             </el-form-item>
           </el-col>
@@ -141,9 +141,9 @@
                 placeholder="请选择">
                 <el-option
                   v-for="(item,key) in module_is_menu"
-                  :key="item"
-                  :label="item"
-                  :value="key+''"/>
+                  :key="key"
+                  :label="item.value"
+                  :value="item.id+''"/>
               </el-select>
             </el-form-item>
           </el-col>
@@ -160,7 +160,7 @@
 </template>
 
 <script>
-import { list, detail } from "@/api/system/module-manage";
+import { list, detail ,getMap } from "@/api/system/module-manage";
 export default {
   data() {
     const textMap = {
@@ -246,27 +246,33 @@ export default {
             str = str.substring(0, str.length - 1);
           }
           this.actions_bind = str;
-          this.parent_id_bind = $utils.getDeepKey(res, "data.parent_name");
+          this.parent_id_bind = $utils.getDeepKey(res, "data.parent_name") || "根目录";
         }
       });
     } else {
       this.getList();
     }
-    let arr = [
-      "module_status",
-      "module_is_public",
-      "module_is_external",
-      "module_is_menu"
-    ];
-    arr.forEach(item => {
-      this[item] = $utils.getMap()[item];
-    });
+    getMap()
+    .then(res => {
+      if(res.state == 0){
+        let arr = [
+          "module_status",
+          "module_is_public",
+          "module_is_external",
+          "module_is_menu"
+        ];
+        arr.forEach(item => {
+          this[item] = res.data[item];
+        });
+      }
+    })
   },
   methods: {
     getList() {
       list().then(res => {
-        if (res.state == 0) {
-          this.treeData = $utils.getDeepKey(res, "data.children");
+        if (res.state == 0 && res.data) {
+          res.data.label = '根目录';
+          this.treeData = [res.data];
           if (this.$route.name == "moduleEdit") {
             this.filterModule(this.treeData);
           }
