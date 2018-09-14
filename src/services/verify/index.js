@@ -1,7 +1,8 @@
 import errorMessageTemplate from "./errorMessageTemplate";
-import { validatePhone } from "./validators";
+import { validatePhone, validatePosInt } from "./validators";
 const validators = {
-  phone: validatePhone
+  phone: validatePhone,
+  posInt: validatePosInt
 };
 
 function createMacroMap(macro, value) {

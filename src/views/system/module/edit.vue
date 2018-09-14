@@ -1,5 +1,7 @@
 <template>
-  <div class="system-user__create" @click="showTree = false">
+  <div 
+    class="system-user__create" 
+    @click="showTree = false">
     <card>
       <span slot="title">修改系统模块</span>
       <el-form
@@ -28,17 +30,23 @@
             :span="12">
             <el-form-item label="上级模块">
               <div @click.stop="showTree = true">
-                <p @click.stop="showTree = !showTree" style="cursor: default;height: 32px; line-height: 32px;border: 1px solid #e6e6e6;
-                  border-radius: 3px;width: 100%;background-color:#f7f7f7;color:#666;padding-left:15px;">{{parent_id_bind}}</p>
-                <div v-show="showTree" style="position: absolute;width: 100%;left: 0;top: 32px;z-index: 1;background: #f7f7f7;">
+                <p 
+                  style="cursor: default;height: 32px; line-height: 32px;border: 1px solid #e6e6e6;
+                  border-radius: 3px;width: 100%;background-color:#f7f7f7;color:#666;padding-left:15px;" 
+                  @click.stop="showTree = !showTree">{{ parent_id_bind }}</p>
+                <div 
+                  v-show="showTree" 
+                  style="position: absolute;width: 100%;left: 0;top: 32px;z-index: 1;background: #f7f7f7;">
                   <el-tree
-                    style="background: #f7f7f7;border: 1px solid #e6e6e6;border-radius: 3px;"
                     :data="treeData"
+                    :expand-on-click-node="false"
+                    style="background: #f7f7f7;border: 1px solid #e6e6e6;border-radius: 3px;"
                     node-key="id"
-                    @node-click="handleNodeClick"
-                    :expand-on-click-node="false">
-                    <span class="custom-tree-node" slot-scope="{ node, data }">
-                        <span style="display:inline-block;width:350px;">{{ node.label }}</span>
+                    @node-click="handleNodeClick">
+                    <span 
+                      slot-scope="{ node, data }" 
+                      class="custom-tree-node">
+                      <span style="display:inline-block;width:350px;">{{ node.label }}</span>
                     </span>
                   </el-tree>
                 </div>
@@ -160,17 +168,17 @@ export default {
       showTree: false,
       treeData: [],
       updateEventName: {
-        moduleEdit: 'moduleEdit:update-form',
-        addModule: 'addModule:update-form'
+        moduleEdit: "moduleEdit:update-form",
+        addModule: "addModule:update-form"
       },
-      actions_bind:'',
-      parent_id_bind: '',
+      actions_bind: "",
+      parent_id_bind: "",
       rules: {
         name: [{ required: true, message: "请输入模块名称", trigger: "blur" }],
-        code: { required: true, message: "请输入权限码", trigger: "blur" },
+        code: { required: true, message: "请输入权限码", trigger: "blur" }
       },
       form: {
-        id:"",
+        id: "",
         name: "",
         icon: "",
         system_id: "",
@@ -179,11 +187,11 @@ export default {
         actions: [],
         page_url: "",
         order_index: "",
-        is_external: '',
-        status: '',
-        is_public: '',
-        is_menu: '',
-        remark: "",
+        is_external: "",
+        status: "",
+        is_public: "",
+        is_menu: "",
+        remark: ""
       },
       module_status: [],
       module_is_public: [],
@@ -202,13 +210,14 @@ export default {
       immediate: true,
       deep: true
     },
-    actions_bind: function(val){
-      let arr = val.split(',');
+    actions_bind: function(val) {
+      let arr = val.split(",");
+      this.form.actions = [];
       arr.forEach(item => {
         this.form.actions.push({
-          name:item.split('|')[0],
-          code:item.split('|')[1]
-        })
+          name: item.split("|")[0],
+          code: item.split("|")[1]
+        });
       });
     }
   },
@@ -217,55 +226,59 @@ export default {
       form: this.form,
       formRef: this.$refs["form"]
     });
-    if(this.$route.name == 'moduleEdit') {
-      detail(this.$route.query.id)
-      .then(res => {
+    if (this.$route.name == "moduleEdit") {
+      detail(this.$route.query.id).then(res => {
         this.getList();
-        if(res.state == 0){
+        if (res.state == 0) {
           this.form = res.data;
-          let actions = $utils.getDeepKey(res,'data.actions');
-          let str = '';
+          let actions = $utils.getDeepKey(res, "data.actions");
+          let str = "";
           // 对返回的actions做格式转换
-          var str = ''
+          var str = "";
           actions.forEach(item => {
-            str += item.name + '|' + item.code + ','
-          })
-          if(str[str.length-1] == ','){
-            str = str.substring(0,str.length-1)
+            str += item.name + "|" + item.code + ",";
+          });
+          if (str[str.length - 1] == ",") {
+            str = str.substring(0, str.length - 1);
           }
           this.actions_bind = str;
-          this.parent_id_bind = $utils.getDeepKey(res,'data.parent_name');
+          this.parent_id_bind = $utils.getDeepKey(res, "data.parent_name");
         }
-      })
-    }else{
+      });
+    } else {
       this.getList();
-    };
-    let arr = ['module_status','module_is_public','module_is_external','module_is_menu']
+    }
+    let arr = [
+      "module_status",
+      "module_is_public",
+      "module_is_external",
+      "module_is_menu"
+    ];
     arr.forEach(item => {
-      this[item] = $utils.getMap()[item]
+      this[item] = $utils.getMap()[item];
     });
   },
   methods: {
     getList() {
       list().then(res => {
         if (res.state == 0) {
-          this.treeData = $utils.getDeepKey(res,'data.children');
-          if(this.$route.name == 'moduleEdit') {
+          this.treeData = $utils.getDeepKey(res, "data.children");
+          if (this.$route.name == "moduleEdit") {
             this.filterModule(this.treeData);
           }
         }
       });
     },
-    filterModule(arr){
-      if(Array.isArray(arr)){
-        arr.forEach((item,key) => {
-          if(item.id == this.form.id){
-            arr.splice(key,1)
+    filterModule(arr) {
+      if (Array.isArray(arr)) {
+        arr.forEach((item, key) => {
+          if (item.id == this.form.id) {
+            arr.splice(key, 1);
           }
-          if(item.children && item.children.length){
-            this.filterModule(item.children)
+          if (item.children && item.children.length) {
+            this.filterModule(item.children);
           }
-        })
+        });
       }
     },
     handleNodeClick(data) {
