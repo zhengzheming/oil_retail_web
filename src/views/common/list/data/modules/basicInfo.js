@@ -81,17 +81,17 @@ export const tableHeader = {
     }
   },
   "oil-station-checked-list": {
-    user_id: {
+    station_id: {
       label: "油站编号",
       width: "100px"
     },
-    user_name: {
+    name: {
       label: "油站名称"
     },
-    name: {
+    company_name: {
       label: "所属企业"
     },
-    province_name: {
+    province: {
       label: "所属省份"
     },
     status_name: {
