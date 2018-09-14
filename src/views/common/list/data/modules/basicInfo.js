@@ -48,16 +48,7 @@ export const queryList = {
       label: "油站状态",
       type: "slt",
       val: "",
-      data: [
-        {
-          label: "启用",
-          val: "1"
-        },
-        {
-          label: "禁用",
-          val: "0"
-        }
-      ]
+      data: "oil_station_status"
     },
     {
       label: "油站编号",
@@ -114,7 +105,7 @@ export const tableHeader = {
       label: "所属省份"
     },
     status_name: {
-      label: "审核状态",
+      label: "启用状态",
       width: "100px"
     }
   }
