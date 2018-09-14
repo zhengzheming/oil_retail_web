@@ -1,6 +1,7 @@
 import Layout from "@/views/layout/Layout";
 import empty from "@/views/layout/empty";
 import commonList from '@/views/common/list/index';
+import addLimit from '@/views/logisticsManage/addLimit';
 // 司机信息
 import driverDetail from '@/views/logisticsManage/driverDetail';
 export default {
@@ -42,7 +43,7 @@ export default {
           {
             path: 'enterprise/add',
             name: 'enterpriseDayQuotaAdd',
-            component: commonList
+            component: addLimit
           },
           // 车辆每日限额
           {
@@ -54,7 +55,7 @@ export default {
           {
             path: 'vehicle/add',
             name: 'vehicleDayQuotaAdd',
-            component: commonList
+            component: addLimit
           },
         ]
     },
