@@ -30,7 +30,7 @@ export default {
       data
     });
   },
-  "oil-station-checkd-list": (
+  "oil-station-checked-list": (
     page,
     pageSize,
     name,

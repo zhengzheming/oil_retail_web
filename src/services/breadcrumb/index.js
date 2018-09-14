@@ -10,6 +10,7 @@ import physicalManageLimit from "./modules/physicalManage/limitQuota";
 import oilCompany from "./modules/basicInfo/oilCompany";
 import oilGoods from "./modules/basicInfo/oilGoods";
 import oilStation from "./modules/oilStationManage/oil-station";
+import oilStationChecked from "./modules/basicInfo/oilStationChecked";
 export default {
   ...systemUser,
   ...systemRole,
@@ -21,5 +22,6 @@ export default {
   ...physicalManageLimit,
   ...oilCompany,
   ...oilGoods,
-  ...oilStation
+  ...oilStation,
+  ...oilStationChecked
 };

@@ -1,5 +1,6 @@
 import { deleteUser } from "@/api/system/user";
 import { deleteRole } from "@/api/system/role";
+
 export const queryList = {
   "oil-company-list": [
     {
@@ -41,45 +42,20 @@ export const queryList = {
       label: "所属企业",
       type: "slt",
       val: "",
-      data: [
-        {
-          label: "全部",
-          val: ""
-        },
-        {
-          label: "待审核",
-          val: "1"
-        },
-        {
-          label: "审核通过",
-          val: "2"
-        },
-        {
-          label: "审核驳回",
-          val: "4"
-        }
-      ]
+      data: "oil_company_id_name_map"
     },
     {
-      label: "审核状态",
+      label: "油站状态",
       type: "slt",
       val: "",
       data: [
         {
-          label: "全部",
-          val: ""
-        },
-        {
-          label: "待审核",
+          label: "启用",
           val: "1"
         },
         {
-          label: "审核通过",
-          val: "2"
-        },
-        {
-          label: "审核驳回",
-          val: "4"
+          label: "禁用",
+          val: "0"
         }
       ]
     },
@@ -122,6 +98,25 @@ export const tableHeader = {
       label: "状态",
       width: "70px"
     }
+  },
+  "oil-station-checked-list": {
+    user_id: {
+      label: "油站编号",
+      width: "100px"
+    },
+    user_name: {
+      label: "油站名称"
+    },
+    name: {
+      label: "所属企业"
+    },
+    province_name: {
+      label: "所属省份"
+    },
+    status_name: {
+      label: "审核状态",
+      width: "100px"
+    }
   }
 };
 
@@ -162,6 +157,15 @@ export const detailPath = {
       {
         name: "goodsId",
         field: "goods_id"
+      }
+    ]
+  },
+  "oil-station-checked-list": {
+    pathName: "oil-station-detail",
+    query: [
+      {
+        name: "stationId",
+        field: "station_id"
       }
     ]
   }
