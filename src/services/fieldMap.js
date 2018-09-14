@@ -28,3 +28,10 @@ export const oilGoodsFieldMap = {
   goods_id: "goodsId",
   order_index: "orderIndex"
 };
+
+export const oilStationFieldMap = {
+  station_id: "stationId",
+  company_id: "companyId",
+  contact_person: "contactPerson",
+  contact_phone: "contactPhone"
+};

@@ -7,6 +7,7 @@ import system from "./modules/system/index";
 import basicInfo from "./modules/basicInfo";
 import logisticsEnterprise from "./modules/basicInfo/logisticsEnterprise/index";
 import logisticsManage from "./modules/logisticsManage/index";
+import oilStationManage from "./modules/oilStationManage";
 import getters from "./getters";
 
 Vue.use(Vuex);
@@ -19,7 +20,8 @@ const store = new Vuex.Store({
     system,
     logisticsEnterprise,
     logisticsManage,
-    basicInfo
+    basicInfo,
+    oilStationManage
   },
   getters
 });

@@ -1,5 +1,6 @@
 import { queryList as system } from "./modules/system";
 import { queryList as basicInfo } from "./modules/basicInfo";
+import { queryList as oilStationManage } from "./modules/oil-station-manage";
 export default {
   // 基础数据-物流企业
   logistics: [
@@ -205,5 +206,6 @@ export default {
     }
   ],
   ...system,
-  ...basicInfo
+  ...basicInfo,
+  ...oilStationManage
 };

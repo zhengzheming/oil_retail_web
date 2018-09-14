@@ -13,6 +13,7 @@ import SideContent from "./SideContent";
 import FormControlStatic from "./FormControlStatic";
 import AuthTree from "./AuthTree";
 import DownloadLink from "./DownloadLink";
+import CellGridControls from "./CellGridControls";
 
 const components = [
   Breadcrumb,
@@ -28,7 +29,8 @@ const components = [
   SideContent,
   FormControlStatic,
   AuthTree,
-  DownloadLink
+  DownloadLink,
+  CellGridControls
 ];
 
 components.forEach(component => {
