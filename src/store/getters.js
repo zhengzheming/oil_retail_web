@@ -9,6 +9,8 @@ const getters = {
   addRouters: state => state.permission.addRouters,
   systemUserDetail: state => state.system.user.systemUserDetail,
   systemRoleDetail: state => state.system.role.systemRoleDetail,
-  moduleTree: state => state.system.moduleAuth.tree
+  moduleTree: state => state.system.moduleAuth.tree,
+  oilCompanyCreate: state => state.basicInfo.oilCompany.create,
+  oilCompanyDetail: state => state.basicInfo.oilCompany.detail
 };
 export default getters;

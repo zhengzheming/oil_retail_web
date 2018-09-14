@@ -16,6 +16,8 @@ const oilCompany = {
   mutations: {
     UPDATE_OIL_COMPANY_DETAIL(state, detail) {
       state.detail.form = $utils.renameKeys(oilCompanyFieldMap, detail);
+      state.detail.form.ownership = String(state.detail.form.ownership);
+      state.detail.form.status = String(state.detail.form.status);
     }
   },
   actions: {
@@ -31,7 +33,6 @@ const oilCompany = {
           let data = {
             ...form
           };
-          console.log(createOilCompany);
           createOilCompany(data).then(() => {
             const infoMap = {
               "oil-company-create": "添加油站成功",
