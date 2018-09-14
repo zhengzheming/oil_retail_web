@@ -154,7 +154,7 @@ export const detailPath = {
     ]
   },
   "oil-station-checked-list": {
-    pathName: "oil-station-detail",
+    pathName: "oil-station-checked-detail",
     query: [
       {
         name: "stationId",
