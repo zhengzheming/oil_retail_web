@@ -12,6 +12,7 @@
       :config="config"
       @reset="handleReset"
       @query="getList"
+      @change-tab="handleChangeTab"
       @size-change="val => pageSize=val"
       @page-change="val => currentPage=val"
       @delete-item="row => showChildCom('delete',row)"
@@ -144,6 +145,15 @@ export default {
         this.queryList.forEach(item => {
           item.val = "";
         });
+    },
+    handleChangeTab(val){
+      let tabEle = this.queryList.filter(item => {
+        return item.type == 'tab'
+      }) || [];
+      if(tabEle.length){
+        tabEle[0].val = val;
+        this.getList();
+      }
     },
     showChildCom(type, row) {
       const actionMap = {

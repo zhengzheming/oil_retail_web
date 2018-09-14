@@ -117,7 +117,7 @@
     </ul>
     <el-tabs
       v-show="tabData.length"
-      v-model="activeName3"
+      v-model="tabSlt"
       class="query-tab"
       type="primary"
       @tab-click="handleClick">
@@ -143,10 +143,9 @@ export default {
   },
   data() {
     return {
-      activeName3: "first",
+      tabSlt: "",
       val: "",
       isExpand: false,
-      tabSlt: "",
       tabData: []
     };
   },
@@ -154,6 +153,9 @@ export default {
     comData: {
       handler: "getTabData",
       deep: true
+    },
+    'tabSlt':function(val){
+      this.$emit('change-tab',val)
     }
   },
   created() {
@@ -186,6 +188,7 @@ export default {
       if (tmp.length) {
         tmp = tmp[0].data;
         this.tabData = tmp;
+        this.tabSlt = tmp[0].val
       }
     },
     handleBlur(e, item) {
@@ -208,7 +211,7 @@ export default {
       this.$emit("reset");
     },
     handleClick(tab, event) {
-      console.log(tab, event);
+      // console.log(tab, event);
     }
   }
 };
