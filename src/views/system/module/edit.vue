@@ -204,6 +204,7 @@ export default {
     },
     actions_bind: function(val){
       let arr = val.split(',');
+      this.form.actions = [];
       arr.forEach(item => {
         this.form.actions.push({
           name:item.split('|')[0],

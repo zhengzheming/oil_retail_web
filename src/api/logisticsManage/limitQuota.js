@@ -14,14 +14,14 @@ export const logisticsQuotaLimitSave = () => {
     });
 }
 // 司机每日限额详情
-export const vehicleQuotaLimitSave = () => {
+export const vehicleQuotaLimit = () => {
     return request({
       url: "/webAPI/VehicleQuotaLimit/detail",
       method: "get"
     });
 }
 // 司机每日限额保存
-export const vehicleQuotaLimit = () => {
+export const vehicleQuotaLimitSave = () => {
     return request({
       url: "/webAPI/VehicleQuotaLimit/save",
       method: "get"

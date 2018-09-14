@@ -22,11 +22,11 @@ export default {
                 list:[
                     {
                         label:'车辆当日可用额度',
-                        prop:''
+                        prop:'rate'
                     },
                     {
-                        label:'车辆当日可用额度',
-                        prop:''
+                        label:'上次变更时间',
+                        prop:'create_time'
                     }
                 ],
                 styleObj:'width:100%;'
@@ -37,7 +37,11 @@ export default {
         const apiMap = {
             enterpriseDayQuotaAdd:logisticsQuotaLimit,
             vehicleQuotaLimit:vehicleQuotaLimit
-        }
+        };
+        apiMap[this.$route.name]()
+        .then(res => {
+
+        })
     }
 }
 </script>
