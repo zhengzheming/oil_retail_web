@@ -14,7 +14,7 @@ export default {
       default: ""
     },
     text: {
-      type: String,
+      type: [String, Number],
       default: ""
     }
   }

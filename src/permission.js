@@ -21,9 +21,20 @@ router.beforeEach((to, from, next) => {
       store
         .dispatch("GetUserInfo")
         .then(() => {
-          next();
+          const module = store.getters.authCodes.find(
+            obj => obj.code == to.name
+          );
+          const hasListAuth =
+            !!module && module.actions.some(action => action.code == "index");
+          console.log(module, to.name);
+          if (to.name === "home" || (module && hasListAuth)) {
+            next();
+          } else {
+            next("/401");
+          }
         })
-        .catch(() => {
+        .catch(err => {
+          console.log(err);
           store.dispatch("FedLogOut").then(() => {
             console.log(`退出登录....`);
             next({ path: "/login" });
