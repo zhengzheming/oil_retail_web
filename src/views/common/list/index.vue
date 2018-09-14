@@ -25,7 +25,7 @@
 <script>
 // @ is an alias to /src
 import apiList from "@/api/common/list";
-import mapApi from "./data/mapApi";
+import sltDataApi from "./data/sltDataApi"; // 查询条件列表数据获取
 import queryList from "./data/queryList";
 import itemList from "./data/itemList";
 import tableHeader from "./data/tableHeader";
@@ -43,7 +43,7 @@ export default {
       currentPage: 1,
       pageSize: 10,
       pageTotal: 0,
-      mapApi: mapApi[pathName] || null,
+      sltDataApi: sltDataApi[pathName] || null,
       queryList: queryList[pathName] || [],
       itemList: itemList[pathName] || {},
       tableHeader: tableHeader[pathName] || {},
@@ -72,8 +72,8 @@ export default {
   },
   mounted() {
     this.getList();
-    if(this.mapApi){
-      this.mapApi()
+    if(this.sltDataApi){
+      this.sltDataApi()
       .then(res => {
         if(res.state == 0 && res.data){
           this.queryList.forEach(item => {
