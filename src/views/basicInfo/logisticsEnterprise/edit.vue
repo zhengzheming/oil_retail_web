@@ -5,7 +5,7 @@
 </template>
 <script>
 import {detail}  from '@/api/basicInfo/logisticsEnterprise/detail'
-import {save}  from '@/api/basicInfo/logisticsEnterprise/edit'
+import {save,getMap}  from '@/api/basicInfo/logisticsEnterprise/edit'
 export default {
     data(){
         return {
@@ -25,16 +25,7 @@ export default {
                         type:'slt',
                         label:'企业状态',
                         prop:'status',
-                        data:[
-                            {
-                                label:'haha',
-                                val:'1'
-                            },
-                            {
-                                label:'haha',
-                                val:'2'
-                            }
-                        ]
+                        data:[]
                     }
                 ]
             }
@@ -63,6 +54,12 @@ export default {
             })
             .catch(err => {})
         }
+        getMap()
+        .then(res => {
+            if(res.state == 0){
+                this.itemList.list[2].data = $utils.getDeepKey(res,'data.logistics_company_status');
+            }
+        })
     }
 }
 </script>

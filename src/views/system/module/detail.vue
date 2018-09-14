@@ -5,8 +5,7 @@
   </card>
 </template>
 <script>
-import { detail } from "@/api/system/module-manage";
-import { getMap } from "@/api/common/map";
+import { detail, getMap } from "@/api/system/module-manage";
 export default {
   data() {
     return {
@@ -80,7 +79,11 @@ export default {
           if(res.state == 0 ){
             let arr = ['status','is_public','is_external','is_menu']
             arr.forEach(item => {
-              this.detailData.data[item] = res.data['module_'+item][this.detailData.data[item]]
+              let tmp = res.data['module_'+item].forEach(val => {
+                if(val.id == this.detailData.data[item]){
+                  this.detailData.data[item] = val.value
+                }
+              })
             });
           }
         })

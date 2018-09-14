@@ -78,7 +78,7 @@ export default {
         if(res.state == 0 && res.data){
           this.queryList.forEach(item => {
             if(item.type == 'slt'){
-              item.data = res.data[item.data]
+              item.data = res.data[item.field]
             }
           })
         }
@@ -104,11 +104,11 @@ export default {
         this.listApi(...params).then(res => {
           if (res.state == 0) {
             this.tableContent = _.get(res, "data.data");
-            this.pageTotal = +_.get(res, "data.totalRows");
+            this.pageTotal = +_.get(res, "data.totalRows") || 0;
             if(this.itemList.data){
               this.itemList.data = res.extra;
             }
-            if (this.tableContent.length) {
+            if (this.tableContent && this.tableContent.length) {
               this.tableContent.forEach(item => {
                 // 链接加参数
                 Object.keys(this.tableHeader).forEach(key => {

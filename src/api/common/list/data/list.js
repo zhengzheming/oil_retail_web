@@ -4,7 +4,7 @@ import basicInfo from "./modules/baseic-info";
 import oilStationManage from "./modules/oil-station-manage";
 export default {
   // 基础信息-物流企业
-  logistics: (page, pageSize, name, out_status, status) => {
+  logistics: (page, pageSize, name, status, out_status) => {
     const data = {
       page,
       pageSize,
