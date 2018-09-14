@@ -332,7 +332,7 @@ export default {
         file => (file.response ? file.response.data : file)
       );
       if (type === "others") {
-        this.form.files = [...curFiles, ...this.ui.attachPaperwork];
+        this.form.files = [...curFiles];
       }
     }
   }
