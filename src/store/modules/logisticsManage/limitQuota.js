@@ -3,8 +3,12 @@ import {logisticsQuotaLimitAdd,vehicleQuotaLimitAdd} from '@/api/logisticsManage
 import { Message } from "element-ui";
 
 const role = {
-    state:{
-        rate:''
+  state: {
+    rate: ""
+  },
+  actions: {
+    "enterpriseDayQuota:add": function() {
+      router.push({ name: "enterpriseDayQuotaAdd" });
     },
     actions: {
         "enterpriseDayQuota:add": function() {
@@ -38,7 +42,7 @@ const role = {
             state.rate = val;
           }
     }
-  };
-  
-  export default role;
-  
+  }
+};
+
+export default role;

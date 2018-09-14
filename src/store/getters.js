@@ -11,6 +11,7 @@ const getters = {
   systemRoleDetail: state => state.system.role.systemRoleDetail,
   moduleTree: state => state.system.moduleAuth.tree,
   oilCompanyCreate: state => state.basicInfo.oilCompany.create,
-  oilCompanyDetail: state => state.basicInfo.oilCompany.detail
+  oilCompanyDetail: state => state.basicInfo.oilCompany.detail,
+  oilGoodsDetail: state => state.basicInfo.oilGoods.detail
 };
 export default getters;

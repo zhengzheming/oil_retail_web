@@ -6,6 +6,8 @@ import vehicleDataDetail from "@/views/basicInfo/vehicleData/detail";
 import placeholderView from "../placeholderView";
 import oilCompanyCreate from "@/views/basicInfo/oilCompany/create";
 import oilCompanyDetail from "@/views/basicInfo/oilCompany/detail";
+import oilGoodsCreate from "@/views/basicInfo/oilGoods/create";
+import oilGoodsDetail from "@/views/basicInfo/oilGoods/detail";
 export default {
   path: "/basic-info",
   name: "basic-info",
@@ -103,7 +105,7 @@ export default {
         {
           path: "create",
           name: "oil-goods-create",
-          component: commonList,
+          component: oilGoodsCreate,
           meta: {
             title: "新增油品"
           }
@@ -111,7 +113,7 @@ export default {
         {
           path: "modify",
           name: "oil-goods-modify",
-          component: commonList,
+          component: oilGoodsCreate,
           meta: {
             title: "编辑油品"
           }
@@ -119,7 +121,7 @@ export default {
         {
           path: "detail",
           name: "oil-goods-detail",
-          component: commonList,
+          component: oilGoodsDetail,
           meta: {
             title: "油品数据"
           }

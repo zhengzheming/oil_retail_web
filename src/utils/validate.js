@@ -63,3 +63,8 @@ export function validatePhone(rule, value, callback) {
     callback("请输入正确的手机号");
   }
 }
+
+export function isvalidPosInt(str) {
+  const re = /^[1-9]\d*$/;
+  return re.test(str);
+}

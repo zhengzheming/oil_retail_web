@@ -63,6 +63,34 @@
           :title="labels.remark"/>
       </el-col>
     </el-row>
+    <el-row :gutter="$customConfig.colGutter">
+      <el-col :span="24">
+        <div class="form-control--static">
+          <span class="form-control--static__title">{{ labels.attachPaperwork }}</span>
+          <div class="form-control--static__text">
+            <p
+              v-for="(file, index) in attachPaperwork"
+              :key="index">
+              <download-link :attachment="file"/>
+            </p>
+          </div>
+        </div>
+      </el-col>
+    </el-row>
+    <el-row :gutter="$customConfig.colGutter">
+      <el-col :span="24">
+        <div class="form-control--static">
+          <span class="form-control--static__title">{{ labels.attachOthers }}</span>
+          <div class="form-control--static__text">
+            <p
+              v-for="(file, index) in attachOthers"
+              :key="index">
+              <download-link :attachment="file"/>
+            </p>
+          </div>
+        </div>
+      </el-col>
+    </el-row>
   </card>
 </template>
 
@@ -91,10 +119,32 @@ export default {
   computed: {
     form() {
       return this.$store.getters.oilCompanyDetail.form;
+    },
+    attachPaperwork() {
+      if (!Array.isArray(this.form.files)) return [];
+      return this.filterFiles(this.form.files, "paperwork");
+    },
+    attachOthers() {
+      if (!Array.isArray(this.form.files)) return [];
+      return this.filterFiles(this.form.files, "others");
     }
   },
   created() {
     this.$store.dispatch("oil-company-detail:fetch-form");
+  },
+  methods: {
+    filterFiles(files, name) {
+      const type = {
+        paperwork: 2,
+        others: 1
+      };
+      return files.filter(file => file.type == type[name]).map(file => ({
+        name: file.name,
+        url: file.url,
+        id: file.id,
+        type: type[name]
+      }));
+    }
   }
 };
 </script>

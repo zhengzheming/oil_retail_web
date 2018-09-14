@@ -1,18 +1,21 @@
 <template>
-<div>
+  <div>
     <card>
-        <span slot="title">当前额度信息</span>
-        <item-list :com-data="currentInfo"></item-list>
+      <span slot="title">当前额度信息</span>
+      <item-list :com-data="currentInfo"/>
     </card>
     <card>
         <span slot="title">新增额度信息</span>
         <p style="line-height: 32px;">{{text1}}当日可用额度：  不超过{{text2}}容量<el-input style="width:100px;margin:0 5px;display:inline-block;" type="text" v-model="val"/>%</p>
     </card>
-</div>
+  </div>
 </template>
 
 <script>
-import {logisticsQuotaLimit,vehicleQuotaLimit} from '@/api/logisticsManage/limitQuota'
+import {
+  logisticsQuotaLimit,
+  vehicleQuotaLimit
+} from "@/api/logisticsManage/limitQuota";
 export default {
     data(){
         const textMap1 = {
@@ -66,4 +69,3 @@ export default {
     }
 }
 </script>
-

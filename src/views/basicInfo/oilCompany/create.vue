@@ -267,11 +267,10 @@ export default {
     }
   },
   created() {
-    this.initFiles();
     if (this.$route.query.companyId) {
       this.$store.dispatch("oil-company-detail:fetch-form").then(detail => {
         this.form = detail;
-        if (!this.form.roles) this.form.roles = [];
+        this.initFiles();
         this.$nextTick(function() {
           this.$refs.form.clearValidate();
         });
@@ -294,6 +293,7 @@ export default {
         return files.filter(file => file.type == type[name]).map(file => ({
           name: file.name,
           url: file.url,
+          id: file.id,
           type: type[name]
         }));
       }
