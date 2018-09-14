@@ -11,20 +11,8 @@ export const queryList = {
       label: "企业状态",
       type: "slt",
       val: "",
-      data: [
-        {
-          label: "全部",
-          val: ""
-        },
-        {
-          label: "启用",
-          val: "1"
-        },
-        {
-          label: "未启用",
-          val: "0"
-        }
-      ]
+      field: "oil_company_status",
+      data: []
     }
   ],
   "oil-goods-list": [

@@ -26,5 +26,6 @@ export default {
       method: "get"
     });
   },
-  "oil-station-checked-list": fetchDropDownListMapInOil
+  "oil-station-checked-list": fetchDropDownListMapInOil,
+  "oil-company-list": fetchDropDownListMapInOil
 };
