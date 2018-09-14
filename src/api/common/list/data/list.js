@@ -1,6 +1,7 @@
 import request from "@/utils/request";
 import system from "./modules/system";
 import basicInfo from "./modules/baseic-info";
+import oilStationManage from "./modules/oil-station-manage";
 export default {
   // 基础信息-物流企业
   logistics: (page, pageSize, name, out_status, status) => {
@@ -172,5 +173,6 @@ export default {
     });
   },
   ...system,
-  ...basicInfo
+  ...basicInfo,
+  ...oilStationManage
 };

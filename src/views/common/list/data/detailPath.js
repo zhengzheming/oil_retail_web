@@ -1,13 +1,16 @@
 import { detailPath as system } from "./modules/system";
 import { detailPath as basicInfo } from "./modules/basicInfo";
+import { detailPath as oilStationManage } from "./modules/oil-station-manage";
 export default {
   // 基础数据-物流企业
   logistics: {
     pathName: "logisticsDetail",
-    query:[{
-      name:'logistics_id',             //参数key
-      field:'logistics_id'     //参数value所对应的后台字段
-    }]
+    query: [
+      {
+        name: "logistics_id", //参数key
+        field: "logistics_id" //参数value所对应的后台字段
+      }
+    ]
   },
   // 基础数据-车辆数据
   vehicleData: {
@@ -48,5 +51,6 @@ export default {
     ]
   },
   ...system,
-  ...basicInfo
+  ...basicInfo,
+  ...oilStationManage
 };

@@ -9,6 +9,7 @@ import physicalManageQueta from "./modules/physicalManage/quota";
 import physicalManageLimit from "./modules/physicalManage/limitQuota";
 import oilCompany from "./modules/basicInfo/oilCompany";
 import oilGoods from "./modules/basicInfo/oilGoods";
+import oilStation from "./modules/oilStationManage/oil-station";
 export default {
   ...systemUser,
   ...systemRole,
@@ -19,5 +20,6 @@ export default {
   ...physicalManageQueta,
   ...physicalManageLimit,
   ...oilCompany,
-  ...oilGoods
+  ...oilGoods,
+  ...oilStation
 };

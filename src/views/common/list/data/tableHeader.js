@@ -1,5 +1,6 @@
 import { tableHeader as system } from "./modules/system";
 import { tableHeader as basicInfo } from "./modules/basicInfo";
+import { tableHeader as oilStationManage } from "./modules/oil-station-manage";
 export default {
   // 基础数据-物流企业
   logistics: {
@@ -9,7 +10,7 @@ export default {
     },
     name: {
       label: "企业名称",
-      pathName: "enterpriseQuota",
+      pathName: "enterpriseQuota"
       //query:[{
       //  name:'logistics_id',             //参数key
       //  field:'logistics_id'     //参数value所对应的后台字段
@@ -156,7 +157,7 @@ export default {
     }
   },
   // 物流企业管理-企业额度-企业可用额度收支管理
-  "availableCredit": {
+  availableCredit: {
     create_time: {
       label: "时间",
       width: "200"
@@ -174,7 +175,7 @@ export default {
     }
   },
   // 物流企业管理-企业额度-企业当日可用额度收支管理
-  "dayCredit": {
+  dayCredit: {
     create_time: {
       label: "时间",
       width: "200"
@@ -210,5 +211,6 @@ export default {
     }
   },
   ...system,
-  ...basicInfo
+  ...basicInfo,
+  ...oilStationManage
 };

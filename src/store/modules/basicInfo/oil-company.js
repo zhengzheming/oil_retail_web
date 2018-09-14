@@ -35,8 +35,8 @@ const oilCompany = {
           };
           createOilCompany(data).then(() => {
             const infoMap = {
-              "oil-company-create": "添加油站成功",
-              "oil-company-modify": "修改油站成功"
+              "oil-company-create": "添加油企成功",
+              "oil-company-modify": "修改油企成功"
             };
             Message.success(infoMap[rootState.route.name]);
             router.push({ name: "oil-company-list" });
