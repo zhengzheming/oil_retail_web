@@ -8,10 +8,10 @@ export function validatePhone(rule, value, callback) {
   }
 }
 
-export function validatePosInt(rule, value, callback, options) {
+export function validatePosInt(rule, value, callback, source, options) {
   if (isvalidPosInt(value) || !value) {
     callback();
   } else {
-    callback(options.message);
+    callback(options.messages);
   }
 }

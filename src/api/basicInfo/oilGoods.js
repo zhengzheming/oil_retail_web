@@ -1,43 +1,31 @@
 import request from "@/utils/request";
 
 export const createOilGoods = ({
-  companyId,
+  goodsId,
   name,
-  shortName,
-  taxCode,
-  corporate,
-  address,
-  contactPhone,
-  ownership,
-  buildDate,
+  code,
+  orderIndex,
   remark,
-  status,
-  files
+  status
 }) =>
   request({
-    url: "/webAPI/oilCompany/save",
+    url: "/webAPI/oilGoods/save",
     method: "post",
     data: {
-      company_id: companyId,
+      goods_id: goodsId,
       name,
-      short_name: shortName,
-      tax_code: taxCode,
-      corporate,
-      address,
-      contact_phone: contactPhone,
-      ownership,
-      build_date: buildDate,
+      code,
+      order_index: orderIndex,
       remark,
-      status,
-      files
+      status
     }
   });
 
-export const fetchOilGoodsDetail = companyId =>
+export const fetchOilGoodsDetail = goodsId =>
   request({
-    url: "/webAPI/oilCompany/detail",
+    url: "/webAPI/oilGoods/detail",
     method: "GET",
     params: {
-      company_id: companyId
+      goods_id: goodsId
     }
   });

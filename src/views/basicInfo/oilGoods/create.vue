@@ -21,7 +21,7 @@
           <el-col :span="12">
             <el-form-item
               :label="labels['orderIndex']"
-              prop="taxCode"
+              prop="orderIndex"
             >
               <el-input v-model="form.orderIndex"/>
             </el-form-item>
@@ -124,7 +124,6 @@ export default {
     }
   },
   created() {
-    this.initFiles();
     if (this.$route.query.goodsId) {
       this.$store.dispatch("oil-goods-detail:fetch-form").then(detail => {
         this.form = detail;

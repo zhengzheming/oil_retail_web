@@ -16,6 +16,7 @@ const oilGoods = {
   mutations: {
     UPDATE_OIL_GOODS_DETAIL(state, detail) {
       state.detail.form = $utils.renameKeys(oilGoodsFieldMap, detail);
+      state.detail.form.status = String(state.detail.form.status);
     }
   },
   actions: {

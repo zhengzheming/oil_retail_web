@@ -1,6 +1,6 @@
 <template>
   <card>
-    <span slot="title">油企详情</span>
+    <span slot="title">油品详情</span>
     <el-row :gutter="$customConfig.colGutter">
       <el-col :span="12">
         <form-control-static
@@ -34,7 +34,7 @@
 
 <script>
 export default {
-  name: "OilCompanyDetail",
+  name: "OilGoodsDetail",
   data() {
     const labels = {
       name: "名称",
@@ -52,7 +52,7 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch("oil-company-detail:fetch-form");
+    this.$store.dispatch("oil-goods-detail:fetch-form");
   }
 };
 </script>
