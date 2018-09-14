@@ -12,13 +12,15 @@ export default {
       type: "slt",
       label: "企业状态",
       val: "",
-      data: 'logistics_company_status'
+      field: 'logistics_company_status',
+      data:[]
     },
     {
       type: "slt",
       label: "银管家状态",
       val: "",
-      data: 'logistics_company_out_status'
+      field: 'logistics_company_out_status',
+      data:[]
     }
   ],
   //车辆数据
@@ -42,7 +44,8 @@ export default {
       type: "slt",
       label: "状态",
       val: "",
-      data: 'driver_status'
+      field: 'driver_status',
+      data:[]
     },
     {
       label: "所属企业",
@@ -95,7 +98,8 @@ export default {
       type: "slt",
       label: "额度状态",
       val: "",
-      data: 'logistics_quota_status'
+      field: 'logistics_quota_status',
+      data:[]
     }
   ],
   // 物流企业管理-企业可用额度收支管理
@@ -104,7 +108,8 @@ export default {
       type: "slt",
       label: "收支类型",
       val: "",
-      data: 'logistics_quota_log_category'
+      field: 'logistics_quota_log_category',
+      data:[]
     },
     {
       type: "date",

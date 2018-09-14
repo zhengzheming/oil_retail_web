@@ -11,14 +11,14 @@
           class="content"
           :style="{color:item.color||'#666'}">{{ (comData.data[item.prop] === "" || comData.data[item.prop] === null || comData.data[item.prop] === undefined) ? "--" : comData.data[item.prop] }}</a>
         <el-select
-            v-if="item.type === 'slt'"
-            v-model="comData.data[item.prop]"
-            placeholder="请选择">
-            <el-option
-            v-for="ele in item.data"
-            :key="ele.val"
-            :label="ele.label"
-            :value="ele.val">
+          v-if="item.type === 'slt'"
+          v-model="comData.data[item.prop]"
+          placeholder="请选择">
+          <el-option
+            v-for="(ele,key) in item.data"
+            :key="key"
+            :label="ele.value"
+            :value="ele.id+''">
             </el-option>
         </el-select>
         <span

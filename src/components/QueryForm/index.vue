@@ -16,17 +16,10 @@
           </p>
           <el-select
             v-if="item.type=='slt'"
-            :class="((item.triggerValidate && item.validateFunc(item.val)) || (item.triggerValidate && (item.val === '' || item.val === null || item.val === undefined))) ?'err':''"
             v-model="item.val"
             :placeholder="item.placeholder"
             class="el-slt"
             @blur="e => handleBlur(e,item)">
-            <!-- <el-option
-              v-for="(item1,index) of item.data"
-              :disabled="item.disabled"
-              :key="index"
-              :label="item1.label"
-              :value="item1.val"/> -->
             <el-option
               v-for="(item,key) in item.data"
               :disabled="item.disabled"
@@ -45,7 +38,6 @@
             v-else-if="item.type=='adjustInput'"
             style="display:flex;justify-content:space-between;">
             <el-select
-              :class="((item.triggerValidate && item.validateFunc(item.val)) || (item.triggerValidate && (item.val === '' || item.val === null || item.val === undefined))) ?'err':''"
               v-model="item.adjustVal"
               :placeholder="item.adjustPlaceholder"
               style="width:40%;margin-right:2%;"
@@ -67,7 +59,6 @@
             placeholder=""/>
           <el-input
             v-else
-            :class="((item.triggerValidate && item.validateFunc(item.val)) || (item.triggerValidate && (item.val === '' || item.val === null || item.val === undefined))) ?'err':''"
             v-model="item.val"
             :placeholder="item.placeholder||'请输入内容'"
             type="text"
