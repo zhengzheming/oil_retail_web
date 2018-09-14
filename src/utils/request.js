@@ -6,7 +6,8 @@ import { Message } from "element-ui";
 // create an axios instance
 const service = axios.create({
   baseURL: process.env.BASE_API, // api 的 base_url
-  timeout: 5000 // request timeout
+  timeout: 5000, // request timeout
+  headers: { "X-Requested-With": "XMLHttpRequest" }
 });
 
 // request interceptor
@@ -36,9 +37,9 @@ service.interceptors.response.use(
         type: "error",
         duration: 3 * 1000
       });
-      return Promise.reject('error')
+      return Promise.reject("error");
     }
-    return response.data
+    return response.data;
   },
   error => {
     console.log("err" + error); // for debug
