@@ -41,12 +41,12 @@ export const createOilStationApply = (
     }
   });
 
-export const fetchOilStationApplyDetail = stationId =>
+export const fetchOilStationApplyDetail = applyId =>
   request({
     url: "/webAPI/oilStationApply/detail",
     method: "get",
     params: {
-      station_id: stationId
+      apply_id: applyId
     }
   });
 

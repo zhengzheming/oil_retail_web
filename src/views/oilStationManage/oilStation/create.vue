@@ -263,13 +263,12 @@ export default {
   created() {
     this.$store.dispatch("common/getArea");
     this.$store.dispatch("oilCommon/dropdownListMap").then(data => {
-      console.log(data);
       this.ui.companyOptions = data["oil_company_id_name_map"].map(obj => ({
         label: obj.value,
         value: obj.id
       }));
     });
-    if (this.$route.query.stationId) {
+    if (this.$route.query.applyId) {
       this.$store.dispatch("oil-station-detail:fetch-form").then(detail => {
         this.form = detail;
         this.initFiles();

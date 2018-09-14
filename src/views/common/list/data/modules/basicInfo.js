@@ -31,6 +31,62 @@ export const queryList = {
       label: "油品名称",
       val: ""
     }
+  ],
+  "oil-station-checked-list": [
+    {
+      label: "油站名称",
+      val: ""
+    },
+    {
+      label: "所属企业",
+      type: "slt",
+      val: "",
+      data: [
+        {
+          label: "全部",
+          val: ""
+        },
+        {
+          label: "待审核",
+          val: "1"
+        },
+        {
+          label: "审核通过",
+          val: "2"
+        },
+        {
+          label: "审核驳回",
+          val: "4"
+        }
+      ]
+    },
+    {
+      label: "审核状态",
+      type: "slt",
+      val: "",
+      data: [
+        {
+          label: "全部",
+          val: ""
+        },
+        {
+          label: "待审核",
+          val: "1"
+        },
+        {
+          label: "审核通过",
+          val: "2"
+        },
+        {
+          label: "审核驳回",
+          val: "4"
+        }
+      ]
+    },
+    {
+      label: "油站编号",
+      val: ""
+    }
   ]
 };
 
