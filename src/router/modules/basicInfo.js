@@ -5,6 +5,7 @@ import logisticsEdit from "@/views/basicInfo/logisticsEnterprise/edit";
 import vehicleDataDetail from "@/views/basicInfo/vehicleData/detail";
 import placeholderView from "../placeholderView";
 import oilCompanyCreate from "@/views/basicInfo/oilCompany/create";
+import oilCompanyDetail from "@/views/basicInfo/oilCompany/detail";
 export default {
   path: "/basic-info",
   name: "basic-info",
@@ -51,6 +52,7 @@ export default {
     {
       path: "oil-company",
       component: placeholderView,
+      name: "oil-company",
       children: [
         {
           path: "index",
@@ -79,9 +81,9 @@ export default {
         {
           path: "detail",
           name: "oil-company-detail",
-          component: commonList,
+          component: oilCompanyDetail,
           meta: {
-            title: "油企数据"
+            title: "油企详情"
           }
         }
       ]

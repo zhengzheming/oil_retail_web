@@ -16,7 +16,12 @@ export function lookupInDict(route, field, value) {
         0: "未启用"
       }
     },
-    "oil-company": {},
+    "oil-company": {
+      ownership: {
+        1: "国有",
+        2: "民营"
+      }
+    },
     common: {
       status: {
         1: "启用",
