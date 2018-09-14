@@ -1,28 +1,27 @@
 import { save } from "@/api/basicInfo/logisticsEnterprise/edit";
 import router from "@/router/index";
+import { Message } from "element-ui";
 const role = {
   state: {
+    logistics_id:'',
+    status: ''
   },
   mutations: {
   },
   actions: {
     "logisticsEdit:save": function({ state }) {
-      console.log(state)
-      const formRef = state.systemRoleCreate.formRef;
-      const form = state.systemRoleCreate.form;
-      if (!formRef) return;
-      formRef.validate(valid => {
-        if (valid) {
-          let data = {
-            ...form,
-            roles: form.roles.map(role => ({ id: role, name: "" }))
-          };
-          createSystemRole(data).then(() => {
-            router.push({ name: "system-role-list" });
-          });
+      save(state.logistics_id,state.status)
+      .then(res=>{
+        if(res.state == 0){
+          Message.success('保存成功');
+          router.push({name:'logistics'})
         }
-      });
-    }
+      })
+    },
+    "logisticsEdit:update-form": function({ state }, {logistics_id,status}) {
+      state.logistics_id = logistics_id;
+      state.status = status;
+    },
   }
 };
 

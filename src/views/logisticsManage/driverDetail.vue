@@ -20,15 +20,7 @@ export default {
     data(){
         return {
             userInfo:{
-                data:{
-                    // "driver_id": "1392",
-                    // "name": "司机A",
-                    // "status_name": "启用",
-                    // "phone": "13751548454",
-                    // "logistics_name":"物流企业",
-                    // "vehicle_items":['粤B123','粤B456'],
-                    // "is_can_edit": false,
-                },
+                data:{},
                 list:[
                     {
                         label:'姓名',
@@ -52,15 +44,15 @@ export default {
         }
     },
     mounted(){
-        // if(this.$route.query.driver_id){
-        //     detail(this.$route.query.driver_id)
-        //     .then(res => {
-        //         if(res.status == 0){
-        //             this.userInfo.data = $utils.getDeepKey(res,'data.data');
-        //             this.vehicleList = $utils.getDeepKey(res,'data.data.vehicle_items');
-        //         }
-        //     })
-        // }
+        if(this.$route.query.driver_id){
+            detail(this.$route.query.driver_id)
+            .then(res => {
+                if(res.state == 0){
+                    this.userInfo.data = $utils.getDeepKey(res,'data');
+                    this.vehicleList = $utils.getDeepKey(res,'data.vehicle_items');
+                }
+            })
+        }
     }
 }
 </script>

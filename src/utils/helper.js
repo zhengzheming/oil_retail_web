@@ -36,3 +36,7 @@ export function traverseTree(root, leafName, callback) {
     return root;
   }
 }
+
+export function getMap() {
+  return JSON.parse(localStorage.getItem('map')) || {};
+}

@@ -1,17 +1,6 @@
 <template>
 <card>
     <item-list :com-data="itemList"></item-list>
-    <div>
-        <label style="color:#333;font-size:14px;">企业状态：</label>
-        <el-select v-model="statuVal" placeholder="请选择">
-            <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-            </el-option>
-        </el-select>
-    </div>
 </card>
 </template>
 <script>
@@ -31,47 +20,48 @@ export default {
                     {
                         label:'银管家状态',
                         prop:'out_status_name	'
+                    },
+                    {
+                        type:'slt',
+                        label:'企业状态',
+                        prop:'status',
+                        data:[
+                            {
+                                label:'haha',
+                                val:'1'
+                            },
+                            {
+                                label:'haha',
+                                val:'2'
+                            }
+                        ]
                     }
                 ]
-            },
-            options:[
-                {
-                    label:'启用',
-                    value:'1'
-                },
-                {
-                    label:'禁用',
-                    value:'0'
+            }
+        }
+    },
+    watch: {
+        itemList: {
+            handler: function(val) {
+                if(val.data['status']){
+                    this.$store.dispatch('logisticsEdit:update-form', {logistics_id:this.$route.query.logistics_id, status:val.data['status']});
                 }
-            ]
+            },
+            immediate: true,
+            deep: true
         }
     },
     mounted(){
+        this.$store.dispatch('logisticsEdit:update-form', {logistics_id:this.$route.query.logistics_id, status:this.statuVal});
         if(this.$route.query.logistics_id){
             detail(this.$route.query.logistics_id)
             .then(res => {
-                if(res.data === 0) {
-                     this.itemList.data = $utils.getDeepKey(res,'data.data')
+                if(res.state === 0) {
+                    this.itemList.data = $utils.getDeepKey(res,'data');
+                    this.statuVal = $utils.getDeepKey(res,'data.status');
                 }  
             })
-            .catch(err => {
-                let res = {
-                    "state": 0,
-                    "data": {
-                        "search": null,
-                        "data": {
-                            "logistics_id": "1392",
-                            "out_status_name": "禁用",
-                            "name": "朝阳物流有限公司",
-                            "status_name": "正常",
-                            "status": "1",
-                            "is_can_edit": false,
-                        }
-                    }
-                }
-                this.itemList.data = $utils.getDeepKey(res,'data.data')
-                this.statuVal = $utils.getDeepKey(res,'data.data.status')
-            })
+            .catch(err => {})
         }
     }
 }

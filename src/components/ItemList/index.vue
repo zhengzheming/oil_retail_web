@@ -9,7 +9,18 @@
           v-if="item.type === 'link'"
           :href="item.url"
           class="content"
-          :style="{color:item.color||'#666'}">{{ item.prop }}</a>
+          :style="{color:item.color||'#666'}">{{ (comData.data[item.prop] === "" || comData.data[item.prop] === null || comData.data[item.prop] === undefined) ? "--" : comData.data[item.prop] }}</a>
+        <el-select
+            v-if="item.type === 'slt'"
+            v-model="comData.data[item.prop]"
+            placeholder="请选择">
+            <el-option
+            v-for="ele in item.data"
+            :key="ele.val"
+            :label="ele.label"
+            :value="ele.val">
+            </el-option>
+        </el-select>
         <span
           v-else
           class="content"
@@ -41,9 +52,6 @@ export default {
         return {};
       }
     }
-  },
-  mounted(){
-    console.log(this.comData)
   }
 };
 </script>
@@ -55,7 +63,7 @@ export default {
   & > li {
     display: flex;
     float: left;
-    line-height: 22px;
+    line-height: 32px;
     font-size: 14px;
     width: 32.33%;
     margin-bottom: 8px;

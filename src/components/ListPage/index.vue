@@ -6,6 +6,7 @@
         :com-data="queryList"
         @reset="handleReset"
         @query="handleQuery"/>
+      <item-list :com-data="itemList" v-if="itemList.data"></item-list>
       <el-table
         :data="tableContent"
         border
@@ -93,6 +94,10 @@ export default {
     queryList: {
       type: Array,
       default: () => []
+    },
+    itemList: {
+      type: Object,
+      default: () => {}
     },
     tableHeader: {
       type: Object,

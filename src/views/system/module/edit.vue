@@ -28,7 +28,7 @@
             :span="12">
             <el-form-item label="上级模块">
               <div @click.stop="showTree = true">
-                <p style="cursor: default;height: 32px; line-height: 32px;border: 1px solid #e6e6e6;
+                <p @click.stop="showTree = !showTree" style="cursor: default;height: 32px; line-height: 32px;border: 1px solid #e6e6e6;
                   border-radius: 3px;width: 100%;background-color:#f7f7f7;color:#666;padding-left:15px;">{{parent_id_bind}}</p>
                 <div v-show="showTree" style="position: absolute;width: 100%;left: 0;top: 32px;z-index: 1;background: #f7f7f7;">
                   <el-tree
@@ -153,7 +153,6 @@
 
 <script>
 import { list, detail } from "@/api/system/module-manage";
-import { getMap } from "@/api/common/map";
 export default {
   name: "SystemUserCreate",
   data() {
@@ -171,6 +170,7 @@ export default {
         code: { required: true, message: "请输入权限码", trigger: "blur" },
       },
       form: {
+        id:"",
         name: "",
         icon: "",
         system_id: "",
@@ -217,33 +217,52 @@ export default {
       form: this.form,
       formRef: this.$refs["form"]
     });
-    this.getList();
     if(this.$route.name == 'moduleEdit') {
       detail(this.$route.query.id)
       .then(res => {
+        this.getList();
         if(res.state == 0){
           this.form = res.data;
+          let actions = $utils.getDeepKey(res,'data.actions');
+          let str = '';
+          // 对返回的actions做格式转换
+          var str = ''
+          actions.forEach(item => {
+            str += item.name + '|' + item.code + ','
+          })
+          if(str[str.length-1] == ','){
+            str = str.substring(0,str.length-1)
+          }
+          this.actions_bind = str;
           this.parent_id_bind = $utils.getDeepKey(res,'data.parent_name');
         }
       })
     };
-    getMap()
-    .then(res => {
-      if(res.state == 0 ){
-        let arr = ['module_status','module_is_public','module_is_external','module_is_menu']
-        arr.forEach(item => {
-          this[item] = res.data[item]
-        });
-      }
-    })
+    let arr = ['module_status','module_is_public','module_is_external','module_is_menu']
+    arr.forEach(item => {
+      this[item] = $utils.getMap()[item]
+    });
   },
   methods: {
     getList() {
       list().then(res => {
         if (res.state == 0) {
           this.treeData = $utils.getDeepKey(res,'data.children');
+          this.filterModule(this.treeData);
         }
       });
+    },
+    filterModule(arr){
+      if(Array.isArray(arr)){
+        arr.forEach((item,key) => {
+          if(item.id == this.form.id){
+            arr.splice(key,1)
+          }
+          if(item.children && item.children.length){
+            this.filterModule(item.children)
+          }
+        })
+      }
     },
     handleNodeClick(data) {
       this.parent_id_bind = data.label;

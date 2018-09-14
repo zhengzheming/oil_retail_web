@@ -1,10 +1,11 @@
 import Layout from "@/views/layout/Layout";
+import empty from "@/views/layout/empty";
 import commonList from '@/views/common/list/index';
 // 司机信息
 import driverDetail from '@/views/logisticsManage/driverDetail';
 export default {
   path: '/logistics-manage',
-  name: 'logistics-manage',
+  name: 'logisticsManage',
   component: Layout,
   meta: {
     title: '物流企业管理',
@@ -24,23 +25,42 @@ export default {
         component: driverDetail,
         hidden: true
     },
-    // 企业每日限额
+    // 每日限额设置
     {
-      path: 'enterprise-day-quota',
-      name: 'enterpriseDayQuota',
-      component: commonList,
-      meta: {title: '企业每日限额'}
-    },
-    // 车辆每日限额
-    {
-      path: 'vehicle-day-quota',
-      name: 'vehicleDayQuota',
-      component: commonList,
-      meta: {title: '车辆每日限额'}
+        path:'limit-quota',
+        name:'limitQuota',
+        component: empty,
+        meta: {title: '每日限额设置'},
+        children:[
+          // 企业每日限额
+          {
+            path: 'enterprise',
+            name: 'enterpriseDayQuota',
+            component: commonList,
+            meta: {title: '企业每日限额'}
+          },
+          {
+            path: 'enterprise/add',
+            name: 'enterpriseDayQuotaAdd',
+            component: commonList
+          },
+          // 车辆每日限额
+          {
+            path: 'vehicle',
+            name: 'vehicleDayQuota',
+            component: commonList,
+            meta: {title: '车辆每日限额'}
+          },
+          {
+            path: 'vehicle/add',
+            name: 'vehicleDayQuotaAdd',
+            component: commonList
+          },
+        ]
     },
     // 企业额度
      {
-        path: 'quote',
+        path: 'quota',
         name: 'enterpriseQuota',
         component: commonList,
         meta: {title: '企业额度'}

@@ -9,11 +9,11 @@ export default {
     },
     name: {
       label: "企业名称",
-      pathName: "enterpriseQuota"
-      // query:[{
-      //   name:'id',             //参数key
-      //   field:'out_status'     //参数value所对应的后台字段
-      // }]
+      pathName: "enterpriseQuota",
+      //query:[{
+      //  name:'logistics_id',             //参数key
+      //  field:'logistics_id'     //参数value所对应的后台字段
+      //}]
     },
     out_status_name: {
       label: "银管家状态",
@@ -156,38 +156,38 @@ export default {
     }
   },
   // 物流企业管理-企业额度-企业可用额度收支管理
-  availableCredit: {
-    logistics_id: {
+  "availableCredit": {
+    create_time: {
       label: "时间",
-      width: "120"
+      width: "200"
     },
-    name: {
+    quota: {
       label: "额度明细/元",
       width: "200"
     },
-    out_status_name: {
+    log_id: {
       label: "编号",
       width: "120"
     },
-    status_name: {
+    category_name: {
       label: "收支类型"
     }
   },
   // 物流企业管理-企业额度-企业当日可用额度收支管理
-  dayCredit: {
-    logistics_id: {
+  "dayCredit": {
+    create_time: {
       label: "时间",
-      width: "120"
+      width: "200"
     },
-    name: {
+    quota: {
       label: "额度明细/元",
       width: "200"
     },
-    out_status_name: {
+    log_id: {
       label: "编号",
       width: "120"
     },
-    status_name: {
+    category_name: {
       label: "收支类型"
     }
   },
