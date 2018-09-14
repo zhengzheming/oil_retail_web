@@ -16,46 +16,14 @@
               <el-input v-model="form.name"/>
             </el-form-item>
           </el-col>
-          <el-col :span="12">
-            <el-form-item
-              :label="labels['shortName']"
-              prop="shortName"
-            >
-              <el-input v-model="form.shortName"/>
-            </el-form-item>
-          </el-col>
         </el-row>
         <el-row :gutter="$customConfig.colGutter">
           <el-col :span="12">
             <el-form-item
-              :label="labels['taxCode']"
+              :label="labels['orderIndex']"
               prop="taxCode"
             >
-              <el-input v-model="form.taxCode"/>
-            </el-form-item>
-          </el-col>
-          <el-col :span="12">
-            <el-form-item
-              :label="labels['corporate']"
-            >
-              <el-input v-model="form.corporate"/>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row :gutter="$customConfig.colGutter">
-          <el-col :span="12">
-            <el-form-item
-              :label="labels['address']"
-            >
-              <el-input v-model="form.address"/>
-            </el-form-item>
-          </el-col>
-          <el-col :span="12">
-            <el-form-item
-              :label="labels['contactPhone']"
-              prop="contactPhone"
-            >
-              <el-input v-model="form.contactPhone"/>
+              <el-input v-model="form.orderIndex"/>
             </el-form-item>
           </el-col>
         </el-row>

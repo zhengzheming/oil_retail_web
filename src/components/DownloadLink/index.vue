@@ -23,7 +23,9 @@ export default {
       const matchedModule = Object.keys(routeMap).find(moduleName => {
         return curMatchedRoute.includes(moduleName);
       });
-      return `/webAPI/${matchedModule}/getFile/?id=${this.attachment.id}`;
+      return `/webAPI/${routeMap[matchedModule]}/getFile/?id=${
+        this.attachment.id
+      }&fileName=${this.attachment.name}`;
     }
   }
 };

@@ -294,6 +294,7 @@ export default {
         return files.filter(file => file.type == type[name]).map(file => ({
           name: file.name,
           url: file.url,
+          id: file.id,
           type: type[name]
         }));
       }
