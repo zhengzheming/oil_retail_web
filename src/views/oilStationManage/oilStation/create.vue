@@ -183,7 +183,7 @@ export default {
     };
     return {
       labels,
-      uploadUrl: "/webAPI/oilStation/saveFile",
+      uploadUrl: "/webAPI/oilStationApply/saveFile",
       rules: {
         name: [
           {
