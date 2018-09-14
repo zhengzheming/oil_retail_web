@@ -12,6 +12,7 @@ import Card from "./Card";
 import SideContent from "./SideContent";
 import FormControlStatic from "./FormControlStatic";
 import AuthTree from "./AuthTree";
+import DownloadLink from "./DownloadLink";
 
 const components = [
   Breadcrumb,
@@ -26,7 +27,8 @@ const components = [
   Card,
   SideContent,
   FormControlStatic,
-  AuthTree
+  AuthTree,
+  DownloadLink
 ];
 
 components.forEach(component => {

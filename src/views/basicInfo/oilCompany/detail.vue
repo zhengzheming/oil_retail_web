@@ -68,12 +68,10 @@
         <div class="form-control--static">
           <span class="form-control--static__title">{{ labels.attachPaperwork }}</span>
           <div class="form-control--static__text">
-            <p 
-              v-for="(file, index) in attachPaperwork" 
+            <p
+              v-for="(file, index) in attachPaperwork"
               :key="index">
-              <a 
-                href="javascript: void 0" 
-                class="text-link">{{ file.name }}</a>
+              <download-link :attachment="file"/>
             </p>
           </div>
         </div>
@@ -84,12 +82,10 @@
         <div class="form-control--static">
           <span class="form-control--static__title">{{ labels.attachOthers }}</span>
           <div class="form-control--static__text">
-            <p 
-              v-for="(file, index) in attachOthers" 
+            <p
+              v-for="(file, index) in attachOthers"
               :key="index">
-              <a 
-                href="javascript: void 0" 
-                class="text-link">{{ file.name }}</a>
+              <download-link :attachment="file"/>
             </p>
           </div>
         </div>
