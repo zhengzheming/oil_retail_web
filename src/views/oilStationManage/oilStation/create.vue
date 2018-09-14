@@ -19,7 +19,7 @@
           <el-col :span="12">
             <el-form-item
               :label="labels['companyId']"
-              prop="shortName"
+              prop="companyId"
             >
               <el-select
                 v-model="form.companyId"
@@ -38,25 +38,27 @@
           <el-col :span="12">
             <el-form-item
               :label="labels['city']"
-              prop="taxCode"
+              required
             >
               <cell-grid-controls>
-                <el-form-item 
-                  slot="control-1" 
+                <el-form-item
+                  slot="control-1"
+                  prop="provinceId"
                   class="no-margin_b">
                   <el-select
-                    v-model="form.cityId"
+                    v-model="form.provinceId"
                     class="form-control"
                     placeholder="请选择">
                     <el-option
-                      v-for="item in ui.cityOptions"
+                      v-for="item in ui.provinceOptions"
                       :key="item.value"
                       :label="item.label"
                       :value="item.value"/>
                   </el-select>
                 </el-form-item>
-                <el-form-item 
-                  slot="control-2" 
+                <el-form-item
+                  slot="control-2"
+                  prop="cityId"
                   class="no-margin_b">
                   <el-select
                     v-model="form.cityId"
@@ -77,6 +79,7 @@
           <el-col :span="12">
             <el-form-item
               :label="labels['address']"
+              prop="address"
             >
               <el-input v-model="form.address"/>
             </el-form-item>
@@ -86,13 +89,13 @@
               :label="labels['longitudeAndLatitude']"
             >
               <cell-grid-controls>
-                <el-form-item 
-                  slot="control-1" 
+                <el-form-item
+                  slot="control-1"
                   class="no-margin_b">
                   <el-input v-model="form.longitude"/>
                 </el-form-item>
-                <el-form-item 
-                  slot="control-2" 
+                <el-form-item
+                  slot="control-2"
                   class="no-margin_b">
                   <el-input v-model="form.latitude"/>
                 </el-form-item>
@@ -168,6 +171,8 @@ export default {
       name: "油站名称",
       companyId: "所属企业",
       city: "所在城市",
+      cityId: "市",
+      provinceId: "省份",
       address: "详细地址",
       longitudeAndLatitude: "经纬度",
       contactPerson: "油站联系人",
@@ -185,32 +190,50 @@ export default {
             message: $verify.getErrorMessage("required", labels.name)
           }
         ],
-        shortName: [
+        companyId: [
           {
             required: true,
-            message: $verify.getErrorMessage("required", labels.shortName)
+            message: $verify.getErrorMessage("required", labels.companyId)
           }
         ],
-        taxCode: [
+        provinceId: [
           {
             required: true,
-            message: $verify.getErrorMessage("required", labels.taxCode)
+            message: $verify.getErrorMessage(
+              "requiredSelect",
+              labels.provinceId
+            )
           }
         ],
-        status: [
+        cityId: [
           {
             required: true,
-            message: $verify.getErrorMessage("requiredSelect", labels.status)
+            message: $verify.getErrorMessage("requiredSelect", labels.cityId)
           }
         ],
-        contactPhone: [{ validator: $verify.getValidator("phone") }]
+        address: [
+          {
+            required: true,
+            message: $verify.getErrorMessage("required", labels.address)
+          }
+        ]
       },
       form: {
         files: []
       },
       ui: {
         attachOthers: [],
-        statusOptions: [
+        provinceOptions: [
+          {
+            value: "1",
+            label: "启用"
+          },
+          {
+            value: "0",
+            label: "未启用"
+          }
+        ],
+        cityOptions: [
           {
             value: "1",
             label: "启用"
