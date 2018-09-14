@@ -96,7 +96,7 @@ export default {
     if (query.applyId) {
       this.$store.dispatch("oil-station-detail:fetch-form");
     }
-    if (query.stationid) {
+    if (query.stationId) {
       this.$store.dispatch("oil-station-checked-detail:fetch-form");
     }
   },
