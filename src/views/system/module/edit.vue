@@ -237,6 +237,8 @@ export default {
           this.parent_id_bind = $utils.getDeepKey(res,'data.parent_name');
         }
       })
+    }else{
+      this.getList();
     };
     let arr = ['module_status','module_is_public','module_is_external','module_is_menu']
     arr.forEach(item => {
@@ -248,7 +250,9 @@ export default {
       list().then(res => {
         if (res.state == 0) {
           this.treeData = $utils.getDeepKey(res,'data.children');
-          this.filterModule(this.treeData);
+          if(this.$route.name == 'moduleEdit') {
+            this.filterModule(this.treeData);
+          }
         }
       });
     },
