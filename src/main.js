@@ -27,13 +27,6 @@ Object.defineProperty(window, "$verify", { value: verify });
 
 sync(store, router);
 
-request({
-  url: "/admin/common/dropDownListMap",
-  method: "get"
-}).then(res => {
-  res.state == 0 && localStorage.setItem('map', JSON.stringify(res.data));
-})
-
 Vue.use(Element);
 new Vue({
   router,

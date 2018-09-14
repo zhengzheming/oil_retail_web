@@ -11,39 +11,13 @@ export default {
       type: "slt",
       label: "企业状态",
       val: "",
-      data: [
-        {
-          label: "aaa",
-          val: "1"
-        },
-        {
-          label: "bbb",
-          val: "2"
-        },
-        {
-          label: "ccc",
-          val: "3"
-        }
-      ]
+      data: 'logistics_company_status'
     },
     {
       type: "slt",
       label: "银管家状态",
       val: "",
-      data: [
-        {
-          label: "aaa",
-          val: "1"
-        },
-        {
-          label: "bbb",
-          val: "2"
-        },
-        {
-          label: "ccc",
-          val: "3"
-        }
-      ]
+      data: 'logistics_company_out_status'
     }
   ],
   //车辆数据
@@ -67,20 +41,7 @@ export default {
       type: "slt",
       label: "状态",
       val: "",
-      data: [
-        {
-          label: "aaa",
-          val: "1"
-        },
-        {
-          label: "bbb",
-          val: "2"
-        },
-        {
-          label: "ccc",
-          val: "3"
-        }
-      ]
+      data: 'driver_status'
     },
     {
       label: "所属企业",
@@ -133,20 +94,7 @@ export default {
       type: "slt",
       label: "额度状态",
       val: "",
-      data: [
-        {
-          label: "aaa",
-          val: "1"
-        },
-        {
-          label: "bbb",
-          val: "2"
-        },
-        {
-          label: "ccc",
-          val: "3"
-        }
-      ]
+      data: 'logistics_quota_status'
     }
   ],
   // 物流企业管理-企业可用额度收支管理
@@ -155,20 +103,7 @@ export default {
       type: "slt",
       label: "收支类型",
       val: "",
-      data: [
-        {
-          label: "aaa",
-          val: "1"
-        },
-        {
-          label: "bbb",
-          val: "2"
-        },
-        {
-          label: "ccc",
-          val: "3"
-        }
-      ]
+      data: 'logistics_quota_log_category'
     },
     {
       type: "date",

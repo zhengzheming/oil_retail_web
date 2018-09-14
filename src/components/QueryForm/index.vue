@@ -21,12 +21,18 @@
             :placeholder="item.placeholder"
             class="el-slt"
             @blur="e => handleBlur(e,item)">
-            <el-option
+            <!-- <el-option
               v-for="(item1,index) of item.data"
               :disabled="item.disabled"
               :key="index"
               :label="item1.label"
-              :value="item1.val"/>
+              :value="item1.val"/> -->
+            <el-option
+              v-for="(item,key) in item.data"
+              :disabled="item.disabled"
+              :key="key"
+              :label="item.value"
+              :value="item.id+''"/>
           </el-select>
           <el-date-picker
             v-else-if="item.type=='date'"
