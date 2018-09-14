@@ -7,10 +7,14 @@ export const logisticsQuotaLimit = () => {
     });
 }
 // 企业每日限额保存
-export const logisticsQuotaLimitSave = () => {
+export const logisticsQuotaLimitAdd = rate => {
+    const params = {
+        rate
+    }
     return request({
-      url: "/webAPI/LogisticsQuotaLimit/save",
-      method: "get"
+      url: "/webAPI/LogisticsQuotaLimit/add",
+      method: "get",
+      params
     });
 }
 // 司机每日限额详情
@@ -21,9 +25,13 @@ export const vehicleQuotaLimit = () => {
     });
 }
 // 司机每日限额保存
-export const vehicleQuotaLimitSave = () => {
+export const vehicleQuotaLimitAdd = rate => {
+    const params = {
+        rate
+    }
     return request({
-      url: "/webAPI/VehicleQuotaLimit/save",
-      method: "get"
+      url: "/webAPI/VehicleQuotaLimit/add",
+      method: "get",
+      params
     });
 }

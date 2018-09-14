@@ -1,4 +1,6 @@
 import router from "@/router/index";
+import {logisticsQuotaLimitAdd,vehicleQuotaLimitAdd} from '@/api/logisticsManage/limitQuota'
+import { Message } from "element-ui";
 
 const role = {
     state:{
@@ -11,11 +13,29 @@ const role = {
           "vehicleDayQuota:add": function() {
             router.push({name:'vehicleDayQuotaAdd'})
           },
-          "enterpriseDayQuota:save": function() {
-            router.push({name:'enterpriseDayQuotaAdd'})
+          "enterpriseDayQuotaAdd:save": function({state}) {
+            logisticsQuotaLimitAdd(state.rate/100)
+            .then(res => {
+                if(res.state == 0){
+                    Message.success('保存成功');
+                    router.push({name:'enterpriseDayQuota'})
+                }
+            })
             },
-          "vehicleDayQuota:save": function() {
-            router.push({name:'vehicleDayQuotaAdd'})
+          "vehicleDayQuotaAdd:save": function({state}) {
+            vehicleQuotaLimitAdd(state.rate/100)
+            .then(res => {
+                if(res.state == 0){
+                    Message.success('保存成功');
+                    router.push({name:'vehicleDayQuota'})
+                }
+            })
+          },
+          "enterpriseDayQuotaAdd:update": function({state},val) {
+                state.rate = val;
+            },
+          "vehicleDayQuotaAdd:update": function({state},val) {
+            state.rate = val;
           }
     }
   };

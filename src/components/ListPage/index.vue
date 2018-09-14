@@ -4,6 +4,7 @@
       <query-form
         v-if="showQueryList"
         :com-data="queryList"
+        @change-tab="handleChangeTab"
         @reset="handleReset"
         @query="handleQuery"/>
       <item-list :com-data="itemList" v-if="itemList.data"></item-list>
@@ -131,6 +132,9 @@ export default {
     }
   },
   methods: {
+    handleChangeTab(val){
+      this.$emit("change-tab",val);
+    },
     handleQuery() {
       this.$emit("query");
     },

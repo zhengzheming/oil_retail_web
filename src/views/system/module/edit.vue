@@ -1,7 +1,7 @@
 <template>
   <div class="system-user__create" @click="showTree = false">
     <card>
-      <span slot="title">修改系统模块</span>
+      <span slot="title">{{text}}系统模块</span>
       <el-form
         ref="form"
         :rules="rules"
@@ -154,9 +154,13 @@
 <script>
 import { list, detail } from "@/api/system/module-manage";
 export default {
-  name: "SystemUserCreate",
   data() {
+    const textMap = {
+      moduleEdit:'修改',
+      addModule:'添加'
+    }
     return {
+      text:textMap[this.$route.name],
       showTree: false,
       treeData: [],
       updateEventName: {
