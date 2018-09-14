@@ -20,10 +20,10 @@
         <el-row :gutter="$customConfig.colGutter">
           <el-col :span="12">
             <el-form-item
-              :label="labels['orderIndex']"
-              prop="orderIndex"
+              :label="labels['sort']"
+              prop="sort"
             >
-              <el-input v-model="form.orderIndex"/>
+              <el-input v-model="form.sort"/>
             </el-form-item>
           </el-col>
         </el-row>
@@ -70,7 +70,7 @@ export default {
   data() {
     const labels = {
       name: "名称",
-      orderIndex: "排序号",
+      sort: "排序号",
       status: "状态",
       remark: "备注"
     };
@@ -83,10 +83,10 @@ export default {
             message: $verify.getErrorMessage("required", labels.name)
           }
         ],
-        orderIndex: [
+        sort: [
           {
             validator: $verify.getValidator("posInt"),
-            message: $verify.getErrorMessage("posInt", labels.orderIndex)
+            message: $verify.getErrorMessage("posInt", labels.sort)
           }
         ],
         status: [

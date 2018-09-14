@@ -11,8 +11,8 @@
     <el-row :gutter="$customConfig.colGutter">
       <el-col :span="12">
         <form-control-static
-          :text="form.orderIndex"
-          :title="labels.orderIndex"/>
+          :text="form.sort"
+          :title="labels.sort"/>
       </el-col>
     </el-row>
     <el-row :gutter="$customConfig.colGutter">
@@ -38,7 +38,7 @@ export default {
   data() {
     const labels = {
       name: "名称",
-      orderIndex: "排序号",
+      sort: "排序号",
       status: "状态",
       remark: "备注"
     };

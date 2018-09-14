@@ -1,13 +1,6 @@
 import request from "@/utils/request";
 
-export const createOilGoods = ({
-  goodsId,
-  name,
-  code,
-  orderIndex,
-  remark,
-  status
-}) =>
+export const createOilGoods = ({ goodsId, name, code, sort, remark, status }) =>
   request({
     url: "/webAPI/oilGoods/save",
     method: "post",
@@ -15,7 +8,7 @@ export const createOilGoods = ({
       goods_id: goodsId,
       name,
       code,
-      order_index: orderIndex,
+      sort,
       remark,
       status
     }
