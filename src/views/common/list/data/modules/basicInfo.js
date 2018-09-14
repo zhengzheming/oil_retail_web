@@ -42,13 +42,15 @@ export const queryList = {
       label: "所属企业",
       type: "slt",
       val: "",
-      data: "oil_company_id_name_map"
+      field: "oil_company_id_name_map",
+      data: []
     },
     {
       label: "油站状态",
       type: "slt",
       val: "",
-      data: "oil_station_status"
+      field: "oil_station_status",
+      data: []
     },
     {
       label: "油站编号",
