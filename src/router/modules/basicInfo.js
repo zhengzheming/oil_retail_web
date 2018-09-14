@@ -132,6 +132,7 @@ export default {
     {
       path: "oil-station",
       component: placeholderView,
+      name: "oil-station-checked",
       children: [
         {
           path: "index",
