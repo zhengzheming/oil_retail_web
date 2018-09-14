@@ -1,6 +1,6 @@
-import { createOilStation } from "@/api/oilStationManage/oilStation";
+import { createOilStationApply } from "@/api/oilStationManage/oilStation";
 import { oilStationFieldMap } from "@/services/fieldMap";
-import { fetchOilStationDetail } from "@/api/oilStationManage/oilStation";
+import { fetchOilStationApplyDetail } from "@/api/oilStationManage/oilStation";
 import { Message } from "element-ui";
 import router from "@/router/index";
 const oilStation = {
@@ -32,7 +32,7 @@ const oilStation = {
           let data = {
             ...form
           };
-          createOilStation(data).then(() => {
+          createOilStationApply(data).then(() => {
             const infoMap = {
               "oil-station-create": "添加油站成功",
               "oil-station-modify": "修改油站成功"
@@ -51,7 +51,7 @@ const oilStation = {
       state.create.formRef = formRef;
     },
     "oil-station-detail:fetch-form": function({ commit, rootState, state }) {
-      return fetchOilStationDetail(rootState.route.query.stationId).then(
+      return fetchOilStationApplyDetail(rootState.route.query.stationId).then(
         res => {
           commit("UPDATE_OIL_STATION_DETAIL", res.data);
           return state.detail.form;

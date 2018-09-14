@@ -1,6 +1,6 @@
 import request from "@/utils/request";
 
-export const createOilStation = ({
+export const createOilStationApply = ({
   stationId,
   companyId,
   name,
@@ -14,7 +14,7 @@ export const createOilStation = ({
   files
 }) =>
   request({
-    url: "/webAPI/oilStation/save",
+    url: "/webAPI/oilStationApply/save",
     method: "post",
     data: {
       station_id: stationId,
@@ -31,11 +31,17 @@ export const createOilStation = ({
     }
   });
 
-export const fetchOilStationDetail = stationId =>
+export const fetchOilStationApplyDetail = stationId =>
   request({
-    url: "/webAPI/oilStation/detail",
-    method: "GET",
+    url: "/webAPI/oilStationApply/detail",
+    method: "get",
     params: {
       station_id: stationId
     }
+  });
+
+export const fetchDropDownListMapInOil = () =>
+  request({
+    url: "/webAPI/oilCommon/dropDownListMap",
+    method: "get"
   });

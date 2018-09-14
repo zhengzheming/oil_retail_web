@@ -48,9 +48,10 @@
                   <el-select
                     v-model="form.provinceId"
                     class="form-control"
-                    placeholder="请选择">
+                    placeholder="请选择"
+                    @change="$set(form, 'cityId', '')">
                     <el-option
-                      v-for="item in ui.provinceOptions"
+                      v-for="item in provinceOptions"
                       :key="item.value"
                       :label="item.label"
                       :value="item.value"/>
@@ -223,38 +224,20 @@ export default {
       },
       ui: {
         attachOthers: [],
-        provinceOptions: [
-          {
-            value: "1",
-            label: "启用"
-          },
-          {
-            value: "0",
-            label: "未启用"
-          }
-        ],
-        cityOptions: [
-          {
-            value: "1",
-            label: "启用"
-          },
-          {
-            value: "0",
-            label: "未启用"
-          }
-        ],
-        companyOptions: [
-          {
-            value: "1",
-            label: "国有"
-          },
-          {
-            value: "2",
-            label: "民营"
-          }
-        ]
+        provinceOptions: [],
+        cityOptions: [],
+        companyOptions: []
       }
     };
+  },
+  computed: {
+    provinceOptions() {
+      return this.$store.state.common.areaList.map(province => ({
+        label: province.name,
+        value: province.id,
+        children: province.children
+      }));
+    }
   },
   watch: {
     form: {
@@ -266,10 +249,27 @@ export default {
       },
       immediate: true,
       deep: true
+    },
+    "form.provinceId": function(id) {
+      const province = this.provinceOptions.find(
+        province => id == province.value
+      );
+      this.ui.cityOptions = province.children.map(child => ({
+        label: child.name,
+        value: child.id
+      }));
     }
   },
   created() {
-    if (this.$route.query.StationId) {
+    this.$store.dispatch("common/getArea");
+    this.$store.dispatch("oilCommon/dropdownListMap").then(data => {
+      console.log(data);
+      this.ui.companyOptions = data["oil_company_id_name_map"].map(obj => ({
+        label: obj.value,
+        value: obj.id
+      }));
+    });
+    if (this.$route.query.stationId) {
       this.$store.dispatch("oil-station-detail:fetch-form").then(detail => {
         this.form = detail;
         this.initFiles();

@@ -1,7 +1,14 @@
 import request from "@/utils/request";
 
 export default {
-  "oil-station-list": (page, pageSize, name, companyId, status, stationId) => {
+  "oil-station-apply-list": (
+    page,
+    pageSize,
+    name,
+    companyId,
+    status,
+    stationId
+  ) => {
     const data = {
       page: page,
       pageSiz: pageSize,
@@ -13,7 +20,7 @@ export default {
       }
     };
     return request({
-      url: "/webAPI/oilStation/list",
+      url: "/webAPI/oilStationApply/list",
       method: "post",
       data
     });
