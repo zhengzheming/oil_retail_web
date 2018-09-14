@@ -11,7 +11,7 @@ export default {
   ) => {
     const data = {
       page: page,
-      pageSiz: pageSize,
+      pageSize: pageSize,
       search: {
         user_name,
         name,
@@ -28,7 +28,7 @@ export default {
   "system-role-list": (page, pageSize, name) => {
     const data = {
       page: page,
-      pageSiz: pageSize,
+      pageSize: pageSize,
       search: {
         name
       }

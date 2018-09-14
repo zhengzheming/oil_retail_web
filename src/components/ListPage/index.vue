@@ -7,7 +7,9 @@
         @change-tab="handleChangeTab"
         @reset="handleReset"
         @query="handleQuery"/>
-      <item-list :com-data="itemList" v-if="itemList.data"></item-list>
+      <item-list 
+        v-if="itemList.data" 
+        :com-data="itemList"/>
       <el-table
         :data="tableContent"
         border
@@ -39,22 +41,22 @@
           label="操作">
           <template slot-scope="scope">
             <el-button
-              v-if="config.detailPath && scope.row.is_can_view !== false"
+              v-if="config.detailPath.pathName && scope.row.is_can_view !== false"
               type="text"
               size="small"
               @click="handleVIew(scope.row)">查看</el-button>
             <el-button
-              v-if="config.editPath && scope.row.is_can_edit !== false"
+              v-if="config.editPath.pathName && scope.row.is_can_edit !== false"
               type="text"
               size="small"
               @click="handleEdit(scope.row)">编辑</el-button>
             <el-button
-              v-if="config.configForDelete && scope.row.is_can_delete !== false"
+              v-if="config.configForDelete.pathName && scope.row.is_can_delete !== false"
               type="text"
               size="small"
               @click="handleDelete(scope.row)">删除</el-button>
             <el-button
-              v-if="config.configForAuth && scope.row.is_can_auth !== false"
+              v-if="config.configForAuth.pathName && scope.row.is_can_auth !== false"
               type="text"
               size="small"
               @click="handleAuth(scope.row)">授权</el-button>
@@ -132,8 +134,8 @@ export default {
     }
   },
   methods: {
-    handleChangeTab(val){
-      this.$emit("change-tab",val);
+    handleChangeTab(val) {
+      this.$emit("change-tab", val);
     },
     handleQuery() {
       this.$emit("query");

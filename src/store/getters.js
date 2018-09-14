@@ -12,6 +12,7 @@ const getters = {
   moduleTree: state => state.system.moduleAuth.tree,
   oilCompanyCreate: state => state.basicInfo.oilCompany.create,
   oilCompanyDetail: state => state.basicInfo.oilCompany.detail,
-  oilGoodsDetail: state => state.basicInfo.oilGoods.detail
+  oilGoodsDetail: state => state.basicInfo.oilGoods.detail,
+  oilStationDetail: state => state.oilStationManage.oilStation.detail
 };
 export default getters;

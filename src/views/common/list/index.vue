@@ -33,8 +33,8 @@ import editPath from "./data/editPath";
 import detailPath from "./data/detailPath";
 import configForAuth from "./data/configForAuth";
 import configForDelete from "./data/delete";
-import hasAction from "./data/hasAction";   //列表是否有操作栏:默认有,没有则需配置
-import hasExport from "./data/hasExport";   //是否有导出功能
+import hasAction from "./data/hasAction"; //列表是否有操作栏:默认有,没有则需配置
+import hasExport from "./data/hasExport"; //是否有导出功能
 
 export default {
   data() {
@@ -49,8 +49,8 @@ export default {
       tableHeader: tableHeader[pathName] || {},
       editPath: editPath[pathName] || {},
       detailPath: detailPath[pathName] || {},
-      configForDelete: configForDelete[pathName],
-      configForAuth: configForAuth[pathName],
+      configForDelete: configForDelete[pathName] || {},
+      configForAuth: configForAuth[pathName] || {},
       hasAction: hasAction[pathName],
       hasExport: hasExport[pathName],
       listApi: apiList.list[pathName],
@@ -72,17 +72,16 @@ export default {
   },
   mounted() {
     this.getList();
-    if(this.sltDataApi){
-      this.sltDataApi()
-      .then(res => {
-        if(res.state == 0 && res.data){
+    if (this.sltDataApi) {
+      this.sltDataApi().then(res => {
+        if (res.state == 0 && res.data) {
           this.queryList.forEach(item => {
             if(item.type == 'slt'){
               item.data = res.data[item.field]
             }
-          })
+          });
         }
-      })
+      });
     }
   },
   methods: {
@@ -97,8 +96,8 @@ export default {
           params.push(item.val);
         });
       // 如果有导出功能则执行以下
-      if(this.hasExport){
-        this.$store.dispatch(`${this.$route.name}:exportInit`,params)
+      if (this.hasExport) {
+        this.$store.dispatch(`${this.$route.name}:exportInit`, params);
       }
       this.listApi &&
         this.listApi(...params).then(res => {
@@ -160,11 +159,12 @@ export default {
           item.val = "";
         });
     },
-    handleChangeTab(val){
-      let tabEle = this.queryList.filter(item => {
-        return item.type == 'tab'
-      }) || [];
-      if(tabEle.length){
+    handleChangeTab(val) {
+      let tabEle =
+        this.queryList.filter(item => {
+          return item.type == "tab";
+        }) || [];
+      if (tabEle.length) {
         tabEle[0].val = val;
         this.getList();
       }

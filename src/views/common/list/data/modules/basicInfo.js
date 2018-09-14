@@ -1,5 +1,6 @@
 import { deleteUser } from "@/api/system/user";
 import { deleteRole } from "@/api/system/role";
+
 export const queryList = {
   "oil-company-list": [
     {
@@ -29,6 +30,28 @@ export const queryList = {
   "oil-goods-list": [
     {
       label: "油品名称",
+      val: ""
+    }
+  ],
+  "oil-station-checked-list": [
+    {
+      label: "油站名称",
+      val: ""
+    },
+    {
+      label: "所属企业",
+      type: "slt",
+      val: "",
+      data: "oil_company_id_name_map"
+    },
+    {
+      label: "油站状态",
+      type: "slt",
+      val: "",
+      data: "oil_station_status"
+    },
+    {
+      label: "油站编号",
       val: ""
     }
   ]
@@ -65,6 +88,25 @@ export const tableHeader = {
     status_name: {
       label: "状态",
       width: "70px"
+    }
+  },
+  "oil-station-checked-list": {
+    user_id: {
+      label: "油站编号",
+      width: "100px"
+    },
+    user_name: {
+      label: "油站名称"
+    },
+    name: {
+      label: "所属企业"
+    },
+    province_name: {
+      label: "所属省份"
+    },
+    status_name: {
+      label: "启用状态",
+      width: "100px"
     }
   }
 };
@@ -106,6 +148,15 @@ export const detailPath = {
       {
         name: "goodsId",
         field: "goods_id"
+      }
+    ]
+  },
+  "oil-station-checked-list": {
+    pathName: "oil-station-detail",
+    query: [
+      {
+        name: "stationId",
+        field: "station_id"
       }
     ]
   }

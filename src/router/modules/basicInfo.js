@@ -127,6 +127,20 @@ export default {
           }
         }
       ]
+    },
+    {
+      path: "oil-station",
+      component: placeholderView,
+      children: [
+        {
+          path: "index",
+          name: "oil-station-checked-list",
+          component: commonList,
+          meta: {
+            title: "油站数据"
+          }
+        }
+      ]
     }
   ]
 };

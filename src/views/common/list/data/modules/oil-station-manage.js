@@ -71,8 +71,8 @@ export const editPath = {
     pathName: "oil-station-modify",
     query: [
       {
-        name: "stationId",
-        field: "station_id"
+        name: "applyId",
+        field: "apply_id"
       }
     ]
   }
@@ -83,8 +83,8 @@ export const detailPath = {
     pathName: "oil-station-detail",
     query: [
       {
-        name: "stationId",
-        field: "station_id"
+        name: "applyId",
+        field: "apply_id"
       }
     ]
   }
