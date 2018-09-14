@@ -23,6 +23,22 @@ const oilStation = {
     "oil-station-list:create": function() {
       router.push({ name: "oil-station-create" });
     },
+    "oil-station-create:submit": function({ state }) {
+      const formRef = state.create.formRef;
+      const form = state.create.form;
+      if (!formRef) return;
+      formRef.validate(valid => {
+        if (valid) {
+          let data = {
+            ...form
+          };
+          createOilStationApply(data, true).then(() => {
+            Message.success("提交成功");
+            router.push({ name: "oil-station-list" });
+          });
+        }
+      });
+    },
     "oil-station-create:save": function({ state, rootState }) {
       const formRef = state.create.formRef;
       const form = state.create.form;
@@ -32,7 +48,7 @@ const oilStation = {
           let data = {
             ...form
           };
-          createOilStationApply(data).then(() => {
+          createOilStationApply(data, false).then(() => {
             const infoMap = {
               "oil-station-create": "添加油站成功",
               "oil-station-modify": "修改油站成功"
@@ -51,7 +67,7 @@ const oilStation = {
       state.create.formRef = formRef;
     },
     "oil-station-detail:fetch-form": function({ commit, rootState, state }) {
-      return fetchOilStationApplyDetail(rootState.route.query.stationId).then(
+      return fetchOilStationApplyDetail(rootState.route.query.applyId).then(
         res => {
           commit("UPDATE_OIL_STATION_DETAIL", res.data);
           return state.detail.form;
