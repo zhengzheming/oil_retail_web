@@ -98,6 +98,12 @@ export default {
       return this.filterFiles(this.form.files, "others");
     },
     longitudeAndLatitude() {
+      if (
+        this.form.longitude == this.form.latitude &&
+        this.form.latitude == 0
+      ) {
+        return "";
+      }
       return String(this.form.longitude + " / " + this.form.latitude);
     },
     city() {
