@@ -27,7 +27,7 @@
           :data="treeData"
           :expand-on-click-node="false"
           :filter-node-method="filterNode"
-          style="width: 32%;min-width: 620px;"
+          style="width: 32%;min-width: 650px;"
           node-key="id"
           default-expand-all>
           <span 
@@ -116,7 +116,7 @@ export default {
 }
 .table-header {
   width: 32%;
-  min-width: 620px;
+  min-width: 650px;
   height: 32px;
   line-height: 32px;
   font-weight: 600;
