@@ -4,7 +4,7 @@ export default {
   "oil-company-list": (page, pageSize, name, status) => {
     const data = {
       page: page,
-      pageSiz: pageSize,
+      pageSize: pageSize,
       search: {
         name,
         status
@@ -19,7 +19,7 @@ export default {
   "oil-goods-list": (page, pageSize, name) => {
     const data = {
       page: page,
-      pageSiz: pageSize,
+      pageSize: pageSize,
       search: {
         name
       }
@@ -40,7 +40,7 @@ export default {
   ) => {
     const data = {
       page: page,
-      pageSiz: pageSize,
+      pageSize: pageSize,
       search: {
         name,
         company_id: companyId,
@@ -49,7 +49,7 @@ export default {
       }
     };
     return request({
-      url: "/webAPI/oilStationApply/list",
+      url: "/webAPI/oilStation/list",
       method: "post",
       data
     });

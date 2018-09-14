@@ -4,7 +4,7 @@ export default {
   "oil-station-list": (page, pageSize, name, companyId, status, stationId) => {
     const data = {
       page: page,
-      pageSiz: pageSize,
+      pageSize: pageSize,
       search: {
         name,
         company_id: companyId,
