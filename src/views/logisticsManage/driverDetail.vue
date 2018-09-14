@@ -7,9 +7,9 @@
     <card>
         <span slot="title">车辆信息</span>
         <p>
-            <span v-for="item of vehicleList" :key="item"
+            <span v-for="item of vehicleList" :key="item.number"
             style="border:1px solid #e6e6e6;border-radius:2px;width:100px;height:32px;line-height:32px;
-            text-align:center;color:#333;font-size:14px;display:inline-block;margin-right:24px;">{{item}}</span>
+            text-align:center;color:#333;font-size:14px;display:inline-block;margin-right:24px;">{{item.number}}</span>
         </p>
     </card>
 </div>
@@ -49,7 +49,7 @@ export default {
             .then(res => {
                 if(res.state == 0){
                     this.userInfo.data = $utils.getDeepKey(res,'data');
-                    this.vehicleList = $utils.getDeepKey(res,'data.vehicle_items');
+                    this.vehicleList = $utils.getDeepKey(res,'data.vehicles');
                 }
             })
         }
