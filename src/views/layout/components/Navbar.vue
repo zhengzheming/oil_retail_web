@@ -45,6 +45,7 @@ export default {
     handleUserCommand(command) {
       const commandCallbacks = {
         "reset-pwd": () => {
+          this.$router.push({ name: "reset-pwd" });
           console.log(`reset---pwd...`);
         },
         logout: () => {

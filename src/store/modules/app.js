@@ -1,6 +1,9 @@
 import Cookies from "js-cookie";
 import { getMenu } from "@/api/app";
 import { traverseTree } from "@/utils/helper";
+import { resetPwd } from "@/api/app";
+import { Message } from "element-ui";
+import router from "@/router/index";
 
 function generateMenu(data) {
   traverseTree({ children: data }, "children", function(child) {
@@ -64,6 +67,12 @@ const app = {
     },
     setLanguage({ commit }, language) {
       commit("SET_LANGUAGE", language);
+    },
+    resetPwd(context, form) {
+      resetPwd(form).then(() => {
+        Message.success("修改密码成功");
+        router.push("/login");
+      });
     }
   }
 };
