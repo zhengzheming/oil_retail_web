@@ -7,7 +7,7 @@ const user = {
     formRef: null
   },
   actions: {
-    "reset-pwd:submit": function({ state }) {
+    "reset-pwd:submit": function({ state, dispatch }) {
       const formRef = state.formRef;
       const form = state.form;
       if (!formRef) return;
@@ -18,7 +18,9 @@ const user = {
           };
           resetPwd(data).then(() => {
             Message.success("修改密码成功");
-            router.push({ name: "login" });
+            dispatch("FedLogOut").then(() => {
+              router.push({ name: "login" });
+            });
           });
         }
       });
