@@ -1,4 +1,3 @@
-import { fetchRoles } from "@/api/system/user";
 export const queryList = {
   "oil-station-list": [
     {
@@ -9,36 +8,15 @@ export const queryList = {
       label: "所属企业",
       type: "slt",
       val: "",
-      getOptions: fetchRoles,
-      transformer: data =>
-        data.map(role => ({
-          label: role.name,
-          val: role.role_id
-        })),
-      data: []
+      data: [],
+      field: "oil_company_id_name_map"
     },
     {
       label: "审核状态",
       type: "slt",
       val: "",
-      data: [
-        {
-          label: "全部",
-          val: ""
-        },
-        {
-          label: "待审核",
-          val: "1"
-        },
-        {
-          label: "审核通过",
-          val: "2"
-        },
-        {
-          label: "审核驳回",
-          val: "4"
-        }
-      ]
+      field: "oil_station_apply_status",
+      data: []
     },
     {
       label: "油站编号",
