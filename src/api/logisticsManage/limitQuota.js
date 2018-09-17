@@ -8,13 +8,13 @@ export const logisticsQuotaLimit = () => {
 };
 // 企业每日限额保存
 export const logisticsQuotaLimitAdd = rate => {
-    const params = {
+    const data = {
         rate
     }
     return request({
       url: "/webAPI/LogisticsQuotaLimit/add",
-      method: "get",
-      params
+      method: "post",
+      data
     });
 }
 // 司机每日限额详情
@@ -26,12 +26,12 @@ export const vehicleQuotaLimit = () => {
 };
 // 司机每日限额保存
 export const vehicleQuotaLimitAdd = rate => {
-    const params = {
+    const data = {
         rate
     }
     return request({
       url: "/webAPI/VehicleQuotaLimit/add",
-      method: "get",
-      params
+      method: "post",
+      data
     });
 }
