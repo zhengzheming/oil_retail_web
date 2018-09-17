@@ -23,7 +23,7 @@
             <router-link
               v-if="val.pathName"
               :style="{color:val.pathName?'#6666FF':'#333'}"
-              :to="{ name: val.pathName, query: val.params}"
+              :to="{ name: val.pathName, query: scope.row.params}"
               :title="scope.row[key]"
               class="oparation"
               tag="a"

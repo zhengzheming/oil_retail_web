@@ -73,54 +73,6 @@ export default {
       width: "200"
     }
   },
-  // 物流企业管理-企业额度
-  enterpriseQuota: {
-    logistics_name: {
-      label: "物流公司",
-      width: "150"
-    },
-    status_name: {
-      label: "额度状态",
-      width: "100"
-    },
-    credit_quota: {
-      label: "企业额度",
-    },
-    available_quota: {
-      label: "企业可用额度",
-      pathName: "availableCredit",
-      query: [
-        {
-          name: "logistics_id",
-          field: "logistics_id"
-        }
-      ]
-    },
-    rate: {
-      label: "每日额度占比"
-    },
-    daily_credit_quota: {
-      label: "今日可用额度"
-    },
-    daily_available_quota: {
-      label: "今日可用额度",
-      pathName: "dayCredit",
-      query: [
-        {
-          name: "logistics_id",
-          field: "logistics_id"
-        }
-      ]
-    },
-    start_date: {
-      label: "开始时间",
-      width: "120"
-    },
-    end_date: {
-      label: "结束时间",
-      width: "120"
-    }
-  },
     // 物流企业管理-企业额度-企业可用额度收支管理
     availableCredit: {
         create_time: {
@@ -180,6 +132,54 @@ export default {
     rate: {
       label: "当日油箱占比%"
     }
+  },
+  // 物流企业管理-企业额度
+  enterpriseQuota: {
+      logistics_name: {
+          label: "物流公司",
+          width: "150"
+      },
+      status_name: {
+          label: "额度状态",
+          width: "100"
+      },
+      credit_quota: {
+          label: "企业额度",
+      },
+      available_quota: {
+          label: "企业可用额度",
+          pathName: "availableCredit",
+          query: [
+              {
+                  name: "logistics_id",
+                  field: "logistics_id"
+              }
+          ]
+      },
+      rate: {
+          label: "每日额度占比"
+      },
+      daily_credit_quota: {
+          label: "今日可用额度"
+      },
+      daily_available_quota: {
+          label: "今日可用额度",
+          pathName: "dayCredit",
+          query: [
+              {
+                  name: "logistics_id",
+                  field: "logistics_id"
+              }
+          ]
+      },
+      start_date: {
+          label: "开始时间",
+          width: "120"
+      },
+      end_date: {
+          label: "结束时间",
+          width: "120"
+      }
   },
   //车辆容量
   vehicleCapacity: {

@@ -113,7 +113,7 @@ export default {
                 Object.keys(this.tableHeader).forEach(key => {
                   const tableHeaderKey = this.tableHeader[key];
                   if (Array.isArray(tableHeaderKey.query)) {
-                    tableHeaderKey.params = tableHeaderKey.query.reduce(
+                    item.params = tableHeaderKey.query.reduce(
                       (acc, cur) => ({
                         ...acc,
                         [cur.name]: item[cur.field]
