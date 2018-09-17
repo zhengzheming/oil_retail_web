@@ -1,7 +1,10 @@
 <template>
   <div class="form-control--static">
     <span class="form-control--static__title">{{ title }}</span>
-    <span class="form-control--static__text">{{ text }}</span>
+    <span class="form-control--static__text">
+      <span v-if="text">{{ text }}</span>
+      <span v-else><slot/></span>
+    </span>
   </div>
 </template>
 
@@ -24,6 +27,7 @@ export default {
 <style lang="scss">
 .form-control--static {
   display: flex;
+  line-height: 22px;
   .form-control--static__title {
     display: inline-block;
     text-align: right;

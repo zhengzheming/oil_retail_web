@@ -49,6 +49,17 @@
           title="E-mail"/>
       </el-col>
     </el-row>
+    <el-row :gutter="$customConfig.colGutter">
+      <el-col :span="24">
+        <form-control-static title="权限变更">
+          <el-checkbox
+            v-model="form.authFollowRole"
+            true-label="1"
+            disabled
+            false-label="0">根据所选角色变更用户权限，否则保持用户权限不变</el-checkbox>
+        </form-control-static>
+      </el-col>
+    </el-row>
     <auth-tree type="user"/>
   </card>
 </template>
