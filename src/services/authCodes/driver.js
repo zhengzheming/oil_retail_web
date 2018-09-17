@@ -1,11 +1,11 @@
 export default {
-  driver: ["driver", "index"],
+  driver: ["driver", "list"],
   driverDetail: ["driver", "detail"],
-  enterpriseDayQuota: ["enterpriseDayQuota", "index"],
+  enterpriseDayQuota: ["enterpriseDayQuota", "list"],
   enterpriseDayQuotaAdd: ["enterpriseDayQuota", "add"],
 
-  vehicleDayQuota: ["vehicleDayQuota", "index"],
+  vehicleDayQuota: ["vehicleDayQuota", "list"],
   vehicleDayQuotaAdd: ["vehicleDayQuota", "add"],
 
-  enterpriseQuota: ["enterpriseQuota", "index"]
+  enterpriseQuota: ["enterpriseQuota", "list"]
 };
