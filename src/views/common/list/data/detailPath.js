@@ -27,8 +27,8 @@ export default {
     pathName: "driverDetail",
     query: [
       {
-        name: "driver_id",
-        field: "driver_id"
+        name: "customer_id",
+        field: "customer_id"
       }
     ]
   },

@@ -40,12 +40,12 @@ export default {
                     }
                 ]
             },
-            vehicleList: ['粤B123','粤B456']
+            vehicleList: []
         }
     },
     mounted(){
-        if(this.$route.query.driver_id){
-            detail(this.$route.query.driver_id)
+        if(this.$route.query.customer_id){
+            detail(this.$route.query.customer_id)
             .then(res => {
                 if(res.state == 0){
                     this.userInfo.data = $utils.getDeepKey(res,'data');
