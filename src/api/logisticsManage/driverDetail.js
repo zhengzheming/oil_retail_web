@@ -1,8 +1,8 @@
 import request from "@/utils/request";
 
-export const detail = (driver_id) => {
+export const detail = (customer_id) => {
     const params = {
-        driver_id
+        customer_id
       };
     return request({
       url: "/webAPI/driver/detail",
