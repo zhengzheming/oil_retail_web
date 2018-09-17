@@ -65,7 +65,6 @@ export default {
       val: ""
     },
     {
-      type: "date",
       label: "企业限额编号",
       val: ""
     }
@@ -83,7 +82,6 @@ export default {
       val: ""
     },
     {
-      type: "date",
       label: "车辆限额编号",
       val: ""
     }
