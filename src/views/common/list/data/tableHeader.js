@@ -29,18 +29,19 @@ export default {
   vehicleData: {
     vehicle_id: {
       label: "编号",
-      width: "120"
+      width: "150"
     },
     number: {
       label: "车牌号",
-      width: "200"
+      width: "150"
     },
     logistics_name: {
       label: "物流企业",
-      width: "120"
+      width: "150"
     },
     model: {
-      label: "车辆类型"
+      label: "车辆类型",
+      width: "150"
     },
     capacity: {
       label: "油箱容量/L"
@@ -57,14 +58,15 @@ export default {
       width: "200"
     },
     logistics_name: {
-      label: "所属企业"
+      label: "所属企业",
+      width: "200"
     },
     // numb4er: {         //不要了,删了
     //   label: "所属系统"
     // },
     phone: {
       label: "电话",
-      width: "120"
+      width: "200"
     },
     status_name: {
       label: "状态",
@@ -75,15 +77,14 @@ export default {
   enterpriseQuota: {
     logistics_name: {
       label: "物流公司",
-      width: "120"
+      width: "150"
     },
     status_name: {
       label: "额度状态",
-      width: "200"
+      width: "100"
     },
     credit_quota: {
       label: "企业额度",
-      width: "120"
     },
     available_quota: {
       label: "企业可用额度",
@@ -96,16 +97,13 @@ export default {
       ]
     },
     rate: {
-      label: "每日额度占比",
-      width: "120"
+      label: "每日额度占比"
     },
     daily_credit_quota: {
-      label: "今日可用额度",
-      width: "120"
+      label: "今日可用额度"
     },
     daily_available_quota: {
       label: "今日可用额度",
-      width: "200",
       pathName: "dayCredit",
       query: [
         {
@@ -119,18 +117,47 @@ export default {
       width: "120"
     },
     end_date: {
-      label: "结束时间"
+      label: "结束时间",
+      width: "120"
     }
   },
+    // 物流企业管理-企业额度-企业可用额度收支管理
+    availableCredit: {
+        create_time: {
+            label: "时间"
+        },
+        quota: {
+            label: "额度明细/元"
+        },
+        relation_id: {
+            label: "编号"
+        },
+        category_name: {
+            label: "收支类型"
+        }
+    },
+    // 物流企业管理-企业额度-企业当日可用额度收支管理
+    dayCredit: {
+        create_time: {
+            label: "时间"
+        },
+        quota: {
+            label: "额度明细/元"
+        },
+        relation_id: {
+            label: "编号"
+        },
+        category_name: {
+            label: "收支类型"
+        }
+    },
   // 企业每日限额
   enterpriseDayQuota: {
     code: {
-      label: "企业限额编号",
-      width: "120"
+      label: "企业限额编号"
     },
     create_user_name: {
-      label: "创建人",
-      width: "200"
+      label: "创建人"
     },
     create_time: {
       label: "变更时间"
@@ -142,12 +169,10 @@ export default {
   //车辆每日限额
   vehicleDayQuota: {
     code: {
-      label: "车辆限额编号",
-      width: "120"
+      label: "车辆限额编号"
     },
     create_user_name: {
-      label: "创建人",
-      width: "200"
+      label: "创建人"
     },
     create_time: {
       label: "变更时间"
@@ -156,43 +181,7 @@ export default {
       label: "当日油箱占比%"
     }
   },
-  // 物流企业管理-企业额度-企业可用额度收支管理
-  availableCredit: {
-    create_time: {
-      label: "时间",
-      width: "200"
-    },
-    quota: {
-      label: "额度明细/元",
-      width: "200"
-    },
-    relation_id: {
-      label: "编号",
-      width: "120"
-    },
-    category_name: {
-      label: "收支类型"
-    }
-  },
-  // 物流企业管理-企业额度-企业当日可用额度收支管理
-  dayCredit: {
-    create_time: {
-      label: "时间",
-      width: "200"
-    },
-    quota: {
-      label: "额度明细/元",
-      width: "200"
-    },
-    relation_id: {
-      label: "编号",
-      width: "120"
-    },
-    category_name: {
-      label: "收支类型"
-    }
-  },
-  // 物流企业管理-企业当日可用额度收支管理
+  //车辆容量
   vehicleCapacity: {
     logistics_id: {
       label: "编号",
