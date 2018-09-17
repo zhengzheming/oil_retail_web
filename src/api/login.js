@@ -6,7 +6,6 @@ export function loginByUsername(username, password) {
     username,
     password: md5(password)
   };
-  logout;
   return request({
     url: "/admin/site/login",
     method: "post",
@@ -18,5 +17,17 @@ export function logout() {
   return request({
     url: "/admin/site/logout",
     method: "post"
+  });
+}
+
+export function resetPwd({ password, newPassword, cpassword }) {
+  return request({
+    url: "/admin/site/updatePwd",
+    method: "post",
+    data: {
+      password: password ? md5(password) : "",
+      newPassword: newPassword ? md5(newPassword) : "",
+      confirmPassword: cpassword ? md5(cpassword) : ""
+    }
   });
 }

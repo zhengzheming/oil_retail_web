@@ -2,7 +2,7 @@
   <div class="reset-pwd">
     <card>
       <span slot="title">请在下面填写</span>
-      <el-form 
+      <el-form
         ref="form"
         :rules="rules"
         :model="form"
@@ -11,8 +11,10 @@
           <el-col :span="12">
             <el-form-item
               label="原密码"
-              prop="realName">
-              <el-input v-model="form.password"/>
+              prop="password">
+              <el-input 
+                v-model="form.password" 
+                type="password"/>
             </el-form-item>
           </el-col>
         </el-row>
@@ -20,8 +22,10 @@
           <el-col :span="12">
             <el-form-item
               label="新密码"
-              prop="realName">
-              <el-input v-model="form.newPassword"/>
+              prop="newPassword">
+              <el-input 
+                v-model="form.newPassword" 
+                type="password"/>
             </el-form-item>
           </el-col>
         </el-row>
@@ -29,8 +33,10 @@
           <el-col :span="12">
             <el-form-item
               label="确认密码"
-              prop="realName">
-              <el-input v-model="form.cpassword"/>
+              prop="cpassword">
+              <el-input 
+                v-model="form.cpassword" 
+                type="password"/>
             </el-form-item>
           </el-col>
         </el-row>
@@ -53,8 +59,8 @@ export default {
       if (value === "") {
         callback(new Error("请输入密码"));
       } else {
-        if (this.ruleForm2.checkPass !== "") {
-          this.$refs.ruleForm2.validateField("checkPass");
+        if (this.form.cpassword !== "") {
+          this.$refs.form.validateField("cpassword");
         }
         callback();
       }
@@ -62,7 +68,7 @@ export default {
     const validatePass2 = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("请再次输入密码"));
-      } else if (value !== this.ruleForm2.pass) {
+      } else if (value !== this.form.password) {
         callback(new Error("两次输入密码不一致!"));
       } else {
         callback();
@@ -92,6 +98,24 @@ export default {
         ]
       }
     };
+  },
+  watch: {
+    form: {
+      handler: function(val) {
+        this.$store.dispatch("reset-pwd:update-form", {
+          form: val,
+          formRef: this.$refs["form"]
+        });
+      },
+      immediate: true,
+      deep: true
+    }
+  },
+  mounted() {
+    this.$store.dispatch("reset-pwd:update-form", {
+      form: this.form,
+      formRef: this.$refs["form"]
+    });
   }
 };
 </script>

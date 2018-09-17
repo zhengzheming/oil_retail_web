@@ -14,11 +14,4 @@ export function getUserInfo(token) {
   });
 }
 
-export function resetPwd(data) {
-  return request({
-    url: "/admin/site/reset",
-    method: "post",
-    data
-  });
-}
 // 字段map
