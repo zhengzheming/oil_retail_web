@@ -26,7 +26,8 @@ export default {
           },
           {
             label: "操作",
-            prop: "actions"
+            prop: "actions",
+            styleObj:"width:100%;"
           },
           {
             label: "页面链接",
