@@ -19,7 +19,7 @@ export default {
                     },
                     {
                         label:'银管家状态',
-                        prop:'out_status_name	'
+                        prop:'out_status_name'
                     },
                     {
                         type:'slt',
