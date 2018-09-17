@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Message } from "element-ui";
+import router from "@/router";
 // import store from "@/store";
 // import { getToken } from "@/utils/auth";
 
@@ -31,6 +32,14 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   response => {
     const res = response.data;
+    if (res.state == 100011000) {
+      Message({
+        message: res.data,
+        type: "error",
+        duration: 3 * 1000
+      });
+      return router.push({ name: "login" });
+    }
     if (res.state !== 0) {
       Message({
         message: res.data,
@@ -43,16 +52,13 @@ service.interceptors.response.use(
   },
   error => {
     console.log("err" + error); // for debug
+    let errMessage = error.message;
     if (error.response.status == "403") {
-      Message({
-        message: error.response.data.data,
-        type: "error",
-        duration: 3 * 1000
-      });
-      return Promise.reject(error);
+      errMessage = error.response.data.data;
     }
+    errMessage = error.message;
     Message({
-      message: error.message,
+      message: errMessage,
       type: "error",
       duration: 3 * 1000
     });
