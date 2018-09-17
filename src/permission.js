@@ -4,25 +4,23 @@ import store from "./store/index";
 import NProgress from "nprogress"; // progress bar
 import "nprogress/nprogress.css"; // progress bar style
 import { getToken } from "@/utils/auth"; // getToken from cookie
-import authCodesMap from "@/services/authCodes";
+// import authCodesMap from "@/services/authCodes";
 NProgress.configure({ showSpinner: false }); // NProgress Configuration
 
 const whiteList = ["/login", "/auth-redirect"]; // no redirect whitelist
 
-function verifyRouteAuth({ routeName }) {
-  const authCodes = authCodesMap[routeName];
-  if (!authCodes) return true;
-  const module = store.getters.authCodes.find(authCode => {
-    console.log(authCode.code, authCodes[0]);
-    return authCode.code == authCodes[0];
-  });
-  console.log(module, authCodes[0]);
-  if (!module) return false;
-  const hasAction = module.actions.some(action => action.code == authCodes[1]);
-  console.log(module, hasAction, authCodes);
-  if (!hasAction) return false;
-  return true;
-}
+// function verifyRouteAuth({ routeName }) {
+//   const authCodes = authCodesMap[routeName];
+//   if (!authCodes) return true;
+//   const module = store.getters.authCodes.find(authCode => {
+//     console.log(authCode.code, authCodes[0]);
+//     return authCode.code == authCodes[0];
+//   });
+//   if (!module) return false;
+//   const hasAction = module.actions.some(action => action.code == authCodes[1]);
+//   if (!hasAction) return false;
+//   return true;
+// }
 
 router.beforeEach((to, from, next) => {
   NProgress.start(); // start progress bar
@@ -34,12 +32,11 @@ router.beforeEach((to, from, next) => {
       return NProgress.done();
     }
     if (!store.state.user.userId) {
-      console.log(`no userId....`);
       return store
         .dispatch("GetUserInfo")
         .then(() => {
-          const hasAuth = verifyRouteAuth({ routeName: to.name });
-          if (!hasAuth) return next("/401");
+          // const hasAuth = verifyRouteAuth({ routeName: to.name });
+          // if (!hasAuth) return next("/401");
           next();
         })
         .catch(err => {
@@ -50,9 +47,8 @@ router.beforeEach((to, from, next) => {
           });
         });
     }
-    const hasAuth = verifyRouteAuth({ routeName: to.name });
-    console.log(`has userId...`, hasAuth, to.name);
-    if (!hasAuth) return next("/401");
+    // const hasAuth = verifyRouteAuth({ routeName: to.name });
+    // if (!hasAuth) return next("/401");
     next();
   } else {
     /* has no token*/
