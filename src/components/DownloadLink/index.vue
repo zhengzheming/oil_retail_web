@@ -17,13 +17,11 @@ export default {
   computed: {
     downloadUrl() {
       let routeMap = {
-        "oil-company": "oilCompany"
+        "oil-company-detail": "oilCompany",
+        "oil-station-detail": "oilStationApply",
+        "oil-station-checked-detail": "oilStation"
       };
-      const curMatchedRoute = this.$route.matched.map(route => route.name);
-      const matchedModule = Object.keys(routeMap).find(moduleName => {
-        return curMatchedRoute.includes(moduleName);
-      });
-      return `/webAPI/${routeMap[matchedModule]}/getFile/?id=${
+      return `/webAPI/${routeMap[this.$route.name]}/getFile?id=${
         this.attachment.id
       }&fileName=${this.attachment.name}`;
     }

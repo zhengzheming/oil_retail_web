@@ -124,6 +124,7 @@
           <el-col :span="24">
             <el-form-item
               :label="labels['attachPaperwork']"
+              prop="files"
             >
               <el-upload
                 :action="uploadUrl"
@@ -223,7 +224,16 @@ export default {
             message: $verify.getErrorMessage("requiredSelect", labels.status)
           }
         ],
-        contactPhone: [{ validator: $verify.getValidator("phone") }]
+        contactPhone: [{ validator: $verify.getValidator("phone") }],
+        files: [
+          {
+            required: true,
+            message: $verify.getErrorMessage(
+              "requiredSelect",
+              labels.attachPaperwork
+            )
+          }
+        ]
       },
       form: {
         files: []

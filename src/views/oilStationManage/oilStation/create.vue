@@ -115,6 +115,7 @@
           <el-col :span="12">
             <el-form-item
               :label="labels['contactPhone']"
+              prop="contactPhone"
             >
               <el-input v-model="form.contactPhone"/>
             </el-form-item>
@@ -217,7 +218,8 @@ export default {
             required: true,
             message: $verify.getErrorMessage("required", labels.address)
           }
-        ]
+        ],
+        contactPhone: [{ validator: $verify.getValidator("phone") }]
       },
       form: {
         files: []

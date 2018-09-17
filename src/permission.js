@@ -23,7 +23,8 @@ router.beforeEach((to, from, next) => {
         .then(() => {
           next();
         })
-        .catch(() => {
+        .catch(err => {
+          console.log(err);
           store.dispatch("FedLogOut").then(() => {
             console.log(`退出登录....`);
             next({ path: "/login" });

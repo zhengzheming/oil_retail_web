@@ -15,3 +15,12 @@ export function validatePosInt(rule, value, callback, source, options) {
     callback(options.messages);
   }
 }
+
+export function validateRequiredFiles(rule, value, callback, source, options) {
+  console.log(value);
+  if (Array.isArray(value) && value.length > 0) {
+    callback();
+  } else {
+    callback(options.messages || "须上传文件");
+  }
+}

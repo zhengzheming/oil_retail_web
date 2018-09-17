@@ -49,14 +49,14 @@ export const queryList = {
 
 export const tableHeader = {
   "oil-station-list": {
-    user_id: {
+    apply_id: {
       label: "油站编号",
       width: "100px"
     },
-    user_name: {
+    name: {
       label: "油站名称"
     },
-    name: {
+    company_name: {
       label: "所属企业"
     },
     status_name: {
