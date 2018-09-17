@@ -30,6 +30,7 @@ export const oilGoodsFieldMap = {
 };
 
 export const oilStationFieldMap = {
+  apply_id: "applyId",
   station_id: "stationId",
   company_id: "companyId",
   company_name: "companyName",
