@@ -49,7 +49,7 @@
                     v-model="form.provinceId"
                     class="form-control"
                     placeholder="请选择"
-                    @change="$set(form, 'cityId', '')">
+                    @change="$set(form, 'cityId', ''); $log($event)">
                     <el-option
                       v-for="item in provinceOptions"
                       :key="item.value"
@@ -256,14 +256,23 @@ export default {
       const province = this.provinceOptions.find(
         province => id == province.value
       );
+      if (!province) return;
       this.ui.cityOptions = province.children.map(child => ({
         label: child.name,
         value: child.id
       }));
     }
   },
+  beforeCreate() {
+    this.$store.dispatch("common/getArea").then(() => {
+      const cache = this.form.provinceId;
+      this.form.provinceId = "";
+      this.$nextTick(function() {
+        this.form.provinceId = cache;
+      });
+    });
+  },
   created() {
-    this.$store.dispatch("common/getArea");
     this.$store.dispatch("oilCommon/dropdownListMap").then(data => {
       this.ui.companyOptions = data["oil_company_id_name_map"].map(obj => ({
         label: obj.value,
