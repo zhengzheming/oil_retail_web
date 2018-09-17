@@ -1,4 +1,5 @@
 import About from "../../views/About.vue";
+import resetPwd from "@/views/resetPwd";
 
 export default [
   {
@@ -11,5 +12,10 @@ export default [
     name: "about",
     component: About,
     meta: { title: "About" }
+  },
+  {
+    path: "/reset",
+    name: "reset-pwd",
+    component: resetPwd
   }
 ];
