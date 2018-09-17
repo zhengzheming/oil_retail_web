@@ -13,6 +13,7 @@
     <div class="menu-path__actions">
       <el-button
         v-for="(item, index) in breadcrumbModuel.actions"
+        v-if="isShow[`is_can_${item.action}`] !==false"
         :key="index"
         :type="!item.plain ? item.type : ''"
         :plain="item.plain"
@@ -27,6 +28,9 @@ export default {
   computed: {
     breadcrumbModuel() {
       return breadCrumbConfig[this.$route.name] || null;
+    },
+    isShow() {
+      return this.$store.state.breadcrumb.actions;
     },
     canBack() {
       const breadcrumbModuel = this.breadcrumbModuel;

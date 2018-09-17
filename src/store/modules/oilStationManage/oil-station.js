@@ -62,6 +62,9 @@ const oilStation = {
     "oil-station-modify:save": function({ dispatch }) {
       dispatch("oil-station-create:save");
     },
+    "oil-station-modify:submit": function({ dispatch }) {
+      dispatch("oil-station-create:submit");
+    },
     "oil-station-create:update-form": function({ state }, { form, formRef }) {
       state.create.form = form;
       state.create.formRef = formRef;

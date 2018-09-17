@@ -10,6 +10,7 @@ import logisticsEnterprise from "./modules/basicInfo/logisticsEnterprise/index";
 import logisticsManage from "./modules/logisticsManage/index";
 import oilStationManage from "./modules/oilStationManage";
 import resetPwd from "./modules/resetPwd";
+import breadcrumb from "./modules/breadcrumb";
 import getters from "./getters";
 
 Vue.use(Vuex);
@@ -17,6 +18,7 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   modules: {
     app,
+    breadcrumb,
     common,
     permission,
     user,

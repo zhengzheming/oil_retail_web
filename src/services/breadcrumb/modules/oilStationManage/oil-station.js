@@ -10,7 +10,10 @@ export default {
   },
   "oil-station-modify": {
     items: ["油站管理", "油站准入", "油站申请", "修改油站"],
-    actions: [{ name: "保存", action: "save", type: "primary" }]
+    actions: [
+      { name: "保存", action: "save", type: "primary" },
+      { name: "提交", action: "submit", type: "primary" }
+    ]
   },
   "oil-station-detail": {
     items: ["油站管理", "油站准入", "油站申请", "油站详情"],

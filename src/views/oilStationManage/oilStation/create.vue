@@ -283,11 +283,17 @@ export default {
       this.$store.dispatch("oil-station-detail:fetch-form").then(detail => {
         this.form = detail;
         this.initFiles();
+        this.$store.dispatch("breadcrumb:update-actions", {
+          is_can_submit: detail.is_can_submit
+        });
         this.$nextTick(function() {
           this.$refs.form.clearValidate();
         });
       });
     }
+  },
+  beforeDestroy() {
+    this.$store.dispatch("breadcrumb:update-actions", {});
   },
   mounted() {
     this.$store.dispatch("oil-station-create:update-form", {
