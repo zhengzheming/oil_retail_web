@@ -43,6 +43,14 @@ service.interceptors.response.use(
   },
   error => {
     console.log("err" + error); // for debug
+    if (error.response.status == "403") {
+      Message({
+        message: error.response.data.data,
+        type: "error",
+        duration: 3 * 1000
+      });
+      return Promise.reject(error);
+    }
     Message({
       message: error.message,
       type: "error",
