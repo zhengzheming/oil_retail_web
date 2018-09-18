@@ -22,7 +22,6 @@ const priceImport = {
     "price-import-create:submit": function({ state }) {
       const formRef = state.create.formRef;
       const form = state.create.form;
-      console.log(`import submit..`, formRef);
       if (!formRef) return;
       formRef.validate(valid => {
         if (valid) {

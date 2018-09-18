@@ -41,10 +41,23 @@ service.interceptors.response.use(
       return router.push({ name: "login" });
     }
     if (res.state !== 0) {
+      let errMessage = res.data;
+      if (Object.prototype.toString.call(errMessage) === "[object Object]") {
+        errMessage = Object.keys(errMessage).reduce((acc, key) => {
+          return errMessage[key].reduce((acc, obj) => {
+            return Object.keys(obj).reduce(
+              (acc1, key) =>
+                `${acc1}<p style="line-height: 22px;">${obj[key]}</p>`,
+              ""
+            );
+          }, "");
+        }, "");
+      }
       Message({
-        message: res.data,
+        message: errMessage,
         type: "error",
-        duration: 3 * 1000
+        duration: 3 * 1000,
+        dangerouslyUseHTMLString: true
       });
       return Promise.reject("error");
     }
