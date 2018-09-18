@@ -10,6 +10,7 @@ import systemRoute from "@/router/modules/system";
 import basicInfo from "@/router/modules/basicInfo";
 import physicalManage from "@/router/modules/physicalManage";
 import oilStationManage from "@/router/modules/oilStationManage";
+import priceManage from "@/router/modules/priceManage";
 /** note: Submenu only appear when children.length>=1
  *  detail see  https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
  **/
@@ -59,6 +60,7 @@ export const asyncRouterMap = [
   basicInfo,
   physicalManage,
   oilStationManage,
+  priceManage,
   {
     path: "*",
     redirect: "/404"
