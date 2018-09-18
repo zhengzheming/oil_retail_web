@@ -11,6 +11,9 @@ import basicInfo from "@/router/modules/basicInfo";
 import physicalManage from "@/router/modules/physicalManage";
 import oilStationManage from "@/router/modules/oilStationManage";
 import priceManage from "@/router/modules/priceManage";
+
+import request from "@/utils/request";
+import { Message } from "element-ui";
 /** note: Submenu only appear when children.length>=1
  *  detail see  https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
  **/
@@ -52,6 +55,19 @@ export const constantRouterMap = [
     path: "/401",
     component: () => import("@/views/errorPage/401"),
     hidden: true
+  },
+  {
+    path: "/test/clear",
+    component: Layout,
+    beforeEnter: (to, from, next) => {
+      request({
+        url: "/admin/site/clear",
+        method: "get"
+      }).then(() => {
+        Message.success("清除缓存成功!");
+      });
+      next();
+    }
   }
 ];
 
