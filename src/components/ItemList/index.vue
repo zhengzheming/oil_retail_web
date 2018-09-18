@@ -18,7 +18,7 @@
             v-for="(ele,key) in item.data"
             :key="key"
             :label="ele.value"
-            :value="ele.id+''">
+            :value="ele.id">
             </el-option>
         </el-select>
         <span
