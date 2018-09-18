@@ -11,7 +11,7 @@
       :has-action="hasAction"
       :config="config"
       @reset="handleReset"
-      @query="getList"
+      @query="handleQuery"
       @change-tab="handleChangeTab"
       @size-change="val => pageSize=val"
       @page-change="val => currentPage=val"
@@ -76,8 +76,8 @@ export default {
       this.sltDataApi().then(res => {
         if (res.state == 0 && res.data) {
           this.queryList.forEach(item => {
-            if(item.type == 'slt'){
-              item.data = res.data[item.field]
+            if (item.type == "slt") {
+              item.data = res.data[item.field];
             }
           });
         }
@@ -104,7 +104,7 @@ export default {
           if (res.state == 0) {
             this.tableContent = _.get(res, "data.data");
             this.pageTotal = +_.get(res, "data.totalRows") || 0;
-            if(this.itemList.data){
+            if (this.itemList.data) {
               this.itemList.data = res.extra;
             }
             if (this.tableContent && this.tableContent.length) {
@@ -152,6 +152,10 @@ export default {
             }
           }
         });
+    },
+    handleQuery() {
+      this.currentPage = 1;
+      this.getList();
     },
     handleReset() {
       this.queryList &&
