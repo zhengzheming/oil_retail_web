@@ -35,7 +35,7 @@
             class="custom-tree-node">
             <span style="display:inline-block;width:350px;">{{ node.label }}</span>
             <div class="btn-wrap">
-              <span>已启用</span>
+              <span>{{data.status==1?'已启用':'未启用'}}</span>
               <p class="action-wrap">
                 <button class="el-button el-button--text el-button--small" @click="() => detail(data)">查看</button>
                 <button class="el-button el-button--text el-button--small" @click="() => update(data)">编辑</button>

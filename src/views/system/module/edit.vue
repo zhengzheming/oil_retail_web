@@ -36,7 +36,7 @@
                   @click.stop="showTree = !showTree">{{ parent_id_bind }}</p>
                 <div 
                   v-show="showTree" 
-                  style="position: absolute;width: 100%;left: 0;top: 32px;z-index: 1;background: #f7f7f7;">
+                  style="position: absolute;width: 100%;left: 0;top: 32px;z-index: 1;background: #f7f7f7;max-height: 300px;overflow: auto;">
                   <el-tree
                     :data="treeData"
                     :expand-on-click-node="false"
@@ -268,6 +268,7 @@ export default {
     })
   },
   methods: {
+   //获取模块列表
     getList() {
       list().then(res => {
         if (res.state == 0 && res.data) {

@@ -20,6 +20,5 @@ export default {
 <style scoped>
 .app-main {
   position: relative;
-  overflow: hidden;
 }
 </style>
