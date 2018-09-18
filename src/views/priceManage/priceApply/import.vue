@@ -139,9 +139,15 @@ export default {
       );
     },
     handleRemove(type, file, fileList) {
-      this.cacheFiles(type, fileList);
-      this.addToForm(type, fileList);
-      delFile(this.delFileUrl, file.id);
+      delFile(this.delFileUrl, file.id)
+        .then(() => {
+          this.cacheFiles(type, fileList);
+          this.addToForm(type, fileList);
+        })
+        .catch(() => {
+          fileList.push(file);
+          fileList.sort((a, b) => a.uid > b.uid);
+        });
     },
     handleSuccess(type, res, file, fileList) {
       if (res.state != 0) {

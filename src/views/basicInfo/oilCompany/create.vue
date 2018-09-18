@@ -179,6 +179,7 @@
 </template>
 
 <script>
+import { delFile } from "@/api/common/file";
 export default {
   name: "OilCompanyCreate",
   data() {
@@ -199,6 +200,7 @@ export default {
     return {
       labels,
       uploadUrl: "/webAPI/oilCompany/saveFile",
+      delFileUrl: "/webAPI/oilCompany/delFile",
       rules: {
         name: [
           {
@@ -324,8 +326,15 @@ export default {
       );
     },
     handleRemove(type, file, fileList) {
-      this.cacheFiles(type, fileList);
-      this.addToForm(type, fileList);
+      delFile(this.delFileUrl, file.id)
+        .then(() => {
+          this.cacheFiles(type, fileList);
+          this.addToForm(type, fileList);
+        })
+        .catch(() => {
+          fileList.push(file);
+          fileList.sort((a, b) => a.uid > b.uid);
+        });
     },
     handleSuccess(type, res, file, fileList) {
       if (res.state != 0) {
