@@ -115,7 +115,7 @@ export default {
       label: "变更时间"
     },
     rate: {
-      label: "当日额度占比%"
+      label: "当日额度占比"
     }
   },
   //车辆每日限额
@@ -130,7 +130,7 @@ export default {
       label: "变更时间"
     },
     rate: {
-      label: "当日油箱占比%"
+      label: "当日油箱占比"
     }
   },
   // 物流企业管理-企业额度
