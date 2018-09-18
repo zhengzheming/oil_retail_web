@@ -88,15 +88,18 @@
           <el-col :span="12">
             <el-form-item
               :label="labels['longitudeAndLatitude']"
+              required
             >
               <cell-grid-controls>
                 <el-form-item
                   slot="control-1"
+                  prop="longitude"
                   class="no-margin_b">
                   <el-input v-model="form.longitude"/>
                 </el-form-item>
                 <el-form-item
                   slot="control-2"
+                  prop="latitude"
                   class="no-margin_b">
                   <el-input v-model="form.latitude"/>
                 </el-form-item>
@@ -180,7 +183,9 @@ export default {
       contactPerson: "油站联系人",
       contactPhone: "联系方式",
       remark: "备注",
-      attachOthers: "附件"
+      attachOthers: "附件",
+      latitude: "纬度",
+      longitude: "经度"
     };
     return {
       labels,
@@ -219,6 +224,14 @@ export default {
             message: $verify.getErrorMessage("required", labels.address)
           }
         ],
+        longitude: {
+          required: true,
+          message: $verify.getErrorMessage("required", labels.longitude)
+        },
+        latitude: {
+          required: true,
+          message: $verify.getErrorMessage("required", labels.latitude)
+        },
         contactPhone: [{ validator: $verify.getValidator("phone") }]
       },
       form: {
