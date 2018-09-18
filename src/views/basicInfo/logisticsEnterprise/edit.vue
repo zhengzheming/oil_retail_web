@@ -34,7 +34,7 @@ export default {
     watch: {
         itemList: {
             handler: function(val) {
-                if(val.data['status']){
+                if(val.data.hasOwnProperty('status')){
                     this.$store.dispatch('logisticsEdit:update-form', {logistics_id:this.$route.query.logistics_id, status:val.data['status']});
                 }
             },

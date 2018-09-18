@@ -52,6 +52,19 @@ export default {
         return {};
       }
     }
+  },
+  watch:{
+    'comData':{
+        handler:function(val){
+            let arr = this.comData.list.filter(item => {
+                return item.type == 'slt'
+            });
+            arr.forEach(item => {
+                this.comData.data[item.prop] = parseInt(this.comData.data[item.prop]);
+            })
+        },
+        deep:true
+    }
   }
 };
 </script>
