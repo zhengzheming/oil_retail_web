@@ -11,7 +11,7 @@
       :has-action="hasAction"
       :config="config"
       @reset="handleReset"
-      @query="getList"
+      @query="handleQuery"
       @change-tab="handleChangeTab"
       @size-change="val => pageSize=val"
       @page-change="val => currentPage=val"
@@ -152,6 +152,10 @@ export default {
             }
           }
         });
+    },
+    handleQuery(){
+        this.currentPage = 1;
+        this.getList();
     },
     handleReset() {
       this.queryList &&
