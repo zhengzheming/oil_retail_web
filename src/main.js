@@ -4,8 +4,7 @@ import router from "./router/index";
 import store from "./store/index.js";
 import { sync } from "vuex-router-sync";
 import _ from "lodash";
-import request from "@/utils/request";
-
+import requestForUpload from "@/services/requestForUpload";
 import Element from "element-ui";
 import "@/styles/element-overide.scss";
 
@@ -24,6 +23,9 @@ Object.defineProperty(Vue.prototype, "$customConfig", { value: customConfig });
 Object.defineProperty(window, "$utils", { value: $utils });
 Object.defineProperty(Vue.prototype, "$lookupInDict", { value: lookupInDict });
 Object.defineProperty(window, "$verify", { value: verify });
+Object.defineProperty(Vue.prototype, "$requestForUpload", {
+  value: requestForUpload
+});
 
 sync(store, router);
 

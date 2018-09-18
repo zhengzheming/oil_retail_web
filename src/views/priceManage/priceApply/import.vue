@@ -35,6 +35,7 @@
                 :on-error="handleError"
                 :on-exceed="handleExceed"
                 :file-list="ui.attachOthers"
+                :http-request="$requestForUpload"
                 name="files[]">
                 <el-button
                   size="small"
@@ -54,6 +55,7 @@
 </template>
 
 <script>
+import { delFile } from "@/api/common/file";
 export default {
   name: "PriceImport",
   data() {
@@ -69,10 +71,7 @@ export default {
       rules: {
         files: {
           required: true,
-          message: $verify.getErrorMessage(
-            "requiredSelect",
-            labels.priceImport
-          ),
+          message: $verify.getErrorMessage("requiredUpload"),
           trigger: "change"
         }
       },
@@ -80,7 +79,8 @@ export default {
         attachOthers: []
       },
       uploadUrl: "/webAPI/oilPriceApply/saveFile",
-      getFileUrl: "/webAPI/oilPriceApply/getFile"
+      getFileUrl: "/webAPI/oilPriceApply/getFile",
+      delFileUrl: "/webAPI/oilPriceApply/delFile"
     };
   },
   watch: {
@@ -141,6 +141,7 @@ export default {
     handleRemove(type, file, fileList) {
       this.cacheFiles(type, fileList);
       this.addToForm(type, fileList);
+      delFile(this.delFileUrl, file.id);
     },
     handleSuccess(type, res, file, fileList) {
       if (res.state != 0) {

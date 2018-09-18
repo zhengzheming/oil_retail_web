@@ -56,7 +56,6 @@ service.interceptors.response.use(
     if (error.response.status == "403") {
       errMessage = error.response.data.data;
     }
-    errMessage = error.message;
     Message({
       message: errMessage,
       type: "error",
