@@ -10,8 +10,8 @@
       class="logo"
       to="/"
       tag="span">
-      <span 
-        v-if="isCollapse" 
+      <span
+        v-if="isCollapse"
         class="logo-text">油</span>
       <span class="logo-text logo-text--common">油品零售运营P端</span>
     </router-link>
@@ -39,9 +39,6 @@ export default {
       return !this.sidebar.opened;
     },
     menuItems() {
-      return this.sidebar.items;
-    },
-    sidebarItems() {
       return this.sidebar.items;
     }
   },

@@ -28,7 +28,6 @@ const priceImport = {
           let data = {
             fileId: form.files.length > 0 && form.files[0].id
           };
-          console.log(data);
           createPriceImportApply(data).then(() => {
             Message.success("提交成功");
             // router.push({ name: "price-import-list" });
