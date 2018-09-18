@@ -49,7 +49,7 @@
                     v-model="form.provinceId"
                     class="form-control"
                     placeholder="请选择"
-                    @change="$set(form, 'cityId', ''); $log($event)">
+                    @change="$set(form, 'cityId', '')">
                     <el-option
                       v-for="item in provinceOptions"
                       :key="item.value"
@@ -235,7 +235,8 @@ export default {
         contactPhone: [{ validator: $verify.getValidator("phone") }]
       },
       form: {
-        files: []
+        files: [],
+        provinceId: ""
       },
       ui: {
         attachOthers: [],
@@ -270,6 +271,7 @@ export default {
         province => id == province.value
       );
       if (!province) return;
+      console.log(`hello world....`);
       this.ui.cityOptions = province.children.map(child => ({
         label: child.name,
         value: child.id
