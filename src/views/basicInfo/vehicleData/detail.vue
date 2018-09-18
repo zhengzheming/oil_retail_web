@@ -4,8 +4,8 @@
         <div style="display:flex;">
             <label style="display:inline-block;width:120px;">行驶证照片:</label>
             <div style="display:flex;">
-                <div class="img-wrap" v-for="item of imgList" :key="item.id">
-                    <img :src="item.url" alt="">
+                <div class="img-wrap" v-for="item of imgList" :key="item.file_id">
+                    <img :src="item.file_url" alt="">
                 </div>
             </div>
         </div>
