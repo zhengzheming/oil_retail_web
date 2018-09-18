@@ -135,7 +135,7 @@ export default {
       }
     };
     return request({
-      url: "/webAPI/LogisticsQuotaLog/getByLogisticsId",
+      url: "/webAPI/LogisticsQuota/getLogisticsQuotaLog",
       method: "post",
       data
     });
@@ -150,7 +150,7 @@ export default {
       }
     };
     return request({
-      url: "/webAPI/logisticsDailyQuotaLog/getByLogisticsId",
+      url: "/webAPI/logisticsQuota/getLogisticsDailyQuotaLog",
       method: "post",
       data
     });
