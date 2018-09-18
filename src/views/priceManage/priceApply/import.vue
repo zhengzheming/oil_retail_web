@@ -12,9 +12,9 @@
             <el-form-item
               :label="labels['priceTemplate']"
             >
-              <a 
-                :href="`${getFileUrl}?id=25&fileName=油品价格导入模板`" 
-                target="_blank" 
+              <a
+                :href="`${getFileUrl}?id=25&fileName=油品价格导入模板`"
+                target="_blank"
                 class="text-link">点击下载模板</a>
             </el-form-item>
           </el-col>
@@ -69,7 +69,11 @@ export default {
       rules: {
         files: {
           required: true,
-          message: $verify.getErrorMessage("requiredSelect", labels.priceImport)
+          message: $verify.getErrorMessage(
+            "requiredSelect",
+            labels.priceImport
+          ),
+          trigger: "change"
         }
       },
       ui: {
@@ -101,6 +105,12 @@ export default {
         });
       });
     }
+  },
+  mounted() {
+    this.$store.dispatch("price-import-create:update-form", {
+      form: this.form,
+      formRef: this.$refs["form"]
+    });
   },
   methods: {
     initFiles() {
