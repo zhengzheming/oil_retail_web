@@ -13,7 +13,7 @@
               :label="labels['priceTemplate']"
             >
               <a
-                :href="`${getFileUrl}?id=25&fileName=油品价格导入模板`"
+                href="/static/油品价格导入模版.xlsx"
                 target="_blank"
                 class="text-link">点击下载模板</a>
             </el-form-item>
