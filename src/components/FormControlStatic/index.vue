@@ -2,7 +2,7 @@
   <div class="form-control--static">
     <span class="form-control--static__title">{{ title }}</span>
     <span class="form-control--static__text">
-      <span v-if="text">{{ text }}</span>
+      <span v-if="textString">{{ textString }}</span>
       <span v-else><slot/></span>
     </span>
   </div>
@@ -19,6 +19,11 @@ export default {
     text: {
       type: [String, Number],
       default: ""
+    }
+  },
+  computed: {
+    textString() {
+      return String(this.text);
     }
   }
 };
