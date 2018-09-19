@@ -33,7 +33,7 @@
       </el-col>
       <el-col :span="12">
         <form-control-static
-          :text="form.sellAmount"
+          :text="form.sellAmount | formatPrice('元')"
           :title="labels.sellAmount"/>
       </el-col>
     </el-row>
@@ -45,19 +45,19 @@
       </el-col>
       <el-col :span="12">
         <form-control-static
-          :text="form.retailPrice"
+          :text="form.retailPrice | formatPrice('元/升')"
           :title="labels.retailPrice"/>
       </el-col>
     </el-row>
     <el-row :gutter="$customConfig.colGutter">
       <el-col :span="12">
         <form-control-static
-          :text="form.discountPrice"
+          :text="form.discountPrice | formatPrice('元/升')"
           :title="labels.discountPrice"/>
       </el-col>
       <el-col :span="12">
         <form-control-static
-          :text="form.agreedPrice"
+          :text="form.agreedPrice | formatPrice('元/升')"
           :title="labels.agreedPrice"/>
       </el-col>
     </el-row>
@@ -108,8 +108,12 @@
 </template>
 
 <script>
+import { formatPrice } from "@/filters/index";
 export default {
   name: "OrderDetail",
+  filters: {
+    formatPrice
+  },
   data() {
     const labels = {
       orderId: "订单编号",
