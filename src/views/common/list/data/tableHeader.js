@@ -160,7 +160,9 @@ export default {
       ]
     },
     rate: {
-      label: "每日额度占比"
+      label: "每日额度占比%",
+      width: "130",
+      filter: "topercent"
     },
     daily_credit_quota: {
       label: "今日可用额度"

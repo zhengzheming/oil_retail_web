@@ -7,8 +7,8 @@
         @change-tab="handleChangeTab"
         @reset="handleReset"
         @query="handleQuery"/>
-      <item-list 
-        v-if="itemList.data" 
+      <item-list
+        v-if="itemList.data"
         :com-data="itemList"/>
       <el-table
         :data="tableContent"
@@ -27,13 +27,15 @@
               :title="scope.row[key]"
               class="oparation"
               tag="a"
-              style="text-overflow:ellipsis;white-space:nowrap;">
+              style="text-overflow:ellipsis;white-space:nowrap;overflow: hidden;">
               {{ (scope.row[key]===null || scope.row[key]===undefined || scope.row[key]==='') ? '--' : scope.row[key] }}
             </router-link>
-            <p v-else-if="val.filter=='topercent'"
-               style="text-overflow:ellipsis;white-space:nowrap;">{{ (scope.row[key]===null || scope.row[key]===undefined || scope.row[key]==='') ? '--' : scope.row[key] | topercent }}</p>
-            <p v-else
-               style="text-overflow:ellipsis;white-space:nowrap;">{{ (scope.row[key]===null || scope.row[key]===undefined || scope.row[key]==='') ? '--' : scope.row[key] }}</p>
+            <p 
+              v-else-if="val.filter=='topercent'"
+              style="text-overflow:ellipsis;white-space:nowrap;overflow: hidden;">{{ (scope.row[key]===null || scope.row[key]===undefined || scope.row[key]==='') ? '--' : scope.row[key] | topercent }}</p>
+            <p 
+              v-else
+              style="text-overflow:ellipsis;white-space:nowrap;overflow: hidden;">{{ (scope.row[key]===null || scope.row[key]===undefined || scope.row[key]==='') ? '--' : scope.row[key] }}</p>
           </template>
         </el-table-column>
         <el-table-column
@@ -82,6 +84,11 @@
 <script>
 export default {
   name: "ListPage",
+  filters: {
+    topercent: function(val) {
+      return Number(val * 100).toFixed(2) + "%";
+    }
+  },
   props: {
     pageSize: {
       type: Number,
@@ -125,11 +132,6 @@ export default {
       showQueryList: true,
       sideContentVisible: false
     };
-  },
-  filters:{
-      'topercent':function(val){
-          return Number(val*100).toFixed(2) + '%'
-      }
   },
   mounted() {
     let length = this.queryList.filter(item => {
