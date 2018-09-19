@@ -1,7 +1,12 @@
 export const queryList = {
   "order-list": [
     {
-      label: "订单交易日期",
+      label: "交易开始日期",
+      type: "date",
+      val: ""
+    },
+    {
+      label: "交易结束日期",
       type: "date",
       val: ""
     },
@@ -62,13 +67,13 @@ export const tableHeader = {
     quantity: {
       label: "升数"
     },
-    discount_price: {
+    price_sell: {
       label: "优惠单价"
     },
     sell_amount: {
       label: "油品总价"
     },
-    order_status: {
+    status_name: {
       label: "订单状态"
     },
     oil_station_address: {

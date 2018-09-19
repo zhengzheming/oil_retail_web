@@ -4,25 +4,27 @@ export default {
   "order-list": (
     page,
     pageSize,
-    create_date,
+    create_start_date,
+    create_end_date,
     order_id,
-    customer_name,
-    logistics_name,
-    station_name,
     vehicle_number,
-    order_status
+    customer_name,
+    customer_phone,
+    logistics_name,
+    status
   ) => {
     const data = {
       page: page,
       pageSize: pageSize,
       search: {
-        create_date,
+        create_start_date,
+        create_end_date,
         order_id,
         customer_name,
+        customer_phone,
         logistics_name,
-        station_name,
         vehicle_number,
-        order_status
+        status
       }
     };
     return request({

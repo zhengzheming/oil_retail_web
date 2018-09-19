@@ -13,6 +13,7 @@ const getters = {
   oilCompanyCreate: state => state.basicInfo.oilCompany.create,
   oilCompanyDetail: state => state.basicInfo.oilCompany.detail,
   oilGoodsDetail: state => state.basicInfo.oilGoods.detail,
-  oilStationDetail: state => state.oilStationManage.oilStation.detail
+  oilStationDetail: state => state.oilStationManage.oilStation.detail,
+  orderDetail: state => state.orderManage.order.detail
 };
 export default getters;

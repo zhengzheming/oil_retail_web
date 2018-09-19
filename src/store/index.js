@@ -12,6 +12,7 @@ import oilStationManage from "./modules/oilStationManage";
 import resetPwd from "./modules/resetPwd";
 import breadcrumb from "./modules/breadcrumb";
 import priceManage from "./modules/priceManage";
+import orderManage from "./modules/orderManage";
 import getters from "./getters";
 
 Vue.use(Vuex);
@@ -29,6 +30,7 @@ const store = new Vuex.Store({
     basicInfo,
     oilStationManage,
     priceManage,
+    orderManage,
     resetPwd
   },
   getters
