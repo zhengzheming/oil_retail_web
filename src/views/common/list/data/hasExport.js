@@ -1,4 +1,5 @@
 export default {
     enterpriseQuota: true,
-    driver: true
+    driver: true,
+    vehicleCapacityDetail:true
 }

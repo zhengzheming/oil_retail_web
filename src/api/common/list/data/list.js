@@ -165,9 +165,8 @@ export default {
         number
       }
     };
-    console.log(data);
     return request({
-      url: "/webAPI/LogisticsDailyQuotaLog/getByLogisticsId",
+      url: "/webAPI/vehicleQuota/list",
       method: "post",
       data
     });

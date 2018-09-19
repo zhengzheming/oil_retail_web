@@ -164,7 +164,7 @@ export default {
           filter: 'topercent'
       },
       daily_credit_quota: {
-          label: "今日可用额度"
+          label: "每日企业额度"
       },
       daily_available_quota: {
           label: "今日可用额度",
@@ -185,24 +185,50 @@ export default {
           width: "120"
       }
   },
-  //车辆容量
-  vehicleCapacity: {
+//车辆容量
+vehicleCapacity: {
+    vehicle_id: {
+        label: "编号"
+    },
+    number: {
+        label: "车牌号"
+    },
+    capacity: {
+        label: "油箱容量/L"
+    },
+    rate: {
+        label: "每日额度占比",
+        filter: 'topercent'
+    },
+    daily_capacity: {
+        label: "每日车辆容量/L"
+    },
+    daily_available_capacity: {
+        label: "当日车辆可用容量/L",
+        pathName: "vehicleCapacityDetail",
+        query: [
+            {
+                name: "vehicle_id",
+                field: "vehicle_id"
+            }
+        ]
+    },
+    logistics_name: {
+        label: "物流企业"
+    }
+},
+//车辆容量详情
+vehicleCapacityDetail: {
     logistics_id: {
-      label: "编号",
-      width: "120"
+        label: "时间"
     },
     name: {
-      label: "车牌号",
-      width: "200"
+        label: "容量明细/L"
     },
     out_status_name: {
-      label: "油箱容量/L",
-      width: "120"
-    },
-    status_name: {
-      label: "每日额度占比"
+        label: "订单编号"
     }
-  },
+},
   ...system,
   ...basicInfo,
   ...oilStationManage

@@ -7,5 +7,14 @@ export default {
                 prop: 'logistics_name'
             }
         ]
+    },
+    vehicleCapacityDetail: {
+        data: {},
+        list: [
+            {
+                label: '车牌号',
+                prop: ''
+            }
+        ]
     }
 }

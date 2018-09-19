@@ -3,7 +3,8 @@ export default {
     'enterpriseQuota':false,
     'availableCredit':false,
     'dayCredit':false,
-    'vehicleCapacity':false,
     'enterpriseDayQuota':false,
-    'vehicleDayQuota':false
+    'vehicleDayQuota':false,
+    'vehicleCapacity':false,
+    'vehicleCapacityDetail':false
 }
