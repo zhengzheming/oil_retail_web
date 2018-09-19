@@ -3,7 +3,7 @@
     v-if="!item.hidden&&item.children"
     class="menu-wrapper">
 
-    <template v-if="hasOneShowingChild(item.children) && !onlyOneChild.children&&!item.alwaysShow">
+    <template v-if="hasOneShowingChild(item.children) && !onlyOneChild.children.length&&!item.alwaysShow">
       <a
         :href="onlyOneChild.path"
         target="_blank"
@@ -122,3 +122,11 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+.nest-menu.menu-wrapper {
+  .el-menu-item {
+    padding-left: 45px !important;
+  }
+}
+</style>
