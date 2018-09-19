@@ -39,7 +39,8 @@ export default {
           name: "system-user-list",
           component: commonList,
           meta: {
-            title: "列表"
+            title: "列表",
+            module: "/system/user/index"
           }
         },
         {
@@ -47,7 +48,8 @@ export default {
           name: "system-user-create",
           component: systemUserCreate,
           meta: {
-            title: "添加用户"
+            title: "添加用户",
+            module: "/system/user/index"
           }
         },
         {
@@ -55,7 +57,8 @@ export default {
           name: "system-user-modify",
           component: systemUserCreate,
           meta: {
-            title: "修改用户"
+            title: "修改用户",
+            module: "/system/user/index"
           }
         },
         {
@@ -63,7 +66,8 @@ export default {
           name: "system-user-detail",
           component: systemUserDetail,
           meta: {
-            title: "用户详情"
+            title: "用户详情",
+            module: "/system/user/index"
           }
         },
         {
@@ -71,7 +75,8 @@ export default {
           name: "system-user-auth",
           component: systemUserAuth,
           meta: {
-            title: "用户权限"
+            title: "用户权限",
+            module: "/system/user/index"
           }
         }
       ]
@@ -89,7 +94,8 @@ export default {
           name: "system-role-list",
           component: commonList,
           meta: {
-            title: "列表"
+            title: "列表",
+            module: "/system/role/index"
           }
         },
         {
@@ -97,7 +103,8 @@ export default {
           name: "system-role-create",
           component: systemRoleCreate,
           meta: {
-            title: "添加角色"
+            title: "添加角色",
+            module: "/system/role/index"
           }
         },
         {
@@ -105,7 +112,8 @@ export default {
           name: "system-role-modify",
           component: systemRoleCreate,
           meta: {
-            title: "修改角色"
+            title: "修改角色",
+            module: "/system/role/index"
           }
         },
         {
@@ -113,7 +121,8 @@ export default {
           name: "system-role-detail",
           component: systemRoleDetail,
           meta: {
-            title: "角色详情"
+            title: "角色详情",
+            module: "/system/role/index"
           }
         },
         {
@@ -121,7 +130,8 @@ export default {
           name: "system-role-auth",
           component: systemRoleAuth,
           meta: {
-            title: "角色权限"
+            title: "角色权限",
+            module: "/system/role/index"
           }
         }
       ]
@@ -138,19 +148,25 @@ export default {
       path: "module/detail",
       name: "moduleDetail",
       component: moduleDetail,
-      hidden: true
+      meta: {
+        module: "/system/module"
+      }
     },
     {
       path: "module/edit",
       name: "moduleEdit",
       component: moduleEdit,
-      hidden: true
+      meta: {
+        module: "/system/module"
+      }
     },
     {
       path: "module/add",
       name: "addModule",
       component: moduleEdit,
-      hidden: true
+      meta: {
+        module: "/system/module"
+      }
     }
   ]
 };

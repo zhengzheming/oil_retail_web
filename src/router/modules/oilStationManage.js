@@ -22,7 +22,8 @@ export default {
           name: "oil-station-list",
           component: commonList,
           meta: {
-            title: "油站数据"
+            title: "油站数据",
+            module: "/oil-station-manage/oil-station/index"
           }
         },
         {
@@ -30,7 +31,8 @@ export default {
           name: "oil-station-create",
           component: oilStationCreate,
           meta: {
-            title: "新增油站"
+            title: "新增油站",
+            module: "/oil-station-manage/oil-station/index"
           }
         },
         {
@@ -38,7 +40,8 @@ export default {
           name: "oil-station-modify",
           component: oilStationCreate,
           meta: {
-            title: "编辑油站"
+            title: "编辑油站",
+            module: "/oil-station-manage/oil-station/index"
           }
         },
         {
@@ -46,7 +49,8 @@ export default {
           name: "oil-station-detail",
           component: oilStationDetail,
           meta: {
-            title: "油站详情"
+            title: "油站详情",
+            module: "/oil-station-manage/oil-station/index"
           }
         }
       ]

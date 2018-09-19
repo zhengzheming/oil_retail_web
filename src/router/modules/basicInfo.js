@@ -23,19 +23,25 @@ export default {
       path: "logistics/list",
       name: "logistics",
       component: commonList,
-      meta: { title: "物流企业" }
+      meta: {
+        module: "/basic-info/logistics/list"
+      }
     },
     {
       path: "logistics/detail",
       name: "logisticsDetail",
       component: logisticsDetail,
-      hidden: true
+      meta: {
+        module: "/basic-info/logistics/list"
+      }
     },
     {
       path: "logistics/edit",
       name: "logisticsEdit",
       component: logisticsEdit,
-      hidden: true
+      meta: {
+        module: "/basic-info/logistics/list"
+      }
     },
     //车辆数据
     {
@@ -50,7 +56,9 @@ export default {
       path: "vehicleData/detail",
       name: "vehicleDataDetail",
       component: vehicleDataDetail,
-      hidden: true
+      meta: {
+        module: "/basic-info/vehicleData/list"
+      }
     },
     {
       path: "oil-company",
@@ -62,7 +70,8 @@ export default {
           name: "oil-company-list",
           component: commonList,
           meta: {
-            title: "油企数据"
+            title: "油企数据",
+            module: "/basic-info/oil-company/index"
           }
         },
         {
@@ -70,7 +79,8 @@ export default {
           name: "oil-company-create",
           component: oilCompanyCreate,
           meta: {
-            title: "新增油企"
+            title: "新增油企",
+            module: "/basic-info/oil-company/index"
           }
         },
         {
@@ -78,7 +88,8 @@ export default {
           name: "oil-company-modify",
           component: oilCompanyCreate,
           meta: {
-            title: "编辑油企"
+            title: "编辑油企",
+            module: "/basic-info/oil-company/index"
           }
         },
         {
@@ -86,7 +97,8 @@ export default {
           name: "oil-company-detail",
           component: oilCompanyDetail,
           meta: {
-            title: "油企详情"
+            title: "油企详情",
+            module: "/basic-info/oil-company/index"
           }
         }
       ]
@@ -100,7 +112,8 @@ export default {
           name: "oil-goods-list",
           component: commonList,
           meta: {
-            title: "油品数据"
+            title: "油品数据",
+            module: "/basic-info/oil-goods/index"
           }
         },
         {
@@ -108,7 +121,8 @@ export default {
           name: "oil-goods-create",
           component: oilGoodsCreate,
           meta: {
-            title: "新增油品"
+            title: "新增油品",
+            module: "/basic-info/oil-goods/index"
           }
         },
         {
@@ -116,7 +130,8 @@ export default {
           name: "oil-goods-modify",
           component: oilGoodsCreate,
           meta: {
-            title: "编辑油品"
+            title: "编辑油品",
+            module: "/basic-info/oil-goods/index"
           }
         },
         {
@@ -124,7 +139,8 @@ export default {
           name: "oil-goods-detail",
           component: oilGoodsDetail,
           meta: {
-            title: "油品数据"
+            title: "油品数据",
+            module: "/basic-info/oil-goods/index"
           }
         }
       ]
@@ -139,7 +155,8 @@ export default {
           name: "oil-station-checked-list",
           component: commonList,
           meta: {
-            title: "油站数据"
+            title: "油站数据",
+            module: "/basic-info/oil-station/index"
           }
         },
         {
@@ -147,7 +164,8 @@ export default {
           name: "oil-station-checked-detail",
           component: oilStationDetail,
           meta: {
-            title: "油站详情"
+            title: "油站详情",
+            module: "/basic-info/oil-station/index"
           }
         }
       ]

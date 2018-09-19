@@ -8,7 +8,10 @@ export default {
     {
       path: "price-import-create",
       name: "price-import-create",
-      component: priceImport
+      component: priceImport,
+      meta: {
+        module: "/price-manage/price-import-create"
+      }
     }
   ]
 };

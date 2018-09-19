@@ -2,7 +2,7 @@
   <el-menu
     :collapse="isCollapse"
     :router="true"
-    :default-active="$route.path"
+    :default-active="defaultActive"
     :collapse-transition="true"
     class="sidebar"
     active-text-color="#fff">
@@ -40,6 +40,9 @@ export default {
     },
     menuItems() {
       return this.sidebar.items;
+    },
+    defaultActive() {
+      return this.$route.meta.module;
     }
   },
   created() {
