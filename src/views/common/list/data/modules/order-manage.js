@@ -48,13 +48,16 @@ export const tableHeader = {
       width: "170px"
     },
     order_id: {
-      label: "订单编号"
+      label: "订单编号",
+      width: "170px"
     },
     vehicle_number: {
-      label: "车牌号"
+      label: "车牌号",
+      width: "100px"
     },
     customer_phone: {
-      label: "手机号码"
+      label: "手机号码",
+      width: "120px"
     },
     customer_name: {
       label: "司机姓名"
@@ -73,12 +76,14 @@ export const tableHeader = {
     },
     price_sell: {
       label: "优惠单价",
+      width: "150px",
       filter: function(val) {
         return formatPrice(val, "元/升");
       }
     },
     sell_amount: {
       label: "油品总价",
+      width: "150px",
       filter: function(val) {
         return formatPrice(val, "元/升");
       }
