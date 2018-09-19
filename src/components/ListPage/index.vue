@@ -7,8 +7,8 @@
         @change-tab="handleChangeTab"
         @reset="handleReset"
         @query="handleQuery"/>
-      <item-list 
-        v-if="itemList.data" 
+      <item-list
+        v-if="itemList.data"
         :com-data="itemList"/>
       <el-table
         :data="tableContent"
@@ -27,13 +27,13 @@
               :title="scope.row[key]"
               class="oparation"
               tag="a"
-              style="text-overflow:ellipsis;white-space:nowrap;">
+              style="text-overflow:ellipsis;white-space:nowrap;overflow: hidden;">
               {{ (scope.row[key]===null || scope.row[key]===undefined || scope.row[key]==='') ? '--' : scope.row[key] }}
             </router-link>
             <p v-else-if="val.filter=='topercent'"
-               style="text-overflow:ellipsis;white-space:nowrap;">{{ (scope.row[key]===null || scope.row[key]===undefined || scope.row[key]==='') ? '--' : scope.row[key] | topercent }}</p>
+               style="text-overflow:ellipsis;white-space:nowrap;overflow: hidden;">{{ (scope.row[key]===null || scope.row[key]===undefined || scope.row[key]==='') ? '--' : scope.row[key] | topercent }}</p>
             <p v-else
-               style="text-overflow:ellipsis;white-space:nowrap;">{{ (scope.row[key]===null || scope.row[key]===undefined || scope.row[key]==='') ? '--' : scope.row[key] }}</p>
+               style="text-overflow:ellipsis;white-space:nowrap;overflow: hidden;">{{ (scope.row[key]===null || scope.row[key]===undefined || scope.row[key]==='') ? '--' : scope.row[key] }}</p>
           </template>
         </el-table-column>
         <el-table-column
