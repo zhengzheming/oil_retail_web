@@ -1,3 +1,4 @@
+import { formatPrice } from "@/filters";
 export const queryList = {
   "order-list": [
     {
@@ -65,13 +66,22 @@ export const tableHeader = {
       label: "油品"
     },
     quantity: {
-      label: "升数"
+      label: "升数",
+      filter: function(val) {
+        return val + " 升";
+      }
     },
     price_sell: {
-      label: "优惠单价"
+      label: "优惠单价",
+      filter: function(val) {
+        return formatPrice(val, "元/升");
+      }
     },
     sell_amount: {
-      label: "油品总价"
+      label: "油品总价",
+      filter: function(val) {
+        return formatPrice(val, "元/升");
+      }
     },
     status_name: {
       label: "订单状态"
