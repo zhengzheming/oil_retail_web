@@ -12,8 +12,8 @@
             <el-form-item
               label="原密码"
               prop="password">
-              <el-input 
-                v-model="form.password" 
+              <el-input
+                v-model="form.password"
                 type="password"/>
             </el-form-item>
           </el-col>
@@ -23,8 +23,8 @@
             <el-form-item
               label="新密码"
               prop="newPassword">
-              <el-input 
-                v-model="form.newPassword" 
+              <el-input
+                v-model="form.newPassword"
                 type="password"/>
             </el-form-item>
           </el-col>
@@ -34,8 +34,8 @@
             <el-form-item
               label="确认密码"
               prop="cpassword">
-              <el-input 
-                v-model="form.cpassword" 
+              <el-input
+                v-model="form.cpassword"
                 type="password"/>
             </el-form-item>
           </el-col>
@@ -68,7 +68,7 @@ export default {
     const validatePass2 = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("请再次输入密码"));
-      } else if (value !== this.form.password) {
+      } else if (value !== this.form.newPassword) {
         callback(new Error("两次输入密码不一致!"));
       } else {
         callback();
@@ -76,7 +76,11 @@ export default {
     };
 
     return {
-      form: {},
+      form: {
+        password: "",
+        newPassword: "",
+        cpassword: ""
+      },
       rules: {
         password: {
           required: true,
