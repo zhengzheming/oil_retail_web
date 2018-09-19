@@ -6,7 +6,7 @@ const role = {
   },
   actions: {
     "enterpriseQuota:export": function({ state }) {
-        window.location.href = `/webAPI/LogisticsQuota/export?search[logistics_name]=${state.params[2]}&search[status]=${state.params[3]}`
+        window.location.href = `/webAPI/logisticsQuota/export?search[logistics_name]=${state.params[2]}&search[status]=${state.params[3]}`
       },
     "enterpriseQuota:exportInit": function({ state },params) {
         state.params = params
