@@ -3,12 +3,12 @@ export const queryList = {
   "order-list": [
     {
       label: "交易开始日期",
-      type: "date",
+      type: "datetime",
       val: ""
     },
     {
       label: "交易结束日期",
-      type: "date",
+      type: "datetime",
       val: ""
     },
     {
