@@ -11,6 +11,7 @@ import basicInfo from "@/router/modules/basicInfo";
 import physicalManage from "@/router/modules/physicalManage";
 import oilStationManage from "@/router/modules/oilStationManage";
 import priceManage from "@/router/modules/priceManage";
+import orderManage from "@/router/modules/orderManage";
 
 import request from "@/utils/request";
 import { Message } from "element-ui";
@@ -77,6 +78,7 @@ export const asyncRouterMap = [
   physicalManage,
   oilStationManage,
   priceManage,
+  orderManage,
   {
     path: "*",
     redirect: "/404"

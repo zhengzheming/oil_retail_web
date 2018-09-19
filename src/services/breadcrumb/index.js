@@ -13,6 +13,7 @@ import oilStation from "./modules/oilStationManage/oil-station";
 import oilStationChecked from "./modules/basicInfo/oilStationChecked";
 import resetPwd from "./modules/resetPwd";
 import priceImport from "./modules/priceManage/priceImport";
+import orderManage from "./modules/orderManage";
 export default {
   ...systemUser,
   ...systemRole,
@@ -27,5 +28,6 @@ export default {
   ...oilStation,
   ...oilStationChecked,
   ...resetPwd,
-  ...priceImport
+  ...priceImport,
+  ...orderManage
 };
