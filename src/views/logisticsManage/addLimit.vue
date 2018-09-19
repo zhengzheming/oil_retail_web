@@ -6,7 +6,7 @@
     </card>
     <card>
         <span slot="title">新增额度信息</span>
-        <p style="line-height: 32px;">{{text1}}当日可用额度：  不超过{{text2}}容量<el-input style="width:100px;margin:0 5px;display:inline-block;" type="text" v-model="val"/>%</p>
+        <p style="line-height: 32px;">{{text1}}当日可用额度：  不超过{{text2}}<el-input style="width:100px;margin:0 5px;display:inline-block;" type="text" v-model="val"/>%</p>
     </card>
   </div>
 </template>
@@ -23,8 +23,8 @@ export default {
             vehicleDayQuotaAdd:'车辆'
         };
         const textMap2 = {
-            enterpriseDayQuotaAdd:'企业',
-            vehicleDayQuotaAdd:'车辆油箱'
+            enterpriseDayQuotaAdd:'企业额度',
+            vehicleDayQuotaAdd:'车辆油箱容量'
         };
         return {
             val:0,
@@ -55,14 +55,20 @@ export default {
         ]
         this.$store.dispatch(`${this.$route.name}:update`,this.val)
         const apiMap = {
-            enterpriseDayQuotaAdd:logisticsQuotaLimit,
-            vehicleDayQuotaAdd:vehicleQuotaLimit
+            enterpriseDayQuotaAdd:{
+                name:logisticsQuotaLimit,
+                txt:'不超过企业额度'
+            },
+            vehicleDayQuotaAdd:{
+                name:vehicleQuotaLimit,
+                txt:'不超过车辆油箱容量'
+            }
         };
-        apiMap[this.$route.name]()
+        apiMap[this.$route.name].name()
         .then(res => {
             if(res.data && res.data.rate){
                 this.val = (Number(res.data.rate)*100).toFixed(2);
-                res.data.rate = (Number(res.data.rate)*100).toFixed(2) + '%';
+                res.data.rate = apiMap[this.$route.name].txt + (Number(res.data.rate)*100).toFixed(2) + '%';
             }
             this.currentInfo.data = res.data || {}
         })
