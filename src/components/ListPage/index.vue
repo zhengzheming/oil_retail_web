@@ -32,9 +32,11 @@
             </router-link>
             <p
               v-else-if="val.filter"
+              :title="scope.row[key]"
               style="text-overflow:ellipsis;white-space:nowrap;overflow: hidden;">{{ (scope.row[key]===null || scope.row[key]===undefined || scope.row[key]==='') ? '--' : val.filter(scope.row[key]) }}</p>
             <p
               v-else
+              :title="scope.row[key]"
               style="text-overflow:ellipsis;white-space:nowrap;overflow: hidden;">{{ (scope.row[key]===null || scope.row[key]===undefined || scope.row[key]==='') ? '--' : scope.row[key] }}</p>
           </template>
         </el-table-column>
@@ -84,6 +86,15 @@
 <script>
 export default {
   name: "ListPage",
+  filters: {
+    topercent: function(val) {
+      if (val != "--") {
+        return Number(val * 100).toFixed(2) + "%";
+      } else {
+        return "--";
+      }
+    }
+  },
   props: {
     pageSize: {
       type: Number,

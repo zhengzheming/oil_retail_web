@@ -98,7 +98,7 @@
             plain
             @click="reset">重置</el-button>
           <p
-            v-if="comData.length>=3"
+            v-if="queryLength>=3"
             class="expand-control"
             @click="isExpand=!isExpand">{{ isExpand?'收起':'展开' }}搜索<i
               :class="isExpand?'icon-shangla':'icon-xiala'"
@@ -140,6 +140,7 @@ export default {
   },
   data() {
     return {
+      queryLength: 0,
       tabSlt: "",
       val: "",
       isExpand: false,
@@ -181,6 +182,9 @@ export default {
         tmp = this.comData.filter(item => {
           return item.type == "tab";
         });
+        this.queryLength = this.comData.filter(item => {
+          return item.type != "tab" && !item.hide;
+        }).length;
       }
       if (tmp.length) {
         tmp = tmp[0].data;

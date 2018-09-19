@@ -167,7 +167,7 @@ export default {
       filter: toPercent
     },
     daily_credit_quota: {
-      label: "今日可用额度"
+      label: "每日企业额度"
     },
     daily_available_quota: {
       label: "今日可用额度",
@@ -190,20 +190,46 @@ export default {
   },
   //车辆容量
   vehicleCapacity: {
-    logistics_id: {
-      label: "编号",
-      width: "120"
+    vehicle_id: {
+      label: "编号"
     },
-    name: {
-      label: "车牌号",
-      width: "200"
+    number: {
+      label: "车牌号"
     },
-    out_status_name: {
-      label: "油箱容量/L",
-      width: "120"
+    capacity: {
+      label: "油箱容量/L"
     },
-    status_name: {
-      label: "每日额度占比"
+    rate: {
+      label: "每日额度占比%",
+      filter: toPercent
+    },
+    daily_capacity: {
+      label: "每日车辆容量/L"
+    },
+    daily_available_capacity: {
+      label: "当日车辆可用容量/L",
+      pathName: "vehicleCapacityDetail",
+      query: [
+        {
+          name: "vehicle_id",
+          field: "vehicle_id"
+        }
+      ]
+    },
+    logistics_name: {
+      label: "物流企业"
+    }
+  },
+  //车辆容量详情
+  vehicleCapacityDetail: {
+    create_time: {
+      label: "时间"
+    },
+    quota: {
+      label: "容量明细/L"
+    },
+    relation_id: {
+      label: "订单编号"
     }
   },
   ...system,

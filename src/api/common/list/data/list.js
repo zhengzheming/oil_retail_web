@@ -144,7 +144,7 @@ export default {
   // 物流企业管理-企业额度-今日可用额度
   dayCredit: (page, pageSize, logistics_id) => {
     const data = {
-      page: page,
+      page,
       pageSize,
       search: {
         logistics_id
@@ -156,19 +156,41 @@ export default {
       data
     });
   },
-  // 物流企业管理-车辆容量
+  // 额度管理-车辆容量
   vehicleCapacity: (page, pageSize, logistics_name, number) => {
     const data = {
-      page: page,
+      page,
       pageSize,
       search: {
         logistics_name,
         number
       }
     };
-    console.log(data);
     return request({
-      url: "/webAPI/LogisticsDailyQuotaLog/getByLogisticsId",
+      url: "/webAPI/vehicleQuota/list",
+      method: "post",
+      data
+    });
+  },
+  // 额度管理-车辆容量详情
+  vehicleCapacityDetail: (
+    page,
+    pageSize,
+    create_time_start,
+    create_time_end,
+    vehicle_id
+  ) => {
+    const data = {
+      page,
+      pageSize,
+      search: {
+        create_time_start,
+        create_time_end,
+        vehicle_id
+      }
+    };
+    return request({
+      url: "/webAPI/vehicleQuota/getDailyQuotaLog",
       method: "post",
       data
     });

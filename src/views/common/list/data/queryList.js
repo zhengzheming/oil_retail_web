@@ -133,7 +133,7 @@ export default {
       hide: true
     }
   ],
-  // 物流企业管理-车辆容量
+  // 额度管理-车辆容量
   vehicleCapacity: [
     {
       label: "物流企业",
@@ -142,6 +142,24 @@ export default {
     {
       label: "车牌号",
       val: ""
+    }
+  ],
+  // 额度管理-车辆容量详情
+  vehicleCapacityDetail: [
+    {
+      type: "date",
+      label: "开始时间",
+      val: ""
+    },
+    {
+      type: "date",
+      label: "结束时间",
+      val: ""
+    },
+    {
+      label: "vehicle_id",
+      val: "",
+      hide: true
     }
   ],
   ...system,

@@ -7,6 +7,7 @@ import basicInfoLogistics from "./modules/basicInfo/logistics";
 import physicalManageDriver from "./modules/physicalManage/driver";
 import physicalManageQueta from "./modules/physicalManage/quota";
 import physicalManageLimit from "./modules/physicalManage/limitQuota";
+import physicalManageCapacity from "./modules/physicalManage/capacity";
 import oilCompany from "./modules/basicInfo/oilCompany";
 import oilGoods from "./modules/basicInfo/oilGoods";
 import oilStation from "./modules/oilStationManage/oil-station";
@@ -23,6 +24,7 @@ export default {
   ...physicalManageDriver,
   ...physicalManageQueta,
   ...physicalManageLimit,
+  ...physicalManageCapacity,
   ...oilCompany,
   ...oilGoods,
   ...oilStation,
