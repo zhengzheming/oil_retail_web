@@ -2,6 +2,8 @@ import { tableHeader as system } from "./modules/system";
 import { tableHeader as basicInfo } from "./modules/basicInfo";
 import { tableHeader as oilStationManage } from "./modules/oil-station-manage";
 import { tableHeader as orderManage } from "./modules/order-manage";
+import { toPercent } from "@/filters";
+
 export default {
   // 基础数据-物流企业
   logistics: {
@@ -117,7 +119,7 @@ export default {
     },
     rate: {
       label: "当日额度占比%",
-      filter: "topercent"
+      filter: toPercent
     }
   },
   //车辆每日限额
@@ -133,7 +135,7 @@ export default {
     },
     rate: {
       label: "当日油箱占比%",
-      filter: "topercent"
+      filter: toPercent
     }
   },
   // 物流企业管理-企业额度
@@ -162,7 +164,7 @@ export default {
     rate: {
       label: "每日额度占比%",
       width: "130",
-      filter: "topercent"
+      filter: toPercent
     },
     daily_credit_quota: {
       label: "今日可用额度"

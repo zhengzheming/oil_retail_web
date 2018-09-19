@@ -30,10 +30,10 @@
               style="text-overflow:ellipsis;white-space:nowrap;overflow: hidden;">
               {{ (scope.row[key]===null || scope.row[key]===undefined || scope.row[key]==='') ? '--' : scope.row[key] }}
             </router-link>
-            <p 
-              v-else-if="val.filter=='topercent'"
-              style="text-overflow:ellipsis;white-space:nowrap;overflow: hidden;">{{ (scope.row[key]===null || scope.row[key]===undefined || scope.row[key]==='') ? '--' : scope.row[key] | topercent }}</p>
-            <p 
+            <p
+              v-else-if="val.filter"
+              style="text-overflow:ellipsis;white-space:nowrap;overflow: hidden;">{{ (scope.row[key]===null || scope.row[key]===undefined || scope.row[key]==='') ? '--' : val.filter(scope.row[key]) }}</p>
+            <p
               v-else
               style="text-overflow:ellipsis;white-space:nowrap;overflow: hidden;">{{ (scope.row[key]===null || scope.row[key]===undefined || scope.row[key]==='') ? '--' : scope.row[key] }}</p>
           </template>
@@ -84,11 +84,6 @@
 <script>
 export default {
   name: "ListPage",
-  filters: {
-    topercent: function(val) {
-      return Number(val * 100).toFixed(2) + "%";
-    }
-  },
   props: {
     pageSize: {
       type: Number,
