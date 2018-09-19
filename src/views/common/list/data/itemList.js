@@ -13,7 +13,7 @@ export default {
         list: [
             {
                 label: '车牌号',
-                prop: ''
+                prop: 'number'
             }
         ]
     }

@@ -31,9 +31,9 @@
               {{ (scope.row[key]===null || scope.row[key]===undefined || scope.row[key]==='') ? '--' : scope.row[key] }}
             </router-link>
             <p
-              v-else-if="val.filter=='topercent'"
+              v-else-if="val.filter"
               :title="scope.row[key]"
-              style="text-overflow:ellipsis;white-space:nowrap;overflow: hidden;">{{ (scope.row[key]===null || scope.row[key]===undefined || scope.row[key]==='') ? '--' : scope.row[key] | topercent }}</p>
+              style="text-overflow:ellipsis;white-space:nowrap;overflow: hidden;">{{ (scope.row[key]===null || scope.row[key]===undefined || scope.row[key]==='') ? '--' : val.filter(scope.row[key]) }}</p>
             <p
               v-else
               :title="scope.row[key]"

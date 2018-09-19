@@ -2,6 +2,7 @@ import request from "@/utils/request";
 import system from "./modules/system";
 import basicInfo from "./modules/baseic-info";
 import oilStationManage from "./modules/oil-station-manage";
+import orderManage from "./modules/order-manage";
 export default {
   // 基础信息-物流企业
   logistics: (page, pageSize, name, status, out_status) => {
@@ -143,7 +144,7 @@ export default {
   // 物流企业管理-企业额度-今日可用额度
   dayCredit: (page, pageSize, logistics_id) => {
     const data = {
-      page: page,
+      page,
       pageSize,
       search: {
         logistics_id
@@ -155,23 +156,41 @@ export default {
       data
     });
   },
-  // 物流企业管理-车辆容量
-  vehicleCapacity: (page, pageSize, logistics_name, number) => {
-    const data = {
-      page: page,
-      pageSize,
-      search: {
-        logistics_name,
-        number
-      }
-    };
-    return request({
-      url: "/webAPI/vehicleQuota/list",
-      method: "post",
-      data
-    });
-  },
+    // 额度管理-车辆容量
+    vehicleCapacity: (page, pageSize, logistics_name, number) => {
+        const data = {
+            page,
+            pageSize,
+            search: {
+                logistics_name,
+                number
+            }
+        };
+        return request({
+            url: "/webAPI/vehicleQuota/list",
+            method: "post",
+            data
+        });
+    },
+    // 额度管理-车辆容量详情
+    vehicleCapacityDetail: (page, pageSize, create_time_start, create_time_end, vehicle_id) => {
+        const data = {
+            page,
+            pageSize,
+            search: {
+                create_time_start,
+                create_time_end,
+                vehicle_id
+            }
+        };
+        return request({
+            url: "/webAPI/vehicleQuota/getDailyQuotaLog",
+            method: "post",
+            data
+        });
+    },
   ...system,
   ...basicInfo,
-  ...oilStationManage
+  ...oilStationManage,
+  ...orderManage
 };

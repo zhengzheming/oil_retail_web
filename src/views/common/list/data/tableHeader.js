@@ -1,6 +1,9 @@
 import { tableHeader as system } from "./modules/system";
 import { tableHeader as basicInfo } from "./modules/basicInfo";
 import { tableHeader as oilStationManage } from "./modules/oil-station-manage";
+import { tableHeader as orderManage } from "./modules/order-manage";
+import { toPercent } from "@/filters";
+
 export default {
   // 基础数据-物流企业
   logistics: {
@@ -73,36 +76,36 @@ export default {
       width: "200"
     }
   },
-    // 物流企业管理-企业额度-企业可用额度收支管理
-    availableCredit: {
-        create_time: {
-            label: "时间"
-        },
-        quota: {
-            label: "额度明细/元"
-        },
-        relation_id: {
-            label: "编号"
-        },
-        category_name: {
-            label: "收支类型"
-        }
+  // 物流企业管理-企业额度-企业可用额度收支管理
+  availableCredit: {
+    create_time: {
+      label: "时间"
     },
-    // 物流企业管理-企业额度-企业当日可用额度收支管理
-    dayCredit: {
-        create_time: {
-            label: "时间"
-        },
-        quota: {
-            label: "额度明细/元"
-        },
-        relation_id: {
-            label: "编号"
-        },
-        category_name: {
-            label: "收支类型"
-        }
+    quota: {
+      label: "额度明细/元"
     },
+    relation_id: {
+      label: "编号"
+    },
+    category_name: {
+      label: "收支类型"
+    }
+  },
+  // 物流企业管理-企业额度-企业当日可用额度收支管理
+  dayCredit: {
+    create_time: {
+      label: "时间"
+    },
+    quota: {
+      label: "额度明细/元"
+    },
+    relation_id: {
+      label: "编号"
+    },
+    category_name: {
+      label: "收支类型"
+    }
+  },
   // 企业每日限额
   enterpriseDayQuota: {
     code: {
@@ -116,7 +119,7 @@ export default {
     },
     rate: {
       label: "当日额度占比%",
-      filter: 'topercent'
+      filter: toPercent
     }
   },
   //车辆每日限额
@@ -131,8 +134,8 @@ export default {
       label: "变更时间"
     },
     rate: {
-        label: "当日油箱占比%",
-        filter: 'topercent'
+      label: "当日油箱占比%",
+      filter: toPercent
     }
   },
   // 物流企业管理-企业额度
@@ -161,7 +164,7 @@ export default {
       rate: {
           label: "每日额度占比%",
           width:'130',
-          filter: 'topercent'
+          filter: toPercent
       },
       daily_credit_quota: {
           label: "每日企业额度"
@@ -197,8 +200,8 @@ vehicleCapacity: {
         label: "油箱容量/L"
     },
     rate: {
-        label: "每日额度占比",
-        filter: 'topercent'
+        label: "每日额度占比%",
+        filter: toPercent
     },
     daily_capacity: {
         label: "每日车辆容量/L"
@@ -219,17 +222,18 @@ vehicleCapacity: {
 },
 //车辆容量详情
 vehicleCapacityDetail: {
-    logistics_id: {
+    create_time: {
         label: "时间"
     },
-    name: {
+    quota: {
         label: "容量明细/L"
     },
-    out_status_name: {
+    relation_id: {
         label: "订单编号"
     }
 },
   ...system,
   ...basicInfo,
-  ...oilStationManage
+  ...oilStationManage,
+  ...orderManage
 };

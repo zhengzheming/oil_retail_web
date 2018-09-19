@@ -22,6 +22,13 @@ export function lookupInDict(route, field, value) {
         2: "民营"
       }
     },
+    "order-manage": {
+      status: {
+        "-1": "交易失败",
+        0: "新建",
+        10: "交易成功"
+      }
+    },
     common: {
       status: {
         1: "启用",

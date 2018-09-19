@@ -1,6 +1,7 @@
 import { detailPath as system } from "./modules/system";
 import { detailPath as basicInfo } from "./modules/basicInfo";
 import { detailPath as oilStationManage } from "./modules/oil-station-manage";
+import { detailPath as orderManage } from "./modules/order-manage";
 export default {
   // 基础数据-物流企业
   logistics: {
@@ -52,5 +53,6 @@ export default {
   },
   ...system,
   ...basicInfo,
-  ...oilStationManage
+  ...oilStationManage,
+  ...orderManage
 };

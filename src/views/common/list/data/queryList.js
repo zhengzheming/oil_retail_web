@@ -1,6 +1,7 @@
 import { queryList as system } from "./modules/system";
 import { queryList as basicInfo } from "./modules/basicInfo";
 import { queryList as oilStationManage } from "./modules/oil-station-manage";
+import { queryList as orderManage } from "./modules/order-manage";
 export default {
   // 基础数据-物流企业
   logistics: [
@@ -12,15 +13,15 @@ export default {
       type: "slt",
       label: "企业状态",
       val: "",
-      field: 'logistics_company_status',
-      data:[]
+      field: "logistics_company_status",
+      data: []
     },
     {
       type: "slt",
       label: "银管家状态",
       val: "",
-      field: 'logistics_company_out_status',
-      data:[]
+      field: "logistics_company_out_status",
+      data: []
     }
   ],
   //车辆数据
@@ -44,8 +45,8 @@ export default {
       type: "slt",
       label: "状态",
       val: "",
-      field: 'driver_status',
-      data:[]
+      field: "driver_status",
+      data: []
     },
     {
       label: "所属企业",
@@ -96,8 +97,8 @@ export default {
       type: "slt",
       label: "额度状态",
       val: "",
-      field: 'logistics_quota_status',
-      data:[]
+      field: "logistics_quota_status",
+      data: []
     }
   ],
   // 物流企业管理-企业可用额度收支管理
@@ -106,8 +107,8 @@ export default {
       type: "slt",
       label: "收支类型",
       val: "",
-      field: 'logistics_quota_log_category',
-      data:[]
+      field: "logistics_quota_log_category",
+      data: []
     },
     {
       type: "date",
@@ -154,9 +155,15 @@ export default {
             type: 'date',
             label: "结束时间",
             val: ""
+        },
+        {
+            label: "vehicle_id",
+            val: "",
+            hide: true
         }
     ],
   ...system,
   ...basicInfo,
-  ...oilStationManage
+  ...oilStationManage,
+  ...orderManage
 };

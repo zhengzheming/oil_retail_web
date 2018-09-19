@@ -41,3 +41,14 @@ export const oilStationFieldMap = {
   contact_person: "contactPerson",
   contact_phone: "contactPhone"
 };
+
+export const orderFieldMap = {
+  order_id: "orderId",
+  sell_amount: "sellAmount",
+  retail_price: "retailPrice",
+  agreed_price: "agreedPrice",
+  discount_price: "discountPrice",
+  create_time: "createTime",
+  effect_time: "effectTime",
+  oil_station: "oilStation"
+};

@@ -28,5 +28,6 @@ export default {
   },
   "oil-station-checked-list": fetchDropDownListMapInOil,
   "oil-company-list": fetchDropDownListMapInOil,
-  "oil-station-list": fetchDropDownListMapInOil
+  "oil-station-list": fetchDropDownListMapInOil,
+  "order-list": fetchDropDownListMapInOil
 };
