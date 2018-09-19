@@ -64,7 +64,20 @@ export function validatePhone(rule, value, callback) {
   }
 }
 
+// 正整数
 export function isvalidPosInt(str) {
   const re = /^[1-9]\d*$/;
   return re.test(str);
+}
+
+// 正负整数、0
+export function isValidInt(str) {
+  const re = /(^[-]?[1-9]\d*$)|0/;
+  return re.test(str);
+}
+
+export function isValidDecimalLength(num, len) {
+  const str = String(num);
+  const strLen = str.split(".").pop().length;
+  return strLen <= len;
 }

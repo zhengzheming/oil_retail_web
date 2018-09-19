@@ -226,14 +226,40 @@ export default {
             message: $verify.getErrorMessage("required", labels.address)
           }
         ],
-        longitude: {
-          required: true,
-          message: $verify.getErrorMessage("required", labels.longitude)
-        },
-        latitude: {
-          required: true,
-          message: $verify.getErrorMessage("required", labels.latitude)
-        },
+        longitude: [
+          {
+            required: true,
+            message: $verify.getErrorMessage("required", labels.longitude)
+          },
+          {
+            validator: $verify.getValidator("number"),
+            message: $verify.getErrorMessage("number", labels.longitude)
+          },
+          {
+            validator: $verify.getValidator("maxDecimalLength"),
+            params: {
+              max: 6
+            },
+            message: $verify.getErrorMessage("maxDecimalLength", 6)
+          }
+        ],
+        latitude: [
+          {
+            required: true,
+            message: $verify.getErrorMessage("required", labels.latitude)
+          },
+          {
+            validator: $verify.getValidator("number"),
+            message: $verify.getErrorMessage("number", labels.latitude)
+          },
+          {
+            validator: $verify.getValidator("maxDecimalLength"),
+            params: {
+              max: 6
+            },
+            message: $verify.getErrorMessage("maxDecimalLength", 6)
+          }
+        ],
         contactPhone: [{ validator: $verify.getValidator("phone") }]
       },
       form: {

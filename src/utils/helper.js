@@ -36,3 +36,9 @@ export function traverseTree(root, leafName, callback) {
     return root;
   }
 }
+
+export function typeIs(arg) {
+  const type = Object.prototype.toString.call(arg);
+  if (isNaN(arg)) return "NaN";
+  return type.slice(8, -1).toLowerCase();
+}
