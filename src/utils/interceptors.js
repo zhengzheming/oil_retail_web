@@ -29,7 +29,7 @@ service.interceptors.response.use(
         type: "error",
         duration: 3 * 1000
       });
-      return store.dispatch("LogOut");
+      return store.dispatch("FedLogOut");
     }
     if (res.state !== 0) {
       let errMessage = res.data;

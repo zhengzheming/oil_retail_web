@@ -98,14 +98,11 @@ const user = {
     },
 
     // 登出
-    LogOut({ commit, state }) {
+    LogOut({ state, dispatch }) {
       return new Promise((resolve, reject) => {
         logout(state.token)
           .then(() => {
-            commit("CLEAR_USER");
-            removeToken();
-            router.push("/login");
-            resolve();
+            dispatch("FedLogOut");
           })
           .catch(error => {
             reject(error);
@@ -116,8 +113,10 @@ const user = {
     // 前端 登出
     FedLogOut({ commit }) {
       return new Promise(resolve => {
+        commit("CLEAR_USER");
         commit("SET_TOKEN", "");
         removeToken();
+        router.push("/login");
         resolve();
       });
     },
