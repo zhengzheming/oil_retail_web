@@ -20,8 +20,12 @@ const oilGoods = {
     }
   },
   actions: {
-    "oil-goods-list:create": function() {
-      router.push({ name: "oil-goods-create" });
+    "oil-goods-list:create": function({ dispatch }) {
+      // 列表跳转
+      // router.push({ name: "oil-goods-create" });
+      // 列表侧拉
+      dispatch("showComponent", "oil-goods-create");
+      dispatch("showSideContent", true);
     },
     "oil-goods-create:save": function({ state, rootState }) {
       const formRef = state.create.formRef;
