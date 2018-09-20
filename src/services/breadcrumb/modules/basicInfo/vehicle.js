@@ -1,9 +1,9 @@
 export default {
     vehicleData: {
-        items: ["基础数据", "车辆数据"]
+        items: ["物流企业管理", "车辆数据"],
+        canback: false
     },
     vehicleDataDetail: {
-        items: ["基础数据", "车辆数据", "车辆详情"]
+        items: ["物流企业管理", "车辆数据", "车辆详情"]
     }
   };
-  

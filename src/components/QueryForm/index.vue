@@ -8,8 +8,8 @@
           v-if="item.type !== &quot;radio&quot; && item.type !== &quot;box&quot; && item.type !== &quot;tab&quot; && !item.hide"
           :key="index"
           :style="item.styleObj || ''">
-          <p>
-            <label class="ellipsis">
+          <p style="margin-right: 18px;">
+            <label class="ellipsis" style="text-align: right;">
               {{ item.label }}:</label><small
                 v-if="item.smallLabel"
                 style="font-size: 14px;color: #999;">{{ item.smallLabel }}</small>
@@ -31,7 +31,7 @@
             v-else-if="['date', 'datetime'].includes(item.type)"
             v-model="item.val"
             :type="item.type"
-            value-format="yyyy-MM-dd HH:mm:ss"
+            value-format="yyyy-MM-dd"
             style="width:100%;"
             placeholder="选择日期"/>
           <div

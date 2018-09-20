@@ -18,7 +18,8 @@
           v-for="(val,key) in tableHeader"
           :key="key"
           :label="val.label"
-          :width="val.width">
+          :width="val.width"
+          :min-width="val.minWidth">
           <template slot-scope="scope">
             <router-link
               v-if="val.pathName"

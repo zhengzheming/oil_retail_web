@@ -1,12 +1,13 @@
 export default {
     enterpriseQuota: {
-        items: ["物流企业管理", "额度管理", "企业额度"],
+        items: ["额度管理", "企业额度"],
         actions: [{ name: "导出", action: "export", type: "primary" }],
+        canback: false
     },
     availableCredit: {
-        items: ["物流企业管理", "额度管理", "企业额度", "收支明细"]
+        items: ["额度管理", "企业额度", "收支明细"]
     },
     dayCredit: {
-        items: ["物流企业管理", "额度管理", "企业额度", "当日收支明细"]
+        items: ["额度管理", "企业额度", "当日收支明细"]
     }
 };

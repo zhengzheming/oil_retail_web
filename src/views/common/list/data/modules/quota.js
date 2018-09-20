@@ -178,7 +178,7 @@ export const tableHeader = {
     enterpriseQuota: {
         logistics_name: {
             label: "物流企业",
-            width: "150",
+            width: "160",
             pathName: "logisticsDetail",
             query: [
                 {
@@ -189,13 +189,15 @@ export const tableHeader = {
         },
         status_name: {
             label: "额度状态",
-            width: "100"
+            width: "120"
         },
         credit_quota: {
-            label: "企业额度"
+            label: "企业额度",
+            width: "160",
         },
         available_quota: {
             label: "企业可用额度",
+            minWidth: "160",
             pathName: "availableCredit",
             query: [
                 {
@@ -206,14 +208,16 @@ export const tableHeader = {
         },
         rate: {
             label: "每日额度占比%",
-            width: "130",
+            minWidth: "160",
             filter: toPercent
         },
         daily_credit_quota: {
-            label: "每日企业额度"
+            label: "每日企业额度",
+            minWidth: "160",
         },
         daily_available_quota: {
             label: "今日可用额度",
+            minWidth: "160",
             pathName: "dayCredit",
             query: [
                 {
@@ -224,11 +228,11 @@ export const tableHeader = {
         },
         start_date: {
             label: "开始时间",
-            width: "120"
+            width: "140"
         },
         end_date: {
             label: "结束时间",
-            width: "120"
+            width: "140"
         }
     },
     //车辆容量
