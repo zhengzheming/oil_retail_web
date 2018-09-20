@@ -39,6 +39,35 @@ export function traverseTree(root, leafName, callback) {
 
 export function typeIs(arg) {
   const type = Object.prototype.toString.call(arg);
-  if (isNaN(arg)) return "NaN";
+  if (typeof arg === "number" && isNaN(arg)) return "NaN";
   return type.slice(8, -1).toLowerCase();
+}
+
+export function getStringFromDeep(target) {
+  if ($utils.typeIs(target) === "object") {
+    let arr = [];
+
+    Object.keys(target).forEach(key => {
+      const value = target[key];
+      const result = getStringFromDeep(value);
+      if ($utils.typeIs(result) === "string") {
+        arr.push(result);
+      } else {
+        arr = [...arr, ...result];
+      }
+    });
+    return arr;
+  }
+  if ($utils.typeIs(target) === "array") {
+    let arr = [];
+    target.forEach(value => {
+      if ($utils.typeIs(value) === "string") {
+        arr.push(value);
+      } else if ($utils.typeIs(value) === "object") {
+        arr = [...arr, ...getStringFromDeep(value)];
+      }
+    });
+    return arr;
+  }
+  return target;
 }
