@@ -86,14 +86,14 @@
 <script>
 export default {
   name: "ListPage",
-  filters:{
-      'topercent':function(val){
-          if(val != '--'){
-              return Number(val*100).toFixed(2) + '%'
-          }else{
-              return '--'
-          }
+  filters: {
+    topercent: function(val) {
+      if (val != "--") {
+        return Number(val * 100).toFixed(2) + "%";
+      } else {
+        return "--";
       }
+    }
   },
   props: {
     pageSize: {

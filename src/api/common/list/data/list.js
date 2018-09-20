@@ -156,39 +156,45 @@ export default {
       data
     });
   },
-    // 额度管理-车辆容量
-    vehicleCapacity: (page, pageSize, logistics_name, number) => {
-        const data = {
-            page,
-            pageSize,
-            search: {
-                logistics_name,
-                number
-            }
-        };
-        return request({
-            url: "/webAPI/vehicleQuota/list",
-            method: "post",
-            data
-        });
-    },
-    // 额度管理-车辆容量详情
-    vehicleCapacityDetail: (page, pageSize, create_time_start, create_time_end, vehicle_id) => {
-        const data = {
-            page,
-            pageSize,
-            search: {
-                create_time_start,
-                create_time_end,
-                vehicle_id
-            }
-        };
-        return request({
-            url: "/webAPI/vehicleQuota/getDailyQuotaLog",
-            method: "post",
-            data
-        });
-    },
+  // 额度管理-车辆容量
+  vehicleCapacity: (page, pageSize, logistics_name, number) => {
+    const data = {
+      page,
+      pageSize,
+      search: {
+        logistics_name,
+        number
+      }
+    };
+    return request({
+      url: "/webAPI/vehicleQuota/list",
+      method: "post",
+      data
+    });
+  },
+  // 额度管理-车辆容量详情
+  vehicleCapacityDetail: (
+    page,
+    pageSize,
+    create_time_start,
+    create_time_end,
+    vehicle_id
+  ) => {
+    const data = {
+      page,
+      pageSize,
+      search: {
+        create_time_start,
+        create_time_end,
+        vehicle_id
+      }
+    };
+    return request({
+      url: "/webAPI/vehicleQuota/getDailyQuotaLog",
+      method: "post",
+      data
+    });
+  },
   ...system,
   ...basicInfo,
   ...oilStationManage,

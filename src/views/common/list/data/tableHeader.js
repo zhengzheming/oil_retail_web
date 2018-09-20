@@ -96,98 +96,98 @@ export default {
   },
   // 物流企业管理-企业额度
   enterpriseQuota: {
-      logistics_name: {
-          label: "物流公司",
-          width: "150"
-      },
-      status_name: {
-          label: "额度状态",
-          width: "100"
-      },
-      credit_quota: {
-          label: "企业额度",
-      },
-      available_quota: {
-          label: "企业可用额度",
-          pathName: "availableCredit",
-          query: [
-              {
-                  name: "logistics_id",
-                  field: "logistics_id"
-              }
-          ]
-      },
-      rate: {
-          label: "每日额度占比%",
-          width:'130',
-          filter: toPercent
-      },
-      daily_credit_quota: {
-          label: "每日企业额度"
-      },
-      daily_available_quota: {
-          label: "今日可用额度",
-          pathName: "dayCredit",
-          query: [
-              {
-                  name: "logistics_id",
-                  field: "logistics_id"
-              }
-          ]
-      },
-      start_date: {
-          label: "开始时间",
-          width: "120"
-      },
-      end_date: {
-          label: "结束时间",
-          width: "120"
-      }
-  },
-//车辆容量
-vehicleCapacity: {
-    vehicle_id: {
-        label: "编号"
+    logistics_name: {
+      label: "物流公司",
+      width: "150"
     },
-    number: {
-        label: "车牌号"
+    status_name: {
+      label: "额度状态",
+      width: "100"
     },
-    capacity: {
-        label: "油箱容量/L"
+    credit_quota: {
+      label: "企业额度"
+    },
+    available_quota: {
+      label: "企业可用额度",
+      pathName: "availableCredit",
+      query: [
+        {
+          name: "logistics_id",
+          field: "logistics_id"
+        }
+      ]
     },
     rate: {
-        label: "每日额度占比%",
-        filter: toPercent
+      label: "每日额度占比%",
+      width: "130",
+      filter: toPercent
+    },
+    daily_credit_quota: {
+      label: "每日企业额度"
+    },
+    daily_available_quota: {
+      label: "今日可用额度",
+      pathName: "dayCredit",
+      query: [
+        {
+          name: "logistics_id",
+          field: "logistics_id"
+        }
+      ]
+    },
+    start_date: {
+      label: "开始时间",
+      width: "120"
+    },
+    end_date: {
+      label: "结束时间",
+      width: "120"
+    }
+  },
+  //车辆容量
+  vehicleCapacity: {
+    vehicle_id: {
+      label: "编号"
+    },
+    number: {
+      label: "车牌号"
+    },
+    capacity: {
+      label: "油箱容量/L"
+    },
+    rate: {
+      label: "每日额度占比%",
+      filter: toPercent
     },
     daily_capacity: {
-        label: "每日车辆容量/L"
+      label: "每日车辆容量/L"
     },
     daily_available_capacity: {
-        label: "当日车辆可用容量/L",
-        pathName: "vehicleCapacityDetail",
-        query: [
-            {
-                name: "vehicle_id",
-                field: "vehicle_id"
-            }
-        ]
+      label: "当日车辆可用容量/L",
+      pathName: "vehicleCapacityDetail",
+      query: [
+        {
+          name: "vehicle_id",
+          field: "vehicle_id"
+        }
+      ]
     },
     logistics_name: {
-        label: "物流企业"
+      label: "物流企业"
     }
-},
-//车辆容量详情
-vehicleCapacityDetail: {
+  },
+  //车辆容量详情
+  vehicleCapacityDetail: {
     create_time: {
-        label: "时间"
+      label: "时间"
     },
     quota: {
-        label: "容量明细/L"
+      label: "容量明细/L"
     },
     relation_id: {
-        label: "订单编号"
+      label: "订单编号"
     }
-},
+  },
   ...system,
   ...basicInfo,
   ...oilStationManage,

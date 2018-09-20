@@ -28,10 +28,10 @@
               :value="item.id+''"/>
           </el-select>
           <el-date-picker
-            v-else-if="item.type=='date'"
+            v-else-if="['date', 'datetime'].includes(item.type)"
             v-model="item.val"
-            value-format="yyyy-MM-dd"
-            type="date"
+            :type="item.type"
+            value-format="yyyy-MM-dd HH:mm:ss"
             style="width:100%;"
             placeholder="选择日期"/>
           <div
@@ -140,7 +140,7 @@ export default {
   },
   data() {
     return {
-        queryLength:0,
+      queryLength: 0,
       tabSlt: "",
       val: "",
       isExpand: false,
@@ -152,8 +152,8 @@ export default {
       handler: "getTabData",
       deep: true
     },
-    'tabSlt':function(val){
-      this.$emit('change-tab',val)
+    tabSlt: function(val) {
+      this.$emit("change-tab", val);
     }
   },
   created() {
@@ -182,14 +182,14 @@ export default {
         tmp = this.comData.filter(item => {
           return item.type == "tab";
         });
-          this.queryLength = this.comData.filter(item => {
-              return item.type != 'tab' && !item.hide
-          }).length;
+        this.queryLength = this.comData.filter(item => {
+          return item.type != "tab" && !item.hide;
+        }).length;
       }
       if (tmp.length) {
         tmp = tmp[0].data;
         this.tabData = tmp;
-        this.tabSlt = tmp[0].val
+        this.tabSlt = tmp[0].val;
       }
     },
     handleBlur(e, item) {

@@ -120,7 +120,7 @@
               :label="labels['contactPhone']"
               prop="contactPhone"
             >
-              <el-input v-model="form.contactPhone"/>
+              <el-input v-model.trim="form.contactPhone"/>
             </el-form-item>
           </el-col>
         </el-row>

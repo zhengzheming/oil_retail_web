@@ -100,19 +100,19 @@ export default {
     },
     // 车辆容量
     {
-      path: 'capacity',
-      name: 'vehicleCapacity',
+      path: "capacity",
+      name: "vehicleCapacity",
       component: commonList,
       meta: {
-          module: "/logistics-manage/capacity"
+        module: "/logistics-manage/capacity"
       }
     },
     {
-      path: 'capacity/detail',
-      name: 'vehicleCapacityDetail',
+      path: "capacity/detail",
+      name: "vehicleCapacityDetail",
       component: commonList,
       meta: {
-          module: "/logistics-manage/capacity/detail"
+        module: "/logistics-manage/capacity/detail"
       }
     }
   ]
