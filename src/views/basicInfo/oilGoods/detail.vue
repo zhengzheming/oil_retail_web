@@ -52,7 +52,19 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch("oil-goods-detail:fetch-form");
+    const query = this.$route.query;
+    this.init(query);
+  },
+  activated() {
+    const query = this.$store.state.listPage.query;
+    this.init(query);
+  },
+  methods: {
+    init(query) {
+      if (query.goodsId) {
+        this.$store.dispatch("oil-goods-detail:fetch-form", query.goodsId);
+      }
+    }
   }
 };
 </script>

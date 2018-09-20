@@ -160,18 +160,18 @@ export default {
   },
   created() {
     const query = this.$route.query;
-    if (query.orderId) {
-      this.$store.dispatch("order-detail:fetch-form");
-    }
+    this.init(query);
   },
   activated() {
     const query = this.$store.state.listPage.query;
-    if (query.orderId) {
-      this.$store.dispatch("order-detail:fetch-form", query.orderId);
-    }
+    this.init(query);
   },
-  deactivated() {
-    this.$destroy();
+  methods: {
+    init(query) {
+      if (query.orderId) {
+        this.$store.dispatch("order-detail:fetch-form", query.orderId);
+      }
+    }
   }
 };
 </script>

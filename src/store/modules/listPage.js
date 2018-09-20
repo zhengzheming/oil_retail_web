@@ -1,4 +1,3 @@
-import md5 from "js-md5";
 const listPage = {
   state: {
     nestedComponent: "",
@@ -22,7 +21,6 @@ const listPage = {
     },
     "listPage:query": function({ state }, query) {
       state.query = query;
-      state.queryMd5 = md5($utils.objectToString(query));
     }
   }
 };

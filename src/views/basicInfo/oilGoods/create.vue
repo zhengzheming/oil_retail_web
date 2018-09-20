@@ -124,20 +124,32 @@ export default {
     }
   },
   created() {
-    if (this.$route.query.goodsId) {
-      this.$store.dispatch("oil-goods-detail:fetch-form").then(detail => {
-        this.form = detail;
-        this.$nextTick(function() {
-          this.$refs.form.clearValidate();
-        });
-      });
-    }
+    const query = this.$route.query;
+    this.init(query);
+  },
+  activated() {
+    const query = this.$store.state.listPage.query;
+    this.init(query);
   },
   mounted() {
     this.$store.dispatch("oil-goods-create:update-form", {
       form: this.form,
       formRef: this.$refs["form"]
     });
+  },
+  methods: {
+    init(query) {
+      if (query.goodsId) {
+        this.$store
+          .dispatch("oil-goods-detail:fetch-form", query.goodsId)
+          .then(detail => {
+            this.form = detail;
+            this.$nextTick(function() {
+              this.$refs.form.clearValidate();
+            });
+          });
+      }
+    }
   }
 };
 </script>

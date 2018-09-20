@@ -98,7 +98,7 @@ export const tableHeader = {
       label: "启用状态",
       width: "100px"
     }
-  },
+  }
 };
 
 export const editPath = {
@@ -113,6 +113,7 @@ export const editPath = {
   },
   "oil-goods-list": {
     pathName: "oil-goods-modify",
+    isLink: true,
     query: [
       {
         name: "goodsId",
@@ -134,6 +135,7 @@ export const detailPath = {
   },
   "oil-goods-list": {
     pathName: "oil-goods-detail",
+    isLink: true,
     query: [
       {
         name: "goodsId",

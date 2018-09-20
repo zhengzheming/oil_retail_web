@@ -50,8 +50,8 @@ const oilGoods = {
       state.create.form = form;
       state.create.formRef = formRef;
     },
-    "oil-goods-detail:fetch-form": function({ commit, rootState, state }) {
-      return fetchOilGoodsDetail(rootState.route.query.goodsId).then(res => {
+    "oil-goods-detail:fetch-form": function({ commit, state }, goodsId) {
+      return fetchOilGoodsDetail(goodsId).then(res => {
         commit("UPDATE_OIL_GOODS_DETAIL", res.data);
         return state.detail.form;
       });

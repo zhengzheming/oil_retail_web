@@ -81,9 +81,8 @@
     </div>
     <side-content :visible.sync="sideContentVisible">
       <keep-alive>
-        <component 
-          :is="nestedComponent" 
-          :key="$store.state.listPage.queryMd5"/>
+        <component
+          :is="nestedComponent"/>
       </keep-alive>
     </side-content>
   </div>

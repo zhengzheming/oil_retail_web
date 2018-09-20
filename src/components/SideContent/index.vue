@@ -35,6 +35,8 @@ export default {
   methods: {
     hide() {
       this.$store.dispatch("showSideContent", false);
+      // 收缩时 destroy动态组件
+      this.$store.dispatch("showComponent", "");
       // this.$emit("update:visible", false);
     }
   }

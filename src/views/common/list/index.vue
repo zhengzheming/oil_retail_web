@@ -175,13 +175,16 @@ export default {
         this.getList();
       }
     },
+    slideContent(pathObj, row) {
+      this.$store.dispatch("listPage:query", row.query);
+      this.$store.dispatch("showComponent", pathObj.pathName);
+      this.$store.dispatch("showSideContent", true);
+    },
     showChildCom(type, row) {
       const actionMap = {
         detail: () => {
           if (this.detailPath.isLink) {
-            this.$store.dispatch("listPage:query", row.query);
-            this.$store.dispatch("showComponent", this.detailPath.pathName);
-            this.$store.dispatch("showSideContent", true);
+            this.slideContent(this.detailPath, row);
           } else {
             this.$router.push({
               name: this.detailPath.pathName,
@@ -190,7 +193,14 @@ export default {
           }
         },
         edit: () => {
-          this.$router.push({ name: this.editPath.pathName, query: row.query });
+          if (this.editPath.isLink) {
+            this.slideContent(this.editPath, row);
+          } else {
+            this.$router.push({
+              name: this.editPath.pathName,
+              query: row.query
+            });
+          }
         },
         auth: () => {
           this.$router.push({
