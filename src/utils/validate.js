@@ -42,8 +42,13 @@ export function isvalidEmail(email) {
  * @param phone
  * @returns {boolean}
  */
-export function isvalidPhone(phone) {
+export function isvalidMobilePhone(phone) {
   const re = /^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;
+  return re.test(phone);
+}
+
+export function isvalidPhone(phone) {
+  const re = /(^(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}$)|(^1[0-9]{10}$)/;
   return re.test(phone);
 }
 
@@ -60,7 +65,7 @@ export function validatePhone(rule, value, callback) {
   if (isvalidPhone(value)) {
     callback();
   } else {
-    callback("请输入正确的手机号");
+    callback("请输入正确的联系方式");
   }
 }
 
