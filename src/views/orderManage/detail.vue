@@ -25,7 +25,9 @@
           :title="labels.status"/>
       </el-col>
     </el-row>
-    <el-row :gutter="$customConfig.colGutter">
+    <el-row 
+      v-if="form.failedReason" 
+      :gutter="$customConfig.colGutter">
       <el-col :span="12">
         <form-control-static
           :text="form.failedReason"
