@@ -183,7 +183,7 @@ export default {
     showChildCom(type, row) {
       const actionMap = {
         detail: () => {
-          if (this.detailPath.isLink) {
+          if (this.detailPath.isSlide) {
             this.slideContent(this.detailPath, row);
           } else {
             this.$router.push({
@@ -193,7 +193,7 @@ export default {
           }
         },
         edit: () => {
-          if (this.editPath.isLink) {
+          if (this.editPath.isSlide) {
             this.slideContent(this.editPath, row);
           } else {
             this.$router.push({
