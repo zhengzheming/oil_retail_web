@@ -2,12 +2,12 @@ import { formatPrice } from "@/filters";
 export const queryList = {
   "order-list": [
     {
-      label: "交易开始日期",
+      label: "交易开始时间",
       type: "datetime",
       val: ""
     },
     {
-      label: "交易结束日期",
+      label: "交易结束时间",
       type: "datetime",
       val: ""
     },

@@ -14,7 +14,7 @@
             >
               <a
                 href="/static/oilPriceTemplate.xlsx"
-                target="_blank"
+                download="油品价格导入模版.xlsx"
                 class="text-link">点击下载模板</a>
             </el-form-item>
           </el-col>

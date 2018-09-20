@@ -1,6 +1,6 @@
 <template>
-  <div 
-    :class="{ collapse: isCollapse}" 
+  <div
+    :class="{ collapse: isCollapse}"
     class="app-wrapper">
     <sidebar/>
     <div class="main-container">
@@ -82,8 +82,11 @@ export default {
   right: 0;
   height: 50px;
 }
+.navbar {
+  height: 42px;
+}
 .menu-path {
   z-index: z(menu-path);
-  top: 50px;
+  top: 42px;
 }
 </style>

@@ -42,16 +42,11 @@ service.interceptors.response.use(
     }
     if (res.state !== 0) {
       let errMessage = res.data;
-      if (Object.prototype.toString.call(errMessage) === "[object Object]") {
-        errMessage = Object.keys(errMessage).reduce((acc, key) => {
-          return errMessage[key].reduce((acc, obj) => {
-            return Object.keys(obj).reduce(
-              (acc1, key) =>
-                `${acc1}<p style="line-height: 22px;">${obj[key]}</p>`,
-              ""
-            );
-          }, "");
-        }, "");
+      if ($utils.typeIs(errMessage) === "object") {
+        errMessage =
+          '<p style="line-height: 22px;">' +
+          $utils.getStringFromDeep(errMessage).join("<p></p>") +
+          "</p>";
       }
       Message({
         message: errMessage,
