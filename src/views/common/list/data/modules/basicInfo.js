@@ -98,7 +98,48 @@ export const tableHeader = {
       label: "启用状态",
       width: "100px"
     }
-  }
+  },
+    // 基础数据-物流企业
+    logistics: {
+        logistics_id: {
+            label: "编号",
+            width: "120"
+        },
+        name: {
+            label: "企业名称",
+            pathName: "enterpriseQuota"
+        },
+        out_status_name: {
+            label: "银管家状态",
+            width: "120"
+        },
+        status_name: {
+            label: "企业状态",
+            width: "120"
+        }
+    },
+    // 基础数据-车辆数据
+    vehicleData: {
+        vehicle_id: {
+            label: "编号",
+            width: "150"
+        },
+        number: {
+            label: "车牌号",
+            width: "150"
+        },
+        logistics_name: {
+            label: "物流企业",
+            width: "150"
+        },
+        model: {
+            label: "车辆类型",
+            width: "150"
+        },
+        capacity: {
+            label: "油箱容量/L"
+        }
+    },
 };
 
 export const editPath = {
