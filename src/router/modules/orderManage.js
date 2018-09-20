@@ -12,7 +12,17 @@ export default {
       component: commonList,
       meta: {
         module: "/order-manage/order/index"
-      }
+      },
+      children: [
+        {
+          path: "detail",
+          name: "order-detail--nested",
+          component: orderManageDetail,
+          meta: {
+            module: "/order-manage/order/detail"
+          }
+        }
+      ]
     },
     {
       path: "order/detail",

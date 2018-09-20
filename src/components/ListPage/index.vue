@@ -80,7 +80,7 @@
         @current-change="handleCurrentChange"/>
     </div>
     <side-content :visible.sync="sideContentVisible">
-      <slot/>
+      <router-view/>
     </side-content>
   </div>
 </template>
@@ -140,6 +140,11 @@ export default {
       sideContentVisible: false
     };
   },
+  watch: {
+    canLink(val) {
+      this.sideContentVisible = val;
+    }
+  },
   mounted() {
     let length = this.queryList.filter(item => {
       return !item.hide;
@@ -159,11 +164,9 @@ export default {
       this.$emit("reset");
     },
     handleVIew(row) {
-      this.sideContentVisible = true;
       this.$emit("show-view", row);
     },
     handleEdit(row) {
-      this.sideContentVisible = true;
       this.$emit("show-edit", row);
     },
     handleDelete(row) {

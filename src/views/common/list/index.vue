@@ -9,6 +9,7 @@
       :table-header="tableHeader"
       :table-content="tableContent"
       :has-action="hasAction"
+      :can-link="canLink"
       :config="config"
       @reset="handleReset"
       @query="handleQuery"
@@ -57,7 +58,8 @@ export default {
       editApi: apiList.edit[pathName],
       detailApi: apiList.detail[pathName],
       tableContent: [],
-      comContent: ""
+      comContent: "",
+      canLink: false
     };
   },
   computed: {
