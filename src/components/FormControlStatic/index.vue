@@ -2,7 +2,7 @@
   <div class="form-control--static">
     <span class="form-control--static__title">{{ title }}</span>
     <span class="form-control--static__text">
-      <span v-if="textString">{{ textString }}</span>
+      <span v-if="textString">{{ text | protectVal }}</span>
       <span v-else><slot/></span>
     </span>
   </div>
@@ -11,6 +11,13 @@
 <script>
 export default {
   name: "FormControlStatic",
+  filters: {
+    protectVal(text) {
+      const type = $utils.typeIs(text);
+      const condition = type === "null" || type === "undefined";
+      return condition ? "--" : text;
+    }
+  },
   props: {
     title: {
       type: String,

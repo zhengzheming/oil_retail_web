@@ -28,6 +28,13 @@
     <el-row :gutter="$customConfig.colGutter">
       <el-col :span="12">
         <form-control-static
+          :text="form.failedReason"
+          :title="labels.failedReason"/>
+      </el-col>
+    </el-row>
+    <el-row :gutter="$customConfig.colGutter">
+      <el-col :span="12">
+        <form-control-static
           :text="goods.name"
           :title="labels.goodsName"/>
       </el-col>
@@ -119,7 +126,7 @@ export default {
       orderId: "订单编号",
       status: "订单状态",
       goodsName: "油品",
-      sellAmount: "加油总额",
+      sellAmount: "油品总价",
       quantity: "升数",
       retailPrice: "零售单价",
       discountPrice: "优惠单价",
@@ -132,7 +139,8 @@ export default {
       oilStationName: "加油站名称",
       oilStationAddress: "加油站地址",
       createTime: "订单交易日期",
-      effectTime: "订单生效日期"
+      effectTime: "订单生效日期",
+      failedReason: "失败原因"
     };
     return {
       labels

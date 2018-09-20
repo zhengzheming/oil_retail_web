@@ -47,7 +47,7 @@ export const tableHeader = {
       label: "订单交易日期",
       width: "170px"
     },
-    order_id: {
+    code: {
       label: "订单编号",
       width: "170px"
     },

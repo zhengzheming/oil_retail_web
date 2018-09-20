@@ -50,5 +50,6 @@ export const orderFieldMap = {
   discount_price: "discountPrice",
   create_time: "createTime",
   effect_time: "effectTime",
-  oil_station: "oilStation"
+  oil_station: "oilStation",
+  failed_reason: "failedReason"
 };

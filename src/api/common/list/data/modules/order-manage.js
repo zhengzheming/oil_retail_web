@@ -6,7 +6,7 @@ export default {
     pageSize,
     create_start_time,
     create_end_time,
-    order_id,
+    code,
     vehicle_number,
     customer_name,
     customer_phone,
@@ -19,7 +19,7 @@ export default {
       search: {
         create_start_time,
         create_end_time,
-        order_id,
+        code,
         customer_name,
         customer_phone,
         logistics_name,
