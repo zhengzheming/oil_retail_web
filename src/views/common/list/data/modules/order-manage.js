@@ -85,7 +85,7 @@ export const tableHeader = {
       label: "油品总价",
       width: "150px",
       filter: function(val) {
-        return formatPrice(val, "元/升");
+        return formatPrice(val, "元");
       }
     },
     status_name: {

@@ -14,6 +14,7 @@ import customConfig from "@/services/customConfig";
 import * as $utils from "@/utils/helper";
 import { lookupInDict } from "@/services/filter";
 import verify from "@/services/verify";
+import "@/utils/interceptors";
 
 Vue.config.productionTip = false;
 Object.defineProperty(window, "_", { value: _ });
