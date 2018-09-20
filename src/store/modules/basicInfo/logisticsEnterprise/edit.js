@@ -21,7 +21,6 @@ const role = {
     "logisticsEdit:update-form": function({ state }, {logistics_id,status}) {
       state.logistics_id = logistics_id;
       state.status = status;
-      console.log(state)
     },
   }
 };

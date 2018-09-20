@@ -98,7 +98,7 @@ export const tableHeader = {
       label: "启用状态",
       width: "100px"
     }
-  }
+  },
 };
 
 export const editPath = {
