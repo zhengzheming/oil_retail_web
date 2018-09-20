@@ -9,8 +9,8 @@
       :table-header="tableHeader"
       :table-content="tableContent"
       :has-action="hasAction"
-      :can-link="canLink"
       :config="config"
+      :nested-component="componentName"
       @reset="handleReset"
       @query="handleQuery"
       @change-tab="handleChangeTab"
@@ -59,7 +59,7 @@ export default {
       detailApi: apiList.detail[pathName],
       tableContent: [],
       comContent: "",
-      canLink: false
+      componentName: ""
     };
   },
   computed: {
@@ -178,10 +178,16 @@ export default {
     showChildCom(type, row) {
       const actionMap = {
         detail: () => {
-          this.$router.push({
-            name: this.detailPath.pathName,
-            query: row.query
-          });
+          if (this.detailPath.isLink) {
+            this.$store.dispatch("listPage:query", row.query);
+            this.$store.dispatch("showComponent", this.detailPath.pathName);
+            this.$store.dispatch("showSideContent", true);
+          } else {
+            this.$router.push({
+              name: this.detailPath.pathName,
+              query: row.query
+            });
+          }
         },
         edit: () => {
           this.$router.push({ name: this.editPath.pathName, query: row.query });

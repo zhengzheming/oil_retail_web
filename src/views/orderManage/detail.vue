@@ -163,6 +163,15 @@ export default {
     if (query.orderId) {
       this.$store.dispatch("order-detail:fetch-form");
     }
+  },
+  activated() {
+    const query = this.$store.state.listPage.query;
+    if (query.orderId) {
+      this.$store.dispatch("order-detail:fetch-form", query.orderId);
+    }
+  },
+  deactivated() {
+    this.$destroy();
   }
 };
 </script>

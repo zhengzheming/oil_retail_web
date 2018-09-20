@@ -14,8 +14,8 @@ const order = {
     }
   },
   actions: {
-    "order-detail:fetch-form": function({ commit, rootState, state }) {
-      return fetchOrderDetail(rootState.route.query.orderId).then(res => {
+    "order-detail:fetch-form": function({ commit, state }, orderId) {
+      return fetchOrderDetail(orderId).then(res => {
         commit("UPDATE_ORDER_DETAIL", res.data);
         return state.detail.form;
       });

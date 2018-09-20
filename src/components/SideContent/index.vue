@@ -22,9 +22,20 @@ export default {
       default: true
     }
   },
+  computed: {
+    sideContentVisible() {
+      return this.$store.state.listPage.sideContentVisible;
+    }
+  },
+  watch: {
+    sideContentVisible(val) {
+      this.visible = val;
+    }
+  },
   methods: {
     hide() {
-      this.$emit("update:visible", false);
+      this.$store.dispatch("showSideContent", false);
+      // this.$emit("update:visible", false);
     }
   }
 };

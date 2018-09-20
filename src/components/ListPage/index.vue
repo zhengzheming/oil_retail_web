@@ -80,11 +80,17 @@
         @current-change="handleCurrentChange"/>
     </div>
     <side-content :visible.sync="sideContentVisible">
-      <router-view/>
+      <keep-alive>
+        <component 
+          :is="nestedComponent" 
+          :key="$store.state.listPage.queryMd5"/>
+      </keep-alive>
     </side-content>
   </div>
 </template>
 <script>
+import components from "./componentsForView";
+import { mapState } from "vuex";
 export default {
   name: "ListPage",
   filters: {
@@ -96,6 +102,7 @@ export default {
       }
     }
   },
+  components,
   props: {
     pageSize: {
       type: Number,
@@ -136,14 +143,14 @@ export default {
   },
   data() {
     return {
-      showQueryList: true,
-      sideContentVisible: false
+      showQueryList: true
     };
   },
-  watch: {
-    canLink(val) {
-      this.sideContentVisible = val;
-    }
+  computed: {
+    ...mapState({
+      sideContentVisible: state => state.listPage.sideContentVisible,
+      nestedComponent: state => state.listPage.nestedComponent
+    })
   },
   mounted() {
     let length = this.queryList.filter(item => {

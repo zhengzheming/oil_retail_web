@@ -71,3 +71,11 @@ export function getStringFromDeep(target) {
   }
   return target;
 }
+
+export function objectToString(obj) {
+  let result = Object.keys(obj).reduce(
+    (acc, curKey) => `${acc}&${curKey}=${obj[curKey]}`,
+    ""
+  );
+  return result.slice(1);
+}
