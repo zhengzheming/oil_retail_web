@@ -17,7 +17,7 @@
         :key="index"
         :type="!item.plain ? item.type : ''"
         :plain="item.plain"
-        @click="execute(item.action)">{{ item.name }}</el-button>
+        @click="execute(item.action, item)">{{ item.name }}</el-button>
     </div>
   </section>
 </template>
@@ -27,7 +27,7 @@ import breadCrumbConfig from "@/services/breadcrumb/index";
 export default {
   computed: {
     breadcrumbModuel() {
-      return breadCrumbConfig[this.$route.name] || null;
+      return breadCrumbConfig[this.$route.name] || {};
     },
     isShow() {
       return this.$store.state.breadcrumb.actions;
@@ -44,8 +44,8 @@ export default {
     goBack() {
       history.back();
     },
-    execute(methodName) {
-      this.$store.dispatch(`${this.$route.name}:${methodName}`);
+    execute(methodName, item) {
+      this.$store.dispatch(`${this.$route.name}:${methodName}`, item.params);
     }
   }
 };

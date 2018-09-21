@@ -1,6 +1,7 @@
 <template>
   <card>
     <list-page
+      ref="listPage"
       :current-page="currentPage"
       :page-size="pageSize"
       :page-total="pageTotal"
@@ -85,6 +86,10 @@ export default {
         }
       });
     }
+    this.$store.dispatch("listPage:ref", this);
+  },
+  beforeDestroy() {
+    this.$store.dispatch("listPage:reset");
   },
   methods: {
     getList() {
@@ -176,9 +181,11 @@ export default {
       }
     },
     slideContent(pathObj, row) {
-      this.$store.dispatch("listPage:query", row.query);
-      this.$store.dispatch("showComponent", pathObj.pathName);
-      this.$store.dispatch("showSideContent", true);
+      this.$store.dispatch("listPage:show-side-content", [
+        true,
+        pathObj.pathName,
+        row.query
+      ]);
     },
     showChildCom(type, row) {
       const actionMap = {

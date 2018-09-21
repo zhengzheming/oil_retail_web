@@ -1,6 +1,8 @@
+import breadCrumbConfig from "@/services/breadcrumb/index";
 const breadcrumb = {
   state: {
-    actions: {}
+    actions: {},
+    config: breadCrumbConfig
   },
   actions: {
     "breadcrumb:update-actions": function({ state }, data) {

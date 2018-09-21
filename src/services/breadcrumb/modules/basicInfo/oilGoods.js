@@ -1,7 +1,14 @@
 export default {
   "oil-goods-list": {
     items: ["基础数据", "油品数据", "列表"],
-    actions: [{ name: "添加", action: "create", type: "primary" }],
+    actions: [
+      {
+        name: "添加",
+        action: "create",
+        type: "primary",
+        params: { isSlide: true }
+      }
+    ],
     canback: false
   },
   "oil-goods-create": {

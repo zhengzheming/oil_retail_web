@@ -101,7 +101,7 @@ export const tableHeader = {
 export const detailPath = {
   "order-list": {
     pathName: "order-detail",
-    isLink: true,
+    isSlide: true,
     query: [
       {
         name: "orderId",

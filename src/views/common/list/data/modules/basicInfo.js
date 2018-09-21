@@ -113,7 +113,7 @@ export const editPath = {
   },
   "oil-goods-list": {
     pathName: "oil-goods-modify",
-    // isSlide: true,
+    isSlide: true,
     query: [
       {
         name: "goodsId",
@@ -135,7 +135,7 @@ export const detailPath = {
   },
   "oil-goods-list": {
     pathName: "oil-goods-detail",
-    // isSlide: true,
+    isSlide: true,
     query: [
       {
         name: "goodsId",

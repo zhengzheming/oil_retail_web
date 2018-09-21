@@ -82,7 +82,8 @@
     <side-content :visible.sync="sideContentVisible">
       <keep-alive>
         <component
-          :is="nestedComponent"/>
+          :is="nestedComponent" 
+          :key="nestedComponent"/>
       </keep-alive>
     </side-content>
   </div>

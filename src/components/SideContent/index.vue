@@ -6,13 +6,22 @@
       @click.self="hide">
       <div class="side-content">
         <slot/>
+        <div class="side-content__actions">
+          <el-button
+            v-for="(item, index) in breadcrumbModuel.actions"
+            v-if="isShow[`is_can_${item.action}`] !==false"
+            :key="index"
+            :type="!item.plain ? item.type : ''"
+            :plain="item.plain"
+            @click="execute(item.action)">{{ item.name }}</el-button>
+        </div>
       </div>
     </div>
   </transition>
 </template>
 
 <script>
-import Popup from "element-ui/src/utils/popup";
+import Popup from "element-ui/lib/utils/popup";
 export default {
   name: "SideContent",
   mixins: [Popup],
@@ -25,6 +34,17 @@ export default {
   computed: {
     sideContentVisible() {
       return this.$store.state.listPage.sideContentVisible;
+    },
+    breadcrumbModuel() {
+      return (
+        this.$store.state.breadcrumb.config[this.currentSlideRoute.name] || {}
+      );
+    },
+    isShow() {
+      return this.$store.state.breadcrumb.actions;
+    },
+    currentSlideRoute() {
+      return this.$store.state.listPage.slideRoute;
     }
   },
   watch: {
@@ -33,11 +53,12 @@ export default {
     }
   },
   methods: {
+    execute(methodName) {
+      this.$store.dispatch(`${this.currentSlideRoute.name}:${methodName}`);
+    },
     hide() {
-      this.$store.dispatch("showSideContent", false);
-      this.$store.dispatch("listPage:query", {});
-      // 收缩时 destroy动态组件
-      this.$store.dispatch("showComponent", "");
+      // 侧拉处理
+      this.$store.dispatch("listPage:hide-side-content");
       // this.$emit("update:visible", false);
     }
   }
