@@ -9,8 +9,8 @@
           :key="index"
           :style="item.styleObj || ''">
           <p style="margin-right: 18px;">
-            <label 
-              class="ellipsis" 
+            <label
+              class="ellipsis"
               style="text-align: right;">
               {{ item.label }}:</label><small
                 v-if="item.smallLabel"
@@ -21,6 +21,7 @@
             v-model="item.val"
             :placeholder="item.placeholder"
             class="el-slt"
+            clearable
             @blur="e => handleBlur(e,item)">
             <el-option
               v-for="(item,key) in item.data"
@@ -213,7 +214,7 @@ export default {
     reset() {
       this.$emit("reset");
     },
-    handleClick(tab, event) {
+    handleClick() {
       // console.log(tab, event);
     }
   }
