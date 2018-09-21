@@ -1,171 +1,171 @@
 <template>
-  <div class="oil-station__create">
-    <card>
-      <span slot="title">请在下面填写</span>
-      <el-form
-        ref="form"
-        :rules="rules"
-        :model="form"
-        :label-width="$customConfig.labelWidth">
-        <el-row :gutter="$customConfig.colGutter">
-          <el-col :span="12">
-            <el-form-item
-              :label="labels['name']"
-              prop="name"
-            >
-              <el-input v-model="form.name"/>
-            </el-form-item>
-          </el-col>
-          <el-col :span="12">
-            <el-form-item
-              :label="labels['companyId']"
-              prop="companyId"
-            >
-              <el-select
-                v-model="form.companyId"
-                class="form-control"
-                placeholder="请选择">
-                <el-option
-                  v-for="item in ui.companyOptions"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"/>
-              </el-select>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row :gutter="$customConfig.colGutter">
-          <el-col :span="12">
-            <el-form-item
-              :label="labels['city']"
-              required
-            >
-              <cell-grid-controls>
-                <el-form-item
-                  slot="control-1"
-                  prop="provinceId"
-                  class="no-margin_b">
-                  <el-select
-                    v-model="form.provinceId"
-                    class="form-control"
-                    placeholder="请选择"
-                    @change="$set(form, 'cityId', '')">
-                    <el-option
-                      v-for="item in provinceOptions"
-                      :key="item.value"
-                      :label="item.label"
-                      :value="item.value"/>
-                  </el-select>
-                </el-form-item>
-                <el-form-item
-                  slot="control-2"
-                  prop="cityId"
-                  class="no-margin_b">
-                  <el-select
-                    v-model="form.cityId"
-                    class="form-control"
-                    placeholder="请选择">
-                    <el-option
-                      v-for="item in ui.cityOptions"
-                      :key="item.value"
-                      :label="item.label"
-                      :value="item.value"/>
-                  </el-select>
-                </el-form-item>
-              </cell-grid-controls>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row :gutter="$customConfig.colGutter">
-          <el-col :span="12">
-            <el-form-item
-              :label="labels['address']"
-              prop="address"
-            >
-              <el-input v-model="form.address"/>
-            </el-form-item>
-          </el-col>
-          <el-col :span="12">
-            <el-form-item
-              :label="labels['longitudeAndLatitude']"
-              required
-            >
-              <cell-grid-controls>
-                <el-form-item
-                  slot="control-1"
-                  prop="longitude"
-                  class="no-margin_b">
-                  <el-input v-model="form.longitude"/>
-                </el-form-item>
-                <el-form-item
-                  slot="control-2"
-                  prop="latitude"
-                  class="no-margin_b">
-                  <el-input v-model="form.latitude"/>
-                </el-form-item>
-              </cell-grid-controls>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row :gutter="$customConfig.colGutter">
-          <el-col :span="12">
-            <el-form-item
-              :label="labels['contactPerson']"
-            >
-              <el-input v-model="form.contactPerson"/>
-            </el-form-item>
-          </el-col>
-          <el-col :span="12">
-            <el-form-item
-              :label="labels['contactPhone']"
-              prop="contactPhone"
-            >
-              <el-input v-model.trim="form.contactPhone"/>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="24">
-            <el-form-item
-              :label="labels['remark']"
-            >
-              <el-input
-                :rows="2"
-                v-model="form.remark"
-                type="textarea"
-                placeholder="备注"/>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="24">
-            <el-form-item
-              :label="labels['attachOthers']"
-            >
-              <el-upload
-                :action="uploadUrl"
-                :data="{type: 1, id: 0}"
-                :on-remove="(file, fileList) => handleRemove('others', file, fileList)"
-                :on-success="(res, file, fileList) => handleSuccess('others', res, file, fileList)"
-                :on-error="handleError"
-                :file-list="ui.attachOthers"
-                multiple
-                name="files[]">
-                <el-button
-                  size="small"
-                  plain>点击上传</el-button>
-                <div
-                  slot="tip"
-                  class="el-upload__tip">
-                  只能上传图片，Excel、word、pdf，压缩包格式文件，文件不能超过30M
-                </div>
-              </el-upload>
-            </el-form-item>
-          </el-col>
-        </el-row>
-      </el-form>
-    </card>
-  </div>
+  <card 
+    :is-slide="true" 
+    class="oil-station__create">
+    <span slot="title">请在下面填写</span>
+    <el-form
+      ref="form"
+      :rules="rules"
+      :model="form"
+      :label-width="$customConfig.labelWidth">
+      <el-row :gutter="$customConfig.colGutter">
+        <el-col :span="12">
+          <el-form-item
+            :label="labels['name']"
+            prop="name"
+          >
+            <el-input v-model="form.name"/>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item
+            :label="labels['companyId']"
+            prop="companyId"
+          >
+            <el-select
+              v-model="form.companyId"
+              class="form-control"
+              placeholder="请选择">
+              <el-option
+                v-for="item in ui.companyOptions"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"/>
+            </el-select>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="$customConfig.colGutter">
+        <el-col :span="12">
+          <el-form-item
+            :label="labels['city']"
+            required
+          >
+            <cell-grid-controls>
+              <el-form-item
+                slot="control-1"
+                prop="provinceId"
+                class="no-margin_b">
+                <el-select
+                  v-model="form.provinceId"
+                  class="form-control"
+                  placeholder="请选择"
+                  @change="$set(form, 'cityId', '')">
+                  <el-option
+                    v-for="item in provinceOptions"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"/>
+                </el-select>
+              </el-form-item>
+              <el-form-item
+                slot="control-2"
+                prop="cityId"
+                class="no-margin_b">
+                <el-select
+                  v-model="form.cityId"
+                  class="form-control"
+                  placeholder="请选择">
+                  <el-option
+                    v-for="item in ui.cityOptions"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"/>
+                </el-select>
+              </el-form-item>
+            </cell-grid-controls>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="$customConfig.colGutter">
+        <el-col :span="12">
+          <el-form-item
+            :label="labels['address']"
+            prop="address"
+          >
+            <el-input v-model="form.address"/>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item
+            :label="labels['longitudeAndLatitude']"
+            required
+          >
+            <cell-grid-controls>
+              <el-form-item
+                slot="control-1"
+                prop="longitude"
+                class="no-margin_b">
+                <el-input v-model="form.longitude"/>
+              </el-form-item>
+              <el-form-item
+                slot="control-2"
+                prop="latitude"
+                class="no-margin_b">
+                <el-input v-model="form.latitude"/>
+              </el-form-item>
+            </cell-grid-controls>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="$customConfig.colGutter">
+        <el-col :span="12">
+          <el-form-item
+            :label="labels['contactPerson']"
+          >
+            <el-input v-model="form.contactPerson"/>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item
+            :label="labels['contactPhone']"
+            prop="contactPhone"
+          >
+            <el-input v-model.trim="form.contactPhone"/>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="24">
+          <el-form-item
+            :label="labels['remark']"
+          >
+            <el-input
+              :rows="2"
+              v-model="form.remark"
+              type="textarea"
+              placeholder="备注"/>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="24">
+          <el-form-item
+            :label="labels['attachOthers']"
+          >
+            <el-upload
+              :action="uploadUrl"
+              :data="{type: 1, id: 0}"
+              :on-remove="(file, fileList) => handleRemove('others', file, fileList)"
+              :on-success="(res, file, fileList) => handleSuccess('others', res, file, fileList)"
+              :on-error="handleError"
+              :file-list="ui.attachOthers"
+              multiple
+              name="files[]">
+              <el-button
+                size="small"
+                plain>点击上传</el-button>
+              <div
+                slot="tip"
+                class="el-upload__tip">
+                只能上传图片，Excel、word、pdf，压缩包格式文件，文件不能超过30M
+              </div>
+            </el-upload>
+          </el-form-item>
+        </el-col>
+      </el-row>
+    </el-form>
+  </card>
 </template>
 
 <script>
@@ -315,24 +315,12 @@ export default {
     });
   },
   created() {
-    this.$store.dispatch("oilCommon/dropdownListMap").then(data => {
-      this.ui.companyOptions = data["oil_company_id_name_map"].map(obj => ({
-        label: obj.value,
-        value: obj.id
-      }));
-    });
-    if (this.$route.query.applyId) {
-      this.$store.dispatch("oil-station-detail:fetch-form").then(detail => {
-        this.form = detail;
-        this.initFiles();
-        this.$store.dispatch("breadcrumb:update-actions", {
-          is_can_submit: detail.is_can_submit
-        });
-        this.$nextTick(function() {
-          this.$refs.form.clearValidate();
-        });
-      });
-    }
+    const query = this.$route.query;
+    this.init(query);
+  },
+  activated() {
+    const query = this.$store.state.listPage.query;
+    this.init(query);
   },
   beforeDestroy() {
     this.$store.dispatch("breadcrumb:update-actions", {});
@@ -344,6 +332,26 @@ export default {
     });
   },
   methods: {
+    init(query) {
+      this.$store.dispatch("oilCommon/dropdownListMap").then(data => {
+        this.ui.companyOptions = data["oil_company_id_name_map"].map(obj => ({
+          label: obj.value,
+          value: obj.id
+        }));
+      });
+      if (query.applyId) {
+        this.$store.dispatch("oil-station-detail:fetch-form").then(detail => {
+          this.form = detail;
+          this.initFiles();
+          this.$store.dispatch("breadcrumb:update-actions", {
+            is_can_submit: detail.is_can_submit
+          });
+          this.$nextTick(function() {
+            this.$refs.form.clearValidate();
+          });
+        });
+      }
+    },
     initFiles() {
       function filterFiles(files, name) {
         const type = {

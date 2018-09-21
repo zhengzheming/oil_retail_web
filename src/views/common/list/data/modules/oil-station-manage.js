@@ -59,6 +59,7 @@ export const editPath = {
 export const detailPath = {
   "oil-station-list": {
     pathName: "oil-station-detail",
+    isSlide: true,
     query: [
       {
         name: "applyId",
