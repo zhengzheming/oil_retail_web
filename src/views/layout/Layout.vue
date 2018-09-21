@@ -41,7 +41,7 @@ export default {
   min-height: 100vh;
   .main-container {
     flex: 1;
-    padding-top: 50px * 2;
+    padding-top: 42px + 50px;
     width: calc(100% - 200px);
     .navbar,
     .menu-path {
