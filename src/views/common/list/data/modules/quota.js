@@ -120,7 +120,7 @@ export const tableHeader = {
     quota: {
       label: "额度明细/元"
     },
-    relation_id: {
+    order_code: {
       label: "编号"
     },
     category_name: {
@@ -135,7 +135,7 @@ export const tableHeader = {
     quota: {
       label: "额度明细/元"
     },
-    relation_id: {
+    order_code: {
       label: "编号"
     },
     category_name: {
@@ -275,7 +275,7 @@ export const tableHeader = {
     quota: {
       label: "容量明细/L"
     },
-    relation_id: {
+    order_code: {
       label: "订单编号"
     }
   }
