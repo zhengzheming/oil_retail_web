@@ -21,6 +21,6 @@ export default {
   },
   "oil-goods-detail": {
     items: ["基础数据", "油品数据", "油品详情"],
-    actions: [{ name: "修改", action: "modify", plain: true }]
+    actions: [{ name: "修改", action: "modify", plain: true, hidden: true }]
   }
 };

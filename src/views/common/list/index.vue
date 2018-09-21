@@ -182,7 +182,6 @@ export default {
     },
     slideContent(pathObj, row) {
       this.$store.dispatch("listPage:show-side-content", [
-        true,
         pathObj.pathName,
         row.query
       ]);

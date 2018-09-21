@@ -9,7 +9,7 @@
         <div class="side-content__actions">
           <el-button
             v-for="(item, index) in breadcrumbModuel.actions"
-            v-if="isShow[`is_can_${item.action}`] !==false"
+            v-if="!item.hidden && isShow[`is_can_${item.action}`] !==false"
             :key="index"
             :type="!item.plain ? item.type : ''"
             :plain="item.plain"
@@ -85,5 +85,11 @@ export default {
   width: 60%;
   height: 100vh;
   background-color: #fff;
+  /deep/ > *:first-child {
+    margin: 0 !important;
+  }
+}
+.side-content__actions {
+  text-align: center;
 }
 </style>
