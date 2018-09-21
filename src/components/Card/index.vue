@@ -4,12 +4,12 @@
     class="o-card">
     <div
       v-if="$slots.title"
-      :class="{ 'side-content__card': isSlide}" 
+      :class="{ 'side-content__card': isSlide}"
       class="card__title h">
       <slot name="title"/>
-      <i 
-        v-if="isSlide" 
-        class="icon icon-chahao-copy close" 
+      <i
+        v-if="isSlide"
+        class="icon icon-chahao-copy close"
         @click="close"/>
     </div>
     <slot/>
@@ -57,7 +57,7 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
-.slide-content__card {
+.side-content__card {
   position: relative;
   margin-bottom: 24px;
   &::before {

@@ -1,5 +1,5 @@
 <template>
-  <card>
+  <card :is-slide="true">
     <span slot="title">油品详情</span>
     <el-row :gutter="$customConfig.colGutter">
       <el-col :span="12">

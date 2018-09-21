@@ -1,8 +1,9 @@
 <template>
-  <card class="oil-goods__create">
-    <span 
-      slot="title" 
-      :is-slide="true">请在下面填写</span>
+  <card 
+    :is-slide="true"
+    class="oil-goods__create">
+    <span
+      slot="title">请在下面填写</span>
     <el-form
       ref="form"
       :rules="rules"
