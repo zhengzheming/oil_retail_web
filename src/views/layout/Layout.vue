@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="{ collapse: isCollapse}"
+    :class="{ collapse: isCollapse, 'no-breadcrumb': !breadcrumbModuel}"
     class="app-wrapper">
     <sidebar/>
     <div class="main-container">
@@ -26,6 +26,9 @@ export default {
     ...mapGetters(["sidebar"]),
     isCollapse() {
       return !this.sidebar.opened;
+    },
+    breadcrumbModuel() {
+      return this.$store.state.breadcrumb.config[this.$route.name];
     }
   }
 };
@@ -39,6 +42,9 @@ export default {
 .app-wrapper {
   display: flex;
   min-height: 100vh;
+  &.no-breadcrumb .main-container {
+    padding-top: 42px;
+  }
   .main-container {
     flex: 1;
     padding-top: 42px + 50px;

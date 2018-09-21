@@ -27,7 +27,7 @@ import breadCrumbConfig from "@/services/breadcrumb/index";
 export default {
   computed: {
     breadcrumbModuel() {
-      return breadCrumbConfig[this.$route.name] || {};
+      return breadCrumbConfig[this.$route.name];
     },
     isShow() {
       return this.$store.state.breadcrumb.actions;
