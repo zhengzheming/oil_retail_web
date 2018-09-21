@@ -112,14 +112,24 @@ export default {
   },
   created() {
     const query = this.$route.query;
-    if (query.applyId) {
-      this.$store.dispatch("oil-station-detail:fetch-form");
-    }
-    if (query.stationId) {
-      this.$store.dispatch("oil-station-checked-detail:fetch-form");
-    }
+    this.init(query);
+  },
+  activated() {
+    const query = this.$store.state.listPage.query;
+    this.init(query);
   },
   methods: {
+    init(query) {
+      if (query.applyId) {
+        this.$store.dispatch("oil-station-detail:fetch-form", query.applyId);
+      }
+      if (query.stationId) {
+        this.$store.dispatch(
+          "oil-station-checked-detail:fetch-form",
+          query.stationId
+        );
+      }
+    },
     filterFiles(files, name) {
       const type = {
         others: 1

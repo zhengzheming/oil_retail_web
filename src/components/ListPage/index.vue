@@ -33,7 +33,7 @@
             </router-link>
             <p
               v-else-if="val.filter"
-              :title="scope.row[key]"
+              :title="val.filter(scope.row[key])"
               style="text-overflow:ellipsis;white-space:nowrap;overflow: hidden;">{{ (scope.row[key]===null || scope.row[key]===undefined || scope.row[key]==='') ? '--' : val.filter(scope.row[key]) }}</p>
             <p
               v-else
@@ -82,7 +82,7 @@
     <side-content :visible.sync="sideContentVisible">
       <keep-alive>
         <component
-          :is="nestedComponent" 
+          :is="nestedComponent"
           :key="nestedComponent"/>
       </keep-alive>
     </side-content>

@@ -16,8 +16,8 @@
     <el-row :gutter="$customConfig.colGutter">
       <el-col :span="12">
         <form-control-static
-          :text="form.orderId"
-          :title="labels.orderId"/>
+          :text="form.code"
+          :title="labels.code"/>
       </el-col>
       <el-col :span="12">
         <form-control-static
@@ -25,8 +25,8 @@
           :title="labels.status"/>
       </el-col>
     </el-row>
-    <el-row 
-      v-if="form.failedReason" 
+    <el-row
+      v-if="form.failedReason"
       :gutter="$customConfig.colGutter">
       <el-col :span="12">
         <form-control-static
@@ -125,7 +125,7 @@ export default {
   },
   data() {
     const labels = {
-      orderId: "订单编号",
+      code: "订单编号",
       status: "订单状态",
       goodsName: "油品",
       sellAmount: "油品总价",

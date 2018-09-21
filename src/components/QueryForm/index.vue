@@ -22,6 +22,7 @@
             :placeholder="item.placeholder"
             clearable
             class="el-slt"
+            clearable
             @blur="e => handleBlur(e,item)">
             <el-option
               v-for="(item,key) in item.data"
@@ -34,7 +35,7 @@
             v-else-if="['date', 'datetime'].includes(item.type)"
             v-model="item.val"
             :type="item.type"
-            value-format="yyyy-MM-dd"
+            :value-format="item.type === 'date' ? 'yyyy-MM-dd' : 'yyyy-MM-dd HH:mm:ss'"
             style="width:100%;"
             placeholder="选择日期"/>
           <div
@@ -224,7 +225,7 @@ export default {
     reset() {
       this.$emit("reset");
     },
-    handleClick(tab, event) {
+    handleClick() {
       // console.log(tab, event);
     }
   }

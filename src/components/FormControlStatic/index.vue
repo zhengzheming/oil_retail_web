@@ -41,6 +41,7 @@ export default {
   display: flex;
   line-height: 22px;
   .form-control--static__title {
+    color: #666;
     display: inline-block;
     text-align: right;
     width: 120px;
@@ -48,6 +49,9 @@ export default {
     &::after {
       content: ":";
     }
+  }
+  .form-control--static__text {
+    color: #333;
   }
 }
 </style>

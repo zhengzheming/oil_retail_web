@@ -1,6 +1,7 @@
 import orderManageDetail from "@/views/orderManage/detail";
 import oilGoodsCreate from "@/views/basicInfo/oilGoods/create";
 import oilGoodsDetail from "@/views/basicInfo/oilGoods/detail";
+import oilStationDetail from "@/views/oilStationManage/oilStation/detail";
 
 import logisticsEnterpriseEdit from "@/views/basicInfo/logisticsEnterprise/edit";
 import logisticsEnterpriseDetail from "@/views/basicInfo/logisticsEnterprise/detail";
@@ -27,4 +28,5 @@ export default {
   "enterpriseDayQuotaAdd": addLimit,
 
   "vehicleDayQuotaAdd": addLimit,
+  "oil-station-checked-detail": oilStationDetail
 };

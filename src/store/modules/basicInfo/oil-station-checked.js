@@ -13,17 +13,14 @@ const oilStationChecked = {
     }
   },
   actions: {
-    "oil-station-checked-detail:fetch-form": function({
-      commit,
-      rootState,
-      state
-    }) {
-      return fetchOilStationDetail(rootState.route.query.stationId).then(
-        res => {
-          commit("UPDATE_OIL_STATION_DETAIL", res.data);
-          return state.detail.form;
-        }
-      );
+    "oil-station-checked-detail:fetch-form": function(
+      { commit, state },
+      stationId
+    ) {
+      return fetchOilStationDetail(stationId).then(res => {
+        commit("UPDATE_OIL_STATION_DETAIL", res.data);
+        return state.detail.form;
+      });
     }
   }
 };

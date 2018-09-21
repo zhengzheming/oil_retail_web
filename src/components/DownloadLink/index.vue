@@ -21,7 +21,9 @@ export default {
         "oil-station-detail": "oilStationApply",
         "oil-station-checked-detail": "oilStation"
       };
-      return `/webAPI/${routeMap[this.$route.name]}/getFile?id=${
+      const storeState = this.$store.state;
+      let routeName = storeState.listPage.slideRoute.name || this.$route.name;
+      return `/webAPI/${routeMap[routeName]}/getFile?id=${
         this.attachment.id
       }&fileName=${this.attachment.name}`;
     }

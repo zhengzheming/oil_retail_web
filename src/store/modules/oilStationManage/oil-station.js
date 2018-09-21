@@ -69,13 +69,11 @@ const oilStation = {
       state.create.form = form;
       state.create.formRef = formRef;
     },
-    "oil-station-detail:fetch-form": function({ commit, rootState, state }) {
-      return fetchOilStationApplyDetail(rootState.route.query.applyId).then(
-        res => {
-          commit("UPDATE_OIL_STATION_DETAIL", res.data);
-          return state.detail.form;
-        }
-      );
+    "oil-station-detail:fetch-form": function({ commit, state }, applyId) {
+      return fetchOilStationApplyDetail(applyId).then(res => {
+        commit("UPDATE_OIL_STATION_DETAIL", res.data);
+        return state.detail.form;
+      });
     },
     "oil-station-detail:modify": function({ rootState }) {
       router.push({ name: "oil-station-modify", query: rootState.route.query });
