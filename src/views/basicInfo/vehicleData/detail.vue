@@ -1,8 +1,9 @@
 <template>
-  <card>
+  <card :is-slide="true">
+    <span slot="title">车辆详情</span>
     <item-list :com-data="detailData"/>
     <div style="display:flex;">
-      <label style="display:inline-block;width:120px;">行驶证照片:</label>
+      <label style="display:inline-block;width:120px;color: #666;">行驶证照片:</label>
       <div style="display:flex;">
         <div
           v-for="item of imgList"
@@ -184,6 +185,9 @@ export default {
       &:after {
         transform: rotate(135deg);
       }
+    }
+    img{
+      max-width: 600px;
     }
   }
 }

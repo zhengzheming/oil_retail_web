@@ -8,8 +8,8 @@
         <a
           v-if="item.type === 'link'"
           :href="item.url"
-          class="content"
-          :style="{color:item.color||'#666'}">{{ (comData.data[item.prop] === "" || comData.data[item.prop] === null || comData.data[item.prop] === undefined) ? "--" : comData.data[item.prop] }}</a>
+          :style="{color:item.color}"
+          class="content link">{{ (comData.data[item.prop] === "" || comData.data[item.prop] === null || comData.data[item.prop] === undefined) ? "--" : comData.data[item.prop] }}</a>
         <el-select
           v-if="item.type === 'slt'"
           v-model="comData.data[item.prop]"
@@ -18,20 +18,19 @@
             v-for="(ele,key) in item.data"
             :key="key"
             :label="ele.value"
-            :value="ele.id">
-            </el-option>
+            :value="ele.id"/>
         </el-select>
         <span
           v-else
-          class="content"
-          :style="{color:item.color||'#666'}">
+          :style="{color:item.color}"
+          class="content">
           {{ (comData.data[item.prop] === "" || comData.data[item.prop] === null || comData.data[item.prop] === undefined) ? "--" : comData.data[item.prop] }}
         </span>
         <span
           v-if="item.else"
+          :style="{color:item.else.color}"
           class="content"
-          style="margin-left: 20px;cursor: pointer"
-          :style="{color:item.else.color}">{{ item.else.text }}</span>
+          style="margin-left: 20px;cursor: pointer">{{ item.else.text }}</span>
       </li>
       <!-- 用作换行 -->
       <p
@@ -44,7 +43,7 @@
 
 <script>
 export default {
-  name: 'ItemList',
+  name: "ItemList",
   props: {
     comData: {
       type: Object,
@@ -53,17 +52,17 @@ export default {
       }
     }
   },
-  watch:{
-    'comData':{
-        handler:function(val){
-            let arr = this.comData.list.filter(item => {
-                return item.type == 'slt'
-            });
-            arr.forEach(item => {
-                this.comData.data[item.prop] = parseInt(this.comData.data[item.prop]);
-            })
-        },
-        deep:true
+  watch: {
+    comData: {
+      handler: function(val) {
+        let arr = this.comData.list.filter(item => {
+          return item.type == "slt";
+        });
+        arr.forEach(item => {
+          this.comData.data[item.prop] = parseInt(this.comData.data[item.prop]);
+        });
+      },
+      deep: true
     }
   }
 };
@@ -78,16 +77,19 @@ export default {
     float: left;
     line-height: 32px;
     font-size: 14px;
-    width: 32.33%;
+    width: 50%;
     margin-bottom: 8px;
     label {
-      color: #333;
+      color: #666;
       display: inline-block;
-      width: 120px;
+      width: 9em;
+      text-align: right;
+      margin-right: 24px;
     }
-    .content {
+    .content:not(.link) {
       width: 0;
       flex: 1;
+      color: #333;
     }
   }
 }

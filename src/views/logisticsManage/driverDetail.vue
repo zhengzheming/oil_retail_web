@@ -1,6 +1,6 @@
 <template>
   <div>
-    <card>
+    <card :is-slide="true">
       <span slot="title">用户信息</span>
       <item-list :com-data="userInfo"/>
     </card>

@@ -23,4 +23,8 @@ export default {
   "driverDetail": driverDetail,
 
   "vehicleDataDetail": vehicleDetail,
+
+  "enterpriseDayQuotaAdd": addLimit,
+
+  "vehicleDayQuotaAdd": addLimit,
 };

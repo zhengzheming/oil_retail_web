@@ -1,5 +1,6 @@
 <template>
-  <card>
+  <card :is-slide="isSlide">
+    <span slot="title">修改企业信息</span>
     <item-list :com-data="itemList"/>
   </card>
 </template>
@@ -9,6 +10,7 @@ import { getMap } from "@/api/basicInfo/logisticsEnterprise/edit";
 export default {
   data() {
     return {
+      isSlide:false,
       statuVal: "",
       itemList: {
         data: {},
@@ -35,6 +37,7 @@ export default {
     itemList: {
       handler: function(val) {
         if (val.data.hasOwnProperty("status")) {
+          console.log(this.$store)
           let logistics_id = this.$route.query.logistics_id;
           if(this.$store.state.listPage.slideRoute.name){
             logistics_id = this.$store.state.listPage.query.logistics_id;
@@ -74,6 +77,7 @@ export default {
     });
   },
   activated() {
+    this.isSlide = true;
     this.$store.dispatch("logisticsEdit:update-form", {
       logistics_id: this.$store.state.listPage.query.logistics_id,
       status: this.statuVal
