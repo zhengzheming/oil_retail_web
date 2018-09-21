@@ -54,12 +54,12 @@ export default {
   },
   watch: {
     comData: {
-      handler: function() {
-        let arr = this.comData.list.filter(item => {
+      handler: function(val) {
+        let arr = val.list.filter(item => {
           return item.type == "slt";
         });
         arr.forEach(item => {
-          this.comData.data[item.prop] = parseInt(this.comData.data[item.prop]);
+          val.data[item.prop] = parseInt(this.comData.data[item.prop]);
         });
       },
       deep: true
@@ -84,7 +84,7 @@ export default {
       display: inline-block;
       width: 9em;
       text-align: right;
-      margin-right: 24px;
+      margin-right: 18px;
     }
     .content:not(.link) {
       width: 0;
