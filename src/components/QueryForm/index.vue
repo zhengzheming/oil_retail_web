@@ -9,8 +9,8 @@
           :key="index"
           :style="item.styleObj || ''">
           <p style="margin-right: 18px;">
-            <label 
-              class="ellipsis" 
+            <label
+              class="ellipsis"
               style="text-align: right;">
               {{ item.label }}:</label><small
                 v-if="item.smallLabel"
@@ -151,7 +151,19 @@ export default {
   },
   watch: {
     comData: {
-      handler: "getTabData",
+      handler: function(val){
+          this.getTabData();
+          //判断查询条件的数量，以控制是否现实展开收起按钮
+          this.queryLength = val.filter(item => {
+              return item.type != "tab" && !item.hide;
+          }).length;
+          //判断查询条件是否有初始值，若有初始值且该初始值在收起的查询条件里，则要预先把状态设为展开
+          val.forEach((item,key) => {
+              if(item.val.trim() !== '' && key >= 2){
+                  this.isExpand = true;
+              }
+          })
+      },
       deep: true
     },
     tabSlt: function(val) {
@@ -184,9 +196,6 @@ export default {
         tmp = this.comData.filter(item => {
           return item.type == "tab";
         });
-        this.queryLength = this.comData.filter(item => {
-          return item.type != "tab" && !item.hide;
-        }).length;
       }
       if (tmp.length) {
         tmp = tmp[0].data;

@@ -27,15 +27,26 @@ export default{
             }
         }
     },
-    mounted(){
+    created(){
         if(this.$route.query.logistics_id){
             detail(this.$route.query.logistics_id)
-            .then(res => {
-                if(res.state === 0) {
-                     this.itemList.data = $utils.getDeepKey(res,'data')
-                }  
-            })
-            .catch(err => {})
+                .then(res => {
+                    if(res.state === 0) {
+                        this.itemList.data = $utils.getDeepKey(res,'data')
+                    }
+                })
+                .catch(() => {})
+        }
+    },
+    activated(){
+        if(this.$store.state.listPage.query.logistics_id){
+            detail(this.$store.state.listPage.query.logistics_id)
+                .then(res => {
+                    if(res.state === 0) {
+                        this.itemList.data = $utils.getDeepKey(res,'data')
+                    }
+                })
+                .catch(() => {})
         }
     }
 }

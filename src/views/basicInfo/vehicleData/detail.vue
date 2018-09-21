@@ -19,9 +19,14 @@
       v-show="showBigImg"
       class="big-img-wrap"
       @click="showBigImg=false">
-      <img
-        :src="bigImgUrl"
-        alt="">
+      <div @click.stop="showBigImg=true">
+        <i
+          class="del"
+          @click.stop="showBigImg=false"/>
+        <img
+          :src="bigImgUrl"
+          alt="">
+      </div>
     </div>
   </card>
 </template>
@@ -72,7 +77,7 @@ export default {
       imgList: []
     };
   },
-  mounted() {
+  created() {
     if (this.$route.query.vehicle_id) {
       detail(this.$route.query.vehicle_id)
         .then(res => {
@@ -85,6 +90,19 @@ export default {
         .catch(() => {});
     }
   },
+    activated(){
+        if (this.$store.state.listPage.query.vehicle_id) {
+            detail(this.$store.state.listPage.query.vehicle_id)
+                .then(res => {
+                    if (res.state === 0) {
+                        res.data.validDate = res.data.start_date + "~" + res.data.end_date;
+                        this.detailData.data = $utils.getDeepKey(res, "data");
+                        this.imgList = $utils.getDeepKey(res, "data.files") || [];
+                    }
+                })
+                .catch(() => {});
+        }
+    },
   methods: {
     enlarge(val) {
       this.showBigImg = true;
@@ -137,5 +155,36 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  & > div {
+    position: relative;
+    padding: 40px;
+    background-color: #fff;
+    i.del {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      &:before,
+      &:after {
+        position: absolute;
+        top: 14px;
+        left: 7px;
+        display: inline-block;
+        transform: rotate(45deg);
+        content: "";
+        width: 14px;
+        height: 2px;
+        background-color: #666;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+      }
+      &:after {
+        transform: rotate(135deg);
+      }
+    }
+  }
 }
 </style>
