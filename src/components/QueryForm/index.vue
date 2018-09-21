@@ -22,7 +22,6 @@
             :placeholder="item.placeholder"
             clearable
             class="el-slt"
-            clearable
             @blur="e => handleBlur(e,item)">
             <el-option
               v-for="(item,key) in item.data"
@@ -162,7 +161,7 @@ export default {
         }).length;
         //判断查询条件是否有初始值，若有初始值且该初始值在收起的查询条件里，则要预先把状态设为展开
         val.forEach((item, key) => {
-          if (item.val.trim() !== "" && key >= 2) {
+          if (item.val.trim() !== "" && key >= 2 && !item.hide) {
             this.isExpand = true;
           }
         });

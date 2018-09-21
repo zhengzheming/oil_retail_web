@@ -1,10 +1,22 @@
 <template>
   <div>
-    <card :is-slide="true">
+    <p
+      class="slide-title"
+      style="font-size: 16px;
+              font-weight: 500;
+              height: 70px;
+              line-height: 70px;
+              padding-left: 24px;
+              border-bottom: 1px solid #e6e6e6;">司机详情
+      <i
+        style="float: right;margin-right: 24px;"
+        class="icon icon-chahao-copy close"
+        @click="close"/></p>
+    <card style="margin: 0;">
       <span slot="title">用户信息</span>
       <item-list :com-data="userInfo"/>
     </card>
-    <card>
+    <card style="margin: 0;">
       <span slot="title">车辆信息</span>
       <p>
         <span
@@ -63,6 +75,11 @@ export default {
           this.vehicleList = $utils.getDeepKey(res, "data.vehicles");
         }
       });
+    }
+  },
+  methods: {
+    close() {
+      this.$store.dispatch("listPage:hide-side-content");
     }
   }
 };

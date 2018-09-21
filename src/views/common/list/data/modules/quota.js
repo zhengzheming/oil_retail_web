@@ -58,12 +58,12 @@ export const queryList = {
       data: []
     },
     {
-      type: "date",
+      type: "datetime",
       label: "开始时间",
       val: ""
     },
     {
-      type: "date",
+      type: "datetime",
       label: "结束时间",
       val: ""
     },
@@ -94,12 +94,12 @@ export const queryList = {
   // 额度管理-车辆容量详情
   vehicleCapacityDetail: [
     {
-      type: "date",
+      type: "datetime",
       label: "开始时间",
       val: ""
     },
     {
-      type: "date",
+      type: "datetime",
       label: "结束时间",
       val: ""
     },
@@ -120,7 +120,7 @@ export const tableHeader = {
     quota: {
       label: "额度明细/元"
     },
-      order_code: {
+    order_code: {
       label: "编号"
     },
     category_name: {
@@ -135,7 +135,7 @@ export const tableHeader = {
     quota: {
       label: "额度明细/元"
     },
-      order_code: {
+    order_code: {
       label: "编号"
     },
     category_name: {
@@ -275,7 +275,7 @@ export const tableHeader = {
     quota: {
       label: "容量明细/L"
     },
-      order_code: {
+    order_code: {
       label: "订单编号"
     }
   }
