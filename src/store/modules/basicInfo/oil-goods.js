@@ -22,14 +22,12 @@ const oilGoods = {
   },
   actions: {
     "oil-goods:after-hook": function({ rootState, dispatch }) {
-      console.log(`hello world after-hook`);
       const infoMap = {
         "oil-goods-create": "添加油品成功",
         "oil-goods-modify": "修改油品成功"
       };
       const listPageState = rootState.listPage;
       const routeName = listPageState.slideRoute.name || rootState.route.name;
-      console.log(infoMap[routeName], routeName);
       Message.success(infoMap[routeName]);
       if (listPageState.slideRoute.name) {
         dispatch("listPage:hide-side-content");
@@ -41,7 +39,7 @@ const oilGoods = {
     "oil-goods-list:create": function({ dispatch }, params) {
       if (params && params.isSlide) {
         // 列表侧拉
-        dispatch("listPage:show-side-content", [true, "oil-goods-create"]);
+        dispatch("listPage:show-side-content", ["oil-goods-create"]);
       } else {
         // 列表跳转
         router.push({ name: "oil-goods-create" });

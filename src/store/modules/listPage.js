@@ -32,19 +32,18 @@ const listPage = {
     },
     "listPage:show-side-content": function(
       { dispatch },
-      [isShowSideContent = false, routeName = "", query = {}]
+      [routeName = "", query = {}]
     ) {
       dispatch("listPage:query", query);
       dispatch("showComponent", routeName);
-      dispatch("showSideContent", isShowSideContent);
+      dispatch("showSideContent", true);
       dispatch("listPage:slide-route", { name: routeName });
     },
     "listPage:hide-side-content": function({ dispatch }) {
-      // 侧拉处理
-      dispatch("showSideContent", false);
       dispatch("listPage:query", {});
-      // 收缩时 destroy动态组件
       dispatch("showComponent", "");
+      dispatch("showSideContent", false);
+      dispatch("listPage:slide-route", { name: "" });
     },
     "listPage:reset": function({ state }) {
       Object.keys(state).forEach(key => {
