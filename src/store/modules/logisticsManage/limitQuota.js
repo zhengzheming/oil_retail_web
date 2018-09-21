@@ -27,7 +27,6 @@ const role = {
         // 列表跳转
         router.push({ name: "vehicleDayQuotaAdd" });
       }
-
     },
     "enterpriseDayQuotaAdd:save": function({ state }) {
       logisticsQuotaLimitAdd(state.rate / 100).then(res => {

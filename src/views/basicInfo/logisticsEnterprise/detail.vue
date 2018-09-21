@@ -9,7 +9,7 @@ import { detail } from "@/api/basicInfo/logisticsEnterprise/detail";
 export default {
   data() {
     return {
-      isSlide:false,
+      isSlide: false,
       itemList: {
         data: {},
         list: [

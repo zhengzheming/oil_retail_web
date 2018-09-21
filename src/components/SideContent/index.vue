@@ -91,5 +91,6 @@ export default {
 }
 .side-content__actions {
   text-align: center;
+  margin-top: -24px;
 }
 </style>

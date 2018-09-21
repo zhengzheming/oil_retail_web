@@ -18,7 +18,7 @@ const role = {
         router.push({ name: "logistics" });
       }
     },
-    "logisticsEdit:save": function({ state,dispatch }) {
+    "logisticsEdit:save": function({ state, dispatch }) {
       save(state.logistics_id, state.status).then(res => {
         if (res.state == 0) {
           dispatch("logisticsEdit:after-hook");

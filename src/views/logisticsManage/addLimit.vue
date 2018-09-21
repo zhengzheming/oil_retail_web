@@ -21,8 +21,8 @@ import {
 } from "@/api/logisticsManage/limitQuota";
 export default {
   data() {
-    let textMap1,textMap2
-    if(this.$store.state.listPage.sideContentVisible){
+    let textMap1, textMap2;
+    if (this.$store.state.listPage.sideContentVisible) {
       textMap1 = {
         enterpriseDayQuota: "企业",
         vehicleDayQuota: "车辆"
@@ -31,7 +31,7 @@ export default {
         enterpriseDayQuota: "企业额度",
         vehicleDayQuota: "车辆油箱容量"
       };
-    }else{
+    } else {
       textMap1 = {
         enterpriseDayQuotaAdd: "企业",
         vehicleDayQuotaAdd: "车辆"
@@ -47,19 +47,21 @@ export default {
       text2: textMap2[this.$route.name],
       currentInfo: {
         data: {},
-        list: [],
+        list: []
         // styleObj: "width:100%;"
       }
     };
   },
   watch: {
     val: function(newVal) {
-      if(this.$store.state.listPage.sideContentVisible){
-        this.$store.dispatch(`${this.$store.state.listPage.slideRoute.name}:update`, newVal);
-      }else{
+      if (this.$store.state.listPage.sideContentVisible) {
+        this.$store.dispatch(
+          `${this.$store.state.listPage.slideRoute.name}:update`,
+          newVal
+        );
+      } else {
         this.$store.dispatch(`${this.$route.name}:update`, newVal);
       }
-
     }
   },
   created() {
@@ -73,8 +75,8 @@ export default {
         prop: "create_time"
       }
     ];
-    let apiMap = {}
-    if(this.$store.state.listPage.sideContentVisible){
+    let apiMap = {};
+    if (this.$store.state.listPage.sideContentVisible) {
       apiMap = {
         enterpriseDayQuota: {
           name: logisticsQuotaLimit,
@@ -85,8 +87,11 @@ export default {
           txt: "不超过车辆油箱容量"
         }
       };
-      this.$store.dispatch(`${this.$store.state.listPage.slideRoute.name}:update`, this.val);
-    }else{
+      this.$store.dispatch(
+        `${this.$store.state.listPage.slideRoute.name}:update`,
+        this.val
+      );
+    } else {
       apiMap = {
         enterpriseDayQuotaAdd: {
           name: logisticsQuotaLimit,
@@ -111,7 +116,7 @@ export default {
       this.currentInfo.data = res.data || {};
     });
   },
-  activated(){
+  activated() {
     this.currentInfo.list = [
       {
         label: `${this.text1}当日可用额度`,
@@ -122,7 +127,10 @@ export default {
         prop: "create_time"
       }
     ];
-    this.$store.dispatch(`${this.$store.state.listPage.slideRoute.name}:update`, this.val);
+    this.$store.dispatch(
+      `${this.$store.state.listPage.slideRoute.name}:update`,
+      this.val
+    );
     const apiMap = {
       enterpriseDayQuotaAdd: {
         name: logisticsQuotaLimit,

@@ -20,7 +20,6 @@
             v-if="item.type=='slt'"
             v-model="item.val"
             :placeholder="item.placeholder"
-            clearable
             class="el-slt"
             @blur="e => handleBlur(e,item)">
             <el-option

@@ -20,10 +20,33 @@ const oilStation = {
     }
   },
   actions: {
-    "oil-station-list:create": function() {
-      router.push({ name: "oil-station-create" });
+    "oil-station:after-hook": function({ rootState, dispatch }) {
+      const infoMap = {
+        "oil-station-create": "添加油站成功",
+        "oil-station-modify": "修改油站成功"
+      };
+      const listPageState = rootState.listPage;
+      const routeName = listPageState.slideRoute.name || rootState.route.name;
+      if (infoMap[routeName]) {
+        Message.success(infoMap[routeName]);
+      }
+      if (listPageState.slideRoute.name) {
+        dispatch("listPage:hide-side-content");
+        dispatch("listPage:search");
+      } else {
+        router.push({ name: "oil-station-list" });
+      }
     },
-    "oil-station-create:submit": function({ state }) {
+    "oil-station-list:create": function({ dispatch }, params) {
+      if (params && params.isSlide) {
+        // 列表侧拉
+        dispatch("listPage:show-side-content", ["oil-station-create"]);
+      } else {
+        // 列表跳转
+        router.push({ name: "oil-station-create" });
+      }
+    },
+    "oil-station-create:submit": function({ state, dispatch }) {
       const formRef = state.create.formRef;
       const form = state.create.form;
       if (!formRef) return;
@@ -34,12 +57,12 @@ const oilStation = {
           };
           createOilStationApply(data, true).then(() => {
             Message.success("提交成功");
-            router.push({ name: "oil-station-list" });
+            dispatch("oil-station:after-hook");
           });
         }
       });
     },
-    "oil-station-create:save": function({ state, rootState }) {
+    "oil-station-create:save": function({ state, dispatch }) {
       const formRef = state.create.formRef;
       const form = state.create.form;
       if (!formRef) return;
@@ -49,12 +72,7 @@ const oilStation = {
             ...form
           };
           createOilStationApply(data, false).then(() => {
-            const infoMap = {
-              "oil-station-create": "添加油站成功",
-              "oil-station-modify": "修改油站成功"
-            };
-            Message.success(infoMap[rootState.route.name]);
-            router.push({ name: "oil-station-list" });
+            dispatch("oil-station:after-hook");
           });
         }
       });

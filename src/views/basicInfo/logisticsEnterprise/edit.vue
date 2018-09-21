@@ -10,7 +10,7 @@ import { getMap } from "@/api/basicInfo/logisticsEnterprise/edit";
 export default {
   data() {
     return {
-      isSlide:false,
+      isSlide: false,
       statuVal: "",
       itemList: {
         data: {},
@@ -37,9 +37,9 @@ export default {
     itemList: {
       handler: function(val) {
         if (val.data.hasOwnProperty("status")) {
-          console.log(this.$store)
+          console.log(this.$store);
           let logistics_id = this.$route.query.logistics_id;
-          if(this.$store.state.listPage.slideRoute.name){
+          if (this.$store.state.listPage.slideRoute.name) {
             logistics_id = this.$store.state.listPage.query.logistics_id;
           }
           this.$store.dispatch("logisticsEdit:update-form", {

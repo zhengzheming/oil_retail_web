@@ -2,6 +2,7 @@ import orderManageDetail from "@/views/orderManage/detail";
 import oilGoodsCreate from "@/views/basicInfo/oilGoods/create";
 import oilGoodsDetail from "@/views/basicInfo/oilGoods/detail";
 import oilStationDetail from "@/views/oilStationManage/oilStation/detail";
+import oilStationCreate from "@/views/oilStationManage/oilStation/create";
 
 import logisticsEnterpriseEdit from "@/views/basicInfo/logisticsEnterprise/edit";
 import logisticsEnterpriseDetail from "@/views/basicInfo/logisticsEnterprise/detail";
@@ -18,15 +19,17 @@ export default {
   "oil-goods-create": oilGoodsCreate,
   "oil-goods-modify": oilGoodsCreate,
 
-  "logisticsEdit": logisticsEnterpriseEdit,
-  "logisticsDetail": logisticsEnterpriseDetail,
+  logisticsEdit: logisticsEnterpriseEdit,
+  logisticsDetail: logisticsEnterpriseDetail,
 
-  "driverDetail": driverDetail,
+  driverDetail: driverDetail,
 
-  "vehicleDataDetail": vehicleDetail,
+  vehicleDataDetail: vehicleDetail,
 
-  "enterpriseDayQuotaAdd": addLimit,
+  enterpriseDayQuotaAdd: addLimit,
 
-  "vehicleDayQuotaAdd": addLimit,
-  "oil-station-checked-detail": oilStationDetail
+  vehicleDayQuotaAdd: addLimit,
+  "oil-station-checked-detail": oilStationDetail,
+  "oil-station-detail": oilStationDetail,
+  "oil-station-create": oilStationCreate
 };

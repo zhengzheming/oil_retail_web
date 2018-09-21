@@ -1,7 +1,14 @@
 export default {
   "oil-station-list": {
     items: ["油站管理", "油站准入", "油站申请", "列表"],
-    actions: [{ name: "新增油站", action: "create", type: "primary" }],
+    actions: [
+      {
+        name: "新增油站",
+        action: "create",
+        type: "primary",
+        params: { isSlide: true }
+      }
+    ],
     canback: false
   },
   "oil-station-create": {
@@ -17,6 +24,6 @@ export default {
   },
   "oil-station-detail": {
     items: ["油站管理", "油站准入", "油站申请", "油站详情"],
-    actions: [{ name: "修改", action: "modify", plain: true }]
+    actions: [{ name: "修改", action: "modify", plain: true, hidden: true }]
   }
 };

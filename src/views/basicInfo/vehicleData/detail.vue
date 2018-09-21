@@ -91,19 +91,19 @@ export default {
         .catch(() => {});
     }
   },
-    activated(){
-        if (this.$store.state.listPage.query.vehicle_id) {
-            detail(this.$store.state.listPage.query.vehicle_id)
-                .then(res => {
-                    if (res.state === 0) {
-                        res.data.validDate = res.data.start_date + "~" + res.data.end_date;
-                        this.detailData.data = $utils.getDeepKey(res, "data");
-                        this.imgList = $utils.getDeepKey(res, "data.files") || [];
-                    }
-                })
-                .catch(() => {});
-        }
-    },
+  activated() {
+    if (this.$store.state.listPage.query.vehicle_id) {
+      detail(this.$store.state.listPage.query.vehicle_id)
+        .then(res => {
+          if (res.state === 0) {
+            res.data.validDate = res.data.start_date + "~" + res.data.end_date;
+            this.detailData.data = $utils.getDeepKey(res, "data");
+            this.imgList = $utils.getDeepKey(res, "data.files") || [];
+          }
+        })
+        .catch(() => {});
+    }
+  },
   methods: {
     enlarge(val) {
       this.showBigImg = true;
@@ -186,7 +186,7 @@ export default {
         transform: rotate(135deg);
       }
     }
-    img{
+    img {
       max-width: 600px;
     }
   }
