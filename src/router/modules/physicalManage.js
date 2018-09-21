@@ -87,7 +87,7 @@ export default {
       name: "availableCredit",
       component: commonList,
       meta: {
-        module: "/logistics-manage/available-credit"
+        module: "/logistics-manage/quota"
       }
     },
     {
@@ -95,7 +95,7 @@ export default {
       name: "dayCredit",
       component: commonList,
       meta: {
-        module: "/logistics-manage/day-credit"
+        module: "/logistics-manage/quota"
       }
     },
     // 车辆容量
@@ -112,7 +112,7 @@ export default {
       name: "vehicleCapacityDetail",
       component: commonList,
       meta: {
-        module: "/logistics-manage/capacity/detail"
+        module: "/logistics-manage/capacity"
       }
     }
   ]
