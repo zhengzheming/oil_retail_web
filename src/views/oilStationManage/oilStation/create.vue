@@ -143,7 +143,7 @@
           <el-form-item
             :label="labels['attachOthers']"
           >
-            <el-upload
+            <uploader
               :action="uploadUrl"
               :data="{type: 1, id: 0}"
               :on-remove="(file, fileList) => handleRemove('others', file, fileList)"
@@ -160,7 +160,7 @@
                 class="el-upload__tip">
                 只能上传图片，Excel、word、pdf，压缩包格式文件，文件不能超过30M
               </div>
-            </el-upload>
+            </uploader>
           </el-form-item>
         </el-col>
       </el-row>
