@@ -45,12 +45,14 @@ service.interceptors.response.use(
         duration: 3 * 1000,
         dangerouslyUseHTMLString: true
       });
+      return Promise.reject("state-exception");
     }
     return response.data;
   },
   error => {
     console.log("err" + error); // for debug
     let errMessage = error.message;
+    if (errMessage === "state-exception") return;
     if (error.response.status == "403") {
       errMessage = error.response.data.data;
     }
