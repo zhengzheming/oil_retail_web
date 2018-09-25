@@ -46,7 +46,7 @@
           v-if="hasAction !== false"
           fixed="right"
           align="center"
-          width="200"
+          width="150"
           label="操作">
           <template slot-scope="scope">
             <el-button
