@@ -250,7 +250,7 @@ export default {
           },
           {
             value: "0",
-            label: "未启用"
+            label: "禁用"
           }
         ],
         ownershipOptions: [
