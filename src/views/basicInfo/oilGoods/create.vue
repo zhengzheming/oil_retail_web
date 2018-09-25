@@ -1,5 +1,5 @@
 <template>
-  <card 
+  <card
     :is-slide="true"
     class="oil-goods__create">
     <span
@@ -131,6 +131,12 @@ export default {
   activated() {
     const query = this.$store.state.listPage.query;
     this.init(query);
+  },
+  deactivated() {
+    this.form = {};
+    this.$nextTick(function() {
+      this.$refs.form.clearValidate();
+    });
   },
   mounted() {
     this.$store.dispatch("oil-goods-create:update-form", {

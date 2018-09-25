@@ -1,6 +1,6 @@
 <template>
-  <card 
-    :is-slide="true" 
+  <card
+    :is-slide="true"
     class="oil-station__create">
     <span slot="title">请在下面填写</span>
     <el-form
@@ -298,7 +298,9 @@ export default {
       const province = this.provinceOptions.find(
         province => id == province.value
       );
-      if (!province) return;
+      if (!province) {
+        return (this.ui.cityOptions = []);
+      }
       this.ui.cityOptions = province.children.map(child => ({
         label: child.name,
         value: child.id
@@ -321,6 +323,15 @@ export default {
   activated() {
     const query = this.$store.state.listPage.query;
     this.init(query);
+  },
+  deactivated() {
+    this.form = {
+      files: [],
+      provinceId: ""
+    };
+    this.$nextTick(function() {
+      this.$refs.form.clearValidate();
+    });
   },
   beforeDestroy() {
     this.$store.dispatch("breadcrumb:update-actions", {});
