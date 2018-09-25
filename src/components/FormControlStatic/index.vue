@@ -3,7 +3,9 @@
     <span class="form-control--static__title">{{ title }}</span>
     <span class="form-control--static__text">
       <span v-if="textString">{{ text | protectVal }}</span>
-      <span v-else><slot/></span>
+      <span v-else>
+        <slot>--</slot>
+      </span>
     </span>
   </div>
 </template>
