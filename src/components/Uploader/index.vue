@@ -10,6 +10,7 @@
     :on-exceed="onExceed"
     :file-list="fileList"
     :http-request="$requestForUpload"
+    :before-upload="onBeforeUpload"
     name="files[]">
     <slot/>
   </el-upload>
@@ -54,6 +55,10 @@ export default {
     fileList: {
       type: Array,
       default: () => []
+    },
+    sizeLimit: {
+      type: Number,
+      default: 30
     }
   },
   methods: {
@@ -70,9 +75,22 @@ export default {
       this.notifyForm();
     },
     handleRemove(file, fileList) {
+      if (file.status !== "success") return;
       this.onRemove(file, fileList).then(() => {
         this.notifyForm();
       });
+    },
+    validateSize(size, compared) {
+      const comparedSize = compared * 1024 * 1024;
+      return size <= comparedSize;
+    },
+    onBeforeUpload(file) {
+      const sizePass = this.validateSize(file.size, this.sizeLimit);
+      if (!sizePass) {
+        this.$message.error(`文件大小不能超过${this.sizeLimit}M`);
+        return false;
+      }
+      return true;
     },
     dispatch(componentName, eventName, params) {
       var parent = this.$parent || this.$root;

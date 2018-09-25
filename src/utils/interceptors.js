@@ -45,7 +45,6 @@ service.interceptors.response.use(
         duration: 3 * 1000,
         dangerouslyUseHTMLString: true
       });
-      return Promise.reject("error");
     }
     return response.data;
   },
