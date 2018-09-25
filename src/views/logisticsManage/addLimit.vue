@@ -18,7 +18,7 @@
       <item-list :com-data="currentInfo"/>
     </card>
     <card
-      style="margin: 0;">
+      style="margin: 0 0 18px;">
       <span slot="title">新增额度信息</span>
       <p style=""><span style="line-height: 32px;color: #666;">{{ text1 }}当日可用额度：</span>  不超过{{ text2 }}<el-input
         v-model="val"
