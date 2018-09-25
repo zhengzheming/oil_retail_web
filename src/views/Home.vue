@@ -10,13 +10,13 @@ export default {
 };
 </script>
 
-<!--<style scoped>-->
-<!--.home {-->
-  <!--font-size: 18px;-->
-  <!--color: #666;-->
-  <!--position: absolute;-->
-  <!--left: calc((100vw - 200px) / 2);-->
-  <!--top: 25vh;-->
-  <!--transform: translate3d(-50%, 0, 0);-->
-<!--}-->
-<!--</style>-->
+<style scoped>
+.home {
+  font-size: 18px;
+  color: #666;
+  position: absolute;
+  left: calc((100vw - 200px) / 2);
+  top: 25vh;
+  transform: translate3d(-50%, 0, 0);
+}
+</style>
