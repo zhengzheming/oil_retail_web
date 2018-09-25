@@ -65,30 +65,26 @@
     </el-row>
     <el-row :gutter="$customConfig.colGutter">
       <el-col :span="24">
-        <div class="form-control--static">
-          <span class="form-control--static__title">{{ labels.attachPaperwork }}</span>
-          <div class="form-control--static__text">
-            <p
-              v-for="(file, index) in attachPaperwork"
-              :key="index">
-              <download-link :attachment="file"/>
-            </p>
-          </div>
-        </div>
+        <form-control-static
+          :title="labels.attachPaperwork">
+          <p
+            v-for="(file, index) in attachPaperwork"
+            :key="index">
+            <download-link :attachment="file"/>
+          </p>
+        </form-control-static>
       </el-col>
     </el-row>
     <el-row :gutter="$customConfig.colGutter">
       <el-col :span="24">
-        <div class="form-control--static">
-          <span class="form-control--static__title">{{ labels.attachOthers }}</span>
-          <div class="form-control--static__text">
-            <p
-              v-for="(file, index) in attachOthers"
-              :key="index">
-              <download-link :attachment="file"/>
-            </p>
-          </div>
-        </div>
+        <form-control-static
+          :title="labels.attachOthers">
+          <p
+            v-for="(file, index) in attachOthers"
+            :key="index">
+            <download-link :attachment="file"/>
+          </p>
+        </form-control-static>
       </el-col>
     </el-row>
   </card>
