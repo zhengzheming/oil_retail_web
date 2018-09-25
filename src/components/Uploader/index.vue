@@ -66,7 +66,8 @@ export default {
       this.dispatch("ElFormItem", "el.form.blur", [this.model]);
       this.dispatch("ElFormItem", "el.form.change", [this.model]);
     },
-    handleError() {
+    handleError(err) {
+      if (err === "state-exception") return;
       this.onError();
       this.notifyForm();
     },
