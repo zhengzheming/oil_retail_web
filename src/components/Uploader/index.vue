@@ -50,16 +50,14 @@ export default {
     fileList: {
       type: Array,
       default: () => []
-    },
-    model: {
-      type: Array,
-      default: () => []
     }
   },
   methods: {
     notifyForm() {
-      this.dispatch("ElFormItem", "el.form.blur", [this.model]);
-      this.dispatch("ElFormItem", "el.form.change", [this.model]);
+      setTimeout(() => {
+        this.dispatch("ElFormItem", "el.form.blur", [this.model]);
+        this.dispatch("ElFormItem", "el.form.change", [this.model]);
+      }, 100);
     },
     handleError() {
       this.onError();
