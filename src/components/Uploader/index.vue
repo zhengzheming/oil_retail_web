@@ -11,6 +11,7 @@
     :file-list="fileList"
     :http-request="$requestForUpload"
     :before-upload="onBeforeUpload"
+    accept="image/*,.xls, .xlsx, .zip, .rar, .pdf, .doc, .docx"
     name="files[]">
     <slot/>
   </el-upload>
