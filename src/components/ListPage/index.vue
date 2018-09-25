@@ -44,25 +44,30 @@
         <el-table-column
           v-if="hasAction !== false"
           fixed="right"
+          width="200"
           label="操作">
           <template slot-scope="scope">
             <el-button
               v-if="config.detailPath.pathName && scope.row.is_can_view !== false"
+              style="padding-top: 0;padding-bottom: 0;"
               type="text"
               size="small"
               @click="handleVIew(scope.row)">查看</el-button>
             <el-button
               v-if="config.editPath.pathName && scope.row.is_can_edit !== false"
+              style="padding-top: 0;padding-bottom: 0;"
               type="text"
               size="small"
               @click="handleEdit(scope.row)">编辑</el-button>
             <el-button
               v-if="config.configForDelete.pathName && scope.row.is_can_delete !== false"
+              style="padding-top: 0;padding-bottom: 0;"
               type="text"
               size="small"
               @click="handleDelete(scope.row)">删除</el-button>
             <el-button
               v-if="config.configForAuth.pathName && scope.row.is_can_auth !== false"
+              style="padding-top: 0;padding-bottom: 0;"
               type="text"
               size="small"
               @click="handleAuth(scope.row)">授权</el-button>
