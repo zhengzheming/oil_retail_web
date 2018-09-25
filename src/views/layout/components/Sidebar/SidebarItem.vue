@@ -19,6 +19,21 @@
       </a>
     </template>
 
+    <template v-else-if="!item.children.length">
+      <a
+        :href="item.path"
+        target="_blank"
+        @click="clickLink(item.path,$event)">
+        <el-menu-item
+          :index="resolvePath(item.path)">
+          <item
+            v-if="item.meta"
+            :icon="item.meta.icon"
+            :title="(item.meta.title)" />
+        </el-menu-item>
+      </a>
+    </template>
+
     <el-submenu
       v-else
       :index="item.name||item.path"

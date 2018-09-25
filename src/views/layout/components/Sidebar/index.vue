@@ -39,7 +39,16 @@ export default {
       return !this.sidebar.opened;
     },
     menuItems() {
-      return this.sidebar.items;
+      const home = {
+        name: "home",
+        path: "/",
+        meta: {
+          title: "首页",
+          icon: "icon-zhuye"
+        },
+        children: []
+      };
+      return [home, ...this.sidebar.items];
     },
     defaultActive() {
       return this.$route.meta.module;
