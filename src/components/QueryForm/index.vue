@@ -21,6 +21,7 @@
             v-model="item.val"
             :placeholder="item.placeholder"
             class="el-slt"
+            clearable
             @blur="e => handleBlur(e,item)">
             <el-option
               v-for="(item,key) in item.data"
