@@ -58,10 +58,8 @@ export default {
   },
   methods: {
     notifyForm() {
-      setTimeout(() => {
-        this.dispatch("ElFormItem", "el.form.blur", [this.model]);
-        this.dispatch("ElFormItem", "el.form.change", [this.model]);
-      }, 100);
+      this.dispatch("ElFormItem", "el.form.blur", [this.model]);
+      this.dispatch("ElFormItem", "el.form.change", [this.model]);
     },
     handleError() {
       this.onError();
@@ -72,8 +70,9 @@ export default {
       this.notifyForm();
     },
     handleRemove(file, fileList) {
-      this.onRemove(file, fileList);
-      this.notifyForm();
+      this.onRemove(file, fileList).then(() => {
+        this.notifyForm();
+      });
     },
     dispatch(componentName, eventName, params) {
       var parent = this.$parent || this.$root;

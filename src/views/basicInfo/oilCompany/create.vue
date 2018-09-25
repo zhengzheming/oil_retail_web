@@ -326,7 +326,7 @@ export default {
       );
     },
     handleRemove(type, file, fileList) {
-      delFile(this.delFileUrl, file.id)
+      return delFile(this.delFileUrl, file.id)
         .then(() => {
           this.cacheFiles(type, fileList);
           this.addToForm(type, fileList);
