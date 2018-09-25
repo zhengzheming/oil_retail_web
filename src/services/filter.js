@@ -7,13 +7,13 @@ export function lookupInDict(route, field, value) {
     "system-user": {
       status: {
         1: "启用",
-        0: "未启用"
+        0: "禁用"
       }
     },
     "system-role": {
       status: {
         1: "启用",
-        0: "未启用"
+        0: "禁用"
       }
     },
     "oil-company": {
@@ -32,7 +32,7 @@ export function lookupInDict(route, field, value) {
     common: {
       status: {
         1: "启用",
-        0: "未启用"
+        0: "禁用"
       }
     }
   };
