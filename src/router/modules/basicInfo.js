@@ -49,7 +49,8 @@ export default {
       name: "vehicleData",
       component: commonList,
       meta: {
-        title: "车辆数据"
+        title: "车辆数据",
+        module: "/basic-info/vehicleData/list"
       }
     },
     {
