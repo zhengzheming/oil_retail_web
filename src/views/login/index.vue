@@ -80,6 +80,7 @@ export default {
             });
         } else {
           console.log("error submit!!");
+          this.loading = false;
           return false;
         }
       });

@@ -6,6 +6,7 @@
     <el-input
       v-trim
       :type="type"
+      :autofocus="autofocus"
       auto-complete="off"
       @focus="inputFocus"
       @blur="inputBlur"
@@ -29,6 +30,10 @@ export default {
     }
   },
   props: {
+    autofocus: {
+      type: Boolean,
+      default: false
+    },
     prop: {
       type: String,
       default: ""
@@ -54,6 +59,11 @@ export default {
   computed: {
     activated() {
       return this.isFocus || this.value.length > 0;
+    }
+  },
+  watch: {
+    value(val) {
+      console.log(val);
     }
   },
   methods: {
