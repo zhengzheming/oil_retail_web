@@ -14,6 +14,7 @@ import FormControlStatic from "./FormControlStatic";
 import AuthTree from "./AuthTree";
 import DownloadLink from "./DownloadLink";
 import CellGridControls from "./CellGridControls";
+import Uploader from "./Uploader";
 
 const components = [
   Breadcrumb,
@@ -30,7 +31,8 @@ const components = [
   FormControlStatic,
   AuthTree,
   DownloadLink,
-  CellGridControls
+  CellGridControls,
+  Uploader
 ];
 
 components.forEach(component => {
