@@ -1,7 +1,7 @@
 <template>
   <el-upload
     :action="action"
-    :data="{type: 1, id: 0}"
+    :data="data"
     :multiple="multiple"
     :limit="limit"
     :on-remove="(file, fileList) => handleRemove(file, fileList)"
@@ -19,6 +19,10 @@
 export default {
   name: "Uploader",
   props: {
+    data: {
+      type: Object,
+      default: () => ({})
+    },
     action: {
       type: String,
       default: ""
