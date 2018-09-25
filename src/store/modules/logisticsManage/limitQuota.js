@@ -28,19 +28,41 @@ const role = {
         router.push({ name: "vehicleDayQuotaAdd" });
       }
     },
-    "enterpriseDayQuotaAdd:save": function({ state }) {
-      logisticsQuotaLimitAdd(state.rate / 100).then(res => {
+    "enterpriseDayQuotaAdd:after-hook": function({ rootState, dispatch }) {
+      Message.success("保存成功");
+      const listPageState = rootState.listPage;
+      if (listPageState.slideRoute.name) {
+        dispatch("listPage:hide-side-content");
+        dispatch("listPage:search");
+      } else {
+        router.push({ name: "enterpriseDayQuota" });
+      }
+    },
+    "enterpriseDayQuotaAdd:save": function({ state, dispatch }) {
+      logisticsQuotaLimitAdd(state.rate / 100 || state.rate).then(res => {
         if (res.state == 0) {
-          Message.success("保存成功");
-          router.push({ name: "enterpriseDayQuota" });
+          dispatch("enterpriseDayQuotaAdd:after-hook");
+          // Message.success("保存成功");
+          // router.push({ name: "enterpriseDayQuota" });
         }
       });
     },
-    "vehicleDayQuotaAdd:save": function({ state }) {
-      vehicleQuotaLimitAdd(state.rate / 100).then(res => {
+    "vehicleDayQuotaAdd:after-hook": function({ rootState, dispatch }) {
+      Message.success("保存成功");
+      const listPageState = rootState.listPage;
+      if (listPageState.slideRoute.name) {
+        dispatch("listPage:hide-side-content");
+        dispatch("listPage:search");
+      } else {
+        router.push({ name: "vehicleDayQuota" });
+      }
+    },
+    "vehicleDayQuotaAdd:save": function({ state, dispatch }) {
+      vehicleQuotaLimitAdd(state.rate / 100 || state.rate).then(res => {
         if (res.state == 0) {
-          Message.success("保存成功");
-          router.push({ name: "vehicleDayQuota" });
+          dispatch("vehicleDayQuotaAdd:after-hook");
+          // Message.success("保存成功");
+          // router.push({ name: "vehicleDayQuota" });
         }
       });
     },

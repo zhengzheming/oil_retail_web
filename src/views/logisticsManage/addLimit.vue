@@ -1,12 +1,26 @@
 <template>
   <div>
-    <card :is-slide="true">
+    <p
+      class="slide-title"
+      style="font-size: 16px;
+              font-weight: 500;
+              height: 70px;
+              line-height: 70px;
+              padding-left: 24px;
+              border-bottom: 1px solid #e6e6e6;">新增额度
+      <i
+        style="float: right;margin-right: 24px;"
+        class="icon icon-chahao-copy close"
+        @click="close"/></p>
+    <card
+      style="margin: 0;">
       <span slot="title">当前额度信息</span>
       <item-list :com-data="currentInfo"/>
     </card>
-    <card>
+    <card
+      style="margin: 0 0 18px;">
       <span slot="title">新增额度信息</span>
-      <p style="line-height: 32px;">{{ text1 }}<span style="color: #666;">当日可用额度：</span>  不超过{{ text2 }}<el-input
+      <p style=""><span style="line-height: 32px;color: #666;">{{ text1 }}当日可用额度：</span>  不超过{{ text2 }}<el-input
         v-model="val"
         style="width:100px;margin:0 5px;display:inline-block;"
         type="text"/>%</p>
@@ -151,6 +165,11 @@ export default {
       }
       this.currentInfo.data = res.data || {};
     });
+  },
+  methods: {
+    close() {
+      this.$store.dispatch("listPage:hide-side-content");
+    }
   }
 };
 </script>

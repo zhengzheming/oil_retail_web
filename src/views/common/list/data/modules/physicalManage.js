@@ -55,10 +55,12 @@ export const tableHeader = {
   //物流企业管理-司机信息
   driver: {
     driver_id: {
-      label: "编号"
+      label: "编号",
+      width: "100"
     },
     name: {
-      label: "姓名"
+      label: "姓名",
+      width: "150"
     },
     logistics_name: {
       label: "所属企业",
@@ -71,19 +73,23 @@ export const tableHeader = {
       ]
     },
     phone: {
-      label: "电话"
+      label: "电话",
+      width: "250"
     },
     status_name: {
-      label: "状态"
+      label: "状态",
+      width: "150"
     }
   },
   // 基础数据-物流企业
   logistics: {
     logistics_id: {
-      label: "编号"
+      label: "编号",
+      width: "100"
     },
     name: {
-      label: "企业名称"
+      label: "企业名称",
+      minWidth: "200"
     },
     out_status_name: {
       label: "银管家状态"
@@ -95,13 +101,16 @@ export const tableHeader = {
   // 基础数据-车辆数据
   vehicleData: {
     vehicle_id: {
-      label: "编号"
+      label: "编号",
+      width: "100"
     },
     number: {
-      label: "车牌号"
+      label: "车牌号",
+      width: "150"
     },
     logistics_name: {
       label: "物流企业",
+      minWidth: "200",
       pathName: "logisticsDetail",
       query: [
         {
@@ -111,10 +120,13 @@ export const tableHeader = {
       ]
     },
     model: {
-      label: "车辆类型"
+      label: "车辆类型",
+      width: "150"
     },
     capacity: {
-      label: "油箱容量/L"
+      label: "油箱容量/L",
+      align: "right",
+      width: "150"
     }
   }
 };

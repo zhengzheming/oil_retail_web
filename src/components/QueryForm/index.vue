@@ -270,6 +270,7 @@ export default {
     flex-wrap: wrap;
     overflow: hidden;
     margin-bottom: 15px;
+    margin-top: -10px;
     .expand-control {
       color: #666;
       font-size: 14px;

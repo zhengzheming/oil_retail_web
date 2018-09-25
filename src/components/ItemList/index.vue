@@ -82,7 +82,7 @@ export default {
     label {
       color: #666;
       display: inline-block;
-      width: 9em;
+      width: 116px;
       text-align: right;
       margin-right: 18px;
     }
