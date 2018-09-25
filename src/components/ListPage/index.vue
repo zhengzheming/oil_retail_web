@@ -19,7 +19,8 @@
           :key="key"
           :label="val.label"
           :width="val.width"
-          :min-width="val.minWidth">
+          :min-width="val.minWidth"
+          :align="val.align || ''">
           <template slot-scope="scope">
             <router-link
               v-if="val.pathName"
@@ -44,6 +45,7 @@
         <el-table-column
           v-if="hasAction !== false"
           fixed="right"
+          align="center"
           width="200"
           label="操作">
           <template slot-scope="scope">

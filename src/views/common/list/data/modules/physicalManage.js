@@ -106,10 +106,11 @@ export const tableHeader = {
     },
     number: {
       label: "车牌号",
-      width: "250"
+      width: "150"
     },
     logistics_name: {
       label: "物流企业",
+      minWidth: "200",
       pathName: "logisticsDetail",
       query: [
         {
@@ -120,10 +121,11 @@ export const tableHeader = {
     },
     model: {
       label: "车辆类型",
-      width: "250"
+      width: "150"
     },
     capacity: {
       label: "油箱容量/L",
+      align: "right",
       width: "150"
     }
   }
