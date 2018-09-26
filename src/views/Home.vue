@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    欢迎使用 卓达加油 - 运营端
+    欢迎使用油品零售运营P端
   </div>
 </template>
 

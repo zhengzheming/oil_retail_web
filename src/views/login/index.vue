@@ -3,7 +3,7 @@
     <div class="login">
       <div class="login__content">
         <h1>HI,欢迎登录</h1>
-        <h2>卓达加油-运营端</h2>
+        <h2>油品零售运营P端</h2>
         <el-form
           ref="loginForm"
           :model="loginForm"
