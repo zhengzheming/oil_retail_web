@@ -187,6 +187,9 @@ export default {
       const cb = hooks[data.type] || function() {};
       cb(data);
     });
+    this.queryLength = this.comData.filter(item => {
+      return item.type != "tab" && !item.hide;
+    }).length;
   },
   mounted() {
     this.getTabData();
