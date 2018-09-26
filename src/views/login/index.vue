@@ -8,7 +8,7 @@
           ref="loginForm"
           :model="loginForm"
           :rules="rules"
-          autocomplete="off"
+          auto-complete="on"
           class="login__form"
           @keyup.enter.native.prevent="signIn()">
           <ui-form-text
@@ -30,7 +30,7 @@
         </el-form>
       </div>
     </div>
-    <p class="copyright">服务热线：400-819-7979（ 工作日09:00-21:00 ）<br>Copyright © 2014-2018 卓达加油 All Rights Reserved 粤ICP备15101056号 网站隐私条款</p>
+    <!--<p class="copyright">服务热线：400-819-7979（ 工作日09:00-21:00 ）<br>Copyright © 2014-2018 卓达加油 All Rights Reserved 粤ICP备15101056号 网站隐私条款</p>-->
   </div>
 </template>
 <script>
@@ -93,6 +93,35 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
+}
+@keyframes onAutoFillStart {
+  from {
+    /**/
+  }
+  to {
+    /**/
+  }
+}
+@keyframes onAutoFillCancel {
+  from {
+    /**/
+  }
+  to {
+    /**/
+  }
+}
+input:-webkit-autofill {
+  // Expose a hook for JavaScript when autofill is shown
+  // JavaScript can capture 'animationstart' events
+  animation-name: onAutoFillStart;
+
+  // Make the background color become yellow really slowly
+  transition: background-color 50000s ease-in-out 0s;
+}
+input:not(:-webkit-autofill) {
+  // Expose a hook for JS onAutoFillCancel
+  // JavaScript can capture 'animationstart' events
+  animation-name: onAutoFillCancel;
 }
 .login__wrapper {
   position: absolute;

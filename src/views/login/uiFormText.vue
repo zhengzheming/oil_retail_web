@@ -5,9 +5,11 @@
     :prop="prop">
     <el-input
       v-trim
+      v-detect-autofill="onAutofill"
+      v-model="currentValue"
       :type="type"
       :autofocus="autofocus"
-      auto-complete="off"
+      auto-complete="on"
       @focus="inputFocus"
       @blur="inputBlur"
       @change="inputChange"/>
@@ -19,13 +21,33 @@ export default {
   name: "UiFormText",
   directives: {
     trim: {
-      bind(el, binding, vnode) {
+      bind(el) {
         const input = el.querySelector("input");
         const changeHandler = debounce(function() {
           this.value = this.value.trim();
-          vnode.context.$emit("input", this.value);
         }, 600);
         input.addEventListener("input", changeHandler);
+      }
+    },
+    detectAutofill: {
+      bind(el, binding, vnode) {
+        const AUTOFILLED = "is-autofilled";
+        const context = vnode.context;
+        const onAutoFillStart = el => el.classList.add(AUTOFILLED);
+        const onAutoFillCancel = el => el.classList.remove(AUTOFILLED);
+        const onAnimationStart = ({ target, animationName }) => {
+          switch (animationName) {
+            case "onAutoFillStart": {
+              const cb = context[binding.expression];
+              if (typeof cb === "function") cb();
+              return onAutoFillStart(target);
+            }
+            case "onAutoFillCancel":
+              return onAutoFillCancel(target);
+          }
+        };
+        const input = el.querySelector("input");
+        input.addEventListener("animationstart", onAnimationStart, false);
       }
     }
   },
@@ -59,11 +81,14 @@ export default {
   computed: {
     activated() {
       return this.isFocus || this.value.length > 0;
-    }
-  },
-  watch: {
-    value(val) {
-      console.log(val);
+    },
+    currentValue: {
+      get() {
+        return this.value;
+      },
+      set(v) {
+        this.$emit("input", v.trim());
+      }
     }
   },
   methods: {
@@ -77,6 +102,10 @@ export default {
     },
     inputChange() {
       this.$emit("change");
+    },
+    onAutofill() {
+      this.isFocus = true;
+      this.$emit("autofill");
     }
   }
 };
