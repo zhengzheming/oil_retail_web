@@ -329,6 +329,12 @@ export default {
       files: [],
       provinceId: ""
     };
+    this.ui = {
+      attachOthers: [],
+      provinceOptions: [],
+      cityOptions: [],
+      companyOptions: []
+    };
     this.$nextTick(function() {
       this.$refs.form.clearValidate();
     });
