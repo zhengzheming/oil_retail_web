@@ -1,7 +1,7 @@
 export default {
   "oil-company-list": {
     items: ["基础数据", "油企数据", "列表"],
-    actions: [{ name: "添加", action: "create", type: "primary" }],
+    actions: [{ name: "新增油企", action: "create", type: "primary" }],
     canback: false
   },
   "oil-company-create": {
