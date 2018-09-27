@@ -189,14 +189,16 @@ export const tableHeader = {
     },
     status_name: {
       label: "额度状态",
-      width: "120"
+      width: "100"
     },
     credit_quota: {
-      label: "企业额度",
+      label: "企业额度/元",
+      minWidth: "140",
       align: "right"
     },
     available_quota: {
-      label: "企业可用额度",
+      label: "企业可用额度/元",
+      minWidth: "140",
       align: "right",
       pathName: "availableCredit",
       query: [
@@ -208,15 +210,18 @@ export const tableHeader = {
     },
     rate: {
       label: "每日额度占比%",
+      minWidth: "140",
       align: "right",
       filter: toPercent
     },
     daily_credit_quota: {
-      label: "每日企业额度",
+      label: "每日企业额度/元",
+      width: "140",
       align: "right"
     },
     daily_available_quota: {
-      label: "今日可用额度",
+      label: "今日可用额度/元",
+      minWidth: "140",
       align: "right",
       pathName: "dayCredit",
       query: [
@@ -245,15 +250,18 @@ export const tableHeader = {
     },
     capacity: {
       label: "油箱容量/L",
+      minWidth: "120",
       align: "right"
     },
     rate: {
       label: "每日额度占比%",
+      minWidth: "140",
       filter: toPercent,
       align: "right"
     },
     daily_capacity: {
       label: "每日车辆容量/L",
+      minWidth: "140",
       align: "right"
     },
     daily_available_capacity: {
