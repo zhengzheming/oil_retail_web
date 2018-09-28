@@ -68,7 +68,7 @@ export default {
 <style scoped lang="scss">
 @import "~@/styles/funcs";
 .side-content-enter,
-.side-content-leave-to {
+.side-content-leave-active {
   transform: translate3d(100%, 0, 0);
 }
 .side-content__wrapper {
@@ -79,7 +79,7 @@ export default {
   left: 0;
   display: flex;
   flex-direction: row-reverse;
-  transition: all 0.3s;
+  transition: all 0.4s;
 }
 .side-content {
   width: 60%;
